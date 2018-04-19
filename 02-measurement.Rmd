@@ -1,0 +1,305 @@
+```{r}
+library(magrittr)
+library(tidyverse)
+```
+
+
+# Measurement Process Characterization
+
+## Characterization 
+
+## Gauge R & R studies 
+
+## Case Studies 
+
+### Check standard 
+
+#### Background and data 
+
+>The measurements on the check standard duplicate certification measurements that were being made, during the same time period, on individual wafers from crystal #51939. For the check standard there were:
+
+- J = 6 repetitions at the center of the wafer on each day
+- K = 25 days
+
+[Check standard for resistivity measurement](https://www.itl.nist.gov/div898/handbook/mpc/section6/mpc62.htm)
+
+#### Reading the dataset
+
+```{r}
+check_standard <- read_table2("NIST data/MPC62_clean.DAT", col_names = TRUE) %>%
+  rowid_to_column()
+check_standard
+```
+
+#### Level-1 standard deviation
+
+Measurements for *J* runs over *K* days for *L* runs are:
+
+$$
+Y_{lkj}(l = 1, \, \ldots, \, L, \,\, k=1, \,\ldots, \, K, \,\, j=1, \,\ldots, \, J)
+$$
+The level-1 repeatability (short term precision) is calcuated from the pooled standard deviation over days and runs
+
+$$
+s_{1lk} = \sqrt{\frac{1}{J-1} \sum_{j=1}^{J}{(Y_{lkj} - \overline{Y}_{lk{\small \, \bullet}})^2}}
+$$
+
+with
+
+$$
+\overline{Y}_{lk{\small \, \bullet}} = \frac{1}{J}\sum_{j=1}^{J}{\overline{Y}_{lkj}}
+$$
+As stated in the e-Handbook:
+>An individual short-term standard deviation will not be a reliable estimate of precision if the degrees of freedom is less than ten, but the individual estimates can be pooled over the K days to obtain a more reliable estimate. 
+
+The pooled level-1 standard deviation estimate with v = K(J - 1) degrees of freedom is
+$$
+s_1 = \sqrt{\frac{1}{K} \sum_{k=1}^{K} s_k^2}
+$$
+
+```{r}
+s1_chkstd <- check_standard %>%
+  mutate(Stdev_sq = Stdev^2) %$% 
+  mean(Stdev_sq) %>% 
+  sqrt()
+
+s1_chkstd
+```
+
+Several comments on the code above. I've introduced the `%$%` operator. This allows me to use indivdual columns from my data frame and is useful for preforming mathematical operations on a specific column of data. It is from the **magrittr** package.
+
+I find this type of code easy to read and understand. Describing the operations is simple, I'm just working from inside out of the equation:
+
+- creating a new column of data that is $(Stdev)^2$
+- finding the mean of that new column
+- taking the square root of that number to give $s_1$.
+
+#### Level-2 standard deviation (reproducibility)
+
+$$
+s_{chkstd} = {\large s}_2 = \sqrt{\frac{1}{K-1} \sum_{k=1}^{K} \left( \overline{Y}_{k \, \small{\bullet}} - \overline{Y}_{\small{\bullet}  \small{\bullet}} \right) ^2}
+$$
+with 
+
+$$
+\overline{Y}_{\small{\bullet} \small{\bullet}}  = \frac{1}{K} \sum_{k=1}^{K} \overline{Y}_{k \, \small{\bullet}}
+$$
+
+Which is simply the standard deviation of the daily measuremnts
+
+```{r}
+s2_chkstd <- check_standard %$%
+  sd(Resistance)
+
+s2_chkstd
+```
+
+#### Control chart for standard deviation - Precision
+
+```{r}
+UCL_precision_ckkstd <- s1_chkstd*sqrt(qf(0.95, 5, 125))
+UCL_precision_ckkstd
+```
+
+```{r}
+ggplot(check_standard) +
+  geom_point(aes(rowid, Stdev)) +
+  geom_hline(aes(yintercept = UCL_precision_ckkstd), colour = "red", linetype = "dashed") +
+  labs(title =  "Precision control chart", subtitle = "Probe_ID 2362", x = "measurement", y = "ohm.cm", caption = "UCL calcuated at 95% level of confidence") +
+  annotate("text", x = 0, y = 0.096, label = "UCL", colour = "red")
+```
+
+#### Control chart for measurement bias and variability
+
+The control limits for monitoring the bias and long-term variability of resistivity with a Shewhart control chart are given by
+
+$$
+UCL=\text{Average} + 2 \cdot s_2 \\
+Centerline=\text{Average} \\
+LCL=\text{Average} − 2 \cdot s_2 \\
+$$
+
+```{r}
+ggplot(check_standard) +
+  geom_point(aes(rowid, Resistance)) +
+  geom_hline(aes(yintercept = (mean(Resistance) + 2*s2_chkstd)), colour = "red", linetype = "dashed") +
+  geom_hline(aes(yintercept = (mean(Resistance) - 2*s2_chkstd)), colour = "red", linetype = "dashed") +
+  labs(title =  "Shewhart control chart", subtitle = "Probe_ID 2362", x = "measurement", y = "ohm.cm", caption = "Control limits calcuated with k = 2") +
+  annotate("text", x = 0, y = 97.12, label = "UCL", colour = "red") +
+  annotate("text", x = 0, y = 97.02, label = "LCL", colour = "red")
+```
+
+
+### Gauge study
+
+#### Background and data
+>Measurements on the check standards are used to estimate repeatability, day effect, and run effect	The effect of operator was not considered to be significant for this study; therefore, 'day' replaces 'operator' as a factor in the nested design. Averages and standard deviations from J = 6 measurements at the center of each wafer are shown in the table.
+
+- J = 6 measurements at the center of the wafer per day
+- K = 6 days (one operator) per repetition
+- L = 2 runs (complete)
+- Q = 5 wafers (check standards 138, 139, 140, 141, 142)
+- R = 5 probes (1, 281, 283, 2062, 2362)
+
+[Gauge study of resistivity probes](https://www.itl.nist.gov/div898/handbook/mpc/section6/mpc61.htm)
+
+
+```{r}
+gauge_study <- read_table2("NIST data/MPC61_clean.DAT", col_names = TRUE) %>%
+  rowid_to_column()
+gauge_study
+```
+
+#### Repeatability standard deviations
+
+```{r}
+ggplot(gauge_study) +
+  geom_point(aes(as.factor(WAFER), STDDEV, colour = as.factor(DAY))) +
+  facet_wrap(~ as.factor(PROBE), nrow = 1)
+```
+
+```{r}
+ggplot(gauge_study) +
+  geom_point(aes(as.factor(WAFER), STDDEV)) +
+  facet_grid(as.factor(RUN) ~ as.factor(PROBE))
+  
+```
+
+#### Effects of days and long-term stability
+
+```{r}
+ggplot(gauge_study) +
+  geom_point(aes(rowid, AVERAGE, colour = as.factor(RUN))) +
+  facet_grid(as.factor(WAFER) ~ as.factor(PROBE), scales = "free_y")
+```
+
+
+#### Differences among 5 probes
+
+```{r}
+probe_means_run <- gauge_study %>%
+  group_by(PROBE, WAFER, RUN) %>%
+  summarise(n = n(), probe_mean = mean(AVERAGE)) %>%
+  unite(join_id, WAFER, RUN, sep = "_", remove = FALSE) %>%
+  ungroup()
+
+probe_means_run
+
+wafer_means_run <- gauge_study %>%
+  group_by(WAFER, RUN) %>%
+  summarise(n = n(), wafer_means = mean(AVERAGE)) %>%
+  unite(join_id, WAFER, RUN, sep = "_", remove = FALSE) %>%
+  ungroup()
+
+wafer_means_run
+
+delta_probes <- left_join(probe_means_run, wafer_means_run, by = "join_id") %>%
+  mutate(delta_probes_wafer = probe_mean - wafer_means)
+
+delta_probes
+```
+
+
+```{r}
+ggplot(delta_probes) +
+  geom_line(aes(as.factor(WAFER.x), delta_probes_wafer, group = as.factor(PROBE), colour = as.factor(PROBE))) +
+  geom_hline(aes(yintercept = 0), linetype = "dashed") +
+  facet_wrap(~ as.factor(RUN.x), ncol = 1) 
+```
+
+#### Analysis and interpretation
+
+Table of estimates for probe #2362
+
+>A graphical analysis shows repeatability standard deviations plotted by wafer and probe... The plots show that for both runs the precision of this probe is better than for the other probes.
+>
+>Probe #2362, because of its superior precision, was chosen as the tool for measuring all 100 ohm.cm resistivity wafers at NIST. Therefore, the remainder of the analysis focuses on this probe.
+
+#### probe #2362
+
+```{r}
+probe_2362 <- gauge_study %>%
+  filter(PROBE == 2362)
+
+probe_2362
+```
+
+Pooled level-1 standard deviations (ohm.cm)
+
+```{r}
+s1_2362_1 <- probe_2362 %>%
+  filter(RUN == 1) %>%
+  mutate(Stdev_sq = STDDEV^2) %$% 
+  mean(Stdev_sq) %>% 
+  sqrt()
+
+s1_2362_1
+
+s1_2362_2 <- probe_2362 %>%
+  filter(RUN == 2) %>%
+  mutate(Stdev_sq = STDDEV^2) %$% 
+  mean(Stdev_sq) %>% 
+  sqrt()
+
+s1_2362_2
+
+s1_2362 <- probe_2362 %>%
+  mutate(Stdev_sq = STDDEV^2) %$% 
+  mean(Stdev_sq) %>% 
+  sqrt()
+
+s1_2362
+
+```
+
+Level-2 standard deviations (ohm.cm) for 5 wafers
+
+```{r}
+s2_2362 <- gauge_study %>%
+  group_by(PROBE, WAFER, RUN) %>%
+  filter(PROBE == 2362) %>%
+  summarise(df = n()-1, probe_mean = mean(AVERAGE), probe_stdev = sd(AVERAGE), probe_stdev_sq = probe_stdev^2) %>%
+  group_by(RUN) %>%
+  summarise(s2_run = sqrt(mean(probe_stdev_sq)))
+
+s2_2362
+
+```
+
+Over both runs
+```{r}
+s2_2352_all <- s2_2362 %>%
+  mutate(s2_run_sq = s2_run^2) %$%
+  mean(s2_run_sq) %>%
+  sqrt()
+
+s2_2352_all
+  
+```
+
+```{r}
+sd_2362_wafer <- gauge_study %>%
+  group_by(PROBE, WAFER, RUN) %>%
+  filter(PROBE == 2362) %>%
+  summarise(probe_mean = mean(AVERAGE)) %>%
+  mutate(
+    run_number = case_when(
+      RUN == 1 ~ "Run1",
+      RUN == 2 ~ "Run2"
+    )
+  ) %>%
+  select(PROBE, WAFER, probe_mean, run_number) %>% 
+  group_by(WAFER) %>%
+  summarise(sd_wafer = sd(probe_mean))
+
+
+sd_2362_wafer
+
+s3_2362 <- sd_2362_wafer %>%
+  mutate(sd_wafer_sq = sd_wafer^2) %$%
+  mean(sd_wafer_sq) %>%
+  sqrt()
+  
+s3_2362
+```
+

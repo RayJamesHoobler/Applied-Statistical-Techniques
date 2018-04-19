@@ -1,0 +1,433 @@
+# Exploratory Data Analysis {#EDA}
+
+## A EDA Example
+
+[An EDA/Graphics Example](https://www.itl.nist.gov/div898/handbook/eda/section1/eda16.htm)
+
+The Anscombe dataset is an excelent place to start as it will allow us to start using R immediately. The anscombe dataset is part of the **datasets** package and is automatically loaded with RStudio.
+
+```{r anscombe}
+anscombe
+```
+
+## But first... let's start working in the tidyverse
+
+The tidyverse is discribed as 
+
+>an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures. 
+
+You can install the **tidyverse** package with 
+```{}
+install.packages("tidyverse")
+```
+
+Once installed, simply load the package:
+```{r}
+library(tidyverse)
+```
+
+Additional details can be found at [tidyverse.org](https://www.tidyverse.org)
+
+If you have only created charts and graphs using spreadsheets, you will assume the data is ready to plot. It might be nice to have the x1 and y1 values closer together in the table, but we could still select the individual columns and plot the datasets.
+
+We're going to jump right in with with the idea of *tidy data*. That each row should be a single observation.
+
+As mentioned in the introduction, this text assumes a basic knowledge of the tidyverse. In this example, we will selct the x data from the data frame, rename the colunn labels, use the `gather()` function to tidy the data. We will then repeat the process for the y data, removing the group names from the data set. The last step is to combine these two data frames into a single data frame we will use for plotting. I'm sure there are more efficient ways to do this; however, the code used to do this manipulation is typical when working with non-tidy data. An added benifit is that hte code is readable.
+
+```{r}
+x_anscombe <- anscombe %>%  # results will be storred into a new object x_anscombe; we start with the original data frame "anscombe"
+  select(x1, x2, x3, x4) %>%  # select the columns we want to work with
+  rename(group1 = x1, group2 = x2, group3 = x3, group4 = x4) %>% # rename the values using a generic header
+  gather(key = group, value = x_values, group1, group2, group3, group4) # gather the columns into rows
+
+x_anscombe
+
+y_anscombe <- anscombe %>%
+  select(y1, y2, y3, y4) %>%
+  gather(key = group, value = y_values, y1, y2, y3, y4) %>% # I don't need to rename the columns as I will discard them (I only need one column to indicate the group number)
+  select(y_values)
+
+y_anscombe
+
+anscombe_tidy <- bind_cols(x_anscombe, y_anscombe)
+anscombe_tidy
+```
+
+While this may seem like a lot of work to make a new table---which is much harder to read---this method allows us to exploit the **gramar of graphics** used by the **ggplot2** package.
+
+```{r}
+ggplot(anscombe_tidy, aes(x_values, y_values)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  facet_wrap(~group)
+```
+
+It may not be immediately obvious from the plots, but the slope and intercept for each line are identical. We can calculate these values for each dataset using the linear model function, `lm()`.
+
+
+```{r}
+lm(y1 ~ x1, data = anscombe)
+lm(y2 ~ x2, data = anscombe)
+lm(y3 ~ x3, data = anscombe)
+lm(y4 ~ x4, data = anscombe)
+```
+
+The calculated slope and intercept are the same (at least to three significant figures); the use of EDA allows us to differentiate the data quickly.
+
+## Common graphical analysis used in the e-Handbook
+
+Four techniques are routinely used in the e-Handbook for preliminary EDA. These four charts are routinely displayed as a "4-plot." Each technique will be presented in the following sub-sections.
+
+- Run sequence plot 
+- Lag plot 
+- Histogram 
+- Normal probility plot 
+
+## Case studies from chapter 1 of the NIST/SEMATECH e-Handbook
+
+### Normal random numbers
+[Normal Random Numbers](https://www.itl.nist.gov/div898/handbook/eda/section4/eda421.htm)
+
+```{r normal random numbers data, echo=TRUE}
+normal_random_numbers <- scan("NIST data/RANDN.DAT", skip = 25) %>% 
+  as.tibble() %>%
+  rowid_to_column()
+
+normal_random_numbers
+```
+
+```{r}
+ggplot(normal_random_numbers, aes(rowid, value)) +
+  geom_line() +
+  labs(title = "Run sequence plot")
+```
+
+
+
+```{r}
+ggplot(normal_random_numbers, aes(lag(value), value)) +
+  geom_point() +
+  labs(title = "Lag plot")
+```
+
+```{r}
+ggplot(normal_random_numbers, aes(value)) +
+  geom_histogram() +
+  labs(title = "Histogram")
+```
+
+```{r}
+ggplot(normal_random_numbers, aes(sample = value)) +
+  geom_qq() +
+  labs(title = "Normal probabilty (qq) plot")
+```
+
+### Uniform random numbers
+[Uniform Random Numbers](https://www.itl.nist.gov/div898/handbook/eda/section4/eda422.htm)
+
+```{r uniform random numbers, echo=TRUE}
+uniform_random_numbers <- scan("NIST data/RANDU.DAT", skip = 25) %>% 
+  as.tibble() %>%
+  rowid_to_column()
+
+uniform_random_numbers
+```
+
+
+```{r}
+ggplot(uniform_random_numbers, aes(rowid, value)) +
+  geom_line() +
+  labs(title = "Run sequence plot")
+```
+
+```{r}
+ggplot(uniform_random_numbers, aes(lag(value), value)) +
+  geom_point() +
+  labs(title = "Lag plot")
+```
+
+```{r}
+ggplot(normal_random_numbers, aes(value)) +
+  geom_histogram() +
+  labs(title = "Histogram")
+```
+
+```{r}
+ggplot(uniform_random_numbers, aes(sample = value)) +
+  geom_qq() +
+  labs(title = "Normal probabilty (qq) plot")
+```
+
+### Random walk
+
+[Random Walk](https://www.itl.nist.gov/div898/handbook/eda/section4/eda4231.htm)
+
+
+```{r random walk, echo=TRUE}
+random_walk <- scan("NIST data/RANDWALK.DAT", skip = 25) %>% 
+  as.tibble() %>%
+  rowid_to_column()
+
+random_walk
+```
+
+
+```{r}
+ggplot(random_walk, aes(rowid, value)) +
+  geom_line() +
+  labs(title = "Run sequence plot")
+```
+
+```{r}
+ggplot(random_walk, aes(lag(value), value)) +
+  geom_point() +
+  labs(title = "Lag plot")
+```
+
+```{r}
+ggplot(random_walk, aes(value)) +
+  geom_histogram() +
+  labs(title = "Histogram")
+```
+
+```{r}
+ggplot(random_walk, aes(sample = value)) +
+  geom_qq() +
+  labs(title = "Normal probabilty (qq) plot")
+```
+
+### Beam deflections 
+
+[Beam Deflections](https://www.itl.nist.gov/div898/handbook/eda/section4/eda425.htm)
+
+
+```{r beam deflections, echo=TRUE}
+beam_deflections <- scan("NIST data/LEW.DAT", skip = 25) %>% 
+  as.tibble() %>%
+  rowid_to_column()
+
+beam_deflections
+```
+
+
+```{r}
+ggplot(beam_deflections, aes(rowid, value)) +
+  geom_line() +
+  labs(title = "Run sequence plot")
+```
+
+```{r}
+ggplot(beam_deflections, aes(lag(value), value)) +
+  geom_point() +
+  labs(title = "Lag plot")
+```
+
+```{r}
+ggplot(beam_deflections, aes(value)) +
+  geom_histogram() +
+  labs(title = "Histogram")
+```
+
+```{r}
+ggplot(beam_deflections, aes(sample = value)) +
+  geom_qq() +
+  labs(title = "Normal probabilty (qq) plot")
+```
+
+### Filter transmitance
+
+[Filter Transmitance](https://www.itl.nist.gov/div898/handbook/eda/section4/eda426.htm)
+
+
+```{r filter transmitance, echo=TRUE}
+filter_transmitance <- scan("NIST data/MAVRO.DAT", skip = 25) %>% 
+  as.tibble() %>%
+  rowid_to_column()
+
+filter_transmitance
+```
+
+
+```{r}
+ggplot(filter_transmitance, aes(rowid, value)) +
+  geom_line() +
+  labs(title = "Run sequence plot")
+```
+
+```{r}
+ggplot(filter_transmitance, aes(lag(value), value)) +
+  geom_point() +
+  labs(title = "Lag plot")
+```
+
+```{r}
+ggplot(filter_transmitance, aes(value)) +
+  geom_histogram() +
+  labs(title = "Histogram")
+```
+
+```{r}
+ggplot(filter_transmitance, aes(sample = value)) +
+  geom_qq() +
+  labs(title = "Normal probabilty (qq) plot")
+```
+
+
+### Standard resistor
+
+[Standard Resistor](https://www.itl.nist.gov/div898/handbook/eda/section4/eda427.htm) 
+
+```{r standard resistor, echo=TRUE}
+standard_resistor <- read_table2("NIST data/DZIUBA1.DAT", skip = 25, col_names = FALSE) %>% 
+  rowid_to_column() %>%
+  rename(month = X1, day = X2, year = X3, resistance = X4)
+
+standard_resistor
+```
+
+
+```{r}
+ggplot(standard_resistor, aes(rowid, resistance)) +
+  geom_line() +
+  labs(title = "Run sequence plot")
+```
+
+```{r}
+ggplot(standard_resistor, aes(lag(resistance), resistance)) +
+  geom_point() +
+  labs(title = "Lag plot")
+```
+
+```{r}
+ggplot(standard_resistor, aes(resistance)) +
+  geom_histogram() +
+  labs(title = "Histogram")
+```
+
+```{r}
+ggplot(standard_resistor, aes(sample = resistance)) +
+  geom_qq() +
+  labs(title = "Normal probabilty (qq) plot")
+```
+
+### Heat flow meter 1
+
+[Heat Flow Meter 1](https://www.itl.nist.gov/div898/handbook/eda/section4/eda428.htm)
+
+
+```{r heat flow meter 1, echo=TRUE}
+heat_flow_meter1 <- scan("NIST data/ZARR13.DAT", skip = 25) %>% 
+  as.tibble() %>%
+  rowid_to_column()
+
+heat_flow_meter1
+```
+
+
+```{r}
+ggplot(heat_flow_meter1, aes(rowid, value)) +
+  geom_line() +
+  labs(title = "Run sequence plot")
+```
+
+```{r}
+ggplot(heat_flow_meter1, aes(lag(value), value)) +
+  geom_point() +
+  labs(title = "Lag plot")
+```
+
+```{r}
+ggplot(heat_flow_meter1, aes(value)) +
+  geom_histogram() +
+  labs(title = "Histogram")
+```
+
+```{r}
+ggplot(heat_flow_meter1, aes(sample = value)) +
+  geom_qq() +
+  labs(title = "Normal probabilty (qq) plot")
+```
+
+### Ceramic strength
+
+[Ceramic Strength](https://www.itl.nist.gov/div898/handbook/eda/section4/eda42a.htm) 
+
+```{r ceramic strength, echo=TRUE}
+ceramic_strength <- read_table2("NIST data/JAHANMI2.DAT", skip = 48, col_names = TRUE) %>% 
+  filter(Lab >= 1) %>%
+  rowid_to_column()
+
+ceramic_strength
+```
+
+```{r}
+ggplot(ceramic_strength, aes(rowid, Y)) +
+  geom_line() +
+  labs(title = "Run sequence plot")
+```
+
+```{r}
+ggplot(ceramic_strength, aes(lag(Y), Y)) +
+  geom_point() +
+  labs(title = "Lag plot")
+```
+
+```{r}
+ggplot(ceramic_strength, aes(Y)) +
+  geom_histogram() +
+  labs(title = "Histogram")
+```
+
+```{r}
+ggplot(ceramic_strength, aes(sample = Y)) +
+  geom_qq() +
+  labs(title = "Normal probabilty (qq) plot")
+```
+
+
+```{r}
+ggplot(ceramic_strength, aes(Y)) +
+  geom_histogram(aes(fill = as.factor(Bat)), bins = 20) +
+  facet_grid(Bat ~ .) +
+  labs(title = "Histogram")
+```
+
+```{r}
+ggplot(ceramic_strength, aes(as.factor(Bat), Y)) +
+  geom_boxplot(notch = TRUE) +
+  labs(title = "Boxplot")
+```
+
+```{r}
+ggplot(ceramic_strength, aes(as.factor(Lab), Y)) +
+  geom_boxplot(aes(fill = as.factor(Bat))) +
+  labs(title = "Boxplot")
+```
+
+
+
+***
+
+
+You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(intro). If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \@ref(methods).
+
+Figures and tables with captions will be placed in `figure` and `table` environments, respectively.
+
+```{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center'}
+par(mar = c(4, 4, .1, .1))
+plot(pressure, type = 'b', pch = 19)
+```
+
+Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab).
+
+```{r nice-tab, tidy=FALSE}
+knitr::kable(
+  head(iris, 20), caption = 'Here is a nice table!',
+  booktabs = TRUE
+)
+```
+
+You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].
+
+I'd like to add a reference [@Hoobler1993].
+

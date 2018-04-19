@@ -1,0 +1,134 @@
+--- 
+title: "An Incomplete Solutions Guide to the NIST/SEMATECH e-Handbook of Statistical Methods"
+subtitle: "examples and case studies using the tidyverse and ggplot2"
+author: "Ray Hoobler"
+date: "`r Sys.Date()`"
+bibliography:
+- book.bib
+- packages.bib
+- rjh.bib
+description: This handbook was created using the bookdown package in RStudio.
+  The output format for this example is bookdown::gitbook.
+documentclass: book
+link-citations: yes
+site: bookdown::bookdown_site
+biblio-style: apalike
+---
+
+# Preface {-}
+
+Exploratory Data Analysis (EDA) is a philosophy on how to work with data, and for many applications, the workflow is better suited for most working scientist and engineers. As a scientist, we are trained to formulate a hypothesis and design a series of experiments that will allow us to test the hypothesis effectively. Unfortunately, most data doesn’t from carefully controlled trials, but from observations. Statisticians will readily jump into describing the difference in as much detail as you would like.
+
+For most of us, we need tools to characterize an instrument or a process. The philosophy of EDA provides the framework to do this work.
+
+Unfortunately, most textbooks still focus on traditional statistical techniques and even while it is essential to understand the underlying assumptions and fundamentals, I would argue that most of the work we do as scientist and engineers are not well suited for rigorous statistical analysis. In many cases, the need to disseminate information to a broad audience is best served by the methods espoused by EDA. The NIST e-Handbook Engineering Statistics is a welcome deviation from the norm.
+
+In the Spring of 2018, I adopted this text as the basis of a one-semester, graduate course that focused applied statistical techniques. The audience for this course were working scientist, and the course was a core course in a Professional Science Master’s (PSM). 
+
+Unfortunately, the one drawback of the NIST Handbook is the use of Dataplot as the primary software package for analysis. The authors have provided examples using the R statistical language; however, most--if not all--of these scripts are written using base R which is unfortunate. Modern R now incorporates many packages for streamlining the EDA process. This book attempts to capture my efforts to use these methods and share them with students in the course. The two packages that I primarily used were **tidyverse** and **ggplot2**.
+
+Before going further, I should clarify one thing---I’m a hack. I classify learning as three levels: novice, hack, expert. 
+
+Novice: basic knowledge of how to use a tool with a desire to learn.
+Hack: Basic to intermediate knowledge of how to use a tool accompanied by resources to produce a finished product.
+Expert: Extensive knowledge of how to use a tool; can produce a finished product with few outside resources.
+
+I’m sure other factors can be added to each category, but these capture the spirit of how I approach learning.
+
+The number of resources available to learn R is numerous, and the first I would strongly recommend is R for Data Science. This text is an introduction to the tidyverse. The tidyverse is not just a collection of R packages, but a philosophy on how to work with data. It makes data analysis almost fun!
+
+The other primary resource available for EDA is ggplot2. Like the tidyverse, ggplot2 is not just a package of tools, but a philosophy built around the Grammar of Graphics.
+
+I encourage the reader to explore the references related to these two packages and their underlying design philosophies.
+
+This book will show how I have worked through the exercises and case studies presented in the NIST handbook using methods found in the tidyverse and ggplot2. I have found this framework to be incredibly satisfying and one I was eager to share beyond my class. 
+
+If you find this material useful, please send me an email. 
+
+## Structure of the book {-} 
+
+Content was built around the e-book [NIST/SEMATECH e-Handbook of Statistical Methods](https://www.itl.nist.gov/div898/handbook/index.htm). 
+
+At the begining of each exercise or case study, I've included a link back to the specific page of the e-Handbook. The e-Handbook can be downloaded in full from the [NIST site](https://www.itl.nist.gov/div898/handbook/toolaids/cd.htm). The compressed file is over 100Mb (not 43Mb) as stated.
+
+
+## Software information and conventsions {-}
+
+Follow "best practices" of the *tityverse*
+
+The R session information for this book is shown below:
+
+```{r echo=TRUE}
+sessionInfo()
+```
+
+## Acknowledgements {-} 
+
+Current and former students
+
+Former coleagues 
+
+
+
+Ray James Hoobler
+Salt Lake City, Utah
+
+
+
+## Simple Programing Examples
+```{r}
+x_cube <- function (x) {
+  x^3
+}
+
+x_cube(3)
+```
+
+
+```{r message=TRUE, warning=TRUE, paged.print=TRUE}
+
+library(tidyverse)
+set.seed(5234)
+n_darts <- 1e6
+x_test <- runif(n_darts, -1, 1)
+y_test <- runif(n_darts, -1, 1)
+
+random_xy_table <- tibble(n = 1:n_darts, x = x_test, y = y_test) %>%
+  mutate(r = sqrt(x^2 + y^2),
+  dart_circle = case_when(
+    r <= 1 ~ 1,
+    r > 1 ~ 0
+  )
+  )
+
+random_xy_table
+
+pi_results <- random_xy_table %>% 
+  summarise(pi_est = mean(dart_circle)*4) %>%
+  mutate(pi, accuracy = (pi_est - pi)/pi * 100)
+
+pi_results
+
+
+```
+
+
+
+
+*** 
+
+
+This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports, e.g., a math equation $a^2 + b^2 = c^2$.
+
+The **bookdown** package can be installed from CRAN:
+
+Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.
+
+To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.name/tinytex/>.
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'stargazer'
+), 'packages.bib')
+```

@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>An Incomplete Solutions Guide to the NIST/SEMATECH e-Handbook of Statistical Methods</title>
+  <meta name="description" content="This handbook was created using the bookdown package in RStudio. The output format for this example is bookdown::gitbook.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="An Incomplete Solutions Guide to the NIST/SEMATECH e-Handbook of Statistical Methods" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This handbook was created using the bookdown package in RStudio. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="An Incomplete Solutions Guide to the NIST/SEMATECH e-Handbook of Statistical Methods" />
+  
+  <meta name="twitter:description" content="This handbook was created using the bookdown package in RStudio. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Ray Hoobler">
+
+
+<meta name="date" content="2018-04-19">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+<link rel="next" href="measurement-process-characterization.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="http://pmst.utah.edu">Engineering Statistics Handbook in the Tidyverse</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#structure-of-the-book"><i class="fa fa-check"></i>Structure of the book</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#software-information-and-conventsions"><i class="fa fa-check"></i>Software information and conventsions</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#simple-programing-examples"><i class="fa fa-check"></i><b>0.1</b> Simple Programing Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="EDA.html"><a href="EDA.html"><i class="fa fa-check"></i><b>1</b> Exploratory Data Analysis</a><ul>
+<li class="chapter" data-level="1.1" data-path="EDA.html"><a href="EDA.html#a-eda-example"><i class="fa fa-check"></i><b>1.1</b> A EDA Example</a></li>
+<li class="chapter" data-level="1.2" data-path="EDA.html"><a href="EDA.html#but-first-lets-start-working-in-the-tidyverse"><i class="fa fa-check"></i><b>1.2</b> But first… let’s start working in the tidyverse</a></li>
+<li class="chapter" data-level="1.3" data-path="EDA.html"><a href="EDA.html#common-graphical-analysis-used-in-the-e-handbook"><i class="fa fa-check"></i><b>1.3</b> Common graphical analysis used in the e-Handbook</a></li>
+<li class="chapter" data-level="1.4" data-path="EDA.html"><a href="EDA.html#case-studies-from-chapter-1-of-the-nistsematech-e-handbook"><i class="fa fa-check"></i><b>1.4</b> Case studies from chapter 1 of the NIST/SEMATECH e-Handbook</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="EDA.html"><a href="EDA.html#normal-random-numbers"><i class="fa fa-check"></i><b>1.4.1</b> Normal random numbers</a></li>
+<li class="chapter" data-level="1.4.2" data-path="EDA.html"><a href="EDA.html#uniform-random-numbers"><i class="fa fa-check"></i><b>1.4.2</b> Uniform random numbers</a></li>
+<li class="chapter" data-level="1.4.3" data-path="EDA.html"><a href="EDA.html#random-walk"><i class="fa fa-check"></i><b>1.4.3</b> Random walk</a></li>
+<li class="chapter" data-level="1.4.4" data-path="EDA.html"><a href="EDA.html#beam-deflections"><i class="fa fa-check"></i><b>1.4.4</b> Beam deflections</a></li>
+<li class="chapter" data-level="1.4.5" data-path="EDA.html"><a href="EDA.html#filter-transmitance"><i class="fa fa-check"></i><b>1.4.5</b> Filter transmitance</a></li>
+<li class="chapter" data-level="1.4.6" data-path="EDA.html"><a href="EDA.html#standard-resistor"><i class="fa fa-check"></i><b>1.4.6</b> Standard resistor</a></li>
+<li class="chapter" data-level="1.4.7" data-path="EDA.html"><a href="EDA.html#heat-flow-meter-1"><i class="fa fa-check"></i><b>1.4.7</b> Heat flow meter 1</a></li>
+<li class="chapter" data-level="1.4.8" data-path="EDA.html"><a href="EDA.html#ceramic-strength"><i class="fa fa-check"></i><b>1.4.8</b> Ceramic strength</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html"><i class="fa fa-check"></i><b>2</b> Measurement Process Characterization</a><ul>
+<li class="chapter" data-level="2.1" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#characterization"><i class="fa fa-check"></i><b>2.1</b> Characterization</a></li>
+<li class="chapter" data-level="2.2" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#gauge-r-r-studies"><i class="fa fa-check"></i><b>2.2</b> Gauge R &amp; R studies</a></li>
+<li class="chapter" data-level="2.3" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#case-studies"><i class="fa fa-check"></i><b>2.3</b> Case Studies</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#check-standard"><i class="fa fa-check"></i><b>2.3.1</b> Check standard</a></li>
+<li class="chapter" data-level="2.3.2" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#gauge-study"><i class="fa fa-check"></i><b>2.3.2</b> Gauge study</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>3</b> Methods</a></li>
+<li class="chapter" data-level="4" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>4</b> Applications</a><ul>
+<li class="chapter" data-level="4.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>4.1</b> Example one</a></li>
+<li class="chapter" data-level="4.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>4.2</b> Example two</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>5</b> Final Words</a></li>
+<li class="chapter" data-level="6" data-path="final-words-1.html"><a href="final-words-1.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
+<li class="chapter" data-level="7" data-path="final-words-2.html"><a href="final-words-2.html"><i class="fa fa-check"></i><b>7</b> Final Words</a></li>
+<li class="chapter" data-level="8" data-path="final-words-3.html"><a href="final-words-3.html"><i class="fa fa-check"></i><b>8</b> Final Words</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">An Incomplete Solutions Guide to the NIST/SEMATECH e-Handbook of Statistical Methods</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="EDA" class="section level1">
+<h1><span class="header-section-number">1</span> Exploratory Data Analysis</h1>
+<div id="a-eda-example" class="section level2">
+<h2><span class="header-section-number">1.1</span> A EDA Example</h2>
+<p><a href="https://www.itl.nist.gov/div898/handbook/eda/section1/eda16.htm">An EDA/Graphics Example</a></p>
+<p>The Anscombe dataset is an excelent place to start as it will allow us to start using R immediately. The anscombe dataset is part of the <strong>datasets</strong> package and is automatically loaded with RStudio.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">anscombe</a></code></pre></div>
+<pre><code>##    x1 x2 x3 x4    y1   y2    y3    y4
+## 1  10 10 10  8  8.04 9.14  7.46  6.58
+## 2   8  8  8  8  6.95 8.14  6.77  5.76
+## 3  13 13 13  8  7.58 8.74 12.74  7.71
+## 4   9  9  9  8  8.81 8.77  7.11  8.84
+## 5  11 11 11  8  8.33 9.26  7.81  8.47
+## 6  14 14 14  8  9.96 8.10  8.84  7.04
+## 7   6  6  6  8  7.24 6.13  6.08  5.25
+## 8   4  4  4 19  4.26 3.10  5.39 12.50
+## 9  12 12 12  8 10.84 9.13  8.15  5.56
+## 10  7  7  7  8  4.82 7.26  6.42  7.91
+## 11  5  5  5  8  5.68 4.74  5.73  6.89</code></pre>
+</div>
+<div id="but-first-lets-start-working-in-the-tidyverse" class="section level2">
+<h2><span class="header-section-number">1.2</span> But first… let’s start working in the tidyverse</h2>
+<p>The tidyverse is discribed as</p>
+<blockquote>
+<p>an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures.</p>
+</blockquote>
+<p>You can install the <strong>tidyverse</strong> package with</p>
+<pre><code>install.packages(&quot;tidyverse&quot;)</code></pre>
+<p>Once installed, simply load the package:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<p>Additional details can be found at <a href="https://www.tidyverse.org">tidyverse.org</a></p>
+<p>If you have only created charts and graphs using spreadsheets, you will assume the data is ready to plot. It might be nice to have the x1 and y1 values closer together in the table, but we could still select the individual columns and plot the datasets.</p>
+<p>We’re going to jump right in with with the idea of <em>tidy data</em>. That each row should be a single observation.</p>
+<p>As mentioned in the introduction, this text assumes a basic knowledge of the tidyverse. In this example, we will selct the x data from the data frame, rename the colunn labels, use the <code>gather()</code> function to tidy the data. We will then repeat the process for the y data, removing the group names from the data set. The last step is to combine these two data frames into a single data frame we will use for plotting. I’m sure there are more efficient ways to do this; however, the code used to do this manipulation is typical when working with non-tidy data. An added benifit is that hte code is readable.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">x_anscombe &lt;-<span class="st"> </span>anscombe <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># results will be storred into a new object x_anscombe; we start with the original data frame &quot;anscombe&quot;</span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(x1, x2, x3, x4) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># select the columns we want to work with</span></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">group1 =</span> x1, <span class="dt">group2 =</span> x2, <span class="dt">group3 =</span> x3, <span class="dt">group4 =</span> x4) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># rename the values using a generic header</span></a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> group, <span class="dt">value =</span> x_values, group1, group2, group3, group4) <span class="co"># gather the columns into rows</span></a>
+<a class="sourceLine" id="cb17-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb17-6" data-line-number="6">x_anscombe</a></code></pre></div>
+<pre><code>##     group x_values
+## 1  group1       10
+## 2  group1        8
+## 3  group1       13
+## 4  group1        9
+## 5  group1       11
+## 6  group1       14
+## 7  group1        6
+## 8  group1        4
+## 9  group1       12
+## 10 group1        7
+## 11 group1        5
+## 12 group2       10
+## 13 group2        8
+## 14 group2       13
+## 15 group2        9
+## 16 group2       11
+## 17 group2       14
+## 18 group2        6
+## 19 group2        4
+## 20 group2       12
+## 21 group2        7
+## 22 group2        5
+## 23 group3       10
+## 24 group3        8
+## 25 group3       13
+## 26 group3        9
+## 27 group3       11
+## 28 group3       14
+## 29 group3        6
+## 30 group3        4
+## 31 group3       12
+## 32 group3        7
+## 33 group3        5
+## 34 group4        8
+## 35 group4        8
+## 36 group4        8
+## 37 group4        8
+## 38 group4        8
+## 39 group4        8
+## 40 group4        8
+## 41 group4       19
+## 42 group4        8
+## 43 group4        8
+## 44 group4        8</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">y_anscombe &lt;-<span class="st"> </span>anscombe <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(y1, y2, y3, y4) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> group, <span class="dt">value =</span> y_values, y1, y2, y3, y4) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># I don&#39;t need to rename the columns as I will discard them (I only need one column to indicate the group number)</span></a>
+<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(y_values)</a>
+<a class="sourceLine" id="cb19-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb19-6" data-line-number="6">y_anscombe</a></code></pre></div>
+<pre><code>##    y_values
+## 1      8.04
+## 2      6.95
+## 3      7.58
+## 4      8.81
+## 5      8.33
+## 6      9.96
+## 7      7.24
+## 8      4.26
+## 9     10.84
+## 10     4.82
+## 11     5.68
+## 12     9.14
+## 13     8.14
+## 14     8.74
+## 15     8.77
+## 16     9.26
+## 17     8.10
+## 18     6.13
+## 19     3.10
+## 20     9.13
+## 21     7.26
+## 22     4.74
+## 23     7.46
+## 24     6.77
+## 25    12.74
+## 26     7.11
+## 27     7.81
+## 28     8.84
+## 29     6.08
+## 30     5.39
+## 31     8.15
+## 32     6.42
+## 33     5.73
+## 34     6.58
+## 35     5.76
+## 36     7.71
+## 37     8.84
+## 38     8.47
+## 39     7.04
+## 40     5.25
+## 41    12.50
+## 42     5.56
+## 43     7.91
+## 44     6.89</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">anscombe_tidy &lt;-<span class="st"> </span><span class="kw">bind_cols</span>(x_anscombe, y_anscombe)</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2">anscombe_tidy</a></code></pre></div>
+<pre><code>##     group x_values y_values
+## 1  group1       10     8.04
+## 2  group1        8     6.95
+## 3  group1       13     7.58
+## 4  group1        9     8.81
+## 5  group1       11     8.33
+## 6  group1       14     9.96
+## 7  group1        6     7.24
+## 8  group1        4     4.26
+## 9  group1       12    10.84
+## 10 group1        7     4.82
+## 11 group1        5     5.68
+## 12 group2       10     9.14
+## 13 group2        8     8.14
+## 14 group2       13     8.74
+## 15 group2        9     8.77
+## 16 group2       11     9.26
+## 17 group2       14     8.10
+## 18 group2        6     6.13
+## 19 group2        4     3.10
+## 20 group2       12     9.13
+## 21 group2        7     7.26
+## 22 group2        5     4.74
+## 23 group3       10     7.46
+## 24 group3        8     6.77
+## 25 group3       13    12.74
+## 26 group3        9     7.11
+## 27 group3       11     7.81
+## 28 group3       14     8.84
+## 29 group3        6     6.08
+## 30 group3        4     5.39
+## 31 group3       12     8.15
+## 32 group3        7     6.42
+## 33 group3        5     5.73
+## 34 group4        8     6.58
+## 35 group4        8     5.76
+## 36 group4        8     7.71
+## 37 group4        8     8.84
+## 38 group4        8     8.47
+## 39 group4        8     7.04
+## 40 group4        8     5.25
+## 41 group4       19    12.50
+## 42 group4        8     5.56
+## 43 group4        8     7.91
+## 44 group4        8     6.89</code></pre>
+<p>While this may seem like a lot of work to make a new table—which is much harder to read—this method allows us to exploit the <strong>gramar of graphics</strong> used by the <strong>ggplot2</strong> package.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">ggplot</span>(anscombe_tidy, <span class="kw">aes</span>(x_values, y_values)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb23-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>group)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>It may not be immediately obvious from the plots, but the slope and intercept for each line are identical. We can calculate these values for each dataset using the linear model function, <code>lm()</code>.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">lm</span>(y1 <span class="op">~</span><span class="st"> </span>x1, <span class="dt">data =</span> anscombe)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y1 ~ x1, data = anscombe)
+## 
+## Coefficients:
+## (Intercept)           x1  
+##      3.0001       0.5001</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">lm</span>(y2 <span class="op">~</span><span class="st"> </span>x2, <span class="dt">data =</span> anscombe)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y2 ~ x2, data = anscombe)
+## 
+## Coefficients:
+## (Intercept)           x2  
+##       3.001        0.500</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">lm</span>(y3 <span class="op">~</span><span class="st"> </span>x3, <span class="dt">data =</span> anscombe)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y3 ~ x3, data = anscombe)
+## 
+## Coefficients:
+## (Intercept)           x3  
+##      3.0025       0.4997</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">lm</span>(y4 <span class="op">~</span><span class="st"> </span>x4, <span class="dt">data =</span> anscombe)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y4 ~ x4, data = anscombe)
+## 
+## Coefficients:
+## (Intercept)           x4  
+##      3.0017       0.4999</code></pre>
+<p>The calculated slope and intercept are the same (at least to three significant figures); the use of EDA allows us to differentiate the data quickly.</p>
+</div>
+<div id="common-graphical-analysis-used-in-the-e-handbook" class="section level2">
+<h2><span class="header-section-number">1.3</span> Common graphical analysis used in the e-Handbook</h2>
+<p>Four techniques are routinely used in the e-Handbook for preliminary EDA. These four charts are routinely displayed as a “4-plot.” Each technique will be presented in the following sub-sections.</p>
+<ul>
+<li>Run sequence plot</li>
+<li>Lag plot</li>
+<li>Histogram</li>
+<li>Normal probility plot</li>
+</ul>
+</div>
+<div id="case-studies-from-chapter-1-of-the-nistsematech-e-handbook" class="section level2">
+<h2><span class="header-section-number">1.4</span> Case studies from chapter 1 of the NIST/SEMATECH e-Handbook</h2>
+<div id="normal-random-numbers" class="section level3">
+<h3><span class="header-section-number">1.4.1</span> Normal random numbers</h3>
+<p><a href="https://www.itl.nist.gov/div898/handbook/eda/section4/eda421.htm">Normal Random Numbers</a></p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">normal_random_numbers &lt;-<span class="st"> </span><span class="kw">scan</span>(<span class="st">&quot;NIST data/RANDN.DAT&quot;</span>, <span class="dt">skip =</span> <span class="dv">25</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="st">  </span><span class="kw">as.tibble</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb32-3" data-line-number="3"><span class="st">  </span><span class="kw">rowid_to_column</span>()</a>
+<a class="sourceLine" id="cb32-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb32-5" data-line-number="5">normal_random_numbers</a></code></pre></div>
+<pre><code>## # A tibble: 500 x 2
+##    rowid  value
+##    &lt;int&gt;  &lt;dbl&gt;
+##  1     1 -1.28 
+##  2     2 -1.22 
+##  3     3 -0.453
+##  4     4 -0.350
+##  5     5  0.723
+##  6     6  0.676
+##  7     7 -1.10 
+##  8     8 -0.314
+##  9     9 -0.394
+## 10    10 -0.633
+## # ... with 490 more rows</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw">ggplot</span>(normal_random_numbers, <span class="kw">aes</span>(rowid, value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb34-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Run sequence plot&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">ggplot</span>(normal_random_numbers, <span class="kw">aes</span>(<span class="kw">lag</span>(value), value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb35-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Lag plot&quot;</span>)</a></code></pre></div>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">ggplot</span>(normal_random_numbers, <span class="kw">aes</span>(value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb37-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb37-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Histogram&quot;</span>)</a></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="kw">ggplot</span>(normal_random_numbers, <span class="kw">aes</span>(<span class="dt">sample =</span> value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb39-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_qq</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb39-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Normal probabilty (qq) plot&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+<div id="uniform-random-numbers" class="section level3">
+<h3><span class="header-section-number">1.4.2</span> Uniform random numbers</h3>
+<p><a href="https://www.itl.nist.gov/div898/handbook/eda/section4/eda422.htm">Uniform Random Numbers</a></p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">uniform_random_numbers &lt;-<span class="st"> </span><span class="kw">scan</span>(<span class="st">&quot;NIST data/RANDU.DAT&quot;</span>, <span class="dt">skip =</span> <span class="dv">25</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="st">  </span><span class="kw">as.tibble</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb40-3" data-line-number="3"><span class="st">  </span><span class="kw">rowid_to_column</span>()</a>
+<a class="sourceLine" id="cb40-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb40-5" data-line-number="5">uniform_random_numbers</a></code></pre></div>
+<pre><code>## # A tibble: 500 x 2
+##    rowid value
+##    &lt;int&gt; &lt;dbl&gt;
+##  1     1 0.101
+##  2     2 0.253
+##  3     3 0.520
+##  4     4 0.863
+##  5     5 0.355
+##  6     6 0.810
+##  7     7 0.912
+##  8     8 0.293
+##  9     9 0.375
+## 10    10 0.481
+## # ... with 490 more rows</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw">ggplot</span>(uniform_random_numbers, <span class="kw">aes</span>(rowid, value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb42-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb42-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Run sequence plot&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw">ggplot</span>(uniform_random_numbers, <span class="kw">aes</span>(<span class="kw">lag</span>(value), value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb43-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Lag plot&quot;</span>)</a></code></pre></div>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="kw">ggplot</span>(normal_random_numbers, <span class="kw">aes</span>(value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb45-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Histogram&quot;</span>)</a></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="kw">ggplot</span>(uniform_random_numbers, <span class="kw">aes</span>(<span class="dt">sample =</span> value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb47-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_qq</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb47-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Normal probabilty (qq) plot&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+</div>
+<div id="random-walk" class="section level3">
+<h3><span class="header-section-number">1.4.3</span> Random walk</h3>
+<p><a href="https://www.itl.nist.gov/div898/handbook/eda/section4/eda4231.htm">Random Walk</a></p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1">random_walk &lt;-<span class="st"> </span><span class="kw">scan</span>(<span class="st">&quot;NIST data/RANDWALK.DAT&quot;</span>, <span class="dt">skip =</span> <span class="dv">25</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="st">  </span><span class="kw">as.tibble</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb48-3" data-line-number="3"><span class="st">  </span><span class="kw">rowid_to_column</span>()</a>
+<a class="sourceLine" id="cb48-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb48-5" data-line-number="5">random_walk</a></code></pre></div>
+<pre><code>## # A tibble: 500 x 2
+##    rowid   value
+##    &lt;int&gt;   &lt;dbl&gt;
+##  1     1 -0.399 
+##  2     2 -0.646 
+##  3     3 -0.626 
+##  4     4 -0.262 
+##  5     5 -0.407 
+##  6     6 -0.0976
+##  7     7  0.314 
+##  8     8  0.107 
+##  9     9 -0.0177
+## 10    10 -0.0371
+## # ... with 490 more rows</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">ggplot</span>(random_walk, <span class="kw">aes</span>(rowid, value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb50-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Run sequence plot&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="kw">ggplot</span>(random_walk, <span class="kw">aes</span>(<span class="kw">lag</span>(value), value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb51-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Lag plot&quot;</span>)</a></code></pre></div>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="kw">ggplot</span>(random_walk, <span class="kw">aes</span>(value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb53-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb53-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Histogram&quot;</span>)</a></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="kw">ggplot</span>(random_walk, <span class="kw">aes</span>(<span class="dt">sample =</span> value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb55-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_qq</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb55-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Normal probabilty (qq) plot&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+</div>
+<div id="beam-deflections" class="section level3">
+<h3><span class="header-section-number">1.4.4</span> Beam deflections</h3>
+<p><a href="https://www.itl.nist.gov/div898/handbook/eda/section4/eda425.htm">Beam Deflections</a></p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1">beam_deflections &lt;-<span class="st"> </span><span class="kw">scan</span>(<span class="st">&quot;NIST data/LEW.DAT&quot;</span>, <span class="dt">skip =</span> <span class="dv">25</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb56-2" data-line-number="2"><span class="st">  </span><span class="kw">as.tibble</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb56-3" data-line-number="3"><span class="st">  </span><span class="kw">rowid_to_column</span>()</a>
+<a class="sourceLine" id="cb56-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb56-5" data-line-number="5">beam_deflections</a></code></pre></div>
+<pre><code>## # A tibble: 200 x 2
+##    rowid value
+##    &lt;int&gt; &lt;dbl&gt;
+##  1     1 -213.
+##  2     2 -564.
+##  3     3  -35.
+##  4     4  -15.
+##  5     5  141.
+##  6     6  115.
+##  7     7 -420.
+##  8     8 -360.
+##  9     9  203.
+## 10    10 -338.
+## # ... with 190 more rows</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="kw">ggplot</span>(beam_deflections, <span class="kw">aes</span>(rowid, value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb58-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb58-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Run sequence plot&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="kw">ggplot</span>(beam_deflections, <span class="kw">aes</span>(<span class="kw">lag</span>(value), value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb59-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb59-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Lag plot&quot;</span>)</a></code></pre></div>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="kw">ggplot</span>(beam_deflections, <span class="kw">aes</span>(value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb61-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb61-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Histogram&quot;</span>)</a></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1"><span class="kw">ggplot</span>(beam_deflections, <span class="kw">aes</span>(<span class="dt">sample =</span> value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb63-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_qq</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb63-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Normal probabilty (qq) plot&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+</div>
+<div id="filter-transmitance" class="section level3">
+<h3><span class="header-section-number">1.4.5</span> Filter transmitance</h3>
+<p><a href="https://www.itl.nist.gov/div898/handbook/eda/section4/eda426.htm">Filter Transmitance</a></p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1">filter_transmitance &lt;-<span class="st"> </span><span class="kw">scan</span>(<span class="st">&quot;NIST data/MAVRO.DAT&quot;</span>, <span class="dt">skip =</span> <span class="dv">25</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb64-2" data-line-number="2"><span class="st">  </span><span class="kw">as.tibble</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb64-3" data-line-number="3"><span class="st">  </span><span class="kw">rowid_to_column</span>()</a>
+<a class="sourceLine" id="cb64-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb64-5" data-line-number="5">filter_transmitance</a></code></pre></div>
+<pre><code>## # A tibble: 50 x 2
+##    rowid value
+##    &lt;int&gt; &lt;dbl&gt;
+##  1     1  2.00
+##  2     2  2.00
+##  3     3  2.00
+##  4     4  2.00
+##  5     5  2.00
+##  6     6  2.00
+##  7     7  2.00
+##  8     8  2.00
+##  9     9  2.00
+## 10    10  2.00
+## # ... with 40 more rows</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="kw">ggplot</span>(filter_transmitance, <span class="kw">aes</span>(rowid, value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb66-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb66-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Run sequence plot&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1"><span class="kw">ggplot</span>(filter_transmitance, <span class="kw">aes</span>(<span class="kw">lag</span>(value), value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb67-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb67-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Lag plot&quot;</span>)</a></code></pre></div>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="kw">ggplot</span>(filter_transmitance, <span class="kw">aes</span>(value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb69-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb69-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Histogram&quot;</span>)</a></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="kw">ggplot</span>(filter_transmitance, <span class="kw">aes</span>(<span class="dt">sample =</span> value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb71-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_qq</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb71-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Normal probabilty (qq) plot&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+</div>
+<div id="standard-resistor" class="section level3">
+<h3><span class="header-section-number">1.4.6</span> Standard resistor</h3>
+<p><a href="https://www.itl.nist.gov/div898/handbook/eda/section4/eda427.htm">Standard Resistor</a></p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1">standard_resistor &lt;-<span class="st"> </span><span class="kw">read_table2</span>(<span class="st">&quot;NIST data/DZIUBA1.DAT&quot;</span>, <span class="dt">skip =</span> <span class="dv">25</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb72-2" data-line-number="2"><span class="st">  </span><span class="kw">rowid_to_column</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb72-3" data-line-number="3"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">month =</span> X1, <span class="dt">day =</span> X2, <span class="dt">year =</span> X3, <span class="dt">resistance =</span> X4)</a></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   X1 = col_character(),
+##   X2 = col_character(),
+##   X3 = col_integer(),
+##   X4 = col_double()
+## )</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1">standard_resistor</a></code></pre></div>
+<pre><code>## # A tibble: 1,000 x 5
+##    rowid month day    year resistance
+##    &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt;      &lt;dbl&gt;
+##  1     1 2     5        80       27.9
+##  2     2 2     12       80       27.9
+##  3     3 2     13       80       27.9
+##  4     4 2     14       80       27.9
+##  5     5 2     28       80       27.9
+##  6     6 2     28       80       27.9
+##  7     7 3     21       80       27.9
+##  8     8 3     24       80       27.9
+##  9     9 4     3        80       27.9
+## 10    10 4     3        80       27.9
+## # ... with 990 more rows</code></pre>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="kw">ggplot</span>(standard_resistor, <span class="kw">aes</span>(rowid, resistance)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb76-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb76-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Run sequence plot&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1"><span class="kw">ggplot</span>(standard_resistor, <span class="kw">aes</span>(<span class="kw">lag</span>(resistance), resistance)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb77-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb77-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Lag plot&quot;</span>)</a></code></pre></div>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1"><span class="kw">ggplot</span>(standard_resistor, <span class="kw">aes</span>(resistance)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb79-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb79-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Histogram&quot;</span>)</a></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1"><span class="kw">ggplot</span>(standard_resistor, <span class="kw">aes</span>(<span class="dt">sample =</span> resistance)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb81-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_qq</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb81-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Normal probabilty (qq) plot&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+</div>
+<div id="heat-flow-meter-1" class="section level3">
+<h3><span class="header-section-number">1.4.7</span> Heat flow meter 1</h3>
+<p><a href="https://www.itl.nist.gov/div898/handbook/eda/section4/eda428.htm">Heat Flow Meter 1</a></p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1">heat_flow_meter1 &lt;-<span class="st"> </span><span class="kw">scan</span>(<span class="st">&quot;NIST data/ZARR13.DAT&quot;</span>, <span class="dt">skip =</span> <span class="dv">25</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb82-2" data-line-number="2"><span class="st">  </span><span class="kw">as.tibble</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb82-3" data-line-number="3"><span class="st">  </span><span class="kw">rowid_to_column</span>()</a>
+<a class="sourceLine" id="cb82-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb82-5" data-line-number="5">heat_flow_meter1</a></code></pre></div>
+<pre><code>## # A tibble: 195 x 2
+##    rowid value
+##    &lt;int&gt; &lt;dbl&gt;
+##  1     1  9.21
+##  2     2  9.30
+##  3     3  9.28
+##  4     4  9.31
+##  5     5  9.28
+##  6     6  9.29
+##  7     7  9.29
+##  8     8  9.26
+##  9     9  9.30
+## 10    10  9.28
+## # ... with 185 more rows</code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1"><span class="kw">ggplot</span>(heat_flow_meter1, <span class="kw">aes</span>(rowid, value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb84-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb84-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Run sequence plot&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1"><span class="kw">ggplot</span>(heat_flow_meter1, <span class="kw">aes</span>(<span class="kw">lag</span>(value), value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb85-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb85-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Lag plot&quot;</span>)</a></code></pre></div>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1"><span class="kw">ggplot</span>(heat_flow_meter1, <span class="kw">aes</span>(value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb87-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb87-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Histogram&quot;</span>)</a></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1"><span class="kw">ggplot</span>(heat_flow_meter1, <span class="kw">aes</span>(<span class="dt">sample =</span> value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb89-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_qq</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb89-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Normal probabilty (qq) plot&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+</div>
+<div id="ceramic-strength" class="section level3">
+<h3><span class="header-section-number">1.4.8</span> Ceramic strength</h3>
+<p><a href="https://www.itl.nist.gov/div898/handbook/eda/section4/eda42a.htm">Ceramic Strength</a></p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1">ceramic_strength &lt;-<span class="st"> </span><span class="kw">read_table2</span>(<span class="st">&quot;NIST data/JAHANMI2.DAT&quot;</span>, <span class="dt">skip =</span> <span class="dv">48</span>, <span class="dt">col_names =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb90-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(Lab <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb90-3" data-line-number="3"><span class="st">  </span><span class="kw">rowid_to_column</span>()</a></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   Id = col_character(),
+##   Lab = col_integer(),
+##   Num = col_integer(),
+##   Test = col_integer(),
+##   Y = col_double(),
+##   X1 = col_integer(),
+##   X2 = col_integer(),
+##   X3 = col_integer(),
+##   X4 = col_integer(),
+##   Trt = col_integer(),
+##   Set = col_integer(),
+##   Llab = col_double(),
+##   Rep = col_integer(),
+##   Bat = col_integer(),
+##   Sblab = col_double(),
+##   Set2 = col_integer()
+## )</code></pre>
+<pre><code>## Warning in rbind(names(probs), probs_f): number of columns of result is not
+## a multiple of vector length (arg 2)</code></pre>
+<pre><code>## Warning: 1 parsing failure.
+## row # A tibble: 1 x 5 col     row col   expected   actual    file                     expected   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;                    actual 1     1 &lt;NA&gt;  16 columns 1 columns &#39;NIST data/JAHANMI2.DAT&#39; file # A tibble: 1 x 5</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1">ceramic_strength</a></code></pre></div>
+<pre><code>## # A tibble: 480 x 17
+##    rowid Id      Lab   Num  Test     Y    X1    X2    X3    X4   Trt   Set
+##    &lt;int&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+##  1     1 1         1     1     1  609.    -1    -1    -1    -1     1     1
+##  2     2 2         1     2     1  570.    -1    -1    -1    -1     1     1
+##  3     3 3         1     3     1  690.    -1    -1    -1    -1     1     1
+##  4     4 4         1     4     1  748.    -1    -1    -1    -1     1     1
+##  5     5 5         1     5     1  618.    -1    -1    -1    -1     1     1
+##  6     6 6         1     6     1  612.    -1    -1    -1    -1     1     1
+##  7     7 7         1     7     1  680.    -1    -1    -1    -1     1     1
+##  8     8 8         1     8     1  608.    -1    -1    -1    -1     1     1
+##  9     9 9         1     9     1  726.    -1    -1    -1    -1     1     1
+## 10    10 10        1    10     1  605.    -1    -1    -1    -1     1     1
+## # ... with 470 more rows, and 5 more variables: Llab &lt;dbl&gt;, Rep &lt;int&gt;,
+## #   Bat &lt;int&gt;, Sblab &lt;dbl&gt;, Set2 &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1"><span class="kw">ggplot</span>(ceramic_strength, <span class="kw">aes</span>(rowid, Y)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb96-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb96-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Run sequence plot&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1"><span class="kw">ggplot</span>(ceramic_strength, <span class="kw">aes</span>(<span class="kw">lag</span>(Y), Y)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb97-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb97-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Lag plot&quot;</span>)</a></code></pre></div>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1"><span class="kw">ggplot</span>(ceramic_strength, <span class="kw">aes</span>(Y)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb99-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb99-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Histogram&quot;</span>)</a></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1"><span class="kw">ggplot</span>(ceramic_strength, <span class="kw">aes</span>(<span class="dt">sample =</span> Y)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb101-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_qq</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb101-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Normal probabilty (qq) plot&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1"><span class="kw">ggplot</span>(ceramic_strength, <span class="kw">aes</span>(Y)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb102-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="kw">as.factor</span>(Bat)), <span class="dt">bins =</span> <span class="dv">20</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb102-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_grid</span>(Bat <span class="op">~</span><span class="st"> </span>.) <span class="op">+</span></a>
+<a class="sourceLine" id="cb102-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Histogram&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1"><span class="kw">ggplot</span>(ceramic_strength, <span class="kw">aes</span>(<span class="kw">as.factor</span>(Bat), Y)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb103-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">notch =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb103-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Boxplot&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1"><span class="kw">ggplot</span>(ceramic_strength, <span class="kw">aes</span>(<span class="kw">as.factor</span>(Lab), Y)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb104-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="kw">as.factor</span>(Bat))) <span class="op">+</span></a>
+<a class="sourceLine" id="cb104-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Boxplot&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<hr />
+<p>You can label chapter and section titles using <code>{#label}</code> after them, e.g., we can reference Chapter <a href="#intro"><strong>??</strong></a>. If you do not manually label them, there will be automatic labels anyway, e.g., Chapter <a href="methods.html#methods">3</a>.</p>
+<p>Figures and tables with captions will be placed in <code>figure</code> and <code>table</code> environments, respectively.</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="fl">.1</span>, <span class="fl">.1</span>))</a>
+<a class="sourceLine" id="cb105-2" data-line-number="2"><span class="kw">plot</span>(pressure, <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">pch =</span> <span class="dv">19</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:nice-fig"></span>
+<img src="exercises_and_case_studies_files/figure-html/nice-fig-1.png" alt="Here is a nice figure!" width="80%" />
+<p class="caption">
+Figure 1.1: Here is a nice figure!
+</p>
+</div>
+<p>Reference a figure by its code chunk label with the <code>fig:</code> prefix, e.g., see Figure <a href="EDA.html#fig:nice-fig">1.1</a>. Similarly, you can reference tables generated from <code>knitr::kable()</code>, e.g., see Table <a href="EDA.html#tab:nice-tab">1.1</a>.</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1">knitr<span class="op">::</span><span class="kw">kable</span>(</a>
+<a class="sourceLine" id="cb106-2" data-line-number="2">  <span class="kw">head</span>(iris, <span class="dv">20</span>), <span class="dt">caption =</span> <span class="st">&#39;Here is a nice table!&#39;</span>,</a>
+<a class="sourceLine" id="cb106-3" data-line-number="3">  <span class="dt">booktabs =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb106-4" data-line-number="4">)</a></code></pre></div>
+<table>
+<caption><span id="tab:nice-tab">Table 1.1: </span>Here is a nice table!</caption>
+<thead>
+<tr class="header">
+<th align="right">Sepal.Length</th>
+<th align="right">Sepal.Width</th>
+<th align="right">Petal.Length</th>
+<th align="right">Petal.Width</th>
+<th align="left">Species</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">5.1</td>
+<td align="right">3.5</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.9</td>
+<td align="right">3.0</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.7</td>
+<td align="right">3.2</td>
+<td align="right">1.3</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.6</td>
+<td align="right">3.1</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.0</td>
+<td align="right">3.6</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.4</td>
+<td align="right">3.9</td>
+<td align="right">1.7</td>
+<td align="right">0.4</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.6</td>
+<td align="right">3.4</td>
+<td align="right">1.4</td>
+<td align="right">0.3</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.0</td>
+<td align="right">3.4</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.4</td>
+<td align="right">2.9</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.9</td>
+<td align="right">3.1</td>
+<td align="right">1.5</td>
+<td align="right">0.1</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.4</td>
+<td align="right">3.7</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.8</td>
+<td align="right">3.4</td>
+<td align="right">1.6</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.8</td>
+<td align="right">3.0</td>
+<td align="right">1.4</td>
+<td align="right">0.1</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.3</td>
+<td align="right">3.0</td>
+<td align="right">1.1</td>
+<td align="right">0.1</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.8</td>
+<td align="right">4.0</td>
+<td align="right">1.2</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.7</td>
+<td align="right">4.4</td>
+<td align="right">1.5</td>
+<td align="right">0.4</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.4</td>
+<td align="right">3.9</td>
+<td align="right">1.3</td>
+<td align="right">0.4</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.1</td>
+<td align="right">3.5</td>
+<td align="right">1.4</td>
+<td align="right">0.3</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.7</td>
+<td align="right">3.8</td>
+<td align="right">1.7</td>
+<td align="right">0.3</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.1</td>
+<td align="right">3.8</td>
+<td align="right">1.5</td>
+<td align="right">0.3</td>
+<td align="left">setosa</td>
+</tr>
+</tbody>
+</table>
+<p>You can write citations, too. For example, we are using the <strong>bookdown</strong> package <span class="citation">(Xie <a href="#ref-R-bookdown">2018</a>)</span> in this sample book, which was built on top of R Markdown and <strong>knitr</strong> <span class="citation">(Xie <a href="#ref-xie2015">2015</a>)</span>.</p>
+<p>I’d like to add a reference <span class="citation">(Hoobler et al. <a href="#ref-Hoobler1993">1993</a>)</span>.</p>
+
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1"><span class="kw">library</span>(magrittr)</a></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;magrittr&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     set_names</code></pre>
+<pre><code>## The following object is masked from &#39;package:tidyr&#39;:
+## 
+##     extract</code></pre>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-R-bookdown">
+<p>Xie, Yihui. 2018. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown" class="uri">https://CRAN.R-project.org/package=bookdown</a>.</p>
+</div>
+<div id="ref-xie2015">
+<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/" class="uri">http://yihui.name/knitr/</a>.</p>
+</div>
+<div id="ref-Hoobler1993">
+<p>Hoobler, Ray J., Marc A. Hutton, Mills M. Dillard, Michael P. Castellani, Arnold L. Rheingold, Anne L. Rieger, Philip H. Rieger, Thomas C. Richards, and William E. Geiger. 1993. “Synthesis, characterization, and crystal structure of the chromium complex (.eta.5-C5Ph5)Cr(CO)3 radical.” <em>Organometallics</em> 12 (1):116–23. <a href="https://doi.org/10.1021/om00025a023" class="uri">https://doi.org/10.1021/om00025a023</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="measurement-process-characterization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["exercises_and_case_studies.pdf", "exercises_and_case_studies.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,2245 @@
+\documentclass[]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={An Incomplete Solutions Guide to the NIST/SEMATECH e-Handbook of Statistical Methods},
+            pdfauthor={Ray Hoobler},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{natbib}
+\bibliographystyle{apalike}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{An Incomplete Solutions Guide to the NIST/SEMATECH e-Handbook of
+Statistical Methods}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+\subtitle{examples and case studies using the tidyverse and ggplot2}
+  \author{Ray Hoobler}
+  \preauthor{\centering\large\emph}
+  \postauthor{\par}
+  \predate{\centering\large\emph}
+  \postdate{\par}
+  \date{2018-04-19}
+
+\usepackage{booktabs}
+
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{corollary}{Corollary}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
+\theoremstyle{definition}
+\newtheorem{example}{Example}[chapter]
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[chapter]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{preface}{%
+\chapter*{Preface}\label{preface}}
+\addcontentsline{toc}{chapter}{Preface}
+
+Exploratory Data Analysis (EDA) is a philosophy on how to work with
+data, and for many applications, the workflow is better suited for most
+working scientist and engineers. As a scientist, we are trained to
+formulate a hypothesis and design a series of experiments that will
+allow us to test the hypothesis effectively. Unfortunately, most data
+doesn't from carefully controlled trials, but from observations.
+Statisticians will readily jump into describing the difference in as
+much detail as you would like.
+
+For most of us, we need tools to characterize an instrument or a
+process. The philosophy of EDA provides the framework to do this work.
+
+Unfortunately, most textbooks still focus on traditional statistical
+techniques and even while it is essential to understand the underlying
+assumptions and fundamentals, I would argue that most of the work we do
+as scientist and engineers are not well suited for rigorous statistical
+analysis. In many cases, the need to disseminate information to a broad
+audience is best served by the methods espoused by EDA. The NIST
+e-Handbook Engineering Statistics is a welcome deviation from the norm.
+
+In the Spring of 2018, I adopted this text as the basis of a
+one-semester, graduate course that focused applied statistical
+techniques. The audience for this course were working scientist, and the
+course was a core course in a Professional Science Master's (PSM).
+
+Unfortunately, the one drawback of the NIST Handbook is the use of
+Dataplot as the primary software package for analysis. The authors have
+provided examples using the R statistical language; however, most--if
+not all--of these scripts are written using base R which is unfortunate.
+Modern R now incorporates many packages for streamlining the EDA
+process. This book attempts to capture my efforts to use these methods
+and share them with students in the course. The two packages that I
+primarily used were \textbf{tidyverse} and \textbf{ggplot2}.
+
+Before going further, I should clarify one thing---I'm a hack. I
+classify learning as three levels: novice, hack, expert.
+
+Novice: basic knowledge of how to use a tool with a desire to learn.
+Hack: Basic to intermediate knowledge of how to use a tool accompanied
+by resources to produce a finished product. Expert: Extensive knowledge
+of how to use a tool; can produce a finished product with few outside
+resources.
+
+I'm sure other factors can be added to each category, but these capture
+the spirit of how I approach learning.
+
+The number of resources available to learn R is numerous, and the first
+I would strongly recommend is R for Data Science. This text is an
+introduction to the tidyverse. The tidyverse is not just a collection of
+R packages, but a philosophy on how to work with data. It makes data
+analysis almost fun!
+
+The other primary resource available for EDA is ggplot2. Like the
+tidyverse, ggplot2 is not just a package of tools, but a philosophy
+built around the Grammar of Graphics.
+
+I encourage the reader to explore the references related to these two
+packages and their underlying design philosophies.
+
+This book will show how I have worked through the exercises and case
+studies presented in the NIST handbook using methods found in the
+tidyverse and ggplot2. I have found this framework to be incredibly
+satisfying and one I was eager to share beyond my class.
+
+If you find this material useful, please send me an email.
+
+\hypertarget{structure-of-the-book}{%
+\section*{Structure of the book}\label{structure-of-the-book}}
+\addcontentsline{toc}{section}{Structure of the book}
+
+Content was built around the e-book
+\href{https://www.itl.nist.gov/div898/handbook/index.htm}{NIST/SEMATECH
+e-Handbook of Statistical Methods}.
+
+At the begining of each exercise or case study, I've included a link
+back to the specific page of the e-Handbook. The e-Handbook can be
+downloaded in full from the
+\href{https://www.itl.nist.gov/div898/handbook/toolaids/cd.htm}{NIST
+site}. The compressed file is over 100Mb (not 43Mb) as stated.
+
+\hypertarget{software-information-and-conventsions}{%
+\section*{Software information and
+conventsions}\label{software-information-and-conventsions}}
+\addcontentsline{toc}{section}{Software information and conventsions}
+
+Follow ``best practices'' of the \emph{tityverse}
+
+The R session information for this book is shown below:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sessionInfo}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## R version 3.4.4 (2018-03-15)
+## Platform: x86_64-apple-darwin15.6.0 (64-bit)
+## Running under: macOS High Sierra 10.13.4
+## 
+## Matrix products: default
+## BLAS: /Library/Frameworks/R.framework/Versions/3.4/Resources/lib/libRblas.0.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/3.4/Resources/lib/libRlapack.dylib
+## 
+## locale:
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] magrittr_1.5    bindrcpp_0.2.2  forcats_0.3.0   stringr_1.3.0  
+##  [5] dplyr_0.7.4     purrr_0.2.4     readr_1.1.1     tidyr_0.8.0    
+##  [9] tibble_1.4.2    ggplot2_2.2.1   tidyverse_1.2.1
+## 
+## loaded via a namespace (and not attached):
+##  [1] tidyselect_0.2.4 xfun_0.1         reshape2_1.4.3   haven_1.1.1     
+##  [5] lattice_0.20-35  colorspace_1.3-2 htmltools_0.3.6  yaml_2.1.18     
+##  [9] utf8_1.1.3       rlang_0.2.0      pillar_1.2.1     foreign_0.8-69  
+## [13] glue_1.2.0       modelr_0.1.1     readxl_1.0.0     bindr_0.1.1     
+## [17] plyr_1.8.4       munsell_0.4.3    gtable_0.2.0     cellranger_1.1.0
+## [21] rvest_0.3.2      psych_1.8.3.3    evaluate_0.10.1  labeling_0.3    
+## [25] knitr_1.20       parallel_3.4.4   highr_0.6        broom_0.4.4     
+## [29] Rcpp_0.12.16     backports_1.1.2  scales_0.5.0     jsonlite_1.5    
+## [33] mnormt_1.5-5     hms_0.4.2        digest_0.6.15    stringi_1.1.7   
+## [37] bookdown_0.7     grid_3.4.4       rprojroot_1.3-2  cli_1.0.0       
+## [41] tools_3.4.4      lazyeval_0.2.1   crayon_1.3.4     pkgconfig_2.0.1 
+## [45] xml2_1.2.0       lubridate_1.7.4  assertthat_0.2.0 rmarkdown_1.9   
+## [49] httr_1.3.1       rstudioapi_0.7   R6_2.2.2         nlme_3.1-137    
+## [53] compiler_3.4.4
+\end{verbatim}
+
+\hypertarget{acknowledgements}{%
+\section*{Acknowledgements}\label{acknowledgements}}
+\addcontentsline{toc}{section}{Acknowledgements}
+
+Current and former students
+
+Former coleagues
+
+Ray James Hoobler Salt Lake City, Utah
+
+\hypertarget{simple-programing-examples}{%
+\section{Simple Programing Examples}\label{simple-programing-examples}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x_cube <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{ (x) \{}
+\NormalTok{  x}\OperatorTok{^}\DecValTok{3}
+\NormalTok{\}}
+
+\KeywordTok{x_cube}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 27
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{5234}\NormalTok{)}
+\NormalTok{n_darts <-}\StringTok{ }\FloatTok{1e6}
+\NormalTok{x_test <-}\StringTok{ }\KeywordTok{runif}\NormalTok{(n_darts, }\DecValTok{-1}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\NormalTok{y_test <-}\StringTok{ }\KeywordTok{runif}\NormalTok{(n_darts, }\DecValTok{-1}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+
+\NormalTok{random_xy_table <-}\StringTok{ }\KeywordTok{tibble}\NormalTok{(}\DataTypeTok{n =} \DecValTok{1}\OperatorTok{:}\NormalTok{n_darts, }\DataTypeTok{x =}\NormalTok{ x_test, }\DataTypeTok{y =}\NormalTok{ y_test) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{r =} \KeywordTok{sqrt}\NormalTok{(x}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{y}\OperatorTok{^}\DecValTok{2}\NormalTok{),}
+  \DataTypeTok{dart_circle =} \KeywordTok{case_when}\NormalTok{(}
+\NormalTok{    r }\OperatorTok{<=}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ }\DecValTok{1}\NormalTok{,}
+\NormalTok{    r }\OperatorTok{>}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ }\DecValTok{0}
+\NormalTok{  )}
+\NormalTok{  )}
+
+\NormalTok{random_xy_table}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1,000,000 x 5
+##        n       x      y     r dart_circle
+##    <int>   <dbl>  <dbl> <dbl>       <dbl>
+##  1     1  0.739  -0.999 1.24           0.
+##  2     2  0.385  -0.560 0.680          1.
+##  3     3 -0.448  -0.627 0.771          1.
+##  4     4  0.446   0.740 0.864          1.
+##  5     5  0.0918 -0.521 0.529          1.
+##  6     6  0.848   0.484 0.977          1.
+##  7     7 -0.623   0.443 0.764          1.
+##  8     8 -0.379   0.319 0.496          1.
+##  9     9  0.303  -0.694 0.757          1.
+## 10    10  0.863   0.966 1.30           0.
+## # ... with 999,990 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pi_results <-}\StringTok{ }\NormalTok{random_xy_table }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{pi_est =} \KeywordTok{mean}\NormalTok{(dart_circle)}\OperatorTok{*}\DecValTok{4}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(pi, }\DataTypeTok{accuracy =}\NormalTok{ (pi_est }\OperatorTok{-}\StringTok{ }\NormalTok{pi)}\OperatorTok{/}\NormalTok{pi }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{pi_results}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 3
+##   pi_est    pi accuracy
+##    <dbl> <dbl>    <dbl>
+## 1   3.14  3.14  0.00609
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+This is a \emph{sample} book written in \textbf{Markdown}. You can use
+anything that Pandoc's Markdown supports, e.g., a math equation
+\(a^2 + b^2 = c^2\).
+
+The \textbf{bookdown} package can be installed from CRAN:
+
+Remember each Rmd file contains one and only one chapter, and a chapter
+is defined by the first-level heading \texttt{\#}.
+
+To compile this example to PDF, you need XeLaTeX. You are recommended to
+install TinyTeX (which includes XeLaTeX):
+\url{https://yihui.name/tinytex/}.
+
+\hypertarget{EDA}{%
+\chapter{Exploratory Data Analysis}\label{EDA}}
+
+\hypertarget{a-eda-example}{%
+\section{A EDA Example}\label{a-eda-example}}
+
+\href{https://www.itl.nist.gov/div898/handbook/eda/section1/eda16.htm}{An
+EDA/Graphics Example}
+
+The Anscombe dataset is an excelent place to start as it will allow us
+to start using R immediately. The anscombe dataset is part of the
+\textbf{datasets} package and is automatically loaded with RStudio.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{anscombe}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    x1 x2 x3 x4    y1   y2    y3    y4
+## 1  10 10 10  8  8.04 9.14  7.46  6.58
+## 2   8  8  8  8  6.95 8.14  6.77  5.76
+## 3  13 13 13  8  7.58 8.74 12.74  7.71
+## 4   9  9  9  8  8.81 8.77  7.11  8.84
+## 5  11 11 11  8  8.33 9.26  7.81  8.47
+## 6  14 14 14  8  9.96 8.10  8.84  7.04
+## 7   6  6  6  8  7.24 6.13  6.08  5.25
+## 8   4  4  4 19  4.26 3.10  5.39 12.50
+## 9  12 12 12  8 10.84 9.13  8.15  5.56
+## 10  7  7  7  8  4.82 7.26  6.42  7.91
+## 11  5  5  5  8  5.68 4.74  5.73  6.89
+\end{verbatim}
+
+\hypertarget{but-first-lets-start-working-in-the-tidyverse}{%
+\section{But first\ldots{} let's start working in the
+tidyverse}\label{but-first-lets-start-working-in-the-tidyverse}}
+
+The tidyverse is discribed as
+
+\begin{quote}
+an opinionated collection of R packages designed for data science. All
+packages share an underlying design philosophy, grammar, and data
+structures.
+\end{quote}
+
+You can install the \textbf{tidyverse} package with
+
+\begin{verbatim}
+install.packages("tidyverse")
+\end{verbatim}
+
+Once installed, simply load the package:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+Additional details can be found at
+\href{https://www.tidyverse.org}{tidyverse.org}
+
+If you have only created charts and graphs using spreadsheets, you will
+assume the data is ready to plot. It might be nice to have the x1 and y1
+values closer together in the table, but we could still select the
+individual columns and plot the datasets.
+
+We're going to jump right in with with the idea of \emph{tidy data}.
+That each row should be a single observation.
+
+As mentioned in the introduction, this text assumes a basic knowledge of
+the tidyverse. In this example, we will selct the x data from the data
+frame, rename the colunn labels, use the \texttt{gather()} function to
+tidy the data. We will then repeat the process for the y data, removing
+the group names from the data set. The last step is to combine these two
+data frames into a single data frame we will use for plotting. I'm sure
+there are more efficient ways to do this; however, the code used to do
+this manipulation is typical when working with non-tidy data. An added
+benifit is that hte code is readable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x_anscombe <-}\StringTok{ }\NormalTok{anscombe }\OperatorTok{%>%}\StringTok{  }\CommentTok{# results will be storred into a new object x_anscombe; we start with the original data frame "anscombe"}
+\StringTok{  }\KeywordTok{select}\NormalTok{(x1, x2, x3, x4) }\OperatorTok{%>%}\StringTok{  }\CommentTok{# select the columns we want to work with}
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{group1 =}\NormalTok{ x1, }\DataTypeTok{group2 =}\NormalTok{ x2, }\DataTypeTok{group3 =}\NormalTok{ x3, }\DataTypeTok{group4 =}\NormalTok{ x4) }\OperatorTok{%>%}\StringTok{ }\CommentTok{# rename the values using a generic header}
+\StringTok{  }\KeywordTok{gather}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ group, }\DataTypeTok{value =}\NormalTok{ x_values, group1, group2, group3, group4) }\CommentTok{# gather the columns into rows}
+
+\NormalTok{x_anscombe}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     group x_values
+## 1  group1       10
+## 2  group1        8
+## 3  group1       13
+## 4  group1        9
+## 5  group1       11
+## 6  group1       14
+## 7  group1        6
+## 8  group1        4
+## 9  group1       12
+## 10 group1        7
+## 11 group1        5
+## 12 group2       10
+## 13 group2        8
+## 14 group2       13
+## 15 group2        9
+## 16 group2       11
+## 17 group2       14
+## 18 group2        6
+## 19 group2        4
+## 20 group2       12
+## 21 group2        7
+## 22 group2        5
+## 23 group3       10
+## 24 group3        8
+## 25 group3       13
+## 26 group3        9
+## 27 group3       11
+## 28 group3       14
+## 29 group3        6
+## 30 group3        4
+## 31 group3       12
+## 32 group3        7
+## 33 group3        5
+## 34 group4        8
+## 35 group4        8
+## 36 group4        8
+## 37 group4        8
+## 38 group4        8
+## 39 group4        8
+## 40 group4        8
+## 41 group4       19
+## 42 group4        8
+## 43 group4        8
+## 44 group4        8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y_anscombe <-}\StringTok{ }\NormalTok{anscombe }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(y1, y2, y3, y4) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{gather}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ group, }\DataTypeTok{value =}\NormalTok{ y_values, y1, y2, y3, y4) }\OperatorTok{%>%}\StringTok{ }\CommentTok{# I don't need to rename the columns as I will discard them (I only need one column to indicate the group number)}
+\StringTok{  }\KeywordTok{select}\NormalTok{(y_values)}
+
+\NormalTok{y_anscombe}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    y_values
+## 1      8.04
+## 2      6.95
+## 3      7.58
+## 4      8.81
+## 5      8.33
+## 6      9.96
+## 7      7.24
+## 8      4.26
+## 9     10.84
+## 10     4.82
+## 11     5.68
+## 12     9.14
+## 13     8.14
+## 14     8.74
+## 15     8.77
+## 16     9.26
+## 17     8.10
+## 18     6.13
+## 19     3.10
+## 20     9.13
+## 21     7.26
+## 22     4.74
+## 23     7.46
+## 24     6.77
+## 25    12.74
+## 26     7.11
+## 27     7.81
+## 28     8.84
+## 29     6.08
+## 30     5.39
+## 31     8.15
+## 32     6.42
+## 33     5.73
+## 34     6.58
+## 35     5.76
+## 36     7.71
+## 37     8.84
+## 38     8.47
+## 39     7.04
+## 40     5.25
+## 41    12.50
+## 42     5.56
+## 43     7.91
+## 44     6.89
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{anscombe_tidy <-}\StringTok{ }\KeywordTok{bind_cols}\NormalTok{(x_anscombe, y_anscombe)}
+\NormalTok{anscombe_tidy}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     group x_values y_values
+## 1  group1       10     8.04
+## 2  group1        8     6.95
+## 3  group1       13     7.58
+## 4  group1        9     8.81
+## 5  group1       11     8.33
+## 6  group1       14     9.96
+## 7  group1        6     7.24
+## 8  group1        4     4.26
+## 9  group1       12    10.84
+## 10 group1        7     4.82
+## 11 group1        5     5.68
+## 12 group2       10     9.14
+## 13 group2        8     8.14
+## 14 group2       13     8.74
+## 15 group2        9     8.77
+## 16 group2       11     9.26
+## 17 group2       14     8.10
+## 18 group2        6     6.13
+## 19 group2        4     3.10
+## 20 group2       12     9.13
+## 21 group2        7     7.26
+## 22 group2        5     4.74
+## 23 group3       10     7.46
+## 24 group3        8     6.77
+## 25 group3       13    12.74
+## 26 group3        9     7.11
+## 27 group3       11     7.81
+## 28 group3       14     8.84
+## 29 group3        6     6.08
+## 30 group3        4     5.39
+## 31 group3       12     8.15
+## 32 group3        7     6.42
+## 33 group3        5     5.73
+## 34 group4        8     6.58
+## 35 group4        8     5.76
+## 36 group4        8     7.71
+## 37 group4        8     8.84
+## 38 group4        8     8.47
+## 39 group4        8     7.04
+## 40 group4        8     5.25
+## 41 group4       19    12.50
+## 42 group4        8     5.56
+## 43 group4        8     7.91
+## 44 group4        8     6.89
+\end{verbatim}
+
+While this may seem like a lot of work to make a new table---which is
+much harder to read---this method allows us to exploit the
+\textbf{gramar of graphics} used by the \textbf{ggplot2} package.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(anscombe_tidy, }\KeywordTok{aes}\NormalTok{(x_values, y_values)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{, }\DataTypeTok{se =} \OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{group)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+It may not be immediately obvious from the plots, but the slope and
+intercept for each line are identical. We can calculate these values for
+each dataset using the linear model function, \texttt{lm()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lm}\NormalTok{(y1 }\OperatorTok{~}\StringTok{ }\NormalTok{x1, }\DataTypeTok{data =}\NormalTok{ anscombe)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = y1 ~ x1, data = anscombe)
+## 
+## Coefficients:
+## (Intercept)           x1  
+##      3.0001       0.5001
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lm}\NormalTok{(y2 }\OperatorTok{~}\StringTok{ }\NormalTok{x2, }\DataTypeTok{data =}\NormalTok{ anscombe)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = y2 ~ x2, data = anscombe)
+## 
+## Coefficients:
+## (Intercept)           x2  
+##       3.001        0.500
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lm}\NormalTok{(y3 }\OperatorTok{~}\StringTok{ }\NormalTok{x3, }\DataTypeTok{data =}\NormalTok{ anscombe)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = y3 ~ x3, data = anscombe)
+## 
+## Coefficients:
+## (Intercept)           x3  
+##      3.0025       0.4997
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lm}\NormalTok{(y4 }\OperatorTok{~}\StringTok{ }\NormalTok{x4, }\DataTypeTok{data =}\NormalTok{ anscombe)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = y4 ~ x4, data = anscombe)
+## 
+## Coefficients:
+## (Intercept)           x4  
+##      3.0017       0.4999
+\end{verbatim}
+
+The calculated slope and intercept are the same (at least to three
+significant figures); the use of EDA allows us to differentiate the data
+quickly.
+
+\hypertarget{common-graphical-analysis-used-in-the-e-handbook}{%
+\section{Common graphical analysis used in the
+e-Handbook}\label{common-graphical-analysis-used-in-the-e-handbook}}
+
+Four techniques are routinely used in the e-Handbook for preliminary
+EDA. These four charts are routinely displayed as a ``4-plot.'' Each
+technique will be presented in the following sub-sections.
+
+\begin{itemize}
+\tightlist
+\item
+  Run sequence plot
+\item
+  Lag plot
+\item
+  Histogram
+\item
+  Normal probility plot
+\end{itemize}
+
+\hypertarget{case-studies-from-chapter-1-of-the-nistsematech-e-handbook}{%
+\section{Case studies from chapter 1 of the NIST/SEMATECH
+e-Handbook}\label{case-studies-from-chapter-1-of-the-nistsematech-e-handbook}}
+
+\hypertarget{normal-random-numbers}{%
+\subsection{Normal random numbers}\label{normal-random-numbers}}
+
+\href{https://www.itl.nist.gov/div898/handbook/eda/section4/eda421.htm}{Normal
+Random Numbers}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{normal_random_numbers <-}\StringTok{ }\KeywordTok{scan}\NormalTok{(}\StringTok{"NIST data/RANDN.DAT"}\NormalTok{, }\DataTypeTok{skip =} \DecValTok{25}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{as.tibble}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{rowid_to_column}\NormalTok{()}
+
+\NormalTok{normal_random_numbers}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 500 x 2
+##    rowid  value
+##    <int>  <dbl>
+##  1     1 -1.28 
+##  2     2 -1.22 
+##  3     3 -0.453
+##  4     4 -0.350
+##  5     5  0.723
+##  6     6  0.676
+##  7     7 -1.10 
+##  8     8 -0.314
+##  9     9 -0.394
+## 10    10 -0.633
+## # ... with 490 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(normal_random_numbers, }\KeywordTok{aes}\NormalTok{(rowid, value)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Run sequence plot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(normal_random_numbers, }\KeywordTok{aes}\NormalTok{(}\KeywordTok{lag}\NormalTok{(value), value)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Lag plot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 1 rows containing missing values (geom_point).
+\end{verbatim}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(normal_random_numbers, }\KeywordTok{aes}\NormalTok{(value)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Histogram"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-11-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(normal_random_numbers, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{sample =}\NormalTok{ value)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_qq}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Normal probabilty (qq) plot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+\hypertarget{uniform-random-numbers}{%
+\subsection{Uniform random numbers}\label{uniform-random-numbers}}
+
+\href{https://www.itl.nist.gov/div898/handbook/eda/section4/eda422.htm}{Uniform
+Random Numbers}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uniform_random_numbers <-}\StringTok{ }\KeywordTok{scan}\NormalTok{(}\StringTok{"NIST data/RANDU.DAT"}\NormalTok{, }\DataTypeTok{skip =} \DecValTok{25}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{as.tibble}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{rowid_to_column}\NormalTok{()}
+
+\NormalTok{uniform_random_numbers}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 500 x 2
+##    rowid value
+##    <int> <dbl>
+##  1     1 0.101
+##  2     2 0.253
+##  3     3 0.520
+##  4     4 0.863
+##  5     5 0.355
+##  6     6 0.810
+##  7     7 0.912
+##  8     8 0.293
+##  9     9 0.375
+## 10    10 0.481
+## # ... with 490 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(uniform_random_numbers, }\KeywordTok{aes}\NormalTok{(rowid, value)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Run sequence plot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-13-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(uniform_random_numbers, }\KeywordTok{aes}\NormalTok{(}\KeywordTok{lag}\NormalTok{(value), value)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Lag plot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 1 rows containing missing values (geom_point).
+\end{verbatim}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-14-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(normal_random_numbers, }\KeywordTok{aes}\NormalTok{(value)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Histogram"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-15-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(uniform_random_numbers, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{sample =}\NormalTok{ value)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_qq}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Normal probabilty (qq) plot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-16-1.pdf}
+
+\hypertarget{random-walk}{%
+\subsection{Random walk}\label{random-walk}}
+
+\href{https://www.itl.nist.gov/div898/handbook/eda/section4/eda4231.htm}{Random
+Walk}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{random_walk <-}\StringTok{ }\KeywordTok{scan}\NormalTok{(}\StringTok{"NIST data/RANDWALK.DAT"}\NormalTok{, }\DataTypeTok{skip =} \DecValTok{25}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{as.tibble}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{rowid_to_column}\NormalTok{()}
+
+\NormalTok{random_walk}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 500 x 2
+##    rowid   value
+##    <int>   <dbl>
+##  1     1 -0.399 
+##  2     2 -0.646 
+##  3     3 -0.626 
+##  4     4 -0.262 
+##  5     5 -0.407 
+##  6     6 -0.0976
+##  7     7  0.314 
+##  8     8  0.107 
+##  9     9 -0.0177
+## 10    10 -0.0371
+## # ... with 490 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(random_walk, }\KeywordTok{aes}\NormalTok{(rowid, value)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Run sequence plot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-17-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(random_walk, }\KeywordTok{aes}\NormalTok{(}\KeywordTok{lag}\NormalTok{(value), value)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Lag plot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 1 rows containing missing values (geom_point).
+\end{verbatim}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-18-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(random_walk, }\KeywordTok{aes}\NormalTok{(value)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Histogram"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-19-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(random_walk, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{sample =}\NormalTok{ value)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_qq}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Normal probabilty (qq) plot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-20-1.pdf}
+
+\hypertarget{beam-deflections}{%
+\subsection{Beam deflections}\label{beam-deflections}}
+
+\href{https://www.itl.nist.gov/div898/handbook/eda/section4/eda425.htm}{Beam
+Deflections}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{beam_deflections <-}\StringTok{ }\KeywordTok{scan}\NormalTok{(}\StringTok{"NIST data/LEW.DAT"}\NormalTok{, }\DataTypeTok{skip =} \DecValTok{25}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{as.tibble}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{rowid_to_column}\NormalTok{()}
+
+\NormalTok{beam_deflections}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 200 x 2
+##    rowid value
+##    <int> <dbl>
+##  1     1 -213.
+##  2     2 -564.
+##  3     3  -35.
+##  4     4  -15.
+##  5     5  141.
+##  6     6  115.
+##  7     7 -420.
+##  8     8 -360.
+##  9     9  203.
+## 10    10 -338.
+## # ... with 190 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(beam_deflections, }\KeywordTok{aes}\NormalTok{(rowid, value)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Run sequence plot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-21-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(beam_deflections, }\KeywordTok{aes}\NormalTok{(}\KeywordTok{lag}\NormalTok{(value), value)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Lag plot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 1 rows containing missing values (geom_point).
+\end{verbatim}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-22-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(beam_deflections, }\KeywordTok{aes}\NormalTok{(value)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Histogram"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-23-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(beam_deflections, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{sample =}\NormalTok{ value)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_qq}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Normal probabilty (qq) plot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-24-1.pdf}
+
+\hypertarget{filter-transmitance}{%
+\subsection{Filter transmitance}\label{filter-transmitance}}
+
+\href{https://www.itl.nist.gov/div898/handbook/eda/section4/eda426.htm}{Filter
+Transmitance}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{filter_transmitance <-}\StringTok{ }\KeywordTok{scan}\NormalTok{(}\StringTok{"NIST data/MAVRO.DAT"}\NormalTok{, }\DataTypeTok{skip =} \DecValTok{25}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{as.tibble}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{rowid_to_column}\NormalTok{()}
+
+\NormalTok{filter_transmitance}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 50 x 2
+##    rowid value
+##    <int> <dbl>
+##  1     1  2.00
+##  2     2  2.00
+##  3     3  2.00
+##  4     4  2.00
+##  5     5  2.00
+##  6     6  2.00
+##  7     7  2.00
+##  8     8  2.00
+##  9     9  2.00
+## 10    10  2.00
+## # ... with 40 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(filter_transmitance, }\KeywordTok{aes}\NormalTok{(rowid, value)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Run sequence plot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-25-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(filter_transmitance, }\KeywordTok{aes}\NormalTok{(}\KeywordTok{lag}\NormalTok{(value), value)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Lag plot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 1 rows containing missing values (geom_point).
+\end{verbatim}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-26-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(filter_transmitance, }\KeywordTok{aes}\NormalTok{(value)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Histogram"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-27-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(filter_transmitance, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{sample =}\NormalTok{ value)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_qq}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Normal probabilty (qq) plot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-28-1.pdf}
+
+\hypertarget{standard-resistor}{%
+\subsection{Standard resistor}\label{standard-resistor}}
+
+\href{https://www.itl.nist.gov/div898/handbook/eda/section4/eda427.htm}{Standard
+Resistor}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{standard_resistor <-}\StringTok{ }\KeywordTok{read_table2}\NormalTok{(}\StringTok{"NIST data/DZIUBA1.DAT"}\NormalTok{, }\DataTypeTok{skip =} \DecValTok{25}\NormalTok{, }\DataTypeTok{col_names =} \OtherTok{FALSE}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{rowid_to_column}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{month =}\NormalTok{ X1, }\DataTypeTok{day =}\NormalTok{ X2, }\DataTypeTok{year =}\NormalTok{ X3, }\DataTypeTok{resistance =}\NormalTok{ X4)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Parsed with column specification:
+## cols(
+##   X1 = col_character(),
+##   X2 = col_character(),
+##   X3 = col_integer(),
+##   X4 = col_double()
+## )
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{standard_resistor}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1,000 x 5
+##    rowid month day    year resistance
+##    <int> <chr> <chr> <int>      <dbl>
+##  1     1 2     5        80       27.9
+##  2     2 2     12       80       27.9
+##  3     3 2     13       80       27.9
+##  4     4 2     14       80       27.9
+##  5     5 2     28       80       27.9
+##  6     6 2     28       80       27.9
+##  7     7 3     21       80       27.9
+##  8     8 3     24       80       27.9
+##  9     9 4     3        80       27.9
+## 10    10 4     3        80       27.9
+## # ... with 990 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(standard_resistor, }\KeywordTok{aes}\NormalTok{(rowid, resistance)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Run sequence plot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-29-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(standard_resistor, }\KeywordTok{aes}\NormalTok{(}\KeywordTok{lag}\NormalTok{(resistance), resistance)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Lag plot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 1 rows containing missing values (geom_point).
+\end{verbatim}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-30-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(standard_resistor, }\KeywordTok{aes}\NormalTok{(resistance)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Histogram"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-31-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(standard_resistor, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{sample =}\NormalTok{ resistance)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_qq}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Normal probabilty (qq) plot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-32-1.pdf}
+
+\hypertarget{heat-flow-meter-1}{%
+\subsection{Heat flow meter 1}\label{heat-flow-meter-1}}
+
+\href{https://www.itl.nist.gov/div898/handbook/eda/section4/eda428.htm}{Heat
+Flow Meter 1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{heat_flow_meter1 <-}\StringTok{ }\KeywordTok{scan}\NormalTok{(}\StringTok{"NIST data/ZARR13.DAT"}\NormalTok{, }\DataTypeTok{skip =} \DecValTok{25}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{as.tibble}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{rowid_to_column}\NormalTok{()}
+
+\NormalTok{heat_flow_meter1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 195 x 2
+##    rowid value
+##    <int> <dbl>
+##  1     1  9.21
+##  2     2  9.30
+##  3     3  9.28
+##  4     4  9.31
+##  5     5  9.28
+##  6     6  9.29
+##  7     7  9.29
+##  8     8  9.26
+##  9     9  9.30
+## 10    10  9.28
+## # ... with 185 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(heat_flow_meter1, }\KeywordTok{aes}\NormalTok{(rowid, value)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Run sequence plot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-33-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(heat_flow_meter1, }\KeywordTok{aes}\NormalTok{(}\KeywordTok{lag}\NormalTok{(value), value)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Lag plot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 1 rows containing missing values (geom_point).
+\end{verbatim}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-34-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(heat_flow_meter1, }\KeywordTok{aes}\NormalTok{(value)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Histogram"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-35-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(heat_flow_meter1, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{sample =}\NormalTok{ value)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_qq}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Normal probabilty (qq) plot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-36-1.pdf}
+
+\hypertarget{ceramic-strength}{%
+\subsection{Ceramic strength}\label{ceramic-strength}}
+
+\href{https://www.itl.nist.gov/div898/handbook/eda/section4/eda42a.htm}{Ceramic
+Strength}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ceramic_strength <-}\StringTok{ }\KeywordTok{read_table2}\NormalTok{(}\StringTok{"NIST data/JAHANMI2.DAT"}\NormalTok{, }\DataTypeTok{skip =} \DecValTok{48}\NormalTok{, }\DataTypeTok{col_names =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(Lab }\OperatorTok{>=}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{rowid_to_column}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Parsed with column specification:
+## cols(
+##   Id = col_character(),
+##   Lab = col_integer(),
+##   Num = col_integer(),
+##   Test = col_integer(),
+##   Y = col_double(),
+##   X1 = col_integer(),
+##   X2 = col_integer(),
+##   X3 = col_integer(),
+##   X4 = col_integer(),
+##   Trt = col_integer(),
+##   Set = col_integer(),
+##   Llab = col_double(),
+##   Rep = col_integer(),
+##   Bat = col_integer(),
+##   Sblab = col_double(),
+##   Set2 = col_integer()
+## )
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in rbind(names(probs), probs_f): number of columns of result is not
+## a multiple of vector length (arg 2)
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: 1 parsing failure.
+## row # A tibble: 1 x 5 col     row col   expected   actual    file                     expected   <int> <chr> <chr>      <chr>     <chr>                    actual 1     1 <NA>  16 columns 1 columns 'NIST data/JAHANMI2.DAT' file # A tibble: 1 x 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ceramic_strength}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 480 x 17
+##    rowid Id      Lab   Num  Test     Y    X1    X2    X3    X4   Trt   Set
+##    <int> <chr> <int> <int> <int> <dbl> <int> <int> <int> <int> <int> <int>
+##  1     1 1         1     1     1  609.    -1    -1    -1    -1     1     1
+##  2     2 2         1     2     1  570.    -1    -1    -1    -1     1     1
+##  3     3 3         1     3     1  690.    -1    -1    -1    -1     1     1
+##  4     4 4         1     4     1  748.    -1    -1    -1    -1     1     1
+##  5     5 5         1     5     1  618.    -1    -1    -1    -1     1     1
+##  6     6 6         1     6     1  612.    -1    -1    -1    -1     1     1
+##  7     7 7         1     7     1  680.    -1    -1    -1    -1     1     1
+##  8     8 8         1     8     1  608.    -1    -1    -1    -1     1     1
+##  9     9 9         1     9     1  726.    -1    -1    -1    -1     1     1
+## 10    10 10        1    10     1  605.    -1    -1    -1    -1     1     1
+## # ... with 470 more rows, and 5 more variables: Llab <dbl>, Rep <int>,
+## #   Bat <int>, Sblab <dbl>, Set2 <int>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(ceramic_strength, }\KeywordTok{aes}\NormalTok{(rowid, Y)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Run sequence plot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-37-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(ceramic_strength, }\KeywordTok{aes}\NormalTok{(}\KeywordTok{lag}\NormalTok{(Y), Y)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Lag plot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 1 rows containing missing values (geom_point).
+\end{verbatim}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-38-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(ceramic_strength, }\KeywordTok{aes}\NormalTok{(Y)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Histogram"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-39-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(ceramic_strength, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{sample =}\NormalTok{ Y)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_qq}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Normal probabilty (qq) plot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-40-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(ceramic_strength, }\KeywordTok{aes}\NormalTok{(Y)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill =} \KeywordTok{as.factor}\NormalTok{(Bat)), }\DataTypeTok{bins =} \DecValTok{20}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(Bat }\OperatorTok{~}\StringTok{ }\NormalTok{.) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Histogram"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-41-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(ceramic_strength, }\KeywordTok{aes}\NormalTok{(}\KeywordTok{as.factor}\NormalTok{(Bat), Y)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{(}\DataTypeTok{notch =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Boxplot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-42-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(ceramic_strength, }\KeywordTok{aes}\NormalTok{(}\KeywordTok{as.factor}\NormalTok{(Lab), Y)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill =} \KeywordTok{as.factor}\NormalTok{(Bat))) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Boxplot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-43-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+You can label chapter and section titles using \texttt{\{\#label\}}
+after them, e.g., we can reference Chapter \ref{intro}. If you do not
+manually label them, there will be automatic labels anyway, e.g.,
+Chapter \ref{methods}.
+
+Figures and tables with captions will be placed in \texttt{figure} and
+\texttt{table} environments, respectively.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\FloatTok{.1}\NormalTok{, }\FloatTok{.1}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(pressure, }\DataTypeTok{type =} \StringTok{'b'}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{19}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{exercises_and_case_studies_files/figure-latex/nice-fig-1} 
+
+}
+
+\caption{Here is a nice figure!}\label{fig:nice-fig}
+\end{figure}
+
+Reference a figure by its code chunk label with the \texttt{fig:}
+prefix, e.g., see Figure \ref{fig:nice-fig}. Similarly, you can
+reference tables generated from \texttt{knitr::kable()}, e.g., see Table
+\ref{tab:nice-tab}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}
+  \KeywordTok{head}\NormalTok{(iris, }\DecValTok{20}\NormalTok{), }\DataTypeTok{caption =} \StringTok{'Here is a nice table!'}\NormalTok{,}
+  \DataTypeTok{booktabs =} \OtherTok{TRUE}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+
+\caption{\label{tab:nice-tab}Here is a nice table!}
+\centering
+\begin{tabular}[t]{rrrrl}
+\toprule
+Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
+\midrule
+5.1 & 3.5 & 1.4 & 0.2 & setosa\\
+4.9 & 3.0 & 1.4 & 0.2 & setosa\\
+4.7 & 3.2 & 1.3 & 0.2 & setosa\\
+4.6 & 3.1 & 1.5 & 0.2 & setosa\\
+5.0 & 3.6 & 1.4 & 0.2 & setosa\\
+\addlinespace
+5.4 & 3.9 & 1.7 & 0.4 & setosa\\
+4.6 & 3.4 & 1.4 & 0.3 & setosa\\
+5.0 & 3.4 & 1.5 & 0.2 & setosa\\
+4.4 & 2.9 & 1.4 & 0.2 & setosa\\
+4.9 & 3.1 & 1.5 & 0.1 & setosa\\
+\addlinespace
+5.4 & 3.7 & 1.5 & 0.2 & setosa\\
+4.8 & 3.4 & 1.6 & 0.2 & setosa\\
+4.8 & 3.0 & 1.4 & 0.1 & setosa\\
+4.3 & 3.0 & 1.1 & 0.1 & setosa\\
+5.8 & 4.0 & 1.2 & 0.2 & setosa\\
+\addlinespace
+5.7 & 4.4 & 1.5 & 0.4 & setosa\\
+5.4 & 3.9 & 1.3 & 0.4 & setosa\\
+5.1 & 3.5 & 1.4 & 0.3 & setosa\\
+5.7 & 3.8 & 1.7 & 0.3 & setosa\\
+5.1 & 3.8 & 1.5 & 0.3 & setosa\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+You can write citations, too. For example, we are using the
+\textbf{bookdown} package \citep{R-bookdown} in this sample book, which
+was built on top of R Markdown and \textbf{knitr} \citep{xie2015}.
+
+I'd like to add a reference \citep{Hoobler1993}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(magrittr)}
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{measurement-process-characterization}{%
+\chapter{Measurement Process
+Characterization}\label{measurement-process-characterization}}
+
+\hypertarget{characterization}{%
+\section{Characterization}\label{characterization}}
+
+\hypertarget{gauge-r-r-studies}{%
+\section{Gauge R \& R studies}\label{gauge-r-r-studies}}
+
+\hypertarget{case-studies}{%
+\section{Case Studies}\label{case-studies}}
+
+\hypertarget{check-standard}{%
+\subsection{Check standard}\label{check-standard}}
+
+\hypertarget{background-and-data}{%
+\subsubsection{Background and data}\label{background-and-data}}
+
+\begin{quote}
+The measurements on the check standard duplicate certification
+measurements that were being made, during the same time period, on
+individual wafers from crystal \#51939. For the check standard there
+were:
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  J = 6 repetitions at the center of the wafer on each day
+\item
+  K = 25 days
+\end{itemize}
+
+\href{https://www.itl.nist.gov/div898/handbook/mpc/section6/mpc62.htm}{Check
+standard for resistivity measurement}
+
+\hypertarget{reading-the-dataset}{%
+\subsubsection{Reading the dataset}\label{reading-the-dataset}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{check_standard <-}\StringTok{ }\KeywordTok{read_table2}\NormalTok{(}\StringTok{"NIST data/MPC62_clean.DAT"}\NormalTok{, }\DataTypeTok{col_names =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{rowid_to_column}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Parsed with column specification:
+## cols(
+##   Crystal_ID = col_integer(),
+##   Wafer_ID = col_integer(),
+##   Month = col_character(),
+##   Day = col_character(),
+##   Hour = col_character(),
+##   Minute = col_character(),
+##   Operator = col_integer(),
+##   Humidity = col_integer(),
+##   Probe_ID = col_integer(),
+##   Temperature = col_double(),
+##   Resistance = col_double(),
+##   Stdev = col_double(),
+##   Df = col_integer()
+## )
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{check_standard}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 25 x 14
+##    rowid Crystal_ID Wafer_ID Month Day   Hour  Minute Operator Humidity
+##    <int>      <int>    <int> <chr> <chr> <chr> <chr>     <int>    <int>
+##  1     1      51939      137 03    24    18    01            1       42
+##  2     2      51939      137 03    25    12    41            1       35
+##  3     3      51939      137 03    25    15    57            1       33
+##  4     4      51939      137 03    28    10    10            2       47
+##  5     5      51939      137 03    28    13    31            2       44
+##  6     6      51939      137 03    28    17    33            1       43
+##  7     7      51939      137 03    29    14    40            1       36
+##  8     8      51939      137 03    29    16    33            1       35
+##  9     9      51939      137 03    30    05    45            2       32
+## 10    10      51939      137 03    30    09    26            2       33
+## # ... with 15 more rows, and 5 more variables: Probe_ID <int>,
+## #   Temperature <dbl>, Resistance <dbl>, Stdev <dbl>, Df <int>
+\end{verbatim}
+
+\hypertarget{level-1-standard-deviation}{%
+\subsubsection{Level-1 standard
+deviation}\label{level-1-standard-deviation}}
+
+Measurements for \emph{J} runs over \emph{K} days for \emph{L} runs are:
+
+\[
+Y_{lkj}(l = 1, \, \ldots, \, L, \,\, k=1, \,\ldots, \, K, \,\, j=1, \,\ldots, \, J)
+\] The level-1 repeatability (short term precision) is calcuated from
+the pooled standard deviation over days and runs
+
+\[
+s_{1lk} = \sqrt{\frac{1}{J-1} \sum_{j=1}^{J}{(Y_{lkj} - \overline{Y}_{lk{\small \, \bullet}})^2}}
+\]
+
+with
+
+\[
+\overline{Y}_{lk{\small \, \bullet}} = \frac{1}{J}\sum_{j=1}^{J}{\overline{Y}_{lkj}}
+\] As stated in the e-Handbook: \textgreater{}An individual short-term
+standard deviation will not be a reliable estimate of precision if the
+degrees of freedom is less than ten, but the individual estimates can be
+pooled over the K days to obtain a more reliable estimate.
+
+The pooled level-1 standard deviation estimate with v = K(J - 1) degrees
+of freedom is \[
+s_1 = \sqrt{\frac{1}{K} \sum_{k=1}^{K} s_k^2}
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s1_chkstd <-}\StringTok{ }\NormalTok{check_standard }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Stdev_sq =}\NormalTok{ Stdev}\OperatorTok{^}\DecValTok{2}\NormalTok{) }\OperatorTok{%$%}\StringTok{ }
+\StringTok{  }\KeywordTok{mean}\NormalTok{(Stdev_sq) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{sqrt}\NormalTok{()}
+
+\NormalTok{s1_chkstd}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.06138795
+\end{verbatim}
+
+Several comments on the code above. I've introduced the \texttt{\%\$\%}
+operator. This allows me to use indivdual columns from my data frame and
+is useful for preforming mathematical operations on a specific column of
+data. It is from the \textbf{magrittr} package.
+
+I find this type of code easy to read and understand. Describing the
+operations is simple, I'm just working from inside out of the equation:
+
+\begin{itemize}
+\tightlist
+\item
+  creating a new column of data that is \((Stdev)^2\)
+\item
+  finding the mean of that new column
+\item
+  taking the square root of that number to give \(s_1\).
+\end{itemize}
+
+\hypertarget{level-2-standard-deviation-reproducibility}{%
+\subsubsection{Level-2 standard deviation
+(reproducibility)}\label{level-2-standard-deviation-reproducibility}}
+
+\[
+s_{chkstd} = {\large s}_2 = \sqrt{\frac{1}{K-1} \sum_{k=1}^{K} \left( \overline{Y}_{k \, \small{\bullet}} - \overline{Y}_{\small{\bullet}  \small{\bullet}} \right) ^2}
+\] with
+
+\[
+\overline{Y}_{\small{\bullet} \small{\bullet}}  = \frac{1}{K} \sum_{k=1}^{K} \overline{Y}_{k \, \small{\bullet}}
+\]
+
+Which is simply the standard deviation of the daily measuremnts
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s2_chkstd <-}\StringTok{ }\NormalTok{check_standard }\OperatorTok{%$%}
+\StringTok{  }\KeywordTok{sd}\NormalTok{(Resistance)}
+
+\NormalTok{s2_chkstd}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.02679813
+\end{verbatim}
+
+\hypertarget{control-chart-for-standard-deviation---precision}{%
+\subsubsection{Control chart for standard deviation -
+Precision}\label{control-chart-for-standard-deviation---precision}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{UCL_precision_ckkstd <-}\StringTok{ }\NormalTok{s1_chkstd}\OperatorTok{*}\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{qf}\NormalTok{(}\FloatTok{0.95}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{125}\NormalTok{))}
+\NormalTok{UCL_precision_ckkstd}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.0928313
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(check_standard) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(rowid, Stdev)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_hline}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{yintercept =}\NormalTok{ UCL_precision_ckkstd), }\DataTypeTok{colour =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{linetype =} \StringTok{"dashed"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =}  \StringTok{"Precision control chart"}\NormalTok{, }\DataTypeTok{subtitle =} \StringTok{"Probe_ID 2362"}\NormalTok{, }\DataTypeTok{x =} \StringTok{"measurement"}\NormalTok{, }\DataTypeTok{y =} \StringTok{"ohm.cm"}\NormalTok{, }\DataTypeTok{caption =} \StringTok{"UCL calcuated at 95% level of confidence"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{annotate}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\DataTypeTok{x =} \DecValTok{0}\NormalTok{, }\DataTypeTok{y =} \FloatTok{0.096}\NormalTok{, }\DataTypeTok{label =} \StringTok{"UCL"}\NormalTok{, }\DataTypeTok{colour =} \StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-49-1.pdf}
+
+\hypertarget{control-chart-for-measurement-bias-and-variability}{%
+\subsubsection{Control chart for measurement bias and
+variability}\label{control-chart-for-measurement-bias-and-variability}}
+
+The control limits for monitoring the bias and long-term variability of
+resistivity with a Shewhart control chart are given by
+
+\[
+UCL=\text{Average} + 2 \cdot s_2 \\
+Centerline=\text{Average} \\
+LCL=\text{Average} − 2 \cdot s_2 \\
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(check_standard) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(rowid, Resistance)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_hline}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{yintercept =}\NormalTok{ (}\KeywordTok{mean}\NormalTok{(Resistance) }\OperatorTok{+}\StringTok{ }\DecValTok{2}\OperatorTok{*}\NormalTok{s2_chkstd)), }\DataTypeTok{colour =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{linetype =} \StringTok{"dashed"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_hline}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{yintercept =}\NormalTok{ (}\KeywordTok{mean}\NormalTok{(Resistance) }\OperatorTok{-}\StringTok{ }\DecValTok{2}\OperatorTok{*}\NormalTok{s2_chkstd)), }\DataTypeTok{colour =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{linetype =} \StringTok{"dashed"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =}  \StringTok{"Shewhart control chart"}\NormalTok{, }\DataTypeTok{subtitle =} \StringTok{"Probe_ID 2362"}\NormalTok{, }\DataTypeTok{x =} \StringTok{"measurement"}\NormalTok{, }\DataTypeTok{y =} \StringTok{"ohm.cm"}\NormalTok{, }\DataTypeTok{caption =} \StringTok{"Control limits calcuated with k = 2"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{annotate}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\DataTypeTok{x =} \DecValTok{0}\NormalTok{, }\DataTypeTok{y =} \FloatTok{97.12}\NormalTok{, }\DataTypeTok{label =} \StringTok{"UCL"}\NormalTok{, }\DataTypeTok{colour =} \StringTok{"red"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{annotate}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\DataTypeTok{x =} \DecValTok{0}\NormalTok{, }\DataTypeTok{y =} \FloatTok{97.02}\NormalTok{, }\DataTypeTok{label =} \StringTok{"LCL"}\NormalTok{, }\DataTypeTok{colour =} \StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-50-1.pdf}
+
+\hypertarget{gauge-study}{%
+\subsection{Gauge study}\label{gauge-study}}
+
+\hypertarget{background-and-data-1}{%
+\subsubsection{Background and data}\label{background-and-data-1}}
+
+\begin{quote}
+Measurements on the check standards are used to estimate repeatability,
+day effect, and run effect The effect of operator was not considered to
+be significant for this study; therefore, `day' replaces `operator' as a
+factor in the nested design. Averages and standard deviations from J = 6
+measurements at the center of each wafer are shown in the table.
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  J = 6 measurements at the center of the wafer per day
+\item
+  K = 6 days (one operator) per repetition
+\item
+  L = 2 runs (complete)
+\item
+  Q = 5 wafers (check standards 138, 139, 140, 141, 142)
+\item
+  R = 5 probes (1, 281, 283, 2062, 2362)
+\end{itemize}
+
+\href{https://www.itl.nist.gov/div898/handbook/mpc/section6/mpc61.htm}{Gauge
+study of resistivity probes}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gauge_study <-}\StringTok{ }\KeywordTok{read_table2}\NormalTok{(}\StringTok{"NIST data/MPC61_clean.DAT"}\NormalTok{, }\DataTypeTok{col_names =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{rowid_to_column}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Parsed with column specification:
+## cols(
+##   RUN = col_integer(),
+##   WAFER = col_double(),
+##   PROBE = col_double(),
+##   MONTH = col_double(),
+##   DAY = col_double(),
+##   OP = col_double(),
+##   TEMP = col_double(),
+##   AVERAGE = col_double(),
+##   STDDEV = col_double()
+## )
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gauge_study}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 300 x 10
+##    rowid   RUN WAFER PROBE MONTH   DAY    OP  TEMP AVERAGE STDDEV
+##    <int> <int> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>   <dbl>  <dbl>
+##  1     1     1  138.    1.    3.   15.    1.  23.0    95.2 0.119 
+##  2     2     1  138.    1.    3.   17.    1.  23.0    95.2 0.0183
+##  3     3     1  138.    1.    3.   18.    1.  22.8    95.2 0.128 
+##  4     4     1  138.    1.    3.   21.    1.  23.2    95.2 0.0398
+##  5     5     1  138.    1.    3.   23.    2.  23.2    95.1 0.0346
+##  6     6     1  138.    1.    3.   23.    1.  23.2    95.1 0.154 
+##  7     7     1  138.  281.    3.   16.    1.  23.0    95.2 0.0963
+##  8     8     1  138.  281.    3.   17.    1.  23.0    95.1 0.0606
+##  9     9     1  138.  281.    3.   18.    1.  22.8    95.1 0.0842
+## 10    10     1  138.  281.    3.   21.    1.  23.3    95.1 0.0973
+## # ... with 290 more rows
+\end{verbatim}
+
+\hypertarget{repeatability-standard-deviations}{%
+\subsubsection{Repeatability standard
+deviations}\label{repeatability-standard-deviations}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(gauge_study) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\KeywordTok{as.factor}\NormalTok{(WAFER), STDDEV, }\DataTypeTok{colour =} \KeywordTok{as.factor}\NormalTok{(DAY))) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(PROBE), }\DataTypeTok{nrow =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-52-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(gauge_study) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\KeywordTok{as.factor}\NormalTok{(WAFER), STDDEV)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\KeywordTok{as.factor}\NormalTok{(RUN) }\OperatorTok{~}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(PROBE))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-53-1.pdf}
+
+\hypertarget{effects-of-days-and-long-term-stability}{%
+\subsubsection{Effects of days and long-term
+stability}\label{effects-of-days-and-long-term-stability}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(gauge_study) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(rowid, AVERAGE, }\DataTypeTok{colour =} \KeywordTok{as.factor}\NormalTok{(RUN))) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\KeywordTok{as.factor}\NormalTok{(WAFER) }\OperatorTok{~}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(PROBE), }\DataTypeTok{scales =} \StringTok{"free_y"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-54-1.pdf}
+
+\hypertarget{differences-among-5-probes}{%
+\subsubsection{Differences among 5
+probes}\label{differences-among-5-probes}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{probe_means_run <-}\StringTok{ }\NormalTok{gauge_study }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(PROBE, WAFER, RUN) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{n}\NormalTok{(), }\DataTypeTok{probe_mean =} \KeywordTok{mean}\NormalTok{(AVERAGE)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{unite}\NormalTok{(join_id, WAFER, RUN, }\DataTypeTok{sep =} \StringTok{"_"}\NormalTok{, }\DataTypeTok{remove =} \OtherTok{FALSE}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{()}
+
+\NormalTok{probe_means_run}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 50 x 6
+##    PROBE join_id WAFER   RUN     n probe_mean
+##    <dbl> <chr>   <dbl> <int> <int>      <dbl>
+##  1    1. 138_1    138.     1     6       95.2
+##  2    1. 138_2    138.     2     6       95.2
+##  3    1. 139_1    139.     1     6       99.3
+##  4    1. 139_2    139.     2     6       99.4
+##  5    1. 140_1    140.     1     6       96.1
+##  6    1. 140_2    140.     2     6       96.1
+##  7    1. 141_1    141.     1     6      101. 
+##  8    1. 141_2    141.     2     6      101. 
+##  9    1. 142_1    142.     1     6       94.3
+## 10    1. 142_2    142.     2     6       94.3
+## # ... with 40 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wafer_means_run <-}\StringTok{ }\NormalTok{gauge_study }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(WAFER, RUN) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{n}\NormalTok{(), }\DataTypeTok{wafer_means =} \KeywordTok{mean}\NormalTok{(AVERAGE)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{unite}\NormalTok{(join_id, WAFER, RUN, }\DataTypeTok{sep =} \StringTok{"_"}\NormalTok{, }\DataTypeTok{remove =} \OtherTok{FALSE}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{()}
+
+\NormalTok{wafer_means_run}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 10 x 5
+##    join_id WAFER   RUN     n wafer_means
+##    <chr>   <dbl> <int> <int>       <dbl>
+##  1 138_1    138.     1    30        95.1
+##  2 138_2    138.     2    30        95.2
+##  3 139_1    139.     1    30        99.3
+##  4 139_2    139.     2    30        99.4
+##  5 140_1    140.     1    30        96.1
+##  6 140_2    140.     2    30        96.1
+##  7 141_1    141.     1    30       101. 
+##  8 141_2    141.     2    30       101. 
+##  9 142_1    142.     1    30        94.3
+## 10 142_2    142.     2    30        94.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{delta_probes <-}\StringTok{ }\KeywordTok{left_join}\NormalTok{(probe_means_run, wafer_means_run, }\DataTypeTok{by =} \StringTok{"join_id"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{delta_probes_wafer =}\NormalTok{ probe_mean }\OperatorTok{-}\StringTok{ }\NormalTok{wafer_means)}
+
+\NormalTok{delta_probes}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 50 x 11
+##    PROBE join_id WAFER.x RUN.x   n.x probe_mean WAFER.y RUN.y   n.y
+##    <dbl> <chr>     <dbl> <int> <int>      <dbl>   <dbl> <int> <int>
+##  1    1. 138_1      138.     1     6       95.2    138.     1    30
+##  2    1. 138_2      138.     2     6       95.2    138.     2    30
+##  3    1. 139_1      139.     1     6       99.3    139.     1    30
+##  4    1. 139_2      139.     2     6       99.4    139.     2    30
+##  5    1. 140_1      140.     1     6       96.1    140.     1    30
+##  6    1. 140_2      140.     2     6       96.1    140.     2    30
+##  7    1. 141_1      141.     1     6      101.     141.     1    30
+##  8    1. 141_2      141.     2     6      101.     141.     2    30
+##  9    1. 142_1      142.     1     6       94.3    142.     1    30
+## 10    1. 142_2      142.     2     6       94.3    142.     2    30
+## # ... with 40 more rows, and 2 more variables: wafer_means <dbl>,
+## #   delta_probes_wafer <dbl>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(delta_probes) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\KeywordTok{as.factor}\NormalTok{(WAFER.x), delta_probes_wafer, }\DataTypeTok{group =} \KeywordTok{as.factor}\NormalTok{(PROBE), }\DataTypeTok{colour =} \KeywordTok{as.factor}\NormalTok{(PROBE))) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_hline}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{yintercept =} \DecValTok{0}\NormalTok{), }\DataTypeTok{linetype =} \StringTok{"dashed"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(RUN.x), }\DataTypeTok{ncol =} \DecValTok{1}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{exercises_and_case_studies_files/figure-latex/unnamed-chunk-56-1.pdf}
+
+\hypertarget{analysis-and-interpretation}{%
+\subsubsection{Analysis and
+interpretation}\label{analysis-and-interpretation}}
+
+Table of estimates for probe \#2362
+
+\begin{quote}
+A graphical analysis shows repeatability standard deviations plotted by
+wafer and probe\ldots{} The plots show that for both runs the precision
+of this probe is better than for the other probes.
+
+Probe \#2362, because of its superior precision, was chosen as the tool
+for measuring all 100 ohm.cm resistivity wafers at NIST. Therefore, the
+remainder of the analysis focuses on this probe.
+\end{quote}
+
+\hypertarget{probe-2362}{%
+\subsubsection{probe \#2362}\label{probe-2362}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{probe_}\DecValTok{2362}\NormalTok{ <-}\StringTok{ }\NormalTok{gauge_study }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(PROBE }\OperatorTok{==}\StringTok{ }\DecValTok{2362}\NormalTok{)}
+
+\NormalTok{probe_}\DecValTok{2362}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 60 x 10
+##    rowid   RUN WAFER PROBE MONTH   DAY    OP  TEMP AVERAGE STDDEV
+##    <int> <int> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>   <dbl>  <dbl>
+##  1    25     1  138. 2362.    3.   15.    1.  23.1    95.1 0.0480
+##  2    26     1  138. 2362.    3.   17.    1.  23.0    95.1 0.0577
+##  3    27     1  138. 2362.    3.   18.    1.  23.0    95.1 0.0516
+##  4    28     1  138. 2362.    3.   22.    1.  23.2    95.1 0.0386
+##  5    29     1  138. 2362.    3.   23.    2.  23.3    95.1 0.0256
+##  6    30     1  138. 2362.    3.   24.    2.  23.1    95.1 0.0420
+##  7    55     1  139. 2362.    3.   15.    1.  23.1    99.3 0.0818
+##  8    56     1  139. 2362.    3.   17.    1.  23.0    99.3 0.0723
+##  9    57     1  139. 2362.    3.   18.    1.  22.9    99.3 0.0756
+## 10    58     1  139. 2362.    3.   22.    1.  23.3    99.4 0.0475
+## # ... with 50 more rows
+\end{verbatim}
+
+Pooled level-1 standard deviations (ohm.cm)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s1_}\DecValTok{2362}\NormalTok{_}\DecValTok{1}\NormalTok{ <-}\StringTok{ }\NormalTok{probe_}\DecValTok{2362} \OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(RUN }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Stdev_sq =}\NormalTok{ STDDEV}\OperatorTok{^}\DecValTok{2}\NormalTok{) }\OperatorTok{%$%}\StringTok{ }
+\StringTok{  }\KeywordTok{mean}\NormalTok{(Stdev_sq) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{sqrt}\NormalTok{()}
+
+\NormalTok{s1_}\DecValTok{2362}\NormalTok{_}\DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.06750898
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s1_}\DecValTok{2362}\NormalTok{_}\DecValTok{2}\NormalTok{ <-}\StringTok{ }\NormalTok{probe_}\DecValTok{2362} \OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(RUN }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Stdev_sq =}\NormalTok{ STDDEV}\OperatorTok{^}\DecValTok{2}\NormalTok{) }\OperatorTok{%$%}\StringTok{ }
+\StringTok{  }\KeywordTok{mean}\NormalTok{(Stdev_sq) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{sqrt}\NormalTok{()}
+
+\NormalTok{s1_}\DecValTok{2362}\NormalTok{_}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.07785664
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s1_}\DecValTok{2362}\NormalTok{ <-}\StringTok{ }\NormalTok{probe_}\DecValTok{2362} \OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Stdev_sq =}\NormalTok{ STDDEV}\OperatorTok{^}\DecValTok{2}\NormalTok{) }\OperatorTok{%$%}\StringTok{ }
+\StringTok{  }\KeywordTok{mean}\NormalTok{(Stdev_sq) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{sqrt}\NormalTok{()}
+
+\NormalTok{s1_}\DecValTok{2362}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.07286673
+\end{verbatim}
+
+Level-2 standard deviations (ohm.cm) for 5 wafers
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s2_}\DecValTok{2362}\NormalTok{ <-}\StringTok{ }\NormalTok{gauge_study }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(PROBE, WAFER, RUN) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(PROBE }\OperatorTok{==}\StringTok{ }\DecValTok{2362}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{df =} \KeywordTok{n}\NormalTok{()}\OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{probe_mean =} \KeywordTok{mean}\NormalTok{(AVERAGE), }\DataTypeTok{probe_stdev =} \KeywordTok{sd}\NormalTok{(AVERAGE), }\DataTypeTok{probe_stdev_sq =}\NormalTok{ probe_stdev}\OperatorTok{^}\DecValTok{2}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(RUN) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{s2_run =} \KeywordTok{sqrt}\NormalTok{(}\KeywordTok{mean}\NormalTok{(probe_stdev_sq)))}
+
+\NormalTok{s2_}\DecValTok{2362}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 2
+##     RUN s2_run
+##   <int>  <dbl>
+## 1     1 0.0333
+## 2     2 0.0388
+\end{verbatim}
+
+Over both runs
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s2_}\DecValTok{2352}\NormalTok{_all <-}\StringTok{ }\NormalTok{s2_}\DecValTok{2362} \OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{s2_run_sq =}\NormalTok{ s2_run}\OperatorTok{^}\DecValTok{2}\NormalTok{) }\OperatorTok{%$%}
+\StringTok{  }\KeywordTok{mean}\NormalTok{(s2_run_sq) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{sqrt}\NormalTok{()}
+
+\NormalTok{s2_}\DecValTok{2352}\NormalTok{_all}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.03616824
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sd_}\DecValTok{2362}\NormalTok{_wafer <-}\StringTok{ }\NormalTok{gauge_study }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(PROBE, WAFER, RUN) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(PROBE }\OperatorTok{==}\StringTok{ }\DecValTok{2362}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{probe_mean =} \KeywordTok{mean}\NormalTok{(AVERAGE)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{run_number =} \KeywordTok{case_when}\NormalTok{(}
+\NormalTok{      RUN }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{~}\StringTok{ "Run1"}\NormalTok{,}
+\NormalTok{      RUN }\OperatorTok{==}\StringTok{ }\DecValTok{2} \OperatorTok{~}\StringTok{ "Run2"}
+\NormalTok{    )}
+\NormalTok{  ) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(PROBE, WAFER, probe_mean, run_number) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(WAFER) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{sd_wafer =} \KeywordTok{sd}\NormalTok{(probe_mean))}
+
+
+\NormalTok{sd_}\DecValTok{2362}\NormalTok{_wafer}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 2
+##   WAFER sd_wafer
+##   <dbl>    <dbl>
+## 1  138.  0.0222 
+## 2  139.  0.00271
+## 3  140.  0.0288 
+## 4  141.  0.0133 
+## 5  142.  0.0205
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s3_}\DecValTok{2362}\NormalTok{ <-}\StringTok{ }\NormalTok{sd_}\DecValTok{2362}\NormalTok{_wafer }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{sd_wafer_sq =}\NormalTok{ sd_wafer}\OperatorTok{^}\DecValTok{2}\NormalTok{) }\OperatorTok{%$%}
+\StringTok{  }\KeywordTok{mean}\NormalTok{(sd_wafer_sq) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{sqrt}\NormalTok{()}
+  
+\NormalTok{s3_}\DecValTok{2362}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.01964524
+\end{verbatim}
+
+\hypertarget{methods}{%
+\chapter{Methods}\label{methods}}
+
+We describe our methods in this chapter.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"code"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "code"
+\end{verbatim}
+
+\hypertarget{applications}{%
+\chapter{Applications}\label{applications}}
+
+Some \emph{significant} applications are demonstrated in this chapter.
+
+\hypertarget{example-one}{%
+\section{Example one}\label{example-one}}
+
+\hypertarget{example-two}{%
+\section{Example two}\label{example-two}}
+
+\hypertarget{final-words}{%
+\chapter{Final Words}\label{final-words}}
+
+We have finished a nice book.
+
+\hypertarget{final-words-1}{%
+\chapter{Final Words}\label{final-words-1}}
+
+We have finished a nice book.
+
+\hypertarget{final-words-2}{%
+\chapter{Final Words}\label{final-words-2}}
+
+We have finished a nice book.
+
+\hypertarget{final-words-3}{%
+\chapter{Final Words}\label{final-words-3}}
+
+We have finished a nice book.
+
+\bibliography{book.bib,packages.bib,rjh.bib}
+
+
+\end{document}
