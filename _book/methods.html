@@ -217,8 +217,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
-"github": false,
-"facebook": true,
+"github": true,
+"facebook": false,
 "twitter": true,
 "google": false,
 "linkedin": false,
@@ -233,12 +233,15 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": null,
-"text": null
+"link": "https://github.com/RayJamesHoobler/Applied-Statistical-Techniques/edit/master/03-production.Rmd",
+"text": "Edit"
 },
 "download": ["exercises_and_case_studies.pdf", "exercises_and_case_studies.epub"],
 "toc": {
 "collapse": "subsection"
+},
+"toolbar": {
+"position": "fixed"
 }
 });
 });

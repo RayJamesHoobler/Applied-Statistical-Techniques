@@ -1,0 +1,2359 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>An Incomplete Solutions Guide to the NIST/SEMATECH e-Handbook of Statistical Methods</title>
+  <meta name="description" content="This handbook was created using the bookdown package in RStudio. The output format for this example is bookdown::gitbook.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="An Incomplete Solutions Guide to the NIST/SEMATECH e-Handbook of Statistical Methods" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="Applied Statistical Techniques.png" />
+  <meta property="og:description" content="This handbook was created using the bookdown package in RStudio. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="An Incomplete Solutions Guide to the NIST/SEMATECH e-Handbook of Statistical Methods" />
+  
+  <meta name="twitter:description" content="This handbook was created using the bookdown package in RStudio. The output format for this example is bookdown::gitbook." />
+  <meta name="twitter:image" content="Applied Statistical Techniques.png" />
+
+<meta name="author" content="Ray Hoobler">
+
+
+<meta name="date" content="2018-05-02">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="production-process-characterization.html">
+<link rel="next" href="process-improvment.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="http://pmst.utah.edu">Engineering Statistics Handbook in the Tidyverse</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#structure-of-the-book"><i class="fa fa-check"></i>Structure of the book</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#software-information-and-conventsions"><i class="fa fa-check"></i>Software information and conventsions</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="EDA.html"><a href="EDA.html"><i class="fa fa-check"></i><b>1</b> Exploratory Data Analysis</a><ul>
+<li class="chapter" data-level="1.1" data-path="EDA.html"><a href="EDA.html#a-eda-example"><i class="fa fa-check"></i><b>1.1</b> A EDA Example</a></li>
+<li class="chapter" data-level="1.2" data-path="EDA.html"><a href="EDA.html#but-first-lets-start-working-in-the-tidyverse"><i class="fa fa-check"></i><b>1.2</b> But first… let’s start working in the tidyverse</a></li>
+<li class="chapter" data-level="1.3" data-path="EDA.html"><a href="EDA.html#common-graphical-analysis-used-in-the-e-handbook"><i class="fa fa-check"></i><b>1.3</b> Common graphical analysis used in the e-Handbook</a></li>
+<li class="chapter" data-level="1.4" data-path="EDA.html"><a href="EDA.html#case-studies-from-chapter-1-of-the-nistsematech-e-handbook"><i class="fa fa-check"></i><b>1.4</b> Case studies from chapter 1 of the NIST/SEMATECH e-Handbook</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="EDA.html"><a href="EDA.html#normal-random-numbers"><i class="fa fa-check"></i><b>1.4.1</b> Normal random numbers</a></li>
+<li class="chapter" data-level="1.4.2" data-path="EDA.html"><a href="EDA.html#uniform-random-numbers"><i class="fa fa-check"></i><b>1.4.2</b> Uniform random numbers</a></li>
+<li class="chapter" data-level="1.4.3" data-path="EDA.html"><a href="EDA.html#random-walk"><i class="fa fa-check"></i><b>1.4.3</b> Random walk</a></li>
+<li class="chapter" data-level="1.4.4" data-path="EDA.html"><a href="EDA.html#beam-deflections"><i class="fa fa-check"></i><b>1.4.4</b> Beam deflections</a></li>
+<li class="chapter" data-level="1.4.5" data-path="EDA.html"><a href="EDA.html#filter-transmitance"><i class="fa fa-check"></i><b>1.4.5</b> Filter transmitance</a></li>
+<li class="chapter" data-level="1.4.6" data-path="EDA.html"><a href="EDA.html#standard-resistor"><i class="fa fa-check"></i><b>1.4.6</b> Standard resistor</a></li>
+<li class="chapter" data-level="1.4.7" data-path="EDA.html"><a href="EDA.html#heat-flow-meter-1"><i class="fa fa-check"></i><b>1.4.7</b> Heat flow meter 1</a></li>
+<li class="chapter" data-level="1.4.8" data-path="EDA.html"><a href="EDA.html#ceramic-strength"><i class="fa fa-check"></i><b>1.4.8</b> Ceramic strength</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html"><i class="fa fa-check"></i><b>2</b> Measurement Process Characterization</a><ul>
+<li class="chapter" data-level="2.1" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#packages-used-in-this-chapter"><i class="fa fa-check"></i><b>2.1</b> Packages used in this chapter</a></li>
+<li class="chapter" data-level="2.2" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#characterization"><i class="fa fa-check"></i><b>2.2</b> Characterization</a></li>
+<li class="chapter" data-level="2.3" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#gauge-r-r-studies"><i class="fa fa-check"></i><b>2.3</b> Gauge R &amp; R studies</a></li>
+<li class="chapter" data-level="2.4" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#case-studies"><i class="fa fa-check"></i><b>2.4</b> Case Studies</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#check-standard"><i class="fa fa-check"></i><b>2.4.1</b> Check standard</a></li>
+<li class="chapter" data-level="2.4.2" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#gauge-study"><i class="fa fa-check"></i><b>2.4.2</b> Gauge study</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="production-process-characterization.html"><a href="production-process-characterization.html"><i class="fa fa-check"></i><b>3</b> Production Process Characterization</a><ul>
+<li class="chapter" data-level="3.1" data-path="production-process-characterization.html"><a href="production-process-characterization.html#pacakges-used-in-this-chapter"><i class="fa fa-check"></i><b>3.1</b> Pacakges used in this chapter</a></li>
+<li class="chapter" data-level="3.2" data-path="production-process-characterization.html"><a href="production-process-characterization.html#case-studies-1"><i class="fa fa-check"></i><b>3.2</b> Case Studies</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="production-process-characterization.html"><a href="production-process-characterization.html#furnace-case-study"><i class="fa fa-check"></i><b>3.2.1</b> Furnace Case Study</a></li>
+<li class="chapter" data-level="3.2.2" data-path="production-process-characterization.html"><a href="production-process-characterization.html#machine-case-study"><i class="fa fa-check"></i><b>3.2.2</b> Machine Case Study</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="modeling.html"><a href="modeling.html"><i class="fa fa-check"></i><b>4</b> Modeling</a><ul>
+<li class="chapter" data-level="4.1" data-path="modeling.html"><a href="modeling.html#packages-used-in-this-chapter-1"><i class="fa fa-check"></i><b>4.1</b> Packages used in this chapter</a></li>
+<li class="chapter" data-level="4.2" data-path="modeling.html"><a href="modeling.html#introduction"><i class="fa fa-check"></i><b>4.2</b> Introduction</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="modeling.html"><a href="modeling.html#a-simple-linear-regression-model"><i class="fa fa-check"></i><b>4.2.1</b> A simple linear regression model</a></li>
+<li class="chapter" data-level="4.2.2" data-path="modeling.html"><a href="modeling.html#beyond-the-linear-regression"><i class="fa fa-check"></i><b>4.2.2</b> Beyond the linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="modeling.html"><a href="modeling.html#case-stuidies"><i class="fa fa-check"></i><b>4.3</b> Case Stuidies</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="modeling.html"><a href="modeling.html#load-cell-output"><i class="fa fa-check"></i><b>4.3.1</b> Load cell output</a></li>
+<li class="chapter" data-level="4.3.2" data-path="modeling.html"><a href="modeling.html#thermal-expansion-of-copper"><i class="fa fa-check"></i><b>4.3.2</b> Thermal expansion of copper</a></li>
+<li class="chapter" data-level="4.3.3" data-path="modeling.html"><a href="modeling.html#quadraticquadratic-qq-model"><i class="fa fa-check"></i><b>4.3.3</b> Quadratic/Quadratic (Q/Q) model</a></li>
+<li class="chapter" data-level="4.3.4" data-path="modeling.html"><a href="modeling.html#cubiccubic-rational-function"><i class="fa fa-check"></i><b>4.3.4</b> Cubic/Cubic Rational Function</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="modeling.html"><a href="modeling.html#applying-models-to-multiple-datasets"><i class="fa fa-check"></i><b>4.4</b> Applying models to multiple datasets</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="modeling.html"><a href="modeling.html#revisting-the-ascombe-dataset"><i class="fa fa-check"></i><b>4.4.1</b> Revisting the Ascombe dataset</a></li>
+<li class="chapter" data-level="4.4.2" data-path="modeling.html"><a href="modeling.html#model-level-summaries"><i class="fa fa-check"></i><b>4.4.2</b> Model-level summaries</a></li>
+<li class="chapter" data-level="4.4.3" data-path="modeling.html"><a href="modeling.html#coefficient-level-summaries"><i class="fa fa-check"></i><b>4.4.3</b> Coefficient-level summaries</a></li>
+<li class="chapter" data-level="4.4.4" data-path="modeling.html"><a href="modeling.html#observation-data"><i class="fa fa-check"></i><b>4.4.4</b> Observation Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="process-improvment.html"><a href="process-improvment.html"><i class="fa fa-check"></i><b>5</b> Process Improvment</a><ul>
+<li class="chapter" data-level="5.1" data-path="process-improvment.html"><a href="process-improvment.html#libraries-used-in-this-chapteer"><i class="fa fa-check"></i><b>5.1</b> Libraries used in this chapteer</a></li>
+<li class="chapter" data-level="5.2" data-path="process-improvment.html"><a href="process-improvment.html#case-studies-2"><i class="fa fa-check"></i><b>5.2</b> Case Studies</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
+<li class="chapter" data-level="7" data-path="final-words-1.html"><a href="final-words-1.html"><i class="fa fa-check"></i><b>7</b> Final Words</a></li>
+<li class="chapter" data-level="8" data-path="final-words-2.html"><a href="final-words-2.html"><i class="fa fa-check"></i><b>8</b> Final Words</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">An Incomplete Solutions Guide to the NIST/SEMATECH e-Handbook of Statistical Methods</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="modeling" class="section level1">
+<h1><span class="header-section-number">4</span> Modeling</h1>
+<div id="packages-used-in-this-chapter-1" class="section level2">
+<h2><span class="header-section-number">4.1</span> Packages used in this chapter</h2>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb177-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb177-3" data-line-number="3"><span class="kw">library</span>(broom)</a></code></pre></div>
+</div>
+<div id="introduction" class="section level2">
+<h2><span class="header-section-number">4.2</span> Introduction</h2>
+<div id="a-simple-linear-regression-model" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> A simple linear regression model</h3>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" data-line-number="1">simple_line &lt;-<span class="st"> </span><span class="kw">tribble</span>(</a>
+<a class="sourceLine" id="cb178-2" data-line-number="2">  <span class="op">~</span>x.line, <span class="op">~</span>y.line,</a>
+<a class="sourceLine" id="cb178-3" data-line-number="3">  <span class="fl">1.</span>, <span class="fl">2.</span>,</a>
+<a class="sourceLine" id="cb178-4" data-line-number="4">  <span class="fl">3.</span>, <span class="fl">3.</span>,</a>
+<a class="sourceLine" id="cb178-5" data-line-number="5">  <span class="fl">4.</span>, <span class="fl">4.</span>, </a>
+<a class="sourceLine" id="cb178-6" data-line-number="6">  <span class="fl">6.</span>, <span class="fl">5.</span></a>
+<a class="sourceLine" id="cb178-7" data-line-number="7">)</a>
+<a class="sourceLine" id="cb178-8" data-line-number="8">simple_line</a></code></pre></div>
+<pre><code>## # A tibble: 4 x 2
+##   x.line y.line
+##    &lt;dbl&gt;  &lt;dbl&gt;
+## 1     1.     2.
+## 2     3.     3.
+## 3     4.     4.
+## 4     6.     5.</code></pre>
+<div id="plot-of-the-data" class="section level4">
+<h4><span class="header-section-number">4.2.1.1</span> Plot of the data</h4>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1"><span class="kw">ggplot</span>(simple_line, <span class="kw">aes</span>(x.line, y.line)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb180-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
+</div>
+<div id="linear-regression" class="section level4">
+<h4><span class="header-section-number">4.2.1.2</span> Linear regression</h4>
+<p>Below, the data is fit to the line</p>
+<p><span class="math display">\[
+y = mx + b
+\]</span></p>
+<p>the intercept is assumed unless explicity removed using either y ~ x -1 or y ~ 0 + x.</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" data-line-number="1">m_sl &lt;-<span class="st"> </span><span class="kw">lm</span>(y.line <span class="op">~</span><span class="st"> </span>x.line, </a>
+<a class="sourceLine" id="cb181-2" data-line-number="2">          <span class="dt">data =</span> simple_line)</a>
+<a class="sourceLine" id="cb181-3" data-line-number="3">m_sl</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y.line ~ x.line, data = simple_line)
+## 
+## Coefficients:
+## (Intercept)       x.line  
+##      1.3462       0.6154</code></pre>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" data-line-number="1"><span class="kw">summary</span>(m_sl)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y.line ~ x.line, data = simple_line)
+## 
+## Residuals:
+##        1        2        3        4 
+##  0.03846 -0.19231  0.19231 -0.03846 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)   
+## (Intercept)  1.34615    0.21414   6.286  0.02438 * 
+## x.line       0.61538    0.05439  11.314  0.00772 **
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.1961 on 2 degrees of freedom
+## Multiple R-squared:  0.9846, Adjusted R-squared:  0.9769 
+## F-statistic:   128 on 1 and 2 DF,  p-value: 0.007722</code></pre>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1"><span class="kw">tidy</span>(m_sl)</a></code></pre></div>
+<pre><code>##          term  estimate  std.error statistic     p.value
+## 1 (Intercept) 1.3461538 0.21414478  6.286186 0.024384322
+## 2      x.line 0.6153846 0.05439283 11.313708 0.007722123</code></pre>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb187-1" data-line-number="1">sl_slope &lt;-<span class="st"> </span><span class="kw">tidy</span>(m_sl) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb187-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(term <span class="op">==</span><span class="st"> &quot;x.line&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb187-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(estimate)</a>
+<a class="sourceLine" id="cb187-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb187-5" data-line-number="5">sl_intercept &lt;-<span class="st"> </span><span class="kw">tidy</span>(m_sl) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb187-6" data-line-number="6"><span class="st">  </span><span class="kw">filter</span>(term <span class="op">==</span><span class="st"> &quot;(Intercept)&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb187-7" data-line-number="7"><span class="st">  </span><span class="kw">select</span>(estimate)</a>
+<a class="sourceLine" id="cb187-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb187-9" data-line-number="9">sl_slope</a></code></pre></div>
+<pre><code>##    estimate
+## 1 0.6153846</code></pre>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" data-line-number="1">sl_intercept</a></code></pre></div>
+<pre><code>##   estimate
+## 1 1.346154</code></pre>
+</div>
+<div id="plot-of-the-data-and-linear-regression" class="section level4">
+<h4><span class="header-section-number">4.2.1.3</span> Plot of the data and linear regression</h4>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" data-line-number="1"><span class="kw">ggplot</span>(simple_line, <span class="kw">aes</span>(x.line, y.line)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb191-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb191-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">slope =</span> sl_slope<span class="op">$</span>estimate, <span class="dt">intercept =</span> sl_intercept<span class="op">$</span>estimate) <span class="op">+</span></a>
+<a class="sourceLine" id="cb191-4" data-line-number="4"><span class="st">  </span><span class="kw">ylim</span>(<span class="dv">0</span>,<span class="dv">6</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb191-5" data-line-number="5"><span class="st">  </span><span class="kw">xlim</span>(<span class="dv">0</span>,<span class="dv">7</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
+<p>If we don’t need the coeficients, we can plot the data and linear regression using ggplot2</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" data-line-number="1"><span class="kw">ggplot</span>(simple_line, <span class="kw">aes</span>(x.line, y.line)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb192-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb192-3" data-line-number="3"><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> lm, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb192-4" data-line-number="4"><span class="st">  </span><span class="kw">ylim</span>(<span class="dv">0</span>,<span class="dv">6</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb192-5" data-line-number="5"><span class="st">  </span><span class="kw">xlim</span>(<span class="dv">0</span>,<span class="dv">7</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
+</div>
+<div id="finally-lets-add-prediction-intervals-to-the-graph" class="section level4">
+<h4><span class="header-section-number">4.2.1.4</span> Finally, let’s add prediction intervals to the graph</h4>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" data-line-number="1">temp_var &lt;-<span class="st"> </span>m_sl <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb193-2" data-line-number="2"><span class="st">  </span><span class="kw">predict</span>(<span class="dt">interval=</span><span class="st">&quot;predict&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb193-3" data-line-number="3"><span class="st">  </span><span class="kw">as_tibble</span>()</a></code></pre></div>
+<pre><code>## Warning in predict.lm(., interval = &quot;predict&quot;): predictions on current data refer to _future_ responses</code></pre>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" data-line-number="1">temp_var</a></code></pre></div>
+<pre><code>## # A tibble: 4 x 3
+##     fit   lwr   upr
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1  1.96 0.851  3.07
+## 2  3.19 2.24   4.14
+## 3  3.81 2.86   4.76
+## 4  5.04 3.93   6.15</code></pre>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" data-line-number="1">simple_line_predict &lt;-<span class="st"> </span><span class="kw">bind_cols</span>(simple_line, temp_var)</a>
+<a class="sourceLine" id="cb197-2" data-line-number="2">simple_line_predict</a></code></pre></div>
+<pre><code>## # A tibble: 4 x 5
+##   x.line y.line   fit   lwr   upr
+##    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1.     2.  1.96 0.851  3.07
+## 2     3.     3.  3.19 2.24   4.14
+## 3     4.     4.  3.81 2.86   4.76
+## 4     6.     5.  5.04 3.93   6.15</code></pre>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" data-line-number="1"><span class="kw">ggplot</span>(simple_line_predict, <span class="kw">aes</span>(x.line, y.line)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb199-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb199-3" data-line-number="3"><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> lm, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">size =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb199-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y=</span>lwr), <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb199-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y=</span>upr), <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb199-6" data-line-number="6"><span class="st">  </span><span class="kw">ylim</span>(<span class="dv">0</span>,<span class="dv">7</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb199-7" data-line-number="7"><span class="st">  </span><span class="kw">xlim</span>(<span class="dv">0</span>,<span class="dv">7</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
+</div>
+</div>
+<div id="beyond-the-linear-regression" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Beyond the linear regression</h3>
+<div id="a-simple-data-set-for-non-linear-regression-modelingexponential-decay" class="section level4">
+<h4><span class="header-section-number">4.2.2.1</span> A simple data set for non-linear regression modeling—exponential decay</h4>
+<p>Example is from Brown, LeMay.</p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" data-line-number="1">kinetics1 &lt;-<span class="st"> </span><span class="kw">tribble</span>(</a>
+<a class="sourceLine" id="cb200-2" data-line-number="2">  <span class="op">~</span>time, <span class="op">~</span>conc,</a>
+<a class="sourceLine" id="cb200-3" data-line-number="3">  <span class="fl">0.</span>, <span class="fl">0.100</span>,</a>
+<a class="sourceLine" id="cb200-4" data-line-number="4">  <span class="fl">50.</span>, <span class="fl">0.0905</span>,</a>
+<a class="sourceLine" id="cb200-5" data-line-number="5">  <span class="fl">100.</span>, <span class="fl">0.0820</span>,</a>
+<a class="sourceLine" id="cb200-6" data-line-number="6">  <span class="fl">150.</span>, <span class="fl">0.0741</span>,</a>
+<a class="sourceLine" id="cb200-7" data-line-number="7">  <span class="fl">200.</span>, <span class="fl">0.0671</span>,</a>
+<a class="sourceLine" id="cb200-8" data-line-number="8">  <span class="fl">300.</span>, <span class="fl">0.0549</span>,</a>
+<a class="sourceLine" id="cb200-9" data-line-number="9">  <span class="fl">400.</span>, <span class="fl">0.0448</span>,</a>
+<a class="sourceLine" id="cb200-10" data-line-number="10">  <span class="fl">500.</span>, <span class="fl">0.0368</span>,</a>
+<a class="sourceLine" id="cb200-11" data-line-number="11">  <span class="fl">800.</span>, <span class="fl">0.0200</span></a>
+<a class="sourceLine" id="cb200-12" data-line-number="12">)</a>
+<a class="sourceLine" id="cb200-13" data-line-number="13">kinetics1</a></code></pre></div>
+<pre><code>## # A tibble: 9 x 2
+##    time   conc
+##   &lt;dbl&gt;  &lt;dbl&gt;
+## 1    0. 0.100 
+## 2   50. 0.0905
+## 3  100. 0.0820
+## 4  150. 0.0741
+## 5  200. 0.0671
+## 6  300. 0.0549
+## 7  400. 0.0448
+## 8  500. 0.0368
+## 9  800. 0.0200</code></pre>
+</div>
+<div id="simple-plots-of-the-data" class="section level4">
+<h4><span class="header-section-number">4.2.2.2</span> Simple plots of the data</h4>
+<p>We can plot the orginal data set, conc vs. time to view the trend. A simple test to confirm the data follows a first-order decay, we can plot log(conc) vs. time.</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" data-line-number="1"><span class="kw">ggplot</span>(kinetics1, <span class="kw">aes</span>(time, conc)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb202-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" data-line-number="1"><span class="kw">ggplot</span>(kinetics1, <span class="kw">aes</span>(time, <span class="kw">log</span>(conc))) <span class="op">+</span></a>
+<a class="sourceLine" id="cb203-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-87-2.png" width="672" /></p>
+</div>
+<div id="using-the-nls-function" class="section level4">
+<h4><span class="header-section-number">4.2.2.3</span> Using the nls function</h4>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" data-line-number="1">k1 &lt;-<span class="st"> </span><span class="kw">nls</span>(conc <span class="op">~</span><span class="st"> </span><span class="fl">0.1</span><span class="op">*</span><span class="kw">exp</span>(<span class="op">-</span>a1<span class="op">*</span>time), </a>
+<a class="sourceLine" id="cb204-2" data-line-number="2">          <span class="dt">data =</span> kinetics1, <span class="dt">start =</span> <span class="kw">list</span>(<span class="dt">a1 =</span> <span class="fl">0.002</span>), <span class="dt">trace =</span> T)</a></code></pre></div>
+<pre><code>## 7.545743e-08 :  0.002
+## 7.088224e-08 :  0.0020017
+## 7.088224e-08 :  0.002001699</code></pre>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" data-line-number="1"><span class="kw">summary</span>(k1)</a></code></pre></div>
+<pre><code>## 
+## Formula: conc ~ 0.1 * exp(-a1 * time)
+## 
+## Parameters:
+##     Estimate Std. Error t value Pr(&gt;|t|)    
+## a1 2.002e-03  2.367e-06   845.8   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 9.413e-05 on 8 degrees of freedom
+## 
+## Number of iterations to convergence: 2 
+## Achieved convergence tolerance: 2.138e-07</code></pre>
+</div>
+<div id="ploting-the-model-results" class="section level4">
+<h4><span class="header-section-number">4.2.2.4</span> Ploting the model results</h4>
+<p>Using the <code>augment()</code> function from the <strong>broom</strong> package, we can plot both the data and predicted values from th <code>nls()</code> model.</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" data-line-number="1"><span class="kw">augment</span>(k1)</a></code></pre></div>
+<pre><code>##   time   conc    .fitted        .resid
+## 1    0 0.1000 0.10000000  0.000000e+00
+## 2   50 0.0905 0.09047605  2.394510e-05
+## 3  100 0.0820 0.08185917  1.408349e-04
+## 4  150 0.0741 0.07406294  3.705685e-05
+## 5  200 0.0671 0.06700923  9.077090e-05
+## 6  300 0.0549 0.05485320  4.680452e-05
+## 7  400 0.0448 0.04490237 -1.023678e-04
+## 8  500 0.0368 0.03675670  4.329657e-05
+## 9  800 0.0200 0.02016223 -1.622264e-04</code></pre>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" data-line-number="1"><span class="kw">ggplot</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb210-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(time, conc), kinetics1) <span class="op">+</span></a>
+<a class="sourceLine" id="cb210-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(time, .fitted), <span class="kw">augment</span>(k1))</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
+<p>We can also use the output of <code>augment()</code> to plot the residuals</p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" data-line-number="1"><span class="kw">ggplot</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb211-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(time, .resid), <span class="kw">augment</span>(k1)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb211-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
+<div id="create-a-function-for-the-fit" class="section level5">
+<h5><span class="header-section-number">4.2.2.4.1</span> create a function for the fit</h5>
+<p>If we want to create a smooth curve of the fit, we need to create a function and use the calculated coefficients from the <code>nls()</code> model. We can then use the <code>stat_function()</code> geom to superimpose the function on the base plot.</p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" data-line-number="1">conc.fit &lt;-<span class="st"> </span><span class="cf">function</span>(t) {</a>
+<a class="sourceLine" id="cb212-2" data-line-number="2">  <span class="fl">0.1</span><span class="op">*</span><span class="kw">exp</span>(<span class="op">-</span>t<span class="op">*</span><span class="kw">summary</span>(k1)<span class="op">$</span>coefficients[<span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb212-3" data-line-number="3">  }</a>
+<a class="sourceLine" id="cb212-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb212-5" data-line-number="5"><span class="kw">ggplot</span>(kinetics1, <span class="dt">mapping =</span> <span class="kw">aes</span>(time, conc)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb212-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb212-7" data-line-number="7"><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> conc.fit, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;green&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb212-8" data-line-number="8"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;A kinetics example from first-year chemistry&quot;</span>, <span class="dt">subtitle =</span> <span class="st">&quot;dashed green line: first-order, exponential decay&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb212-9" data-line-number="9"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+</div>
+<div id="case-stuidies" class="section level2">
+<h2><span class="header-section-number">4.3</span> Case Stuidies</h2>
+<div id="load-cell-output" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> Load cell output</h3>
+<p><a href="https://www.itl.nist.gov/div898/handbook/pmd/section6/pmd61.htm">Load cell calibration</a></p>
+<blockquote>
+<p>The data collected in the calibration experiment consisted of a known load, applied to the load cell, and the corresponding deflection of the cell from its nominal position. Forty measurements were made over a range of loads from 150,000 to 3,000,000 units. The data were collected in two sets in order of increasing load. The systematic run order makes it difficult to determine whether or not there was any drift in the load cell or measuring equipment over time. Assuming there is no drift, however, the experiment should provide a good description of the relationship between the load applied to the cell and its response.</p>
+</blockquote>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb213-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb213-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb213-3" data-line-number="3">load_cell &lt;-<span class="st"> </span><span class="kw">read_table2</span>(</a>
+<a class="sourceLine" id="cb213-4" data-line-number="4">  <span class="st">&quot;NIST data/PONTIUS.dat&quot;</span>, <span class="dt">skip =</span> <span class="dv">25</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>, <span class="dt">col_types =</span> <span class="st">&quot;dd&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb213-5" data-line-number="5"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">Deflection =</span> X1, <span class="dt">Load =</span> X2)</a>
+<a class="sourceLine" id="cb213-6" data-line-number="6">load_cell</a></code></pre></div>
+<pre><code>## # A tibble: 40 x 2
+##    Deflection     Load
+##         &lt;dbl&gt;    &lt;dbl&gt;
+##  1      0.110  150000.
+##  2      0.220  300000.
+##  3      0.329  450000.
+##  4      0.439  600000.
+##  5      0.548  750000.
+##  6      0.657  900000.
+##  7      0.766 1050000.
+##  8      0.875 1200000.
+##  9      0.983 1350000.
+## 10      1.09  1500000.
+## # ... with 30 more rows</code></pre>
+<hr />
+<div id="selection-of-inital-model" class="section level4">
+<h4><span class="header-section-number">4.3.1.1</span> Selection of Inital Model</h4>
+<p>First, let’s view the data.</p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" data-line-number="1"><span class="kw">ggplot</span>(load_cell) <span class="op">+</span></a>
+<a class="sourceLine" id="cb215-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(Load, Deflection))</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
+<p>The data looks linear. We can use a simple linear model to view the data</p>
+<p><span class="math display">\[ y = mx + b \]</span></p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" data-line-number="1">load_cell_model &lt;-<span class="st"> </span><span class="kw">lm</span>(Deflection <span class="op">~</span><span class="st"> </span>Load, load_cell)</a>
+<a class="sourceLine" id="cb216-2" data-line-number="2"><span class="kw">summary</span>(load_cell_model)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Deflection ~ Load, data = load_cell)
+## 
+## Residuals:
+##        Min         1Q     Median         3Q        Max 
+## -0.0042751 -0.0016308  0.0005818  0.0018932  0.0024211 
+## 
+## Coefficients:
+##              Estimate Std. Error  t value Pr(&gt;|t|)    
+## (Intercept) 6.150e-03  7.132e-04    8.623 1.77e-10 ***
+## Load        7.221e-07  3.969e-10 1819.289  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.002171 on 38 degrees of freedom
+## Multiple R-squared:      1,  Adjusted R-squared:      1 
+## F-statistic: 3.31e+06 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Wow! an R-squared value of 1! it must be perfect.</p>
+<div id="a-new-package-to-work-with-summary-information-broom" class="section level5">
+<h5><span class="header-section-number">4.3.1.1.1</span> A new package to work with summary information: broom()</h5>
+<p><strong>broom</strong> package is part of the tidyverse and inccludes <code>glance()</code>, <code>tidy</code>, and <code>augment()</code>.
+These functions create tidy data frames based on the model.</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" data-line-number="1">load_cell_glance &lt;-<span class="st"> </span><span class="kw">glance</span>(load_cell_model)</a>
+<a class="sourceLine" id="cb218-2" data-line-number="2">load_cell_glance</a></code></pre></div>
+<pre><code>##   r.squared adj.r.squared       sigma statistic      p.value df  logLik
+## 1 0.9999885     0.9999882 0.002171273   3309811 1.773069e-95  2 189.566
+##        AIC       BIC     deviance df.residual
+## 1 -373.132 -368.0654 0.0001791481          38</code></pre>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" data-line-number="1">load_cell_tidy &lt;-<span class="st"> </span><span class="kw">tidy</span>(load_cell_model)</a>
+<a class="sourceLine" id="cb220-2" data-line-number="2">load_cell_tidy</a></code></pre></div>
+<pre><code>##          term     estimate    std.error   statistic      p.value
+## 1 (Intercept) 6.149684e-03 7.132052e-04    8.622602 1.772153e-10
+## 2        Load 7.221026e-07 3.969148e-10 1819.288717 1.773069e-95</code></pre>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" data-line-number="1"><span class="kw">augment</span>(load_cell_model)</a></code></pre></div>
+<pre><code>##    Deflection    Load   .fitted      .se.fit        .resid       .hat
+## 1     0.11019  150000 0.1144651 0.0006616404 -0.0042750714 0.09285714
+## 2     0.21956  300000 0.2227805 0.0006115258 -0.0032204586 0.07932331
+## 3     0.32949  450000 0.3310958 0.0005632485 -0.0016058459 0.06729323
+## 4     0.43899  600000 0.4394112 0.0005173233 -0.0004212331 0.05676692
+## 5     0.54803  750000 0.5477266 0.0004744336  0.0003033797 0.04774436
+## 6     0.65694  900000 0.6560420 0.0004354772  0.0008979925 0.04022556
+## 7     0.76562 1050000 0.7643574 0.0004016005  0.0012626053 0.03421053
+## 8     0.87487 1200000 0.8726728 0.0003741856  0.0021972180 0.02969925
+## 9     0.98292 1350000 0.9809882 0.0003547339  0.0019318308 0.02669173
+## 10    1.09146 1500000 1.0893036 0.0003445966  0.0021564436 0.02518797
+## 11    1.20001 1650000 1.1976189 0.0003445966  0.0023910564 0.02518797
+## 12    1.30822 1800000 1.3059343 0.0003547339  0.0022856692 0.02669173
+## 13    1.41599 1950000 1.4142497 0.0003741856  0.0017402820 0.02969925
+## 14    1.52399 2100000 1.5225651 0.0004016005  0.0014248947 0.03421053
+## 15    1.63194 2250000 1.6308805 0.0004354772  0.0010595075 0.04022556
+## 16    1.73947 2400000 1.7391959 0.0004744336  0.0002741203 0.04774436
+## 17    1.84646 2550000 1.8475113 0.0005173233 -0.0010512669 0.05676692
+## 18    1.95392 2700000 1.9558267 0.0005632485 -0.0019066541 0.06729323
+## 19    2.06128 2850000 2.0641420 0.0006115258 -0.0028620414 0.07932331
+## 20    2.16844 3000000 2.1724574 0.0006616404 -0.0040174286 0.09285714
+## 21    0.11052  150000 0.1144651 0.0006616404 -0.0039450714 0.09285714
+## 22    0.22018  300000 0.2227805 0.0006115258 -0.0026004586 0.07932331
+## 23    0.32939  450000 0.3310958 0.0005632485 -0.0017058459 0.06729323
+## 24    0.43886  600000 0.4394112 0.0005173233 -0.0005512331 0.05676692
+## 25    0.54798  750000 0.5477266 0.0004744336  0.0002533797 0.04774436
+## 26    0.65739  900000 0.6560420 0.0004354772  0.0013479925 0.04022556
+## 27    0.76596 1050000 0.7643574 0.0004016005  0.0016026053 0.03421053
+## 28    0.87474 1200000 0.8726728 0.0003741856  0.0020672180 0.02969925
+## 29    0.98300 1350000 0.9809882 0.0003547339  0.0020118308 0.02669173
+## 30    1.09150 1500000 1.0893036 0.0003445966  0.0021964436 0.02518797
+## 31    1.20004 1650000 1.1976189 0.0003445966  0.0024210564 0.02518797
+## 32    1.30818 1800000 1.3059343 0.0003547339  0.0022456692 0.02669173
+## 33    1.41613 1950000 1.4142497 0.0003741856  0.0018802820 0.02969925
+## 34    1.52408 2100000 1.5225651 0.0004016005  0.0015148947 0.03421053
+## 35    1.63159 2250000 1.6308805 0.0004354772  0.0007095075 0.04022556
+## 36    1.73965 2400000 1.7391959 0.0004744336  0.0004541203 0.04774436
+## 37    1.84696 2550000 1.8475113 0.0005173233 -0.0005512669 0.05676692
+## 38    1.95445 2700000 1.9558267 0.0005632485 -0.0013766541 0.06729323
+## 39    2.06177 2850000 2.0641420 0.0006115258 -0.0023720414 0.07932331
+## 40    2.16829 3000000 2.1724574 0.0006616404 -0.0041674286 0.09285714
+##         .sigma      .cooksd .std.resid
+## 1  0.002073000 0.2187217636 -2.0672413
+## 2  0.002130114 0.1029350494 -1.5457875
+## 3  0.002183373 0.0211558343 -0.7658028
+## 4  0.002199263 0.0012007249 -0.1997554
+## 5  0.002199825 0.0005139600  0.1431843
+## 6  0.002195253 0.0037346550  0.4221568
+## 7  0.002190258 0.0062011368  0.5917142
+## 8  0.002169647 0.0161517779  1.0273197
+## 9  0.002176743 0.0111520670  0.9018401
+## 10 0.002170924 0.0130728091  1.0059197
+## 11 0.002164101 0.0160720896  1.1153599
+## 12 0.002167204 0.0156114747  1.0670231
+## 13 0.002181165 0.0101324217  0.8136771
+## 14 0.002187470 0.0078977192  0.6677705
+## 15 0.002193224 0.0051989205  0.4980869
+## 16 0.002199934 0.0004196031  0.1293749
+## 17 0.002193211 0.0074786732 -0.4985275
+## 18 0.002176350 0.0298240268 -0.9092535
+## 19 0.002145083 0.0812979572 -1.3737509
+## 20 0.002088296 0.1931530525 -1.9426563
+## 21 0.002092402 0.1862580234 -1.9076675
+## 22 0.002154838 0.0671162569 -1.2481938
+## 23 0.002181174 0.0238727261 -0.8134912
+## 24 0.002198439 0.0020562178 -0.2614035
+## 25 0.002200004 0.0003585089  0.1195861
+## 26 0.002188761 0.0084155020  0.6337070
+## 27 0.002184026 0.0099905466  0.7510537
+## 28 0.002173203 0.0142970553  0.9665376
+## 29 0.002174730 0.0120948393  0.9391866
+## 30 0.002169812 0.0135622837  1.0245786
+## 31 0.002163176 0.0164779249  1.1293541
+## 32 0.002168365 0.0150698435  1.0483498
+## 33 0.002177927 0.0118282359  0.8791347
+## 34 0.002185777 0.0089269075  0.7099485
+## 35 0.002197195 0.0023314123  0.3335478
+## 36 0.002199088 0.0011515906  0.2143284
+## 37 0.002198439 0.0020564702 -0.2614196
+## 38 0.002187904 0.0155479140 -0.6565048
+## 39 0.002162561 0.0558434622 -1.1385558
+## 40 0.002079520 0.2078459555 -2.0151899</code></pre>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" data-line-number="1"><span class="kw">ggplot</span>(load_cell, <span class="kw">aes</span>(Load, Deflection)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb224-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb224-3" data-line-number="3"><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> lm, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">size =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb224-4" data-line-number="4"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;NIST Load Cell Calibration Data&quot;</span>, <span class="dt">subtitle =</span> <span class="st">&quot;+/- 95% Confidence Intervals are not visible&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
+</div>
+</div>
+<div id="but-wait-what-about-the-residuals" class="section level4">
+<h4><span class="header-section-number">4.3.1.2</span> But wait! What about the residuals?</h4>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb225-1" data-line-number="1">load_cell_resid =<span class="st"> </span><span class="kw">resid</span>(load_cell_model)</a>
+<a class="sourceLine" id="cb225-2" data-line-number="2">load_cell_resid</a></code></pre></div>
+<pre><code>##             1             2             3             4             5 
+## -0.0042750714 -0.0032204586 -0.0016058459 -0.0004212331  0.0003033797 
+##             6             7             8             9            10 
+##  0.0008979925  0.0012626053  0.0021972180  0.0019318308  0.0021564436 
+##            11            12            13            14            15 
+##  0.0023910564  0.0022856692  0.0017402820  0.0014248947  0.0010595075 
+##            16            17            18            19            20 
+##  0.0002741203 -0.0010512669 -0.0019066541 -0.0028620414 -0.0040174286 
+##            21            22            23            24            25 
+## -0.0039450714 -0.0026004586 -0.0017058459 -0.0005512331  0.0002533797 
+##            26            27            28            29            30 
+##  0.0013479925  0.0016026053  0.0020672180  0.0020118308  0.0021964436 
+##            31            32            33            34            35 
+##  0.0024210564  0.0022456692  0.0018802820  0.0015148947  0.0007095075 
+##            36            37            38            39            40 
+##  0.0004541203 -0.0005512669 -0.0013766541 -0.0023720414 -0.0041674286</code></pre>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" data-line-number="1"><span class="co"># ggplot() +</span></a>
+<a class="sourceLine" id="cb227-2" data-line-number="2"><span class="co">#   geom_point(aes(LoadCell$Load, LC.resid)) +</span></a>
+<a class="sourceLine" id="cb227-3" data-line-number="3"><span class="co">#   geom_hline(aes(yintercept=0)) +</span></a>
+<a class="sourceLine" id="cb227-4" data-line-number="4"><span class="co">#   geom_hline(aes(yintercept=+2*(summary(m.LC)$sigma)), linetype = &quot;dashed&quot;) +</span></a>
+<a class="sourceLine" id="cb227-5" data-line-number="5"><span class="co">#   geom_hline(aes(yintercept=-2*(summary(m.LC)$sigma)), linetype = &quot;dashed&quot;) +</span></a>
+<a class="sourceLine" id="cb227-6" data-line-number="6"><span class="co">#   ggtitle(&quot;Deflection Load Residuals&quot;, subtitle = &quot;+/- 2(Residual Statndard Deviation)&quot;) +</span></a>
+<a class="sourceLine" id="cb227-7" data-line-number="7"><span class="co">#   theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))</span></a></code></pre></div>
+<p>Using the <code>augment()</code> function we can plot the residuals very easily</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb228-1" data-line-number="1">load_cell_fit &lt;-<span class="st"> </span><span class="kw">augment</span>(load_cell_model)</a>
+<a class="sourceLine" id="cb228-2" data-line-number="2">load_cell_fit</a></code></pre></div>
+<pre><code>##    Deflection    Load   .fitted      .se.fit        .resid       .hat
+## 1     0.11019  150000 0.1144651 0.0006616404 -0.0042750714 0.09285714
+## 2     0.21956  300000 0.2227805 0.0006115258 -0.0032204586 0.07932331
+## 3     0.32949  450000 0.3310958 0.0005632485 -0.0016058459 0.06729323
+## 4     0.43899  600000 0.4394112 0.0005173233 -0.0004212331 0.05676692
+## 5     0.54803  750000 0.5477266 0.0004744336  0.0003033797 0.04774436
+## 6     0.65694  900000 0.6560420 0.0004354772  0.0008979925 0.04022556
+## 7     0.76562 1050000 0.7643574 0.0004016005  0.0012626053 0.03421053
+## 8     0.87487 1200000 0.8726728 0.0003741856  0.0021972180 0.02969925
+## 9     0.98292 1350000 0.9809882 0.0003547339  0.0019318308 0.02669173
+## 10    1.09146 1500000 1.0893036 0.0003445966  0.0021564436 0.02518797
+## 11    1.20001 1650000 1.1976189 0.0003445966  0.0023910564 0.02518797
+## 12    1.30822 1800000 1.3059343 0.0003547339  0.0022856692 0.02669173
+## 13    1.41599 1950000 1.4142497 0.0003741856  0.0017402820 0.02969925
+## 14    1.52399 2100000 1.5225651 0.0004016005  0.0014248947 0.03421053
+## 15    1.63194 2250000 1.6308805 0.0004354772  0.0010595075 0.04022556
+## 16    1.73947 2400000 1.7391959 0.0004744336  0.0002741203 0.04774436
+## 17    1.84646 2550000 1.8475113 0.0005173233 -0.0010512669 0.05676692
+## 18    1.95392 2700000 1.9558267 0.0005632485 -0.0019066541 0.06729323
+## 19    2.06128 2850000 2.0641420 0.0006115258 -0.0028620414 0.07932331
+## 20    2.16844 3000000 2.1724574 0.0006616404 -0.0040174286 0.09285714
+## 21    0.11052  150000 0.1144651 0.0006616404 -0.0039450714 0.09285714
+## 22    0.22018  300000 0.2227805 0.0006115258 -0.0026004586 0.07932331
+## 23    0.32939  450000 0.3310958 0.0005632485 -0.0017058459 0.06729323
+## 24    0.43886  600000 0.4394112 0.0005173233 -0.0005512331 0.05676692
+## 25    0.54798  750000 0.5477266 0.0004744336  0.0002533797 0.04774436
+## 26    0.65739  900000 0.6560420 0.0004354772  0.0013479925 0.04022556
+## 27    0.76596 1050000 0.7643574 0.0004016005  0.0016026053 0.03421053
+## 28    0.87474 1200000 0.8726728 0.0003741856  0.0020672180 0.02969925
+## 29    0.98300 1350000 0.9809882 0.0003547339  0.0020118308 0.02669173
+## 30    1.09150 1500000 1.0893036 0.0003445966  0.0021964436 0.02518797
+## 31    1.20004 1650000 1.1976189 0.0003445966  0.0024210564 0.02518797
+## 32    1.30818 1800000 1.3059343 0.0003547339  0.0022456692 0.02669173
+## 33    1.41613 1950000 1.4142497 0.0003741856  0.0018802820 0.02969925
+## 34    1.52408 2100000 1.5225651 0.0004016005  0.0015148947 0.03421053
+## 35    1.63159 2250000 1.6308805 0.0004354772  0.0007095075 0.04022556
+## 36    1.73965 2400000 1.7391959 0.0004744336  0.0004541203 0.04774436
+## 37    1.84696 2550000 1.8475113 0.0005173233 -0.0005512669 0.05676692
+## 38    1.95445 2700000 1.9558267 0.0005632485 -0.0013766541 0.06729323
+## 39    2.06177 2850000 2.0641420 0.0006115258 -0.0023720414 0.07932331
+## 40    2.16829 3000000 2.1724574 0.0006616404 -0.0041674286 0.09285714
+##         .sigma      .cooksd .std.resid
+## 1  0.002073000 0.2187217636 -2.0672413
+## 2  0.002130114 0.1029350494 -1.5457875
+## 3  0.002183373 0.0211558343 -0.7658028
+## 4  0.002199263 0.0012007249 -0.1997554
+## 5  0.002199825 0.0005139600  0.1431843
+## 6  0.002195253 0.0037346550  0.4221568
+## 7  0.002190258 0.0062011368  0.5917142
+## 8  0.002169647 0.0161517779  1.0273197
+## 9  0.002176743 0.0111520670  0.9018401
+## 10 0.002170924 0.0130728091  1.0059197
+## 11 0.002164101 0.0160720896  1.1153599
+## 12 0.002167204 0.0156114747  1.0670231
+## 13 0.002181165 0.0101324217  0.8136771
+## 14 0.002187470 0.0078977192  0.6677705
+## 15 0.002193224 0.0051989205  0.4980869
+## 16 0.002199934 0.0004196031  0.1293749
+## 17 0.002193211 0.0074786732 -0.4985275
+## 18 0.002176350 0.0298240268 -0.9092535
+## 19 0.002145083 0.0812979572 -1.3737509
+## 20 0.002088296 0.1931530525 -1.9426563
+## 21 0.002092402 0.1862580234 -1.9076675
+## 22 0.002154838 0.0671162569 -1.2481938
+## 23 0.002181174 0.0238727261 -0.8134912
+## 24 0.002198439 0.0020562178 -0.2614035
+## 25 0.002200004 0.0003585089  0.1195861
+## 26 0.002188761 0.0084155020  0.6337070
+## 27 0.002184026 0.0099905466  0.7510537
+## 28 0.002173203 0.0142970553  0.9665376
+## 29 0.002174730 0.0120948393  0.9391866
+## 30 0.002169812 0.0135622837  1.0245786
+## 31 0.002163176 0.0164779249  1.1293541
+## 32 0.002168365 0.0150698435  1.0483498
+## 33 0.002177927 0.0118282359  0.8791347
+## 34 0.002185777 0.0089269075  0.7099485
+## 35 0.002197195 0.0023314123  0.3335478
+## 36 0.002199088 0.0011515906  0.2143284
+## 37 0.002198439 0.0020564702 -0.2614196
+## 38 0.002187904 0.0155479140 -0.6565048
+## 39 0.002162561 0.0558434622 -1.1385558
+## 40 0.002079520 0.2078459555 -2.0151899</code></pre>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" data-line-number="1"><span class="kw">ggplot</span>(load_cell_fit) <span class="op">+</span></a>
+<a class="sourceLine" id="cb230-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(Load, .resid)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb230-3" data-line-number="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Residuals from linear model of the load cell&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
+<p>The residuals from a good model would be random. Although not necessary, we can plot a histogram or qqplot to demonstrate the residuals are not following a normal distribution.</p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb231-1" data-line-number="1"><span class="kw">ggplot</span>(load_cell_fit) <span class="op">+</span></a>
+<a class="sourceLine" id="cb231-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(.resid))</a></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" data-line-number="1"><span class="kw">ggplot</span>(load_cell_fit) <span class="op">+</span></a>
+<a class="sourceLine" id="cb233-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_qq</span>(<span class="kw">aes</span>(<span class="dt">sample =</span> .resid))</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-100-2.png" width="672" /></p>
+<hr />
+</div>
+<div id="model-refinement" class="section level4">
+<h4><span class="header-section-number">4.3.1.3</span> Model Refinement</h4>
+<p><span class="math display">\[ D = \beta_0 + \beta_1 L + \beta_2 L^2 + \varepsilon \]</span></p>
+<p>We can use the linear model function, <code>lm()</code>, by creating a new variable <span class="math inline">\(L^2\)</span>.</p>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" data-line-number="1">load_cell_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">mutate</span>(load_cell, <span class="dt">Load_squared =</span> Load<span class="op">^</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb234-2" data-line-number="2">load_cell_<span class="dv">2</span></a></code></pre></div>
+<pre><code>## # A tibble: 40 x 3
+##    Deflection     Load Load_squared
+##         &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt;
+##  1      0.110  150000.      2.25e10
+##  2      0.220  300000.      9.00e10
+##  3      0.329  450000.      2.02e11
+##  4      0.439  600000.      3.60e11
+##  5      0.548  750000.      5.62e11
+##  6      0.657  900000.      8.10e11
+##  7      0.766 1050000.      1.10e12
+##  8      0.875 1200000.      1.44e12
+##  9      0.983 1350000.      1.82e12
+## 10      1.09  1500000.      2.25e12
+## # ... with 30 more rows</code></pre>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" data-line-number="1">load_cell_model_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(Deflection <span class="op">~</span><span class="st"> </span>Load <span class="op">+</span><span class="st"> </span>Load_squared, load_cell_<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb236-2" data-line-number="2"><span class="kw">summary</span>(load_cell_model_<span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Deflection ~ Load + Load_squared, data = load_cell_2)
+## 
+## Residuals:
+##        Min         1Q     Median         3Q        Max 
+## -4.468e-04 -1.578e-04  3.817e-05  1.088e-04  4.235e-04 
+## 
+## Coefficients:
+##                Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   6.736e-04  1.079e-04    6.24 2.97e-07 ***
+## Load          7.321e-07  1.578e-10 4638.65  &lt; 2e-16 ***
+## Load_squared -3.161e-15  4.867e-17  -64.95  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.0002052 on 37 degrees of freedom
+## Multiple R-squared:      1,  Adjusted R-squared:      1 
+## F-statistic: 1.853e+08 on 2 and 37 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" data-line-number="1">load_cell_fit_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">augment</span>(load_cell_model_<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb238-2" data-line-number="2">load_cell_fit_<span class="dv">2</span></a></code></pre></div>
+<pre><code>##    Deflection    Load Load_squared   .fitted      .se.fit        .resid
+## 1     0.11019  150000   2.2500e+10 0.1104113 8.834303e-05 -2.213214e-04
+## 2     0.21956  300000   9.0000e+10 0.2200068 7.185366e-05 -4.468402e-04
+## 3     0.32949  450000   2.0250e+11 0.3294601 5.888246e-05  2.987782e-05
+## 4     0.43899  600000   3.6000e+11 0.4387712 4.986859e-05  2.188327e-04
+## 5     0.54803  750000   5.6250e+11 0.5479400 4.495244e-05  9.002444e-05
+## 6     0.65694  900000   8.1000e+11 0.6569665 4.354343e-05 -2.654699e-05
+## 7     0.76562 1050000   1.1025e+12 0.7658509 4.437259e-05 -2.308816e-04
+## 8     0.87487 1200000   1.4400e+12 0.8745930 4.609026e-05  2.770207e-04
+## 9     0.98292 1350000   1.8225e+12 0.9831928 4.770597e-05 -2.728402e-04
+## 10    1.09146 1500000   2.2500e+12 1.0916505 4.864177e-05 -1.904643e-04
+## 11    1.20001 1650000   2.7225e+12 1.1999659 4.864177e-05  4.414850e-05
+## 12    1.30822 1800000   3.2400e+12 1.3081390 4.770597e-05  8.099812e-05
+## 13    1.41599 1950000   3.8025e+12 1.4161699 4.609026e-05 -1.799154e-04
+## 14    1.52399 2100000   4.4100e+12 1.5240586 4.437259e-05 -6.859211e-05
+## 15    1.63194 2250000   5.0625e+12 1.6318050 4.354343e-05  1.349680e-04
+## 16    1.73947 2400000   5.7600e+12 1.7394092 4.495244e-05  6.076504e-05
+## 17    1.84646 2550000   6.5025e+12 1.8468712 4.986859e-05 -4.112011e-04
+## 18    1.95392 2700000   7.2900e+12 1.9541909 5.888246e-05 -2.709305e-04
+## 19    2.06128 2850000   8.1225e+12 2.0613684 7.185366e-05 -8.842293e-05
+## 20    2.16844 3000000   9.0000e+12 2.1684037 8.834303e-05  3.632143e-05
+## 21    0.11052  150000   2.2500e+10 0.1104113 8.834303e-05  1.086786e-04
+## 22    0.22018  300000   9.0000e+10 0.2200068 7.185366e-05  1.731598e-04
+## 23    0.32939  450000   2.0250e+11 0.3294601 5.888246e-05 -7.012218e-05
+## 24    0.43886  600000   3.6000e+11 0.4387712 4.986859e-05  8.883271e-05
+## 25    0.54798  750000   5.6250e+11 0.5479400 4.495244e-05  4.002444e-05
+## 26    0.65739  900000   8.1000e+11 0.6569665 4.354343e-05  4.234530e-04
+## 27    0.76596 1050000   1.1025e+12 0.7658509 4.437259e-05  1.091184e-04
+## 28    0.87474 1200000   1.4400e+12 0.8745930 4.609026e-05  1.470207e-04
+## 29    0.98300 1350000   1.8225e+12 0.9831928 4.770597e-05 -1.928402e-04
+## 30    1.09150 1500000   2.2500e+12 1.0916505 4.864177e-05 -1.504643e-04
+## 31    1.20004 1650000   2.7225e+12 1.1999659 4.864177e-05  7.414850e-05
+## 32    1.30818 1800000   3.2400e+12 1.3081390 4.770597e-05  4.099812e-05
+## 33    1.41613 1950000   3.8025e+12 1.4161699 4.609026e-05 -3.991541e-05
+## 34    1.52408 2100000   4.4100e+12 1.5240586 4.437259e-05  2.140789e-05
+## 35    1.63159 2250000   5.0625e+12 1.6318050 4.354343e-05 -2.150320e-04
+## 36    1.73965 2400000   5.7600e+12 1.7394092 4.495244e-05  2.407650e-04
+## 37    1.84696 2550000   6.5025e+12 1.8468712 4.986859e-05  8.879887e-05
+## 38    1.95445 2700000   7.2900e+12 1.9541909 5.888246e-05  2.590695e-04
+## 39    2.06177 2850000   8.1225e+12 2.0613684 7.185366e-05  4.015771e-04
+## 40    2.16829 3000000   9.0000e+12 2.1684037 8.834303e-05 -1.136786e-04
+##          .hat       .sigma      .cooksd .std.resid
+## 1  0.18538961 0.0002039531 0.1083557670 -1.1951404
+## 2  0.12264183 0.0001922123 0.2518888277 -2.3250603
+## 3  0.08235931 0.0002079426 0.0006913290  0.1520138
+## 4  0.05907382 0.0002045811 0.0253004370  1.0995244
+## 5  0.04800068 0.0002074384 0.0033987136  0.4496893
+## 6  0.04503873 0.0002079583 0.0002755909 -0.1324015
+## 7  0.04677033 0.0002042395 0.0217256885 -1.1525531
+## 8  0.05046138 0.0002025394 0.0340077449  1.3855631
+## 9  0.05406129 0.0002026849 0.0356120360 -1.3672481
+## 10 0.05620301 0.0002054251 0.0181237925 -0.9555308
+## 11 0.05620301 0.0002078697 0.0009737642  0.2214864
+## 12 0.05406129 0.0002075440 0.0031385560  0.4058952
+## 13 0.05046138 0.0002057188 0.0143446582 -0.8998756
+## 14 0.04677033 0.0002076778 0.0019175348 -0.3424095
+## 15 0.04503873 0.0002067300 0.0071235449  0.6731448
+## 16 0.04800068 0.0002077485 0.0015484646  0.3035330
+## 17 0.05907382 0.0001956411 0.0893330479 -2.0660791
+## 18 0.08235931 0.0002025961 0.0568463516 -1.3784528
+## 19 0.12264183 0.0002074117 0.0098635717 -0.4600943
+## 20 0.18538961 0.0002078994 0.0029183068  0.1961365
+## 21 0.18538961 0.0002070372 0.0261272044  0.5868666
+## 22 0.12264183 0.0002057130 0.0378266955  0.9010087
+## 23 0.08235931 0.0002076495 0.0038080074 -0.3567710
+## 24 0.05907382 0.0002074468 0.0041691675  0.4463397
+## 25 0.04800068 0.0002078952 0.0006718065  0.1999297
+## 26 0.04503873 0.0001950675 0.0701204501  2.1119458
+## 27 0.04677033 0.0002071719 0.0048527858  0.5447155
+## 28 0.05046138 0.0002064820 0.0095787822  0.7353473
+## 29 0.05406129 0.0002053659 0.0177899720 -0.9663547
+## 30 0.05620301 0.0002063997 0.0113106830 -0.7548568
+## 31 0.05620301 0.0002076183 0.0027467977  0.3719919
+## 32 0.05406129 0.0002078889 0.0008040960  0.2054485
+## 33 0.05046138 0.0002078955 0.0007060488 -0.1996433
+## 34 0.04677033 0.0002079755 0.0001867854  0.1068675
+## 35 0.04503873 0.0002047490 0.0180817416 -1.0724586
+## 36 0.04800068 0.0002039013 0.0243097555  1.2026674
+## 37 0.05907382 0.0002074473 0.0041659922  0.4461697
+## 38 0.08235931 0.0002030652 0.0519780155  1.3181064
+## 39 0.12264183 0.0001953495 0.2034427365  2.0895409
+## 40 0.18538961 0.0002069456 0.0285865876 -0.6138667</code></pre>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" data-line-number="1"><span class="kw">ggplot</span>(load_cell_fit_<span class="dv">2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb240-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(Load, .resid)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb240-3" data-line-number="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Residuals from refined model of the load cell&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+<div id="could-we-have-used-a-non-linear-least-squares-fit-model" class="section level5">
+<h5><span class="header-section-number">4.3.1.3.1</span> Could we have used a non-linear least squares fit model?</h5>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" data-line-number="1">load_cell_model_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">nls</span>(Deflection <span class="op">~</span><span class="st"> </span>b0 <span class="op">+</span><span class="st"> </span>b1<span class="op">*</span>Load <span class="op">+</span><span class="st"> </span>b2<span class="op">*</span>Load<span class="op">^</span><span class="dv">2</span>, load_cell_<span class="dv">2</span>, <span class="dt">start =</span> <span class="kw">c</span>(<span class="dt">b0 =</span> <span class="dv">0</span>, <span class="dt">b1 =</span> <span class="dv">0</span>,<span class="dt">b2 =</span> <span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb241-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb241-3" data-line-number="3"><span class="kw">summary</span>(load_cell_model_<span class="dv">3</span>)</a></code></pre></div>
+<pre><code>## 
+## Formula: Deflection ~ b0 + b1 * Load + b2 * Load^2
+## 
+## Parameters:
+##      Estimate Std. Error t value Pr(&gt;|t|)    
+## b0  6.736e-04  1.079e-04    6.24 2.97e-07 ***
+## b1  7.321e-07  1.578e-10 4638.65  &lt; 2e-16 ***
+## b2 -3.161e-15  4.867e-17  -64.95  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.0002052 on 37 degrees of freedom
+## 
+## Number of iterations to convergence: 1 
+## Achieved convergence tolerance: 1.328e-06</code></pre>
+<p>The results are identical.</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" data-line-number="1"><span class="kw">ggplot</span>(load_cell_fit_<span class="dv">2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb243-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(.resid))</a></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" data-line-number="1"><span class="kw">ggplot</span>(load_cell_fit_<span class="dv">2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb245-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_qq</span>(<span class="kw">aes</span>(<span class="dt">sample =</span> .resid))</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-105-2.png" width="672" /></p>
+</div>
+</div>
+</div>
+<div id="thermal-expansion-of-copper" class="section level3">
+<h3><span class="header-section-number">4.3.2</span> Thermal expansion of copper</h3>
+<p><a href="https://www.itl.nist.gov/div898/handbook/pmd/section6/pmd64.htm">from section 4.6.4. Thermal Expansion of Copper Case Study</a></p>
+<blockquote>
+<p>This case study illustrates the use of a class of nonlinear models called rational function models. The data set used is the thermal expansion of copper related to temperature.</p>
+</blockquote>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" data-line-number="1">CTECu &lt;-<span class="st"> </span><span class="kw">read_table2</span>(</a>
+<a class="sourceLine" id="cb246-2" data-line-number="2">  <span class="st">&quot;NIST data/HAHN1.dat&quot;</span>, <span class="dt">skip =</span> <span class="dv">25</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>) </a></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   X1 = col_double(),
+##   X2 = col_double()
+## )</code></pre>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" data-line-number="1">CTECu &lt;-<span class="st"> </span>CTECu <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb248-2" data-line-number="2"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">temp_K =</span> X1, <span class="dt">Cu_CTE =</span> X2)</a>
+<a class="sourceLine" id="cb248-3" data-line-number="3"><span class="kw">View</span>(CTECu)</a></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" data-line-number="1"><span class="kw">ggplot</span>(CTECu, <span class="kw">aes</span>(temp_K, Cu_CTE)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb249-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
+</div>
+<div id="quadraticquadratic-qq-model" class="section level3">
+<h3><span class="header-section-number">4.3.3</span> Quadratic/Quadratic (Q/Q) model</h3>
+<p>The NIST handbook has a procedure for calculing estimates for the model, below, I just used guess values for the equation
+<span class="math display">\[
+y = \frac{(A0 + A1*x + A2*x^2)}{(1 + B1*x + B2*X^2)}
+\]</span></p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" data-line-number="1">model_Cu &lt;-<span class="st"> </span><span class="kw">nls</span>(Cu_CTE <span class="op">~</span><span class="st"> </span>((a0 <span class="op">+</span><span class="st"> </span>a1<span class="op">*</span>temp_K <span class="op">+</span><span class="st"> </span>a2<span class="op">*</span>temp_K<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>b1<span class="op">*</span>temp_K <span class="op">+</span><span class="st"> </span>b2<span class="op">*</span>temp_K<span class="op">^</span><span class="dv">2</span>)), </a>
+<a class="sourceLine" id="cb250-2" data-line-number="2">            CTECu, <span class="dt">start =</span> <span class="kw">list</span>(<span class="dt">a0 =</span> <span class="dv">0</span>, <span class="dt">a1 =</span> <span class="dv">-1</span>, <span class="dt">a2 =</span> <span class="dv">-1</span>, <span class="dt">b1 =</span> <span class="dv">0</span>, <span class="dt">b2 =</span> <span class="dv">0</span>), <span class="dt">trace =</span> T)</a></code></pre></div>
+<pre><code>## 1.344556e+13 :   0 -1 -1  0  0
+## 1697329 :  -3.351400e+00  1.797879e-01 -5.745645e-04  7.915158e-07 -3.877688e-10
+## 177589.3 :  -3.319661e+00  1.750319e-01 -3.592189e-04  1.144561e-03 -6.445222e-07
+## 32411.82 :  -4.730736e+00  2.146213e-01 -3.235814e-04  3.851759e-03 -2.232626e-06
+## 5374.946 :  -6.413603e+00  2.683958e-01 -2.844465e-04  7.799104e-03 -4.266107e-06
+## 690.5713 :  -6.901674e+00  2.867489e-01 -1.804611e-04  1.009256e-02 -3.131612e-06
+## 217.1164 :  -5.970973e+00  2.481232e-01  1.250216e-04  8.918691e-03  1.150181e-05
+## 114.0929 :  -3.145220e+00  1.061122e-01  1.610442e-03  4.783451e-03  8.707152e-05
+## 64.59622 :   3.1477349163 -0.2965983768  0.0078946767  0.0013004690  0.0003974542
+## 42.78158 :   9.3230025114 -0.8210512798  0.0188009501  0.0103976361  0.0009147904
+## 34.34313 :  11.848742450 -1.098105431  0.025888747  0.024139632  0.001231568
+## 33.5614 :  11.838847499 -1.129134608  0.027249383  0.029538247  0.001286009
+## 33.55298 :  12.220405792 -1.169396827  0.028259353  0.031296606  0.001332281
+## 33.55278 :  11.988150281 -1.149285630  0.027831681  0.030880324  0.001312172
+## 33.55273 :  12.165006923 -1.165285413  0.028186412  0.031296535  0.001328754
+## 33.55271 :  12.034452089 -1.153533233  0.027926998  0.030997296  0.001316621
+## 33.55269 :  12.131480095 -1.162274660  0.028120094  0.031220657  0.001325652
+## 33.55268 :  12.059618930 -1.155801947  0.027977138  0.031055397  0.001318966
+## 33.55268 :  12.112946981 -1.160605895  0.028083247  0.031178098  0.001323928
+## 33.55268 :  12.073406215 -1.157044238  0.028004583  0.031087151  0.001320249
+## 33.55267 :  12.102793316 -1.159691514  0.028063056  0.031154770  0.001322984
+## 33.55267 :  12.081046435 -1.157732650  0.028019791  0.031104752  0.001320961
+## 33.55267 :  12.097167203 -1.159184809  0.028051866  0.031141839  0.001322461
+## 33.55267 :  12.085177311 -1.158104731  0.028028009  0.031114250  0.001321345
+## 33.55267 :  12.094068505 -1.158905649  0.028045699  0.031134704  0.001322172
+## 33.55267 :  12.087436601 -1.158308224  0.028032503  0.031119442  0.001321555
+## 33.55267 :  12.092386536 -1.158754113  0.028042351  0.031130832  0.001322016
+## 33.55267 :  12.088732963 -1.158425030  0.028035083  0.031122431  0.001321676
+## 33.55267 :  12.091445289 -1.158669369  0.028040481  0.031128672  0.001321928
+## 33.55267 :  12.08942043 -1.15848695  0.02803645  0.03112401  0.00132174
+## 33.55267 :  12.090900623 -1.158620261  0.028039395  0.031127413  0.001321877
+## 33.55267 :  12.089833503 -1.158524186  0.028037274  0.031124964  0.001321778
+## 33.55267 :  12.090620445 -1.158595059  0.028038839  0.031126773  0.001321851</code></pre>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" data-line-number="1"><span class="kw">summary</span>(model_Cu)</a></code></pre></div>
+<pre><code>## 
+## Formula: Cu_CTE ~ ((a0 + a1 * temp_K + a2 * temp_K^2)/(1 + b1 * temp_K + 
+##     b2 * temp_K^2))
+## 
+## Parameters:
+##      Estimate Std. Error t value Pr(&gt;|t|)   
+## a0 12.0906204  4.9457268   2.445  0.01525 * 
+## a1 -1.1585951  0.4459281  -2.598  0.00997 **
+## a2  0.0280388  0.0099339   2.823  0.00518 **
+## b1  0.0311268  0.0123461   2.521  0.01237 * 
+## b2  0.0013219  0.0004639   2.849  0.00478 **
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.3811 on 231 degrees of freedom
+## 
+## Number of iterations to convergence: 32 
+## Achieved convergence tolerance: 8.018e-06</code></pre>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" data-line-number="1"><span class="kw">glance</span>(model_Cu)</a></code></pre></div>
+<pre><code>##       sigma isConv       finTol    logLik      AIC      BIC deviance
+## 1 0.3811163   TRUE 8.017872e-06 -104.6851 221.3702 242.1532 33.55267
+##   df.residual
+## 1         231</code></pre>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" data-line-number="1"><span class="kw">augment</span>(model_Cu)</a></code></pre></div>
+<pre><code>##     temp_K Cu_CTE     .fitted       .resid
+## 1    24.41  0.591  0.20263740  0.388362604
+## 2    34.82  1.547  1.55799629 -0.010996290
+## 3    44.09  2.902  3.13916746 -0.237167465
+## 4    45.07  2.894  3.30744524 -0.413445244
+## 5    54.98  4.703  4.94210005 -0.239100048
+## 6    65.51  6.307  6.48782610 -0.180826097
+## 7    70.53  7.030  7.14914778 -0.119147778
+## 8    75.70  7.898  7.78154503  0.116454973
+## 9    89.57  9.470  9.25903236  0.210967637
+## 10   91.14  9.484  9.40826472  0.075735280
+## 11   96.40 10.072  9.88458561  0.187414386
+## 12   97.19 10.163  9.95311700  0.209882997
+## 13  114.26 11.615 11.26656602  0.348433983
+## 14  120.25 12.005 11.66166565  0.343334345
+## 15  127.08 12.478 12.07731227  0.400687732
+## 16  133.55 12.982 12.44039495  0.541605047
+## 17  133.61 12.970 12.44363272  0.526367277
+## 18  158.67 13.926 13.62043804  0.305561962
+## 19  172.74 14.452 14.15567440  0.296325603
+## 20  171.31 14.404 14.10466048  0.299339518
+## 21  202.14 15.190 15.06560294  0.124397055
+## 22  220.55 15.550 15.52648312  0.023516883
+## 23  221.05 15.528 15.53805198 -0.010051982
+## 24  221.39 15.499 15.54589234 -0.046892338
+## 25  250.99 16.131 16.15515873 -0.024158729
+## 26  268.99 16.438 16.46610887 -0.028108874
+## 27  271.80 16.387 16.51126548 -0.124265483
+## 28  271.97 16.549 16.51397008  0.035029917
+## 29  321.31 16.872 17.18698756 -0.314987562
+## 30  321.69 16.830 17.19142843 -0.361428433
+## 31  330.14 16.926 17.28772364 -0.361723642
+## 32  333.03 16.907 17.31961419 -0.412614189
+## 33  333.47 16.966 17.32442437 -0.358424366
+## 34  340.77 17.060 17.40253947 -0.342539470
+## 35  345.65 17.122 17.45304116 -0.331041159
+## 36  373.11 17.311 17.71409685 -0.403096846
+## 37  373.79 17.355 17.72010437 -0.365104372
+## 38  411.82 17.668 18.02623331 -0.358233309
+## 39  419.51 17.767 18.08174912 -0.314749116
+## 40  421.59 17.803 18.09643544 -0.293435444
+## 41  422.02 17.765 18.09945445 -0.334454452
+## 42  422.47 17.768 18.10260764 -0.334607642
+## 43  422.61 17.736 18.10358734 -0.367587337
+## 44  441.75 17.858 18.23197297 -0.373972966
+## 45  447.41 17.877 18.26793801 -0.390938005
+## 46  448.70 17.912 18.27601424 -0.364014242
+## 47  472.89 18.046 18.41967798 -0.373677978
+## 48  476.69 18.085 18.44098172 -0.355981723
+## 49  522.47 18.291 18.67429455 -0.383294553
+## 50  522.62 18.357 18.67499461 -0.317994608
+## 51  524.43 18.426 18.68341166 -0.257411661
+## 52  546.75 18.584 18.78280566 -0.198805658
+## 53  549.53 18.610 18.79464198 -0.184641978
+## 54  575.29 18.870 18.89908047 -0.029080472
+## 55  576.00 18.795 18.90183163 -0.106831626
+## 56  625.55 19.111 19.07892819  0.032071807
+## 57   20.15  0.367  0.05976671  0.307233295
+## 58   28.78  0.796  0.65887516  0.137124838
+## 59   29.57  0.892  0.76317614  0.128823858
+## 60   37.41  1.903  1.98987963 -0.086879626
+## 61   39.12  2.150  2.28182032 -0.131820319
+## 62   50.24  3.697  4.17855148 -0.481551482
+## 63   61.38  5.870  5.90731429 -0.037314289
+## 64   66.25  6.421  6.58833329 -0.167333292
+## 65   73.42  7.422  7.50855925 -0.086559249
+## 66   95.52  9.944  9.80734632  0.136653680
+## 67  107.32 11.023 10.76867928  0.254320724
+## 68  122.04 11.870 11.77402819  0.095971811
+## 69  134.03 12.786 12.46623314  0.319766858
+## 70  163.19 14.067 13.80079176  0.266208244
+## 71  163.48 13.974 13.81207896  0.161921040
+## 72  175.70 14.462 14.25903034  0.202969659
+## 73  179.86 14.464 14.39938426  0.064615736
+## 74  211.27 15.381 15.30300305  0.077996951
+## 75  217.78 15.483 15.46153988  0.021460123
+## 76  219.14 15.590 15.49360705  0.096392951
+## 77  262.52 16.075 16.35879653 -0.283796530
+## 78  268.01 16.347 16.45015753 -0.103157525
+## 79  268.62 16.181 16.46009888 -0.279098880
+## 80  336.25 16.915 17.35454484 -0.439544844
+## 81  337.23 17.003 17.36505255 -0.362052548
+## 82  339.33 16.978 17.38737853 -0.409378534
+## 83  427.38 17.756 18.13660333 -0.380603334
+## 84  428.58 17.808 18.14479952 -0.336799522
+## 85  432.68 17.868 18.17247767 -0.304477673
+## 86  528.99 18.481 18.70437208 -0.223372077
+## 87  531.08 18.486 18.71386351 -0.227863507
+## 88  628.34 19.090 19.08809722  0.001902777
+## 89  253.24 16.062 16.19621410 -0.134214101
+## 90  273.13 16.337 16.53234301 -0.195343011
+## 91  273.66 16.345 16.54069023 -0.195690232
+## 92  282.10 16.388 16.66974746 -0.281747456
+## 93  346.62 17.159 17.46292119 -0.303921190
+## 94  347.19 17.116 17.46870293 -0.352702926
+## 95  348.78 17.164 17.48473760 -0.320737599
+## 96  351.18 17.123 17.50868379 -0.385683795
+## 97  450.10 17.979 18.28472932 -0.305729323
+## 98  450.35 17.974 18.28628016 -0.312280163
+## 99  451.92 18.007 18.29598212 -0.288982125
+## 100 455.56 17.993 18.31823099 -0.325230985
+## 101 552.22 18.523 18.80598605 -0.282986051
+## 102 553.56 18.669 18.81159745 -0.142597449
+## 103 555.74 18.617 18.82067084 -0.203670839
+## 104 652.59 19.371 19.16459642  0.206403582
+## 105 656.20 19.330 19.17551650  0.154483498
+## 106  14.13  0.080  0.77348741 -0.693487408
+## 107  20.41  0.248  0.05662611  0.191373893
+## 108  31.30  1.089  1.00816471  0.080835292
+## 109  33.84  1.418  1.39956756  0.018432442
+## 110  39.70  2.278  2.38155051 -0.103550513
+## 111  48.83  3.624  3.94438216 -0.320382160
+## 112  54.50  4.574  4.86657271 -0.292572712
+## 113  60.41  5.556  5.76612933 -0.210129333
+## 114  72.77  7.267  7.42904396 -0.162043958
+## 115  75.25  7.695  7.72838906 -0.033389062
+## 116  86.84  9.136  8.99136369  0.144636308
+## 117  94.88  9.959  9.75056787  0.208432127
+## 118  96.40  9.957  9.88458561  0.072414386
+## 119 117.37 11.600 11.47547190  0.124528102
+## 120 139.08 13.138 12.72947330  0.408526704
+## 121 147.73 13.564 13.14657103  0.417428974
+## 122 158.63 13.871 13.61880392  0.252196080
+## 123 161.84 13.994 13.74780396  0.246196039
+## 124 192.11 14.947 14.78222963  0.164770366
+## 125 206.76 15.473 15.18803137  0.284968629
+## 126 209.07 15.379 15.24746384  0.131536163
+## 127 213.32 15.455 15.35384680  0.101153203
+## 128 226.44 15.908 15.65987906  0.248120943
+## 129 237.12 16.114 15.88663535  0.227364654
+## 130 330.90 17.071 17.29616030 -0.225160304
+## 131 358.72 17.135 17.58196286 -0.446962856
+## 132 370.77 17.282 17.69326577 -0.411265769
+## 133 372.72 17.368 17.71064206 -0.342642062
+## 134 396.24 17.483 17.90752311 -0.424523105
+## 135 416.59 17.764 18.06089749 -0.296897490
+## 136 484.02 18.185 18.48117310 -0.296173098
+## 137 495.47 18.271 18.54167975 -0.270679752
+## 138 514.78 18.236 18.63788133 -0.401881325
+## 139 515.65 18.237 18.64205311 -0.405053108
+## 140 519.47 18.523 18.66021207 -0.137212071
+## 141 544.47 18.627 18.77301150 -0.146011498
+## 142 560.11 18.665 18.83865465 -0.173654648
+## 143 620.77 19.086 19.06303418  0.022965825
+## 144  18.97  0.214  0.09784057  0.116159433
+## 145  28.93  0.943  0.67826891  0.264731089
+## 146  33.91  1.429  1.41076863  0.018231366
+## 147  40.03  2.241  2.43840011 -0.197400110
+## 148  44.66  2.951  3.23712804 -0.286128037
+## 149  49.87  3.782  4.11738756 -0.335387561
+## 150  55.16  4.757  4.97031350 -0.213313499
+## 151  60.90  5.602  5.83768000 -0.235680001
+## 152  72.08  7.169  7.34380175 -0.174801749
+## 153  85.15  8.920  8.82027800  0.099721997
+## 154  97.06 10.055  9.94189178  0.113108223
+## 155 119.63 12.035 11.62215376  0.412846236
+## 156 133.27 12.861 12.42525502  0.435744978
+## 157 143.84 13.436 12.96400254  0.471997455
+## 158 161.91 14.167 13.75056958  0.416430418
+## 159 180.67 14.755 14.42607069  0.328929310
+## 160 198.44 15.168 14.96397105  0.204028954
+## 161 226.86 15.651 15.66915570 -0.018155704
+## 162 229.65 15.746 15.73001114  0.015988863
+## 163 258.27 16.216 16.28565218 -0.069652183
+## 164 273.77 16.445 16.54241898 -0.097418978
+## 165 339.15 16.965 17.38547498 -0.420474978
+## 166 350.13 17.121 17.49824509 -0.377245093
+## 167 362.75 17.206 17.61995849 -0.413958492
+## 168 371.03 17.250 17.69559252 -0.445592517
+## 169 393.32 17.339 17.88428738 -0.545287384
+## 170 448.53 17.793 18.27495246 -0.481952459
+## 171 473.78 18.123 18.42469678 -0.301696776
+## 172 511.12 18.490 18.62018208 -0.130182079
+## 173 524.70 18.566 18.68466247 -0.118662470
+## 174 548.75 18.645 18.79133263 -0.146332628
+## 175 551.64 18.706 18.80354911 -0.097549110
+## 176 574.02 18.924 18.89414305  0.029856952
+## 177 623.86 19.100 19.07333565  0.026664346
+## 178  21.46  0.375  0.06146604  0.313533960
+## 179  24.33  0.471  0.19669499  0.274305007
+## 180  33.43  1.504  1.33435088  0.169649123
+## 181  39.22  2.204  2.29899563 -0.094995630
+## 182  44.18  2.813  3.15464924 -0.341649241
+## 183  55.02  4.765  4.94837488 -0.183374875
+## 184  94.33  9.835  9.70136218  0.133637823
+## 185  96.44 10.040  9.88807384  0.151926161
+## 186 118.82 11.946 11.57006498  0.375935018
+## 187 128.48 12.596 12.15828826  0.437711736
+## 188 141.94 13.303 12.87190265  0.431097345
+## 189 156.92 13.922 13.54830088  0.373699124
+## 190 171.65 14.440 14.11685477  0.323145234
+## 191 190.00 14.951 14.71932283  0.231677171
+## 192 223.26 15.627 15.58863528  0.038364719
+## 193 223.88 15.639 15.60266672  0.036333280
+## 194 231.50 15.814 15.76964133  0.044358666
+## 195 265.05 16.315 16.40132663 -0.086326629
+## 196 269.44 16.334 16.47339806 -0.139398063
+## 197 271.78 16.430 16.51094709 -0.080947092
+## 198 273.46 16.423 16.53754381 -0.114543806
+## 199 334.61 17.024 17.33683230 -0.312832301
+## 200 339.79 17.009 17.39223463 -0.383234635
+## 201 349.52 17.165 17.49215378 -0.327153784
+## 202 358.18 17.134 17.57681079 -0.442810793
+## 203 377.98 17.349 17.75667290 -0.407672903
+## 204 394.77 17.576 17.89586620 -0.319866198
+## 205 429.66 17.848 18.15213896 -0.304138963
+## 206 468.22 18.090 18.39304523 -0.303045226
+## 207 487.27 18.276 18.49862363 -0.222623626
+## 208 519.54 18.404 18.66054244 -0.256542438
+## 209 523.03 18.519 18.67690613 -0.157906127
+## 210 612.99 19.133 19.03665298  0.096347018
+## 211 638.59 19.074 19.12111752 -0.047117521
+## 212 641.36 19.239 19.12986584  0.109134164
+## 213 622.05 19.280 19.06731345  0.212686549
+## 214 631.50 19.101 19.09838763  0.002612371
+## 215 663.97 19.398 19.19863025  0.199369748
+## 216 646.90 19.252 19.14714500  0.104855005
+## 217 748.29 19.890 19.41945281  0.470547190
+## 218 749.21 20.007 19.42159564  0.585404361
+## 219 750.14 19.929 19.42375656  0.505243437
+## 220 647.04 19.268 19.14757794  0.120422056
+## 221 646.89 19.324 19.14711406  0.176885936
+## 222 746.90 20.049 19.41620554  0.632794460
+## 223 748.43 20.107 19.41977922  0.687220777
+## 224 747.35 20.062 19.41725810  0.644741900
+## 225 749.27 20.065 19.42173521  0.643264790
+## 226 647.61 19.286 19.14933879  0.136661207
+## 227 747.78 19.972 19.41826273  0.553737271
+## 228 750.51 20.088 19.42461484  0.663385162
+## 229 851.37 20.743 19.63143059  1.111569415
+## 230 845.97 20.830 19.62157695  1.208423055
+## 231 847.54 20.935 19.62445443  1.310545566
+## 232 849.93 21.035 19.62881490  1.406185103
+## 233 851.61 20.930 19.63186569  1.298134306
+## 234 849.75 21.074 19.62848733  1.445512673
+## 235 850.98 21.085 19.63072302  1.454276977
+## 236 848.23 20.935 19.62571577  1.309284225</code></pre>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" data-line-number="1"><span class="kw">tidy</span>(model_Cu)</a></code></pre></div>
+<pre><code>##   term     estimate    std.error statistic     p.value
+## 1   a0 12.090620445 4.9457267991  2.444660 0.015247600
+## 2   a1 -1.158595059 0.4459281342 -2.598165 0.009974985
+## 3   a2  0.028038839 0.0099338856  2.822545 0.005179792
+## 4   b1  0.031126773 0.0123461159  2.521179 0.012370785
+## 5   b2  0.001321851 0.0004639428  2.849169 0.004779119</code></pre>
+<div id="create-a-function-using-the-fit-paramters" class="section level4">
+<h4><span class="header-section-number">4.3.3.1</span> Create a function using the fit paramters</h4>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" data-line-number="1">Cu_fit &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb260-2" data-line-number="2">  ((<span class="kw">summary</span>(model_Cu)<span class="op">$</span>coefficients[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span><span class="kw">summary</span>(model_Cu)<span class="op">$</span>coefficients[<span class="dv">2</span>]<span class="op">*</span>x <span class="op">+</span><span class="st"> </span><span class="kw">summary</span>(model_Cu)<span class="op">$</span>coefficients[<span class="dv">3</span>]<span class="op">*</span>x<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="kw">summary</span>(model_Cu)<span class="op">$</span>coefficients[<span class="dv">4</span>]<span class="op">*</span>x <span class="op">+</span><span class="st"> </span><span class="kw">summary</span>(model_Cu)<span class="op">$</span>coefficients[<span class="dv">5</span>]<span class="op">*</span>x<span class="op">^</span><span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb260-3" data-line-number="3">  }</a></code></pre></div>
+</div>
+<div id="add-the-fitted-curve-to-the-graph" class="section level4">
+<h4><span class="header-section-number">4.3.3.2</span> Add the fitted curve to the graph</h4>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" data-line-number="1"><span class="kw">ggplot</span>(CTECu, <span class="kw">aes</span>(temp_K, Cu_CTE)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb261-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb261-3" data-line-number="3"><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> Cu_fit, <span class="dt">colour =</span> <span class="st">&quot;green&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb261-4" data-line-number="4"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Thermal Expansion of Copper&quot;</span>, <span class="dt">subtitle =</span> <span class="st">&quot;nls function using Q/Q model&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
+</div>
+<div id="plot-the-residulas" class="section level4">
+<h4><span class="header-section-number">4.3.3.3</span> Plot the residulas</h4>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="kw">augment</span>(model_Cu)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb262-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(temp_K, .resid)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb262-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept=</span><span class="dv">0</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb262-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept=</span><span class="op">+</span><span class="dv">2</span><span class="op">*</span>(<span class="fl">0.38</span>)), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb262-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept=</span><span class="op">-</span><span class="dv">2</span><span class="op">*</span>(<span class="fl">0.38</span>)), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb262-6" data-line-number="6"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Thermal Expansion of Copper Residuals&quot;</span>, <span class="dt">subtitle =</span> <span class="st">&quot;+/- 2(Residual Statndard Deviation)&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
+<p>The fit is not very good, shows a clear structure, and indicates the Q/Q model is insufficient.</p>
+</div>
+</div>
+<div id="cubiccubic-rational-function" class="section level3">
+<h3><span class="header-section-number">4.3.4</span> Cubic/Cubic Rational Function</h3>
+<p><span class="math display">\[
+y = \frac{(A0 + A1*x + A2x^2 + A3X^3)} {(1 + B1x + B2X^2 + B3X^3)}
+\]</span></p>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1">mcc_Cu &lt;-<span class="st"> </span><span class="kw">nls</span>(Cu_CTE <span class="op">~</span><span class="st"> </span>((a0 <span class="op">+</span><span class="st"> </span>a1<span class="op">*</span>temp_K <span class="op">+</span><span class="st"> </span>a2<span class="op">*</span>temp_K<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>a3<span class="op">*</span>temp_K<span class="op">^</span><span class="dv">3</span>)<span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>b1<span class="op">*</span>temp_K <span class="op">+</span><span class="st"> </span>b2<span class="op">*</span>temp_K<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>b3<span class="op">*</span>temp_K<span class="op">^</span><span class="dv">3</span>)), </a>
+<a class="sourceLine" id="cb263-2" data-line-number="2">            CTECu, <span class="dt">start =</span> <span class="kw">list</span>(<span class="dt">a0 =</span> <span class="dv">0</span>, <span class="dt">a1 =</span> <span class="dv">-1</span>, <span class="dt">a2 =</span> <span class="dv">-1</span>, <span class="dt">a3 =</span> <span class="dv">0</span>, <span class="dt">b1 =</span> <span class="dv">0</span>, <span class="dt">b2 =</span> <span class="dv">0</span>, <span class="dt">b3 =</span> <span class="dv">0</span>), </a>
+<a class="sourceLine" id="cb263-3" data-line-number="3">            <span class="dt">trace =</span> T)</a></code></pre></div>
+<pre><code>## 1.344556e+13 :   0 -1 -1  0  0  0  0
+## 1.339595e+13 :  -4.089856e-03 -9.988271e-01 -9.983564e-01  6.676610e-04 -6.676602e-04 -1.055201e-11  1.803518e-15
+## 1.334366e+13 :  -4.807459e-03 -9.966232e-01 -9.964072e-01  6.664584e-04 -6.677607e-04 -1.094787e-11  1.584238e-15
+## 1.32396e+13 :  -6.863478e-03 -9.922082e-01 -9.925166e-01  6.639777e-04 -6.678813e-04 -1.223912e-11  1.510447e-15
+## 1.30334e+13 :  -1.594000e-02 -9.833127e-01 -9.847661e-01  6.593020e-04 -6.683904e-04 -1.602231e-11  1.289942e-15
+## 1.262831e+13 :  -6.540076e-02 -9.650849e-01 -9.693885e-01  6.507887e-04 -6.701861e-04 -3.033631e-11  1.802077e-15
+## 1.184743e+13 :  -1.788916e-01 -9.289031e-01 -9.391153e-01  6.341455e-04 -6.739522e-04 -6.184747e-11  2.875150e-15
+## 1.040295e+13 :  -4.142861e-01 -8.583930e-01 -8.804668e-01  5.994049e-04 -6.790616e-04 -1.428677e-10  1.605646e-14
+## 7.989692e+12 :  -9.341122e-01 -7.234575e-01 -7.705432e-01  5.175015e-04 -6.708211e-04 -4.851866e-10  1.813912e-13
+## 6.371193e+12 :  -1.922326e+00 -4.855256e-01 -5.789681e-01 -4.405781e-04  4.048477e-04 -1.132038e-09  4.421753e-13
+## 1.590227e+12 :  -3.385858e+00 -1.294959e-01 -2.899297e-01 -2.187966e-04  4.037949e-04 -2.100189e-09  8.979057e-13
+## 19889209 :  -4.850624e+00  2.266128e-01 -8.927502e-04  3.128700e-06  3.991144e-04 -5.877643e-09  2.695245e-12
+## 825292.5 :  -4.854099e+00  2.244501e-01 -7.872443e-04  1.327192e-06  8.773391e-04  4.504172e-08 -1.183450e-10
+## 72834.96 :  -4.698904e+00  2.158071e-01 -6.255161e-04  8.206990e-07  1.206312e-03  1.711327e-06 -1.281084e-09
+## 11897.69 :  -4.260919e+00  1.962288e-01 -4.518142e-04  6.174559e-07  5.394675e-04  9.144746e-06 -6.252643e-09
+## 3068.102 :  -3.363680e+00  1.545785e-01 -1.051538e-04  4.250646e-07 -1.433242e-03  2.984461e-05 -2.070801e-08
+## 909.5887 :  -1.947093e+00  8.097392e-02  6.980495e-04 -2.856405e-08 -4.239912e-03  7.556907e-05 -5.390319e-08
+## 220.8618 :  -4.057550e-01 -1.376339e-02  2.096694e-03 -9.279485e-07 -6.080614e-03  1.470438e-04 -1.056115e-07
+## 31.88262 :   7.090768e-01 -9.381732e-02  3.536101e-03 -1.838264e-06 -6.162496e-03  2.145881e-04 -1.480838e-07
+## 3.200182 :   1.102048e+00 -1.249213e-01  4.149347e-03 -1.951524e-06 -5.756966e-03  2.422411e-04 -1.492413e-07
+## 1.55733 :   1.100520e+00 -1.246480e-01  4.131519e-03 -1.571143e-06 -5.729023e-03  2.422069e-04 -1.300201e-07
+## 1.532465 :   1.080053e+00 -1.228904e-01  4.090638e-03 -1.435504e-06 -5.758189e-03  2.407076e-04 -1.235758e-07
+## 1.532438 :   1.077745e+00 -1.227015e-01  4.086549e-03 -1.426532e-06 -5.760914e-03  2.405448e-04 -1.231569e-07
+## 1.532438 :   1.077639e+00 -1.226932e-01  4.086381e-03 -1.426274e-06 -5.760992e-03  2.405376e-04 -1.231449e-07</code></pre>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" data-line-number="1"><span class="kw">summary</span>(mcc_Cu)</a></code></pre></div>
+<pre><code>## 
+## Formula: Cu_CTE ~ ((a0 + a1 * temp_K + a2 * temp_K^2 + a3 * temp_K^3)/(1 + 
+##     b1 * temp_K + b2 * temp_K^2 + b3 * temp_K^3))
+## 
+## Parameters:
+##      Estimate Std. Error t value Pr(&gt;|t|)    
+## a0  1.078e+00  1.707e-01   6.313 1.40e-09 ***
+## a1 -1.227e-01  1.200e-02 -10.224  &lt; 2e-16 ***
+## a2  4.086e-03  2.251e-04  18.155  &lt; 2e-16 ***
+## a3 -1.426e-06  2.758e-07  -5.172 5.06e-07 ***
+## b1 -5.761e-03  2.471e-04 -23.312  &lt; 2e-16 ***
+## b2  2.405e-04  1.045e-05  23.019  &lt; 2e-16 ***
+## b3 -1.231e-07  1.303e-08  -9.453  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.0818 on 229 degrees of freedom
+## 
+## Number of iterations to convergence: 23 
+## Achieved convergence tolerance: 1.664e-06</code></pre>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb267-1" data-line-number="1"><span class="kw">glance</span>(mcc_Cu)</a></code></pre></div>
+<pre><code>##        sigma isConv       finTol   logLik       AIC       BIC deviance
+## 1 0.08180385   TRUE 1.664197e-06 259.4932 -502.9863 -475.2757 1.532438
+##   df.residual
+## 1         229</code></pre>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb269-1" data-line-number="1"><span class="kw">augment</span>(mcc_Cu)</a></code></pre></div>
+<pre><code>##     temp_K Cu_CTE    .fitted       .resid
+## 1    24.41  0.591  0.4963639  0.094636113
+## 2    34.82  1.547  1.5653400 -0.018340010
+## 3    44.09  2.902  2.9005739  0.001426132
+## 4    45.07  2.894  3.0533083 -0.159308281
+## 5    54.98  4.703  4.6386624  0.064337570
+## 6    65.51  6.307  6.2804623  0.026537706
+## 7    70.53  7.030  7.0126772  0.017322841
+## 8    75.70  7.898  7.7231356  0.174864443
+## 9    89.57  9.470  9.3955397  0.074460287
+## 10   91.14  9.484  9.5636985 -0.079698527
+## 11   96.40 10.072 10.0975170 -0.025516971
+## 12   97.19 10.163 10.1738762 -0.010876165
+## 13  114.26 11.615 11.6058598  0.009140235
+## 14  120.25 12.005 12.0216811 -0.016681059
+## 15  127.08 12.478 12.4499677  0.028032300
+## 16  133.55 12.982 12.8157611  0.166238889
+## 17  133.61 12.970 12.8189865  0.151013467
+## 18  158.67 13.926 13.9459607 -0.019960705
+## 19  172.74 14.452 14.4277145  0.024285466
+## 20  171.31 14.404 14.3826277  0.021372299
+## 21  202.14 15.190 15.2041280 -0.014127993
+## 22  220.55 15.550 15.5795355 -0.029535518
+## 23  221.05 15.528 15.5888324 -0.060832403
+## 24  221.39 15.499 15.5951299 -0.096129866
+## 25  250.99 16.131 16.0783145  0.052685472
+## 26  268.99 16.438 16.3224628  0.115537197
+## 27  271.80 16.387 16.3579471  0.029052870
+## 28  271.97 16.549 16.3600733  0.188926721
+## 29  321.31 16.872 16.8979959 -0.025995876
+## 30  321.69 16.830 16.9016483 -0.071648338
+## 31  330.14 16.926 16.9813826 -0.055382599
+## 32  333.03 16.907 17.0080323 -0.101032295
+## 33  333.47 16.966 17.0120633 -0.046063327
+## 34  340.77 17.060 17.0779701 -0.017970082
+## 35  345.65 17.122 17.1210593  0.000940730
+## 36  373.11 17.311 17.3512466 -0.040246649
+## 37  373.79 17.355 17.3567171 -0.001717084
+## 38  411.82 17.668 17.6493340  0.018665965
+## 39  419.51 17.767 17.7059105  0.061089474
+## 40  421.59 17.803 17.7210942  0.081905760
+## 41  422.02 17.765 17.7242272  0.040772842
+## 42  422.47 17.768 17.7275036  0.040496385
+## 43  422.61 17.736 17.7285225  0.007477495
+## 44  441.75 17.858 17.8659854 -0.007985381
+## 45  447.41 17.877 17.9060218 -0.029021763
+## 46  448.70 17.912 17.9151127 -0.003112748
+## 47  472.89 18.046 18.0836406 -0.037640604
+## 48  476.69 18.085 18.1098368 -0.024836835
+## 49  522.47 18.291 18.4221886 -0.131188615
+## 50  522.62 18.357 18.4232070 -0.066206966
+## 51  524.43 18.426 18.4354946 -0.009494602
+## 52  546.75 18.584 18.5870962 -0.003096202
+## 53  549.53 18.610 18.6060088  0.003991184
+## 54  575.29 18.870 18.7819540  0.088045977
+## 55  576.00 18.795 18.7868265  0.008173532
+## 56  625.55 19.111 19.1315632 -0.020563155
+## 57   20.15  0.367  0.2578734  0.109126633
+## 58   28.78  0.796  0.8706755 -0.074675533
+## 59   29.57  0.892  0.9508152 -0.058815215
+## 60   37.41  1.903  1.9126172 -0.009617204
+## 61   39.12  2.150  2.1545245 -0.004524486
+## 62   50.24  3.697  3.8760413 -0.179041267
+## 63   61.38  5.870  5.6506367  0.219363250
+## 64   66.25  6.421  6.3908398  0.030160222
+## 65   73.42  7.422  7.4155213  0.006478695
+## 66   95.52  9.944 10.0113074 -0.067307437
+## 67  107.32 11.023 11.0710890 -0.048089021
+## 68  122.04 11.870 12.1384228 -0.268422792
+## 69  134.03 12.786 12.8414824 -0.055482433
+## 70  163.19 14.067 14.1104537 -0.043453696
+## 71  163.48 13.974 14.1206749 -0.146674921
+## 72  175.70 14.462 14.5185343 -0.056534286
+## 73  179.86 14.464 14.6407452 -0.176745156
+## 74  211.27 15.381 15.3987890 -0.017789027
+## 75  217.78 15.483 15.5272412 -0.044241243
+## 76  219.14 15.590 15.5530853  0.036914739
+## 77  262.52 16.075 16.2382086 -0.163208614
+## 78  268.01 16.347 16.3099337  0.037066300
+## 79  268.62 16.181 16.3177419 -0.136741912
+## 80  336.25 16.915 17.0373752 -0.122375209
+## 81  337.23 17.003 17.0462347 -0.043234658
+## 82  339.33 16.978 17.0651106 -0.087110573
+## 83  427.38 17.756 17.7631127 -0.007112672
+## 84  428.58 17.808 17.7717775  0.036222457
+## 85  432.68 17.868 17.8012757  0.066724340
+## 86  528.99 18.481 18.4664497  0.014550340
+## 87  531.08 18.486 18.4806380  0.005362040
+## 88  628.34 19.090 19.1513119 -0.061311930
+## 89  253.24 16.062 16.1105736 -0.048573567
+## 90  273.13 16.337 16.3745196 -0.037519609
+## 91  273.66 16.345 16.3810847 -0.036084688
+## 92  282.10 16.388 16.4827743 -0.094774326
+## 93  346.62 17.159 17.1295367  0.029463321
+## 94  347.19 17.116 17.1345051 -0.018505086
+## 95  348.78 17.164 17.1483135  0.015686490
+## 96  351.18 17.123 17.1690174 -0.046017428
+## 97  450.10 17.979 17.9249654  0.054034648
+## 98  450.35 17.974 17.9267233  0.047276717
+## 99  451.92 18.007 17.9377531  0.069246851
+## 100 455.56 17.993 17.9632617  0.029738317
+## 101 552.22 18.523 18.6243198 -0.101319806
+## 102 553.56 18.669 18.6334455  0.035554457
+## 103 555.74 18.617 18.6482984 -0.031298442
+## 104 652.59 19.371 19.3248625  0.046137474
+## 105 656.20 19.330 19.3510119 -0.021011943
+## 106  14.13  0.080  0.1612725 -0.081272481
+## 107  20.41  0.248  0.2685479 -0.020547945
+## 108  31.30  1.089  1.1383031 -0.049303084
+## 109  33.84  1.418  1.4408211 -0.022821106
+## 110  39.70  2.278  2.2385532  0.039446784
+## 111  48.83  3.624  3.6497122 -0.025712192
+## 112  54.50  4.574  4.5616267  0.012373331
+## 113  60.41  5.556  5.4996610  0.056338998
+## 114  72.77  7.267  7.3261617 -0.059161721
+## 115  75.25  7.695  7.6631465  0.031853502
+## 116  86.84  9.136  9.0931449  0.042855052
+## 117  94.88  9.959  9.9478398  0.011160239
+## 118  96.40  9.957 10.0975170 -0.140516971
+## 119 117.37 11.600 11.8267293 -0.226729304
+## 120 139.08 13.138 13.1011146  0.036885374
+## 121 147.73 13.564 13.5032486  0.060751378
+## 122 158.63 13.871 13.9444602 -0.073460197
+## 123 161.84 13.994 14.0623548 -0.068354756
+## 124 192.11 14.947 14.9677463 -0.020746271
+## 125 206.76 15.473 15.3048785  0.168121477
+## 126 209.07 15.379 15.3535064  0.025493579
+## 127 213.32 15.455 15.4401119  0.014888101
+## 128 226.44 15.908 15.6864092  0.221590783
+## 129 237.12 16.114 15.8666313  0.247368679
+## 130 330.90 17.071 16.9884203  0.082579731
+## 131 358.72 17.135 17.2330261 -0.098026092
+## 132 370.77 17.282 17.3323460 -0.050345962
+## 133 372.72 17.368 17.3481047  0.019895254
+## 134 396.24 17.483 17.5323108 -0.049310842
+## 135 416.59 17.764 17.6845113  0.079488723
+## 136 484.02 18.185 18.1602046  0.024795393
+## 137 495.47 18.271 18.2385282  0.032471776
+## 138 514.78 18.236 18.3699663 -0.133966278
+## 139 515.65 18.237 18.3758764 -0.138876358
+## 140 519.47 18.523 18.4018198  0.121180208
+## 141 544.47 18.627 18.5715926  0.055407414
+## 142 560.11 18.665 18.6780990 -0.013099005
+## 143 620.77 19.086 19.0978246 -0.011824627
+## 144  18.97  0.214  0.2160310 -0.002031040
+## 145  28.93  0.943  0.8856173  0.057382657
+## 146  33.91  1.429  1.4495793 -0.020579292
+## 147  40.03  2.241  2.2867741 -0.045774104
+## 148  44.66  2.951  2.9892364 -0.038236434
+## 149  49.87  3.782  3.8165695 -0.034569455
+## 150  55.16  4.757  4.6675252  0.089474794
+## 151  60.90  5.602  5.5760576  0.025942404
+## 152  72.08  7.169  7.2305064 -0.061506448
+## 153  85.15  8.920  8.8994792  0.020520834
+## 154  97.06 10.055 10.1613775 -0.106377474
+## 155 119.63 12.035 11.9804653  0.054534701
+## 156 133.27 12.861 12.8006702  0.060329793
+## 157 143.84 13.436 13.3286469  0.107353146
+## 158 161.91 14.167 14.0648699  0.102130081
+## 159 180.67 14.755 14.6638377  0.091162293
+## 160 198.44 15.168 15.1198750  0.048125043
+## 161 226.86 15.651 15.6938160 -0.042816044
+## 162 229.65 15.746 15.7423289  0.003671052
+## 163 258.27 16.216 16.1807994  0.035200620
+## 164 273.77 16.445 16.3824445  0.062555507
+## 165 339.15 16.965 17.0634984 -0.098498370
+## 166 350.13 17.121 17.1599798 -0.038979782
+## 167 362.75 17.206 17.2666301 -0.060630075
+## 168 371.03 17.250 17.3344519 -0.084451920
+## 169 393.32 17.339 17.5099757 -0.170975691
+## 170 448.53 17.793 17.9139154 -0.120915404
+## 171 473.78 18.123 18.0897817  0.033218343
+## 172 511.12 18.490 18.3450954  0.144904609
+## 173 524.70 18.566 18.4373275  0.128672496
+## 174 548.75 18.645 18.6007013  0.044298675
+## 175 551.64 18.706 18.6203708  0.085629235
+## 176 574.02 18.924 18.7732422  0.150757834
+## 177 623.86 19.100 19.1196210 -0.019620959
+## 178  21.46  0.375  0.3169130  0.058086952
+## 179  24.33  0.471  0.4906796 -0.019679635
+## 180  33.43  1.504  1.3899566  0.114043426
+## 181  39.22  2.204  2.1689447  0.035055321
+## 182  44.18  2.813  2.9145398 -0.101539787
+## 183  55.02  4.765  4.6450777  0.119922345
+## 184  94.33  9.835  9.8927746 -0.057774647
+## 185  96.44 10.040 10.1014067 -0.061406663
+## 186 118.82 11.946 11.9260020  0.019998000
+## 187 128.48 12.596 12.5322413  0.063758682
+## 188 141.94 13.303 13.2397256  0.063274444
+## 189 156.92 13.922 13.8795489  0.042451100
+## 190 171.65 14.440 14.3934209  0.046579088
+## 191 190.00 14.951 14.9146360  0.036363980
+## 192 223.26 15.627 15.6294176 -0.002417573
+## 193 223.88 15.639 15.6406575 -0.001657497
+## 194 231.50 15.814 15.7738532  0.040146846
+## 195 265.05 16.315 16.2715923  0.043407743
+## 196 269.44 16.334 16.3281890  0.005810976
+## 197 271.78 16.430 16.3576968  0.072303157
+## 198 273.46 16.423 16.3786099  0.044390110
+## 199 334.61 17.024 17.0224756  0.001524429
+## 200 339.79 17.009 17.0692258 -0.060225818
+## 201 349.52 17.165 17.1547149  0.010285129
+## 202 358.18 17.134 17.2284921 -0.094492125
+## 203 377.98 17.349 17.3902120 -0.041211980
+## 204 394.77 17.576 17.5210839  0.054916093
+## 205 429.66 17.848 17.7795636  0.068436368
+## 206 468.22 18.090 18.0513573  0.038642735
+## 207 487.27 18.276 18.1824758  0.093524152
+## 208 519.54 18.404 18.4022951  0.001704889
+## 209 523.03 18.519 18.4259904  0.093009575
+## 210 612.99 19.133 19.0431600  0.089840025
+## 211 638.59 19.074 19.2242391 -0.150239081
+## 212 641.36 19.239 19.2440522 -0.005052151
+## 213 622.05 19.280 19.1068475  0.173152498
+## 214 631.50 19.101 19.1737313 -0.072731259
+## 215 663.97 19.398 19.4075930 -0.009592967
+## 216 646.90 19.252 19.2838185 -0.031818479
+## 217 748.29 19.890 20.0529391 -0.162939136
+## 218 749.21 20.007 20.0603469 -0.053346895
+## 219 750.14 19.929 20.0678442 -0.138844239
+## 220 647.04 19.268 19.2848259 -0.016825875
+## 221 646.89 19.324 19.2837465  0.040253473
+## 222 746.90 20.049 20.0417638  0.007236178
+## 223 748.43 20.107 20.0540658  0.052934170
+## 224 747.35 20.062 20.0453795  0.016620484
+## 225 749.27 20.065 20.0608303  0.004169680
+## 226 647.61 19.286 19.2889287 -0.002928687
+## 227 747.78 19.972 20.0488365 -0.076836491
+## 228 750.51 20.088 20.0708296  0.017170406
+## 229 851.37 20.743 20.9461745 -0.203174508
+## 230 845.97 20.830 20.8958249 -0.065824945
+## 231 847.54 20.935 20.9104183  0.024581707
+## 232 849.93 21.035 20.9327049  0.102295138
+## 233 851.61 20.930 20.9484225 -0.018422516
+## 234 849.75 21.074 20.9310234  0.142976630
+## 235 850.98 21.085 20.9425234  0.142476633
+## 236 848.23 20.935 20.9168436  0.018156359</code></pre>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb271-1" data-line-number="1"><span class="kw">tidy</span>(mcc_Cu)</a></code></pre></div>
+<pre><code>##   term      estimate    std.error  statistic      p.value
+## 1   a0  1.077639e+00 1.707017e-01   6.312994 1.404129e-09
+## 2   a1 -1.226932e-01 1.200030e-02 -10.224180 1.866827e-20
+## 3   a2  4.086381e-03 2.250834e-04  18.154961 3.109432e-46
+## 4   a3 -1.426274e-06 2.757806e-07  -5.171771 5.055842e-07
+## 5   b1 -5.760992e-03 2.471290e-04 -23.311682 2.178299e-62
+## 6   b2  2.405376e-04 1.044939e-05  23.019305 1.657786e-61
+## 7   b3 -1.231449e-07 1.302735e-08  -9.452798 4.078186e-18</code></pre>
+<div id="create-a-function-using-the-fit-parameters" class="section level4">
+<h4><span class="header-section-number">4.3.4.1</span> Create a function using the fit parameters</h4>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb273-1" data-line-number="1">cc.Cu.fit &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb273-2" data-line-number="2">  ((<span class="kw">summary</span>(mcc_Cu)<span class="op">$</span>coefficients[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span><span class="kw">summary</span>(mcc_Cu)<span class="op">$</span>coefficients[<span class="dv">2</span>]<span class="op">*</span>x <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb273-3" data-line-number="3"><span class="st">      </span><span class="kw">summary</span>(mcc_Cu)<span class="op">$</span>coefficients[<span class="dv">3</span>]<span class="op">*</span>x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="kw">summary</span>(mcc_Cu)<span class="op">$</span>coefficients[<span class="dv">4</span>]<span class="op">*</span>x<span class="op">^</span><span class="dv">3</span>)<span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="kw">summary</span>(mcc_Cu)<span class="op">$</span>coefficients[<span class="dv">5</span>]<span class="op">*</span>x <span class="op">+</span><span class="st"> </span><span class="kw">summary</span>(mcc_Cu)<span class="op">$</span>coefficients[<span class="dv">6</span>]<span class="op">*</span>x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="kw">summary</span>(mcc_Cu)<span class="op">$</span>coefficients[<span class="dv">7</span>]<span class="op">*</span>x<span class="op">^</span><span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb273-4" data-line-number="4">  }</a></code></pre></div>
+</div>
+<div id="add-the-fitted-curve-to-the-graph-1" class="section level4">
+<h4><span class="header-section-number">4.3.4.2</span> Add the fitted curve to the graph</h4>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" data-line-number="1"><span class="kw">ggplot</span>(CTECu, <span class="kw">aes</span>(temp_K, Cu_CTE)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb274-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb274-3" data-line-number="3"><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> cc.Cu.fit, <span class="dt">colour =</span> <span class="st">&quot;green&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb274-4" data-line-number="4"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Thermal Expansion of Copper&quot;</span>, <span class="dt">subtitle =</span> <span class="st">&quot;nls function using C/C model&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
+</div>
+<div id="plot-the-residuals-from-the-cc-model" class="section level4">
+<h4><span class="header-section-number">4.3.4.3</span> Plot the residuals from the C/C model</h4>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="kw">augment</span>(mcc_Cu)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb275-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(temp_K, .resid)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb275-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept=</span><span class="dv">0</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb275-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept=</span><span class="op">+</span><span class="dv">2</span><span class="op">*</span><span class="fl">0.082</span>), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb275-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept=</span><span class="op">-</span><span class="dv">2</span><span class="op">*</span><span class="fl">0.082</span>), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb275-6" data-line-number="6"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Thermal Expansion of Copper Residuals (C/C)&quot;</span>, <span class="dt">subtitle =</span> <span class="st">&quot;+/- 2(Residual Statndard Deviation)&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
+</div>
+<div id="finally-lets-fit-the-data-with-th-loess-method-and-compare-to-the-cc-model" class="section level4">
+<h4><span class="header-section-number">4.3.4.4</span> Finally, lets fit the data with th LOESS method and compare to the C/C model</h4>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" data-line-number="1"><span class="kw">ggplot</span>(CTECu, <span class="kw">aes</span>(temp_K, Cu_CTE)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb276-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb276-3" data-line-number="3"><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="dt">span =</span> <span class="fl">0.2</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">size =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb276-4" data-line-number="4"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Thermal Expansion of Copper&quot;</span>, <span class="dt">subtitle =</span> <span class="st">&quot;analysis with LOESS model&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-116-1.png" width="672" /></p>
+<p>We can look at the quality of the fit using the LOESS model direclty</p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" data-line-number="1">mloess_Cu &lt;-<span class="st"> </span><span class="kw">loess</span>(Cu_CTE <span class="op">~</span><span class="st"> </span>temp_K, CTECu, <span class="dt">span =</span> <span class="fl">0.2</span>)</a>
+<a class="sourceLine" id="cb277-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb277-3" data-line-number="3"><span class="kw">summary</span>(mloess_Cu)</a></code></pre></div>
+<pre><code>## Call:
+## loess(formula = Cu_CTE ~ temp_K, data = CTECu, span = 0.2)
+## 
+## Number of Observations: 236 
+## Equivalent Number of Parameters: 15.02 
+## Residual Standard Error: 0.09039 
+## Trace of smoother matrix: 16.62  (exact)
+## 
+## Control settings:
+##   span     :  0.2 
+##   degree   :  2 
+##   family   :  gaussian
+##   surface  :  interpolate      cell = 0.2
+##   normalize:  TRUE
+##  parametric:  FALSE
+## drop.square:  FALSE</code></pre>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" data-line-number="1"><span class="kw">augment</span>(mloess_Cu)</a></code></pre></div>
+<pre><code>##     Cu_CTE temp_K    .fitted    .se.fit        .resid
+## 1    0.591  24.41  0.5893886 0.02340924  1.611396e-03
+## 2    1.547  34.82  1.7035504 0.01790375 -1.565504e-01
+## 3    2.902  44.09  2.9075529 0.01956124 -5.552921e-03
+## 4    2.894  45.07  3.0426764 0.01971197 -1.486764e-01
+## 5    4.703  54.98  4.6006680 0.02177693  1.023320e-01
+## 6    6.307  65.51  6.2727258 0.02223313  3.427422e-02
+## 7    7.030  70.53  7.0291230 0.02424350  8.770125e-04
+## 8    7.898  75.70  7.7223713 0.02316620  1.756287e-01
+## 9    9.470  89.57  9.3678543 0.02312016  1.021457e-01
+## 10   9.484  91.14  9.5326204 0.02293994 -4.862038e-02
+## 11  10.072  96.40 10.0532384 0.02243139  1.876162e-02
+## 12  10.163  97.19 10.1306239 0.02241359  3.237612e-02
+## 13  11.615 114.26 11.5706405 0.02163989  4.435953e-02
+## 14  12.005 120.25 12.0049191 0.02295519  8.089826e-05
+## 15  12.478 127.08 12.4554822 0.02242131  2.251778e-02
+## 16  12.982 133.55 12.8408206 0.02259261  1.411794e-01
+## 17  12.970 133.61 12.8442640 0.02259171  1.257360e-01
+## 18  13.926 158.67 13.9557957 0.02266600 -2.979572e-02
+## 19  14.452 172.74 14.4192091 0.02364575  3.279085e-02
+## 20  14.404 171.31 14.3758966 0.02330013  2.810341e-02
+## 21  15.190 202.14 15.2087537 0.02229812 -1.875374e-02
+## 22  15.550 220.55 15.6042108 0.02178006 -5.421077e-02
+## 23  15.528 221.05 15.6140038 0.02182985 -8.600384e-02
+## 24  15.499 221.39 15.6206473 0.02185661 -1.216473e-01
+## 25  16.131 250.99 16.1091714 0.01914307  2.182861e-02
+## 26  16.438 268.99 16.3398608 0.02202205  9.813921e-02
+## 27  16.387 271.80 16.3734167 0.02243304  1.358326e-02
+## 28  16.549 271.97 16.3754236 0.02245998  1.735764e-01
+## 29  16.872 321.31 16.8639118 0.02213125  8.088198e-03
+## 30  16.830 321.69 16.8672482 0.02215705 -3.724821e-02
+## 31  16.926 330.14 16.9420265 0.02190354 -1.602647e-02
+## 32  16.907 333.03 16.9680613 0.02136006 -6.106125e-02
+## 33  16.966 333.47 16.9720533 0.02124855 -6.053335e-03
+## 34  17.060 340.77 17.0380252 0.01915004  2.197485e-02
+## 35  17.122 345.65 17.0800345 0.01826731  4.196548e-02
+## 36  17.311 373.11 17.3095335 0.02446425  1.466498e-03
+## 37  17.355 373.79 17.3154949 0.02456639  3.950514e-02
+## 38  17.668 411.82 17.6648664 0.02216767  3.133620e-03
+## 39  17.767 419.51 17.7287099 0.02243940  3.829015e-02
+## 40  17.803 421.59 17.7448828 0.02218004  5.811720e-02
+## 41  17.765 422.02 17.7481608 0.02211155  1.683925e-02
+## 42  17.768 422.47 17.7515723 0.02203853  1.642772e-02
+## 43  17.736 422.61 17.7526301 0.02201581 -1.663008e-02
+## 44  17.858 441.75 17.8917493 0.02046968 -3.374927e-02
+## 45  17.877 447.41 17.9304245 0.02154521 -5.342452e-02
+## 46  17.912 448.70 17.9393108 0.02179951 -2.731083e-02
+## 47  18.046 472.89 18.0999205 0.02478693 -5.392046e-02
+## 48  18.085 476.69 18.1246418 0.02573444 -3.964181e-02
+## 49  18.291 522.47 18.4283764 0.02104353 -1.373764e-01
+## 50  18.357 522.62 18.4294420 0.02102223 -7.244200e-02
+## 51  18.426 524.43 18.4423209 0.02071864 -1.632094e-02
+## 52  18.584 546.75 18.6034919 0.02059169 -1.949187e-02
+## 53  18.610 549.53 18.6244942 0.02087707 -1.449418e-02
+## 54  18.870 575.29 18.8101404 0.02332466  5.985959e-02
+## 55  18.795 576.00 18.8151025 0.02335059 -2.010248e-02
+## 56  19.111 625.55 19.1441090 0.02323769 -3.310901e-02
+## 57   0.367  20.15  0.2116990 0.03085448  1.553010e-01
+## 58   0.796  28.78  1.0242942 0.01913119 -2.282942e-01
+## 59   0.892  29.57  1.1083269 0.01870637 -2.163269e-01
+## 60   1.903  37.41  2.0202956 0.01828370 -1.172956e-01
+## 61   2.150  39.12  2.2397801 0.01860451 -8.978013e-02
+## 62   3.697  50.24  3.8425643 0.02049747 -1.455643e-01
+## 63   5.870  61.38  5.6119898 0.02116325  2.580102e-01
+## 64   6.421  66.25  6.3886426 0.02256694  3.235736e-02
+## 65   7.422  73.42  7.4232996 0.02409276 -1.299626e-03
+## 66   9.944  95.52  9.9668213 0.02241709 -2.282127e-02
+## 67  11.023 107.32 11.0307166 0.02035314 -7.716646e-03
+## 68  11.870 122.04 12.1285181 0.02287899 -2.585181e-01
+## 69  12.786 134.03 12.8683172 0.02258018 -8.231716e-02
+## 70  14.067 163.19 14.1199802 0.02247130 -5.298022e-02
+## 71  13.974 163.48 14.1297883 0.02245355 -1.557883e-01
+## 72  14.462 175.70 14.5100999 0.02412487 -4.809988e-02
+## 73  14.464 179.86 14.6359457 0.02384732 -1.719457e-01
+## 74  15.381 211.27 15.4148497 0.02158281 -3.384974e-02
+## 75  15.483 217.78 15.5493643 0.02140571 -6.636426e-02
+## 76  15.590 219.14 15.5764283 0.02159609  1.357166e-02
+## 77  16.075 262.52 16.2591976 0.02071960 -1.841976e-01
+## 78  16.347 268.01 16.3276907 0.02191144  1.930926e-02
+## 79  16.181 268.62 16.3352840 0.02198209 -1.542840e-01
+## 80  16.915 336.25 16.9973389 0.02032597 -8.233893e-02
+## 81  17.003 337.23 17.0062403 0.02000511 -3.240328e-03
+## 82  16.978 339.33 17.0252000 0.01945679 -4.719998e-02
+## 83  17.756 427.38 17.7882079 0.02146238 -3.220789e-02
+## 84  17.808 428.58 17.7972085 0.02139069  1.079149e-02
+## 85  17.868 432.68 17.8279861 0.02096926  4.001391e-02
+## 86  18.481 528.99 18.4749238 0.01983701  6.076167e-03
+## 87  18.486 531.08 18.4899317 0.01953248 -3.931729e-03
+## 88  19.090 628.34 19.1609875 0.02259820 -7.098748e-02
+## 89  16.062 253.24 16.1395756 0.01902599 -7.757559e-02
+## 90  16.337 273.13 16.3892160 0.02262455 -5.221599e-02
+## 91  16.345 273.66 16.3956097 0.02268052 -5.060973e-02
+## 92  16.388 282.10 16.4926643 0.02260402 -1.046643e-01
+## 93  17.159 346.62 17.0882502 0.01830996  7.074984e-02
+## 94  17.116 347.19 17.0930759 0.01837768  2.292413e-02
+## 95  17.164 348.78 17.1065650 0.01870251  5.743503e-02
+## 96  17.123 351.18 17.1271492 0.01934207 -4.149195e-03
+## 97  17.979 450.10 17.9490269 0.02201781  2.997309e-02
+## 98  17.974 450.35 17.9507714 0.02204810  2.322857e-02
+## 99  18.007 451.92 17.9616731 0.02219872  4.532692e-02
+## 100 17.993 455.56 17.9865023 0.02238314  6.497679e-03
+## 101 18.523 552.22 18.6450517 0.02125465 -1.220517e-01
+## 102 18.669 553.56 18.6552772 0.02147989  1.372284e-02
+## 103 18.617 555.74 18.6717598 0.02187462 -5.475980e-02
+## 104 19.371 652.59 19.3156329 0.02348120  5.536710e-02
+## 105 19.330 656.20 19.3403259 0.02347526 -1.032591e-02
+## 106  0.080  14.13 -0.2493998 0.04620251  3.293998e-01
+## 107  0.248  20.41  0.2334920 0.03031239  1.450797e-02
+## 108  1.089  31.30  1.2980967 0.01809055 -2.090967e-01
+## 109  1.418  33.84  1.5885439 0.01783812 -1.705439e-01
+## 110  2.278  39.70  2.3157401 0.01871910 -3.774011e-02
+## 111  3.624  48.83  3.6143394 0.02014915  9.660635e-03
+## 112  4.574  54.50  4.5271268 0.02174540  4.687324e-02
+## 113  5.556  60.41  5.4556488 0.02116604  1.003512e-01
+## 114  7.267  72.77  7.3366019 0.02425223 -6.960186e-02
+## 115  7.695  75.25  7.6639677 0.02337864  3.103232e-02
+## 116  9.136  86.84  9.0681217 0.02259302  6.787825e-02
+## 117  9.959  94.88  9.9042264 0.02241509  5.477360e-02
+## 118  9.957  96.40 10.0532384 0.02243139 -9.623838e-02
+## 119 11.600 117.37 11.7989267 0.02256946 -1.989267e-01
+## 120 13.138 139.08 13.1369635 0.02161945  1.036507e-03
+## 121 13.564 147.73 13.5252987 0.02034951  3.870126e-02
+## 122 13.871 158.63 13.9542333 0.02266416 -8.323330e-02
+## 123 13.994 161.84 14.0732954 0.02256812 -7.929537e-02
+## 124 14.947 192.11 14.9673282 0.02138477 -2.032820e-02
+## 125 15.473 206.76 15.3151149 0.02240447  1.578851e-01
+## 126 15.379 209.07 15.3669923 0.02203888  1.200768e-02
+## 127 15.455 213.32 15.4582440 0.02127550 -3.244012e-03
+## 128 15.908 226.44 15.7159178 0.02202286  1.920822e-01
+## 129 16.114 237.12 15.9010123 0.02219862  2.129877e-01
+## 130 17.071 330.90 16.9488424 0.02178562  1.221576e-01
+## 131 17.135 358.72 17.1902627 0.02080437 -5.526271e-02
+## 132 17.282 370.77 17.2893556 0.02397387 -7.355555e-03
+## 133 17.368 372.72 17.3061323 0.02439585  6.186773e-02
+## 134 17.483 396.24 17.5232072 0.02129821 -4.020717e-02
+## 135 17.764 416.59 17.7051251 0.02251976  5.887493e-02
+## 136 18.185 484.02 18.1732409 0.02658515  1.175908e-02
+## 137 18.271 495.47 18.2487424 0.02413964  2.225757e-02
+## 138 18.236 514.78 18.3751895 0.02146154 -1.391895e-01
+## 139 18.237 515.65 18.3810788 0.02145767 -1.440788e-01
+## 140 18.523 519.47 18.4073027 0.02134191  1.156973e-01
+## 141 18.627 544.47 18.5866978 0.02039557  4.030219e-02
+## 142 18.665 560.11 18.7036081 0.02255376 -3.860805e-02
+## 143 19.086 620.77 19.1146279 0.02451487 -2.862791e-02
+## 144  0.214  18.97  0.1147946 0.03344855  9.920537e-02
+## 145  0.943  28.93  1.0401129 0.01904309 -9.711289e-02
+## 146  1.429  33.91  1.5967118 0.01784020 -1.677118e-01
+## 147  2.241  40.03  2.3592580 0.01878496 -1.182580e-01
+## 148  2.951  44.66  2.9857198 0.01965356 -3.471981e-02
+## 149  3.782  49.87  3.7823568 0.02039192 -3.567609e-04
+## 150  4.757  55.16  4.6280117 0.02177796  1.289883e-01
+## 151  5.602  60.90  5.5345962 0.02115332  6.740384e-02
+## 152  7.169  72.08  7.2438760 0.02434648 -7.487605e-02
+## 153  8.920  85.15  8.8765497 0.02201842  4.345026e-02
+## 154 10.055  97.06 10.1179699 0.02242059 -6.296988e-02
+## 155 12.035 119.63 11.9610696 0.02293092  7.393042e-02
+## 156 12.861 133.27 12.8247261 0.02259458  3.627390e-02
+## 157 13.436 143.84 13.3595004 0.02046845  7.649958e-02
+## 158 14.167 161.91 14.0757601 0.02256296  9.123987e-02
+## 159 14.755 180.67 14.6595578 0.02369360  9.544219e-02
+## 160 15.168 198.44 15.1218205 0.02179637  4.617947e-02
+## 161 15.651 226.86 15.7235686 0.02203213 -7.256862e-02
+## 162 15.746 229.65 15.7734814 0.02211877 -2.748143e-02
+## 163 16.216 258.27 16.2053310 0.01963096  1.066899e-02
+## 164 16.445 273.77 16.3969366 0.02269081  4.806339e-02
+## 165 16.965 339.15 17.0235835 0.01949557 -5.858347e-02
+## 166 17.121 350.13 17.1180966 0.01906644  2.903356e-03
+## 167 17.206 362.75 17.2230444 0.02170905 -1.704439e-02
+## 168 17.250 371.03 17.2915718 0.02403694 -4.157182e-02
+## 169 17.339 393.32 17.4957437 0.02172636 -1.567437e-01
+## 170 17.793 448.53 17.9381365 0.02176832 -1.451365e-01
+## 171 18.123 473.78 18.1056936 0.02501800  1.730638e-02
+## 172 18.490 511.12 18.3506976 0.02148107  1.393024e-01
+## 173 18.566 524.70 18.4442453 0.02066771  1.217547e-01
+## 174 18.645 548.75 18.6185616 0.02078771  2.643841e-02
+## 175 18.706 551.64 18.6406162 0.02116414  6.538383e-02
+## 176 18.924 574.02 18.8012573 0.02328181  1.227427e-01
+## 177 19.100 623.86 19.1337700 0.02369936 -3.377002e-02
+## 178  0.375  21.46  0.3231433 0.02823514  5.185672e-02
+## 179  0.471  24.33  0.5818836 0.02351969 -1.108836e-01
+## 180  1.504  33.43  1.5408606 0.01783466 -3.686060e-02
+## 181  2.204  39.22  2.2528267 0.01862413 -4.882670e-02
+## 182  2.813  44.18  2.9198854 0.01957625 -1.068854e-01
+## 183  4.765  55.02  4.6067413 0.02177754  1.582587e-01
+## 184  9.835  94.33  9.8504461 0.02243031 -1.544608e-02
+## 185 10.040  96.44 10.0571828 0.02243189 -1.718276e-02
+## 186 11.946 118.82 11.9032635 0.02284777  4.273650e-02
+## 187 12.596 128.48 12.5416275 0.02240950  5.437255e-02
+## 188 13.303 141.94 13.2736796 0.02084791  2.932044e-02
+## 189 13.922 156.92 13.8877209 0.02247490  3.427913e-02
+## 190 14.440 171.65 14.3861863 0.02338380  5.381374e-02
+## 191 14.951 190.00 14.9137132 0.02157548  3.728681e-02
+## 192 15.627 223.26 15.6566755 0.02194939 -2.967552e-02
+## 193 15.639 223.88 15.6684179 0.02196806 -2.941790e-02
+## 194 15.814 231.50 15.8057944 0.02219606  8.205561e-03
+## 195 16.315 265.05 16.2908371 0.02136428  2.416293e-02
+## 196 16.334 269.44 16.3453544 0.02207639 -1.135442e-02
+## 197 16.430 271.78 16.3731807 0.02242985  5.681925e-02
+## 198 16.423 273.46 16.3931927 0.02266094  2.980726e-02
+## 199 17.024 334.61 16.9824164 0.02089562  4.158361e-02
+## 200 17.009 339.79 17.0293219 0.01936440 -2.032188e-02
+## 201 17.165 349.52 17.1128736 0.01889826  5.212642e-02
+## 202 17.134 358.18 17.1858476 0.02070164 -5.184756e-02
+## 203 17.349 377.98 17.3528982 0.02471271 -3.898163e-03
+## 204 17.576 394.77 17.5093938 0.02148845  6.660620e-02
+## 205 17.848 429.66 17.8054024 0.02132226  4.259762e-02
+## 206 18.090 468.22 18.0696956 0.02364603  2.030442e-02
+## 207 18.276 487.27 18.1949994 0.02624330  8.100057e-02
+## 208 18.404 519.54 18.4077893 0.02133746 -3.789293e-03
+## 209 18.519 523.03 18.4323559 0.02096056  8.664405e-02
+## 210 19.133 612.99 19.0653124 0.02580219  6.768757e-02
+## 211 19.074 638.59 19.2230166 0.02234591 -1.490166e-01
+## 212 19.239 641.36 19.2403795 0.02270688 -1.379523e-03
+## 213 19.280 622.05 19.1225896 0.02419340  1.574104e-01
+## 214 19.101 631.50 19.1799682 0.02215217 -7.896818e-02
+## 215 19.398 663.97 19.3936246 0.02323551  4.375380e-03
+## 216 19.252 646.90 19.2767622 0.02330845 -2.476219e-02
+## 217 19.890 748.29 20.0192002 0.02557545 -1.292002e-01
+## 218 20.007 749.21 20.0268252 0.02554427 -1.982522e-02
+## 219 19.929 750.14 20.0345476 0.02551122 -1.055476e-01
+## 220 19.268 647.04 19.2777172 0.02331586 -9.717234e-03
+## 221 19.324 646.89 19.2766941 0.02330790  4.730595e-02
+## 222 20.049 746.90 20.0077110 0.02561713  4.128896e-02
+## 223 20.107 748.43 20.0203596 0.02557081  8.664040e-02
+## 224 20.062 747.35 20.0114251 0.02560513  5.057491e-02
+## 225 20.065 749.27 20.0273230 0.02554218  3.767700e-02
+## 226 19.286 647.61 19.2816098 0.02334364  4.390250e-03
+## 227 19.972 747.78 20.0149794 0.02559209 -4.297938e-02
+## 228 20.088 750.51 20.0376239 0.02549766  5.037605e-02
+## 229 20.743 851.37 20.9648418 0.03249677 -2.218418e-01
+## 230 20.830 845.97 20.9105761 0.03024912 -8.057613e-02
+## 231 20.935 847.54 20.9262958 0.03086868  8.704217e-03
+## 232 21.035 849.93 20.9503176 0.03186570  8.468244e-02
+## 233 20.930 851.61 20.9672661 0.03260409 -3.726611e-02
+## 234 21.074 849.75 20.9485047 0.03178839  1.254953e-01
+## 235 21.085 850.98 20.9609045 0.03232366  1.240955e-01
+## 236 20.935 848.23 20.9332198 0.03114992  1.780210e-03</code></pre>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="kw">augment</span>(mloess_Cu)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb281-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(temp_K, .resid)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb281-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept=</span><span class="dv">0</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb281-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept=</span><span class="op">+</span><span class="dv">2</span><span class="op">*</span>(<span class="fl">0.09</span>)), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb281-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept=</span><span class="op">-</span><span class="dv">2</span><span class="op">*</span>(<span class="fl">0.09</span>)), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb281-6" data-line-number="6"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Thermal Expansion of Copper Residuals (LOESS)&quot;</span>, <span class="dt">subtitle =</span> <span class="st">&quot;+/- 2(Residual Statndard Error)&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-118-1.png" width="672" /></p>
+<p>The C/C is slightly bette, but rquired signifiantly more work.</p>
+<hr />
+<hr />
+</div>
+<div id="progaming-with-case_when" class="section level4">
+<h4><span class="header-section-number">4.3.4.5</span> Progaming with <code>case_when()</code></h4>
+<p>Looking at the orginal data set, we can see that there are two sets of data. We might want to label these as “run1” and “run2.” we could do this in Excel using an <code>IF()</code> function. In the <strong>tidyverse</strong>, we can use the <code>case_when()</code> function.</p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" data-line-number="1">load_cell_fit_<span class="dv">2</span></a></code></pre></div>
+<pre><code>##    Deflection    Load Load_squared   .fitted      .se.fit        .resid
+## 1     0.11019  150000   2.2500e+10 0.1104113 8.834303e-05 -2.213214e-04
+## 2     0.21956  300000   9.0000e+10 0.2200068 7.185366e-05 -4.468402e-04
+## 3     0.32949  450000   2.0250e+11 0.3294601 5.888246e-05  2.987782e-05
+## 4     0.43899  600000   3.6000e+11 0.4387712 4.986859e-05  2.188327e-04
+## 5     0.54803  750000   5.6250e+11 0.5479400 4.495244e-05  9.002444e-05
+## 6     0.65694  900000   8.1000e+11 0.6569665 4.354343e-05 -2.654699e-05
+## 7     0.76562 1050000   1.1025e+12 0.7658509 4.437259e-05 -2.308816e-04
+## 8     0.87487 1200000   1.4400e+12 0.8745930 4.609026e-05  2.770207e-04
+## 9     0.98292 1350000   1.8225e+12 0.9831928 4.770597e-05 -2.728402e-04
+## 10    1.09146 1500000   2.2500e+12 1.0916505 4.864177e-05 -1.904643e-04
+## 11    1.20001 1650000   2.7225e+12 1.1999659 4.864177e-05  4.414850e-05
+## 12    1.30822 1800000   3.2400e+12 1.3081390 4.770597e-05  8.099812e-05
+## 13    1.41599 1950000   3.8025e+12 1.4161699 4.609026e-05 -1.799154e-04
+## 14    1.52399 2100000   4.4100e+12 1.5240586 4.437259e-05 -6.859211e-05
+## 15    1.63194 2250000   5.0625e+12 1.6318050 4.354343e-05  1.349680e-04
+## 16    1.73947 2400000   5.7600e+12 1.7394092 4.495244e-05  6.076504e-05
+## 17    1.84646 2550000   6.5025e+12 1.8468712 4.986859e-05 -4.112011e-04
+## 18    1.95392 2700000   7.2900e+12 1.9541909 5.888246e-05 -2.709305e-04
+## 19    2.06128 2850000   8.1225e+12 2.0613684 7.185366e-05 -8.842293e-05
+## 20    2.16844 3000000   9.0000e+12 2.1684037 8.834303e-05  3.632143e-05
+## 21    0.11052  150000   2.2500e+10 0.1104113 8.834303e-05  1.086786e-04
+## 22    0.22018  300000   9.0000e+10 0.2200068 7.185366e-05  1.731598e-04
+## 23    0.32939  450000   2.0250e+11 0.3294601 5.888246e-05 -7.012218e-05
+## 24    0.43886  600000   3.6000e+11 0.4387712 4.986859e-05  8.883271e-05
+## 25    0.54798  750000   5.6250e+11 0.5479400 4.495244e-05  4.002444e-05
+## 26    0.65739  900000   8.1000e+11 0.6569665 4.354343e-05  4.234530e-04
+## 27    0.76596 1050000   1.1025e+12 0.7658509 4.437259e-05  1.091184e-04
+## 28    0.87474 1200000   1.4400e+12 0.8745930 4.609026e-05  1.470207e-04
+## 29    0.98300 1350000   1.8225e+12 0.9831928 4.770597e-05 -1.928402e-04
+## 30    1.09150 1500000   2.2500e+12 1.0916505 4.864177e-05 -1.504643e-04
+## 31    1.20004 1650000   2.7225e+12 1.1999659 4.864177e-05  7.414850e-05
+## 32    1.30818 1800000   3.2400e+12 1.3081390 4.770597e-05  4.099812e-05
+## 33    1.41613 1950000   3.8025e+12 1.4161699 4.609026e-05 -3.991541e-05
+## 34    1.52408 2100000   4.4100e+12 1.5240586 4.437259e-05  2.140789e-05
+## 35    1.63159 2250000   5.0625e+12 1.6318050 4.354343e-05 -2.150320e-04
+## 36    1.73965 2400000   5.7600e+12 1.7394092 4.495244e-05  2.407650e-04
+## 37    1.84696 2550000   6.5025e+12 1.8468712 4.986859e-05  8.879887e-05
+## 38    1.95445 2700000   7.2900e+12 1.9541909 5.888246e-05  2.590695e-04
+## 39    2.06177 2850000   8.1225e+12 2.0613684 7.185366e-05  4.015771e-04
+## 40    2.16829 3000000   9.0000e+12 2.1684037 8.834303e-05 -1.136786e-04
+##          .hat       .sigma      .cooksd .std.resid
+## 1  0.18538961 0.0002039531 0.1083557670 -1.1951404
+## 2  0.12264183 0.0001922123 0.2518888277 -2.3250603
+## 3  0.08235931 0.0002079426 0.0006913290  0.1520138
+## 4  0.05907382 0.0002045811 0.0253004370  1.0995244
+## 5  0.04800068 0.0002074384 0.0033987136  0.4496893
+## 6  0.04503873 0.0002079583 0.0002755909 -0.1324015
+## 7  0.04677033 0.0002042395 0.0217256885 -1.1525531
+## 8  0.05046138 0.0002025394 0.0340077449  1.3855631
+## 9  0.05406129 0.0002026849 0.0356120360 -1.3672481
+## 10 0.05620301 0.0002054251 0.0181237925 -0.9555308
+## 11 0.05620301 0.0002078697 0.0009737642  0.2214864
+## 12 0.05406129 0.0002075440 0.0031385560  0.4058952
+## 13 0.05046138 0.0002057188 0.0143446582 -0.8998756
+## 14 0.04677033 0.0002076778 0.0019175348 -0.3424095
+## 15 0.04503873 0.0002067300 0.0071235449  0.6731448
+## 16 0.04800068 0.0002077485 0.0015484646  0.3035330
+## 17 0.05907382 0.0001956411 0.0893330479 -2.0660791
+## 18 0.08235931 0.0002025961 0.0568463516 -1.3784528
+## 19 0.12264183 0.0002074117 0.0098635717 -0.4600943
+## 20 0.18538961 0.0002078994 0.0029183068  0.1961365
+## 21 0.18538961 0.0002070372 0.0261272044  0.5868666
+## 22 0.12264183 0.0002057130 0.0378266955  0.9010087
+## 23 0.08235931 0.0002076495 0.0038080074 -0.3567710
+## 24 0.05907382 0.0002074468 0.0041691675  0.4463397
+## 25 0.04800068 0.0002078952 0.0006718065  0.1999297
+## 26 0.04503873 0.0001950675 0.0701204501  2.1119458
+## 27 0.04677033 0.0002071719 0.0048527858  0.5447155
+## 28 0.05046138 0.0002064820 0.0095787822  0.7353473
+## 29 0.05406129 0.0002053659 0.0177899720 -0.9663547
+## 30 0.05620301 0.0002063997 0.0113106830 -0.7548568
+## 31 0.05620301 0.0002076183 0.0027467977  0.3719919
+## 32 0.05406129 0.0002078889 0.0008040960  0.2054485
+## 33 0.05046138 0.0002078955 0.0007060488 -0.1996433
+## 34 0.04677033 0.0002079755 0.0001867854  0.1068675
+## 35 0.04503873 0.0002047490 0.0180817416 -1.0724586
+## 36 0.04800068 0.0002039013 0.0243097555  1.2026674
+## 37 0.05907382 0.0002074473 0.0041659922  0.4461697
+## 38 0.08235931 0.0002030652 0.0519780155  1.3181064
+## 39 0.12264183 0.0001953495 0.2034427365  2.0895409
+## 40 0.18538961 0.0002069456 0.0285865876 -0.6138667</code></pre>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" data-line-number="1">load_cell_fit_<span class="dv">2</span>_runs &lt;-<span class="st"> </span>load_cell_fit_<span class="dv">2</span> <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb284-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb284-3" data-line-number="3">    <span class="dt">run =</span> <span class="kw">case_when</span>(<span class="kw">seq_along</span>(Load) <span class="op">&lt;=</span><span class="st"> </span><span class="dv">20</span> <span class="op">~</span><span class="st"> &quot;run1&quot;</span>, </a>
+<a class="sourceLine" id="cb284-4" data-line-number="4">                    <span class="kw">seq_along</span>(Load) <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span> <span class="op">~</span><span class="st"> &quot;run2&quot;</span>))</a>
+<a class="sourceLine" id="cb284-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb284-6" data-line-number="6">load_cell_fit_<span class="dv">2</span>_runs</a></code></pre></div>
+<pre><code>##    Deflection    Load Load_squared   .fitted      .se.fit        .resid
+## 1     0.11019  150000   2.2500e+10 0.1104113 8.834303e-05 -2.213214e-04
+## 2     0.21956  300000   9.0000e+10 0.2200068 7.185366e-05 -4.468402e-04
+## 3     0.32949  450000   2.0250e+11 0.3294601 5.888246e-05  2.987782e-05
+## 4     0.43899  600000   3.6000e+11 0.4387712 4.986859e-05  2.188327e-04
+## 5     0.54803  750000   5.6250e+11 0.5479400 4.495244e-05  9.002444e-05
+## 6     0.65694  900000   8.1000e+11 0.6569665 4.354343e-05 -2.654699e-05
+## 7     0.76562 1050000   1.1025e+12 0.7658509 4.437259e-05 -2.308816e-04
+## 8     0.87487 1200000   1.4400e+12 0.8745930 4.609026e-05  2.770207e-04
+## 9     0.98292 1350000   1.8225e+12 0.9831928 4.770597e-05 -2.728402e-04
+## 10    1.09146 1500000   2.2500e+12 1.0916505 4.864177e-05 -1.904643e-04
+## 11    1.20001 1650000   2.7225e+12 1.1999659 4.864177e-05  4.414850e-05
+## 12    1.30822 1800000   3.2400e+12 1.3081390 4.770597e-05  8.099812e-05
+## 13    1.41599 1950000   3.8025e+12 1.4161699 4.609026e-05 -1.799154e-04
+## 14    1.52399 2100000   4.4100e+12 1.5240586 4.437259e-05 -6.859211e-05
+## 15    1.63194 2250000   5.0625e+12 1.6318050 4.354343e-05  1.349680e-04
+## 16    1.73947 2400000   5.7600e+12 1.7394092 4.495244e-05  6.076504e-05
+## 17    1.84646 2550000   6.5025e+12 1.8468712 4.986859e-05 -4.112011e-04
+## 18    1.95392 2700000   7.2900e+12 1.9541909 5.888246e-05 -2.709305e-04
+## 19    2.06128 2850000   8.1225e+12 2.0613684 7.185366e-05 -8.842293e-05
+## 20    2.16844 3000000   9.0000e+12 2.1684037 8.834303e-05  3.632143e-05
+## 21    0.11052  150000   2.2500e+10 0.1104113 8.834303e-05  1.086786e-04
+## 22    0.22018  300000   9.0000e+10 0.2200068 7.185366e-05  1.731598e-04
+## 23    0.32939  450000   2.0250e+11 0.3294601 5.888246e-05 -7.012218e-05
+## 24    0.43886  600000   3.6000e+11 0.4387712 4.986859e-05  8.883271e-05
+## 25    0.54798  750000   5.6250e+11 0.5479400 4.495244e-05  4.002444e-05
+## 26    0.65739  900000   8.1000e+11 0.6569665 4.354343e-05  4.234530e-04
+## 27    0.76596 1050000   1.1025e+12 0.7658509 4.437259e-05  1.091184e-04
+## 28    0.87474 1200000   1.4400e+12 0.8745930 4.609026e-05  1.470207e-04
+## 29    0.98300 1350000   1.8225e+12 0.9831928 4.770597e-05 -1.928402e-04
+## 30    1.09150 1500000   2.2500e+12 1.0916505 4.864177e-05 -1.504643e-04
+## 31    1.20004 1650000   2.7225e+12 1.1999659 4.864177e-05  7.414850e-05
+## 32    1.30818 1800000   3.2400e+12 1.3081390 4.770597e-05  4.099812e-05
+## 33    1.41613 1950000   3.8025e+12 1.4161699 4.609026e-05 -3.991541e-05
+## 34    1.52408 2100000   4.4100e+12 1.5240586 4.437259e-05  2.140789e-05
+## 35    1.63159 2250000   5.0625e+12 1.6318050 4.354343e-05 -2.150320e-04
+## 36    1.73965 2400000   5.7600e+12 1.7394092 4.495244e-05  2.407650e-04
+## 37    1.84696 2550000   6.5025e+12 1.8468712 4.986859e-05  8.879887e-05
+## 38    1.95445 2700000   7.2900e+12 1.9541909 5.888246e-05  2.590695e-04
+## 39    2.06177 2850000   8.1225e+12 2.0613684 7.185366e-05  4.015771e-04
+## 40    2.16829 3000000   9.0000e+12 2.1684037 8.834303e-05 -1.136786e-04
+##          .hat       .sigma      .cooksd .std.resid  run
+## 1  0.18538961 0.0002039531 0.1083557670 -1.1951404 run1
+## 2  0.12264183 0.0001922123 0.2518888277 -2.3250603 run1
+## 3  0.08235931 0.0002079426 0.0006913290  0.1520138 run1
+## 4  0.05907382 0.0002045811 0.0253004370  1.0995244 run1
+## 5  0.04800068 0.0002074384 0.0033987136  0.4496893 run1
+## 6  0.04503873 0.0002079583 0.0002755909 -0.1324015 run1
+## 7  0.04677033 0.0002042395 0.0217256885 -1.1525531 run1
+## 8  0.05046138 0.0002025394 0.0340077449  1.3855631 run1
+## 9  0.05406129 0.0002026849 0.0356120360 -1.3672481 run1
+## 10 0.05620301 0.0002054251 0.0181237925 -0.9555308 run1
+## 11 0.05620301 0.0002078697 0.0009737642  0.2214864 run1
+## 12 0.05406129 0.0002075440 0.0031385560  0.4058952 run1
+## 13 0.05046138 0.0002057188 0.0143446582 -0.8998756 run1
+## 14 0.04677033 0.0002076778 0.0019175348 -0.3424095 run1
+## 15 0.04503873 0.0002067300 0.0071235449  0.6731448 run1
+## 16 0.04800068 0.0002077485 0.0015484646  0.3035330 run1
+## 17 0.05907382 0.0001956411 0.0893330479 -2.0660791 run1
+## 18 0.08235931 0.0002025961 0.0568463516 -1.3784528 run1
+## 19 0.12264183 0.0002074117 0.0098635717 -0.4600943 run1
+## 20 0.18538961 0.0002078994 0.0029183068  0.1961365 run1
+## 21 0.18538961 0.0002070372 0.0261272044  0.5868666 run2
+## 22 0.12264183 0.0002057130 0.0378266955  0.9010087 run2
+## 23 0.08235931 0.0002076495 0.0038080074 -0.3567710 run2
+## 24 0.05907382 0.0002074468 0.0041691675  0.4463397 run2
+## 25 0.04800068 0.0002078952 0.0006718065  0.1999297 run2
+## 26 0.04503873 0.0001950675 0.0701204501  2.1119458 run2
+## 27 0.04677033 0.0002071719 0.0048527858  0.5447155 run2
+## 28 0.05046138 0.0002064820 0.0095787822  0.7353473 run2
+## 29 0.05406129 0.0002053659 0.0177899720 -0.9663547 run2
+## 30 0.05620301 0.0002063997 0.0113106830 -0.7548568 run2
+## 31 0.05620301 0.0002076183 0.0027467977  0.3719919 run2
+## 32 0.05406129 0.0002078889 0.0008040960  0.2054485 run2
+## 33 0.05046138 0.0002078955 0.0007060488 -0.1996433 run2
+## 34 0.04677033 0.0002079755 0.0001867854  0.1068675 run2
+## 35 0.04503873 0.0002047490 0.0180817416 -1.0724586 run2
+## 36 0.04800068 0.0002039013 0.0243097555  1.2026674 run2
+## 37 0.05907382 0.0002074473 0.0041659922  0.4461697 run2
+## 38 0.08235931 0.0002030652 0.0519780155  1.3181064 run2
+## 39 0.12264183 0.0001953495 0.2034427365  2.0895409 run2
+## 40 0.18538961 0.0002069456 0.0285865876 -0.6138667 run2</code></pre>
+</div>
+<div id="eda-of-load-cell-data-by-run" class="section level4">
+<h4><span class="header-section-number">4.3.4.6</span> EDA of load cell data by run</h4>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb286-1" data-line-number="1"><span class="kw">ggplot</span>(load_cell_fit_<span class="dv">2</span>_runs) <span class="op">+</span></a>
+<a class="sourceLine" id="cb286-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(Load, .resid, <span class="dt">colour =</span> run)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb286-3" data-line-number="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Residuals from refined model of the load cell&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb286-4" data-line-number="4"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-120-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+<div id="applying-models-to-multiple-datasets" class="section level2">
+<h2><span class="header-section-number">4.4</span> Applying models to multiple datasets</h2>
+<div id="revisting-the-ascombe-dataset" class="section level3">
+<h3><span class="header-section-number">4.4.1</span> Revisting the Ascombe dataset</h3>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" data-line-number="1">x_anscombe &lt;-<span class="st"> </span>anscombe <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># results will be storred into a new object x_anscombe; we start with the original data frame &quot;anscombe&quot;</span></a>
+<a class="sourceLine" id="cb287-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(x1, x2, x3, x4) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># select the columns we want to work with</span></a>
+<a class="sourceLine" id="cb287-3" data-line-number="3"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">group1 =</span> x1, <span class="dt">group2 =</span> x2, <span class="dt">group3 =</span> x3, <span class="dt">group4 =</span> x4) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># rename the values using a generic header</span></a>
+<a class="sourceLine" id="cb287-4" data-line-number="4"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> group, <span class="dt">value =</span> x_values, group1, group2, group3, group4) <span class="co"># gather the columns into rows</span></a>
+<a class="sourceLine" id="cb287-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb287-6" data-line-number="6">x_anscombe</a></code></pre></div>
+<pre><code>##     group x_values
+## 1  group1       10
+## 2  group1        8
+## 3  group1       13
+## 4  group1        9
+## 5  group1       11
+## 6  group1       14
+## 7  group1        6
+## 8  group1        4
+## 9  group1       12
+## 10 group1        7
+## 11 group1        5
+## 12 group2       10
+## 13 group2        8
+## 14 group2       13
+## 15 group2        9
+## 16 group2       11
+## 17 group2       14
+## 18 group2        6
+## 19 group2        4
+## 20 group2       12
+## 21 group2        7
+## 22 group2        5
+## 23 group3       10
+## 24 group3        8
+## 25 group3       13
+## 26 group3        9
+## 27 group3       11
+## 28 group3       14
+## 29 group3        6
+## 30 group3        4
+## 31 group3       12
+## 32 group3        7
+## 33 group3        5
+## 34 group4        8
+## 35 group4        8
+## 36 group4        8
+## 37 group4        8
+## 38 group4        8
+## 39 group4        8
+## 40 group4        8
+## 41 group4       19
+## 42 group4        8
+## 43 group4        8
+## 44 group4        8</code></pre>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" data-line-number="1">y_anscombe &lt;-<span class="st"> </span>anscombe <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb289-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(y1, y2, y3, y4) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb289-3" data-line-number="3"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> group, <span class="dt">value =</span> y_values, y1, y2, y3, y4) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># I don&#39;t need to rename the columns as I will discard them (I only need one column to indicate the group number)</span></a>
+<a class="sourceLine" id="cb289-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(y_values)</a>
+<a class="sourceLine" id="cb289-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb289-6" data-line-number="6">y_anscombe</a></code></pre></div>
+<pre><code>##    y_values
+## 1      8.04
+## 2      6.95
+## 3      7.58
+## 4      8.81
+## 5      8.33
+## 6      9.96
+## 7      7.24
+## 8      4.26
+## 9     10.84
+## 10     4.82
+## 11     5.68
+## 12     9.14
+## 13     8.14
+## 14     8.74
+## 15     8.77
+## 16     9.26
+## 17     8.10
+## 18     6.13
+## 19     3.10
+## 20     9.13
+## 21     7.26
+## 22     4.74
+## 23     7.46
+## 24     6.77
+## 25    12.74
+## 26     7.11
+## 27     7.81
+## 28     8.84
+## 29     6.08
+## 30     5.39
+## 31     8.15
+## 32     6.42
+## 33     5.73
+## 34     6.58
+## 35     5.76
+## 36     7.71
+## 37     8.84
+## 38     8.47
+## 39     7.04
+## 40     5.25
+## 41    12.50
+## 42     5.56
+## 43     7.91
+## 44     6.89</code></pre>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" data-line-number="1">anscombe_tidy &lt;-<span class="st"> </span><span class="kw">bind_cols</span>(x_anscombe, y_anscombe)</a>
+<a class="sourceLine" id="cb291-2" data-line-number="2">anscombe_tidy</a></code></pre></div>
+<pre><code>##     group x_values y_values
+## 1  group1       10     8.04
+## 2  group1        8     6.95
+## 3  group1       13     7.58
+## 4  group1        9     8.81
+## 5  group1       11     8.33
+## 6  group1       14     9.96
+## 7  group1        6     7.24
+## 8  group1        4     4.26
+## 9  group1       12    10.84
+## 10 group1        7     4.82
+## 11 group1        5     5.68
+## 12 group2       10     9.14
+## 13 group2        8     8.14
+## 14 group2       13     8.74
+## 15 group2        9     8.77
+## 16 group2       11     9.26
+## 17 group2       14     8.10
+## 18 group2        6     6.13
+## 19 group2        4     3.10
+## 20 group2       12     9.13
+## 21 group2        7     7.26
+## 22 group2        5     4.74
+## 23 group3       10     7.46
+## 24 group3        8     6.77
+## 25 group3       13    12.74
+## 26 group3        9     7.11
+## 27 group3       11     7.81
+## 28 group3       14     8.84
+## 29 group3        6     6.08
+## 30 group3        4     5.39
+## 31 group3       12     8.15
+## 32 group3        7     6.42
+## 33 group3        5     5.73
+## 34 group4        8     6.58
+## 35 group4        8     5.76
+## 36 group4        8     7.71
+## 37 group4        8     8.84
+## 38 group4        8     8.47
+## 39 group4        8     7.04
+## 40 group4        8     5.25
+## 41 group4       19    12.50
+## 42 group4        8     5.56
+## 43 group4        8     7.91
+## 44 group4        8     6.89</code></pre>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb293-1" data-line-number="1"><span class="kw">ggplot</span>(anscombe_tidy, <span class="kw">aes</span>(x_values, y_values)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb293-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> group))</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
+<p>In chapter 1, we constructed models for each group; however, for large datasets, we’d like to be able to streamline this process.</p>
+<p>Following the example from chapter 11 of Hadley Wickham:</p>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" data-line-number="1">anscombe_models &lt;-<span class="st"> </span>anscombe_tidy <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb294-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(group) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb294-3" data-line-number="3"><span class="st">  </span><span class="kw">do</span>(<span class="dt">mod =</span> <span class="kw">lm</span>(y_values <span class="op">~</span><span class="st"> </span>x_values, <span class="dt">data =</span> ., <span class="dt">na.action =</span> na.exclude</a>
+<a class="sourceLine" id="cb294-4" data-line-number="4">     )) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb294-5" data-line-number="5"><span class="st">  </span><span class="kw">ungroup</span>()</a>
+<a class="sourceLine" id="cb294-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb294-7" data-line-number="7">anscombe_models</a></code></pre></div>
+<pre><code>## # A tibble: 4 x 2
+##   group  mod     
+## * &lt;chr&gt;  &lt;list&gt;  
+## 1 group1 &lt;S3: lm&gt;
+## 2 group2 &lt;S3: lm&gt;
+## 3 group3 &lt;S3: lm&gt;
+## 4 group4 &lt;S3: lm&gt;</code></pre>
+</div>
+<div id="model-level-summaries" class="section level3">
+<h3><span class="header-section-number">4.4.2</span> Model-level summaries</h3>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb296-1" data-line-number="1">model_summary &lt;-<span class="st"> </span>anscombe_models <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb296-2" data-line-number="2"><span class="st">  </span><span class="kw">rowwise</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb296-3" data-line-number="3"><span class="st">  </span><span class="kw">glance</span>(mod)</a>
+<a class="sourceLine" id="cb296-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb296-5" data-line-number="5">model_summary</a></code></pre></div>
+<pre><code>## # A tibble: 4 x 12
+## # Groups:   group [4]
+##   group r.squared adj.r.squared sigma statistic p.value    df logLik   AIC
+##   &lt;chr&gt;     &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1 grou…     0.667         0.629  1.24      18.0 0.00217     2  -16.8  39.7
+## 2 grou…     0.666         0.629  1.24      18.0 0.00218     2  -16.8  39.7
+## 3 grou…     0.666         0.629  1.24      18.0 0.00218     2  -16.8  39.7
+## 4 grou…     0.667         0.630  1.24      18.0 0.00216     2  -16.8  39.7
+## # ... with 3 more variables: BIC &lt;dbl&gt;, deviance &lt;dbl&gt;, df.residual &lt;int&gt;</code></pre>
+</div>
+<div id="coefficient-level-summaries" class="section level3">
+<h3><span class="header-section-number">4.4.3</span> Coefficient-level summaries</h3>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" data-line-number="1">coefficient_summary &lt;-<span class="st"> </span>anscombe_models <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb298-2" data-line-number="2"><span class="st">  </span><span class="kw">rowwise</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb298-3" data-line-number="3"><span class="st">  </span><span class="kw">tidy</span>(mod)</a>
+<a class="sourceLine" id="cb298-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb298-5" data-line-number="5">coefficient_summary</a></code></pre></div>
+<pre><code>## # A tibble: 8 x 6
+## # Groups:   group [4]
+##   group  term        estimate std.error statistic p.value
+##   &lt;chr&gt;  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 group1 (Intercept)    3.00      1.12       2.67 0.0257 
+## 2 group1 x_values       0.500     0.118      4.24 0.00217
+## 3 group2 (Intercept)    3.00      1.13       2.67 0.0258 
+## 4 group2 x_values       0.500     0.118      4.24 0.00218
+## 5 group3 (Intercept)    3.00      1.12       2.67 0.0256 
+## 6 group3 x_values       0.500     0.118      4.24 0.00218
+## 7 group4 (Intercept)    3.00      1.12       2.67 0.0256 
+## 8 group4 x_values       0.500     0.118      4.24 0.00216</code></pre>
+</div>
+<div id="observation-data" class="section level3">
+<h3><span class="header-section-number">4.4.4</span> Observation Data</h3>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" data-line-number="1">observation_summary &lt;-<span class="st"> </span>anscombe_models <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb300-2" data-line-number="2"><span class="st">  </span><span class="kw">rowwise</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb300-3" data-line-number="3"><span class="st">  </span><span class="kw">augment</span>(mod)</a>
+<a class="sourceLine" id="cb300-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb300-5" data-line-number="5">observation_summary</a></code></pre></div>
+<pre><code>## # A tibble: 44 x 10
+## # Groups:   group [4]
+##    group  y_values x_values .fitted .se.fit  .resid   .hat .sigma  .cooksd
+##    &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
+##  1 group1     8.04      10.    8.00   0.391  0.0390 0.100    1.31  6.14e-5
+##  2 group1     6.95       8.    7.00   0.391 -0.0508 0.100    1.31  1.04e-4
+##  3 group1     7.58      13.    9.50   0.601 -1.92   0.236    1.06  4.89e-1
+##  4 group1     8.81       9.    7.50   0.373  1.31   0.0909   1.22  6.16e-2
+##  5 group1     8.33      11.    8.50   0.441 -0.171  0.127    1.31  1.60e-3
+##  6 group1     9.96      14.   10.0    0.698 -0.0414 0.318    1.31  3.83e-4
+##  7 group1     7.24       6.    6.00   0.514  1.24   0.173    1.22  1.27e-1
+##  8 group1     4.26       4.    5.00   0.698 -0.740  0.318    1.27  1.23e-1
+##  9 group1    10.8       12.    9.00   0.514  1.84   0.173    1.10  2.79e-1
+## 10 group1     4.82       7.    6.50   0.441 -1.68   0.127    1.15  1.54e-1
+## # ... with 34 more rows, and 1 more variable: .std.resid &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" data-line-number="1"><span class="kw">ggplot</span>(observation_summary, <span class="kw">aes</span>(.se.fit, <span class="dt">fill =</span> group)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb302-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">50</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb302-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>group)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
+<p>Having model information for each dataset can make the overall analysis much more efficient.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="production-process-characterization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="process-improvment.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/RayJamesHoobler/Applied-Statistical-Techniques/edit/master/04-modeling.Rmd",
+"text": "Edit"
+},
+"download": ["exercises_and_case_studies.pdf", "exercises_and_case_studies.epub"],
+"toc": {
+"collapse": "subsection"
+},
+"toolbar": {
+"position": "fixed"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

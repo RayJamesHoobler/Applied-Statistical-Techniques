@@ -7,6 +7,12 @@ bookdown::gitbook:
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
     download: ["pdf", "epub"]
+    toolbar:
+      position: fixed
+    edit: https://github.com/RayJamesHoobler/Applied-Statistical-Techniques/edit/master/%s
+    sharing:
+      github: yes
+      facebook: no
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex

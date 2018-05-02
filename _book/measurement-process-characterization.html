@@ -12,7 +12,7 @@
   <meta property="og:title" content="An Incomplete Solutions Guide to the NIST/SEMATECH e-Handbook of Statistical Methods" />
   <meta property="og:type" content="book" />
   
-  
+  <meta property="og:image" content="Applied Statistical Techniques.png" />
   <meta property="og:description" content="This handbook was created using the bookdown package in RStudio. The output format for this example is bookdown::gitbook." />
   
 
@@ -20,12 +20,12 @@
   <meta name="twitter:title" content="An Incomplete Solutions Guide to the NIST/SEMATECH e-Handbook of Statistical Methods" />
   
   <meta name="twitter:description" content="This handbook was created using the bookdown package in RStudio. The output format for this example is bookdown::gitbook." />
-  
+  <meta name="twitter:image" content="Applied Statistical Techniques.png" />
 
 <meta name="author" content="Ray Hoobler">
 
 
-<meta name="date" content="2018-04-19">
+<meta name="date" content="2018-05-02">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="EDA.html">
-<link rel="next" href="methods.html">
+<link rel="next" href="production-process-characterization.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -135,7 +135,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#structure-of-the-book"><i class="fa fa-check"></i>Structure of the book</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#software-information-and-conventsions"><i class="fa fa-check"></i>Software information and conventsions</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
-<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#simple-programing-examples"><i class="fa fa-check"></i><b>0.1</b> Simple Programing Examples</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="EDA.html"><a href="EDA.html"><i class="fa fa-check"></i><b>1</b> Exploratory Data Analysis</a><ul>
 <li class="chapter" data-level="1.1" data-path="EDA.html"><a href="EDA.html#a-eda-example"><i class="fa fa-check"></i><b>1.1</b> A EDA Example</a></li>
@@ -153,22 +152,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html"><i class="fa fa-check"></i><b>2</b> Measurement Process Characterization</a><ul>
-<li class="chapter" data-level="2.1" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#characterization"><i class="fa fa-check"></i><b>2.1</b> Characterization</a></li>
-<li class="chapter" data-level="2.2" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#gauge-r-r-studies"><i class="fa fa-check"></i><b>2.2</b> Gauge R &amp; R studies</a></li>
-<li class="chapter" data-level="2.3" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#case-studies"><i class="fa fa-check"></i><b>2.3</b> Case Studies</a><ul>
-<li class="chapter" data-level="2.3.1" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#check-standard"><i class="fa fa-check"></i><b>2.3.1</b> Check standard</a></li>
-<li class="chapter" data-level="2.3.2" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#gauge-study"><i class="fa fa-check"></i><b>2.3.2</b> Gauge study</a></li>
+<li class="chapter" data-level="2.1" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#packages-used-in-this-chapter"><i class="fa fa-check"></i><b>2.1</b> Packages used in this chapter</a></li>
+<li class="chapter" data-level="2.2" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#characterization"><i class="fa fa-check"></i><b>2.2</b> Characterization</a></li>
+<li class="chapter" data-level="2.3" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#gauge-r-r-studies"><i class="fa fa-check"></i><b>2.3</b> Gauge R &amp; R studies</a></li>
+<li class="chapter" data-level="2.4" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#case-studies"><i class="fa fa-check"></i><b>2.4</b> Case Studies</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#check-standard"><i class="fa fa-check"></i><b>2.4.1</b> Check standard</a></li>
+<li class="chapter" data-level="2.4.2" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#gauge-study"><i class="fa fa-check"></i><b>2.4.2</b> Gauge study</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>3</b> Methods</a></li>
-<li class="chapter" data-level="4" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>4</b> Applications</a><ul>
-<li class="chapter" data-level="4.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>4.1</b> Example one</a></li>
-<li class="chapter" data-level="4.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>4.2</b> Example two</a></li>
+<li class="chapter" data-level="3" data-path="production-process-characterization.html"><a href="production-process-characterization.html"><i class="fa fa-check"></i><b>3</b> Production Process Characterization</a><ul>
+<li class="chapter" data-level="3.1" data-path="production-process-characterization.html"><a href="production-process-characterization.html#pacakges-used-in-this-chapter"><i class="fa fa-check"></i><b>3.1</b> Pacakges used in this chapter</a></li>
+<li class="chapter" data-level="3.2" data-path="production-process-characterization.html"><a href="production-process-characterization.html#case-studies-1"><i class="fa fa-check"></i><b>3.2</b> Case Studies</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="production-process-characterization.html"><a href="production-process-characterization.html#furnace-case-study"><i class="fa fa-check"></i><b>3.2.1</b> Furnace Case Study</a></li>
+<li class="chapter" data-level="3.2.2" data-path="production-process-characterization.html"><a href="production-process-characterization.html#machine-case-study"><i class="fa fa-check"></i><b>3.2.2</b> Machine Case Study</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>5</b> Final Words</a></li>
-<li class="chapter" data-level="6" data-path="final-words-1.html"><a href="final-words-1.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
-<li class="chapter" data-level="7" data-path="final-words-2.html"><a href="final-words-2.html"><i class="fa fa-check"></i><b>7</b> Final Words</a></li>
-<li class="chapter" data-level="8" data-path="final-words-3.html"><a href="final-words-3.html"><i class="fa fa-check"></i><b>8</b> Final Words</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="modeling.html"><a href="modeling.html"><i class="fa fa-check"></i><b>4</b> Modeling</a><ul>
+<li class="chapter" data-level="4.1" data-path="modeling.html"><a href="modeling.html#packages-used-in-this-chapter-1"><i class="fa fa-check"></i><b>4.1</b> Packages used in this chapter</a></li>
+<li class="chapter" data-level="4.2" data-path="modeling.html"><a href="modeling.html#introduction"><i class="fa fa-check"></i><b>4.2</b> Introduction</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="modeling.html"><a href="modeling.html#a-simple-linear-regression-model"><i class="fa fa-check"></i><b>4.2.1</b> A simple linear regression model</a></li>
+<li class="chapter" data-level="4.2.2" data-path="modeling.html"><a href="modeling.html#beyond-the-linear-regression"><i class="fa fa-check"></i><b>4.2.2</b> Beyond the linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="modeling.html"><a href="modeling.html#case-stuidies"><i class="fa fa-check"></i><b>4.3</b> Case Stuidies</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="modeling.html"><a href="modeling.html#load-cell-output"><i class="fa fa-check"></i><b>4.3.1</b> Load cell output</a></li>
+<li class="chapter" data-level="4.3.2" data-path="modeling.html"><a href="modeling.html#thermal-expansion-of-copper"><i class="fa fa-check"></i><b>4.3.2</b> Thermal expansion of copper</a></li>
+<li class="chapter" data-level="4.3.3" data-path="modeling.html"><a href="modeling.html#quadraticquadratic-qq-model"><i class="fa fa-check"></i><b>4.3.3</b> Quadratic/Quadratic (Q/Q) model</a></li>
+<li class="chapter" data-level="4.3.4" data-path="modeling.html"><a href="modeling.html#cubiccubic-rational-function"><i class="fa fa-check"></i><b>4.3.4</b> Cubic/Cubic Rational Function</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="modeling.html"><a href="modeling.html#applying-models-to-multiple-datasets"><i class="fa fa-check"></i><b>4.4</b> Applying models to multiple datasets</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="modeling.html"><a href="modeling.html#revisting-the-ascombe-dataset"><i class="fa fa-check"></i><b>4.4.1</b> Revisting the Ascombe dataset</a></li>
+<li class="chapter" data-level="4.4.2" data-path="modeling.html"><a href="modeling.html#model-level-summaries"><i class="fa fa-check"></i><b>4.4.2</b> Model-level summaries</a></li>
+<li class="chapter" data-level="4.4.3" data-path="modeling.html"><a href="modeling.html#coefficient-level-summaries"><i class="fa fa-check"></i><b>4.4.3</b> Coefficient-level summaries</a></li>
+<li class="chapter" data-level="4.4.4" data-path="modeling.html"><a href="modeling.html#observation-data"><i class="fa fa-check"></i><b>4.4.4</b> Observation Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="process-improvment.html"><a href="process-improvment.html"><i class="fa fa-check"></i><b>5</b> Process Improvment</a><ul>
+<li class="chapter" data-level="5.1" data-path="process-improvment.html"><a href="process-improvment.html#libraries-used-in-this-chapteer"><i class="fa fa-check"></i><b>5.1</b> Libraries used in this chapteer</a></li>
+<li class="chapter" data-level="5.2" data-path="process-improvment.html"><a href="process-improvment.html#case-studies-2"><i class="fa fa-check"></i><b>5.2</b> Case Studies</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
+<li class="chapter" data-level="7" data-path="final-words-1.html"><a href="final-words-1.html"><i class="fa fa-check"></i><b>7</b> Final Words</a></li>
+<li class="chapter" data-level="8" data-path="final-words-2.html"><a href="final-words-2.html"><i class="fa fa-check"></i><b>8</b> Final Words</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -192,18 +216,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="measurement-process-characterization" class="section level1">
 <h1><span class="header-section-number">2</span> Measurement Process Characterization</h1>
+<div id="packages-used-in-this-chapter" class="section level2">
+<h2><span class="header-section-number">2.1</span> Packages used in this chapter</h2>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1"><span class="kw">library</span>(magrittr)</a></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;magrittr&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     set_names</code></pre>
+<pre><code>## The following object is masked from &#39;package:tidyr&#39;:
+## 
+##     extract</code></pre>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+</div>
 <div id="characterization" class="section level2">
-<h2><span class="header-section-number">2.1</span> Characterization</h2>
+<h2><span class="header-section-number">2.2</span> Characterization</h2>
 </div>
 <div id="gauge-r-r-studies" class="section level2">
-<h2><span class="header-section-number">2.2</span> Gauge R &amp; R studies</h2>
+<h2><span class="header-section-number">2.3</span> Gauge R &amp; R studies</h2>
 </div>
 <div id="case-studies" class="section level2">
-<h2><span class="header-section-number">2.3</span> Case Studies</h2>
+<h2><span class="header-section-number">2.4</span> Case Studies</h2>
 <div id="check-standard" class="section level3">
-<h3><span class="header-section-number">2.3.1</span> Check standard</h3>
+<h3><span class="header-section-number">2.4.1</span> Check standard</h3>
 <div id="background-and-data" class="section level4">
-<h4><span class="header-section-number">2.3.1.1</span> Background and data</h4>
+<h4><span class="header-section-number">2.4.1.1</span> Background and data</h4>
 <blockquote>
 <p>The measurements on the check standard duplicate certification measurements that were being made, during the same time period, on individual wafers from crystal #51939. For the check standard there were:</p>
 </blockquote>
@@ -214,9 +251,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><a href="https://www.itl.nist.gov/div898/handbook/mpc/section6/mpc62.htm">Check standard for resistivity measurement</a></p>
 </div>
 <div id="reading-the-dataset" class="section level4">
-<h4><span class="header-section-number">2.3.1.2</span> Reading the dataset</h4>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1">check_standard &lt;-<span class="st"> </span><span class="kw">read_table2</span>(<span class="st">&quot;NIST data/MPC62_clean.DAT&quot;</span>, <span class="dt">col_names =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb112-2" data-line-number="2"><span class="st">  </span><span class="kw">rowid_to_column</span>()</a></code></pre></div>
+<h4><span class="header-section-number">2.4.1.2</span> Reading the dataset</h4>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1">check_standard &lt;-<span class="st"> </span><span class="kw">read_table2</span>(<span class="st">&quot;NIST data/MPC62_clean.DAT&quot;</span>, <span class="dt">col_names =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb105-2" data-line-number="2"><span class="st">  </span><span class="kw">rowid_to_column</span>()</a></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   Crystal_ID = col_integer(),
@@ -233,7 +270,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   Stdev = col_double(),
 ##   Df = col_integer()
 ## )</code></pre>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1">check_standard</a></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1">check_standard</a></code></pre></div>
 <pre><code>## # A tibble: 25 x 14
 ##    rowid Crystal_ID Wafer_ID Month Day   Hour  Minute Operator Humidity
 ##    &lt;int&gt;      &lt;int&gt;    &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;    &lt;int&gt;
@@ -251,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   Temperature &lt;dbl&gt;, Resistance &lt;dbl&gt;, Stdev &lt;dbl&gt;, Df &lt;int&gt;</code></pre>
 </div>
 <div id="level-1-standard-deviation" class="section level4">
-<h4><span class="header-section-number">2.3.1.3</span> Level-1 standard deviation</h4>
+<h4><span class="header-section-number">2.4.1.3</span> Level-1 standard deviation</h4>
 <p>Measurements for <em>J</em> runs over <em>K</em> days for <em>L</em> runs are:</p>
 <p><span class="math display">\[
 Y_{lkj}(l = 1, \, \ldots, \, L, \,\, k=1, \,\ldots, \, K, \,\, j=1, \,\ldots, \, J)
@@ -270,12 +307,12 @@ As stated in the e-Handbook:
 <span class="math display">\[
 s_1 = \sqrt{\frac{1}{K} \sum_{k=1}^{K} s_k^2}
 \]</span></p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1">s1_chkstd &lt;-<span class="st"> </span>check_standard <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb116-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Stdev_sq =</span> Stdev<span class="op">^</span><span class="dv">2</span>) <span class="op">%$%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb116-3" data-line-number="3"><span class="st">  </span><span class="kw">mean</span>(Stdev_sq) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb116-4" data-line-number="4"><span class="st">  </span><span class="kw">sqrt</span>()</a>
-<a class="sourceLine" id="cb116-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb116-6" data-line-number="6">s1_chkstd</a></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1">s1_chkstd &lt;-<span class="st"> </span>check_standard <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb109-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Stdev_sq =</span> Stdev<span class="op">^</span><span class="dv">2</span>) <span class="op">%$%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb109-3" data-line-number="3"><span class="st">  </span><span class="kw">mean</span>(Stdev_sq) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb109-4" data-line-number="4"><span class="st">  </span><span class="kw">sqrt</span>()</a>
+<a class="sourceLine" id="cb109-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb109-6" data-line-number="6">s1_chkstd</a></code></pre></div>
 <pre><code>## [1] 0.06138795</code></pre>
 <p>Several comments on the code above. I’ve introduced the <code>%$%</code> operator. This allows me to use indivdual columns from my data frame and is useful for preforming mathematical operations on a specific column of data. It is from the <strong>magrittr</strong> package.</p>
 <p>I find this type of code easy to read and understand. Describing the operations is simple, I’m just working from inside out of the equation:</p>
@@ -286,7 +323,7 @@ s_1 = \sqrt{\frac{1}{K} \sum_{k=1}^{K} s_k^2}
 </ul>
 </div>
 <div id="level-2-standard-deviation-reproducibility" class="section level4">
-<h4><span class="header-section-number">2.3.1.4</span> Level-2 standard deviation (reproducibility)</h4>
+<h4><span class="header-section-number">2.4.1.4</span> Level-2 standard deviation (reproducibility)</h4>
 <p><span class="math display">\[
 s_{chkstd} = {\large s}_2 = \sqrt{\frac{1}{K-1} \sum_{k=1}^{K} \left( \overline{Y}_{k \, \small{\bullet}} - \overline{Y}_{\small{\bullet}  \small{\bullet}} \right) ^2}
 \]</span>
@@ -295,46 +332,46 @@ with</p>
 \overline{Y}_{\small{\bullet} \small{\bullet}}  = \frac{1}{K} \sum_{k=1}^{K} \overline{Y}_{k \, \small{\bullet}}
 \]</span></p>
 <p>Which is simply the standard deviation of the daily measuremnts</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1">s2_chkstd &lt;-<span class="st"> </span>check_standard <span class="op">%$%</span></a>
-<a class="sourceLine" id="cb118-2" data-line-number="2"><span class="st">  </span><span class="kw">sd</span>(Resistance)</a>
-<a class="sourceLine" id="cb118-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb118-4" data-line-number="4">s2_chkstd</a></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1">s2_chkstd &lt;-<span class="st"> </span>check_standard <span class="op">%$%</span></a>
+<a class="sourceLine" id="cb111-2" data-line-number="2"><span class="st">  </span><span class="kw">sd</span>(Resistance)</a>
+<a class="sourceLine" id="cb111-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb111-4" data-line-number="4">s2_chkstd</a></code></pre></div>
 <pre><code>## [1] 0.02679813</code></pre>
 </div>
 <div id="control-chart-for-standard-deviation---precision" class="section level4">
-<h4><span class="header-section-number">2.3.1.5</span> Control chart for standard deviation - Precision</h4>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1">UCL_precision_ckkstd &lt;-<span class="st"> </span>s1_chkstd<span class="op">*</span><span class="kw">sqrt</span>(<span class="kw">qf</span>(<span class="fl">0.95</span>, <span class="dv">5</span>, <span class="dv">125</span>))</a>
-<a class="sourceLine" id="cb120-2" data-line-number="2">UCL_precision_ckkstd</a></code></pre></div>
+<h4><span class="header-section-number">2.4.1.5</span> Control chart for standard deviation - Precision</h4>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1">UCL_precision_ckkstd &lt;-<span class="st"> </span>s1_chkstd<span class="op">*</span><span class="kw">sqrt</span>(<span class="kw">qf</span>(<span class="fl">0.95</span>, <span class="dv">5</span>, <span class="dv">125</span>))</a>
+<a class="sourceLine" id="cb113-2" data-line-number="2">UCL_precision_ckkstd</a></code></pre></div>
 <pre><code>## [1] 0.0928313</code></pre>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1"><span class="kw">ggplot</span>(check_standard) <span class="op">+</span></a>
-<a class="sourceLine" id="cb122-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(rowid, Stdev)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb122-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> UCL_precision_ckkstd), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb122-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span>  <span class="st">&quot;Precision control chart&quot;</span>, <span class="dt">subtitle =</span> <span class="st">&quot;Probe_ID 2362&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;measurement&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;ohm.cm&quot;</span>, <span class="dt">caption =</span> <span class="st">&quot;UCL calcuated at 95% level of confidence&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb122-5" data-line-number="5"><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">y =</span> <span class="fl">0.096</span>, <span class="dt">label =</span> <span class="st">&quot;UCL&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>)</a></code></pre></div>
-<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1"><span class="kw">ggplot</span>(check_standard) <span class="op">+</span></a>
+<a class="sourceLine" id="cb115-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(rowid, Stdev)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb115-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> UCL_precision_ckkstd), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb115-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span>  <span class="st">&quot;Precision control chart&quot;</span>, <span class="dt">subtitle =</span> <span class="st">&quot;Probe_ID 2362&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;measurement&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;ohm.cm&quot;</span>, <span class="dt">caption =</span> <span class="st">&quot;UCL calcuated at 95% level of confidence&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb115-5" data-line-number="5"><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">y =</span> <span class="fl">0.096</span>, <span class="dt">label =</span> <span class="st">&quot;UCL&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
 </div>
 <div id="control-chart-for-measurement-bias-and-variability" class="section level4">
-<h4><span class="header-section-number">2.3.1.6</span> Control chart for measurement bias and variability</h4>
+<h4><span class="header-section-number">2.4.1.6</span> Control chart for measurement bias and variability</h4>
 <p>The control limits for monitoring the bias and long-term variability of resistivity with a Shewhart control chart are given by</p>
 <p><span class="math display">\[
 UCL=\text{Average} + 2 \cdot s_2 \\
 Centerline=\text{Average} \\
 LCL=\text{Average} − 2 \cdot s_2 \\
 \]</span></p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1"><span class="kw">ggplot</span>(check_standard) <span class="op">+</span></a>
-<a class="sourceLine" id="cb123-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(rowid, Resistance)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb123-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> (<span class="kw">mean</span>(Resistance) <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>s2_chkstd)), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb123-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> (<span class="kw">mean</span>(Resistance) <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>s2_chkstd)), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb123-5" data-line-number="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span>  <span class="st">&quot;Shewhart control chart&quot;</span>, <span class="dt">subtitle =</span> <span class="st">&quot;Probe_ID 2362&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;measurement&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;ohm.cm&quot;</span>, <span class="dt">caption =</span> <span class="st">&quot;Control limits calcuated with k = 2&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb123-6" data-line-number="6"><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">y =</span> <span class="fl">97.12</span>, <span class="dt">label =</span> <span class="st">&quot;UCL&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb123-7" data-line-number="7"><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">y =</span> <span class="fl">97.02</span>, <span class="dt">label =</span> <span class="st">&quot;LCL&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>)</a></code></pre></div>
-<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1"><span class="kw">ggplot</span>(check_standard) <span class="op">+</span></a>
+<a class="sourceLine" id="cb116-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(rowid, Resistance)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb116-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> (<span class="kw">mean</span>(Resistance) <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>s2_chkstd)), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb116-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> (<span class="kw">mean</span>(Resistance) <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>s2_chkstd)), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb116-5" data-line-number="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span>  <span class="st">&quot;Shewhart control chart&quot;</span>, <span class="dt">subtitle =</span> <span class="st">&quot;Probe_ID 2362&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;measurement&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;ohm.cm&quot;</span>, <span class="dt">caption =</span> <span class="st">&quot;Control limits calcuated with k = 2&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb116-6" data-line-number="6"><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">y =</span> <span class="fl">97.12</span>, <span class="dt">label =</span> <span class="st">&quot;UCL&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb116-7" data-line-number="7"><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">y =</span> <span class="fl">97.02</span>, <span class="dt">label =</span> <span class="st">&quot;LCL&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
 </div>
 </div>
 <div id="gauge-study" class="section level3">
-<h3><span class="header-section-number">2.3.2</span> Gauge study</h3>
+<h3><span class="header-section-number">2.4.2</span> Gauge study</h3>
 <div id="background-and-data-1" class="section level4">
-<h4><span class="header-section-number">2.3.2.1</span> Background and data</h4>
+<h4><span class="header-section-number">2.4.2.1</span> Background and data</h4>
 <blockquote>
 <p>Measurements on the check standards are used to estimate repeatability, day effect, and run effect The effect of operator was not considered to be significant for this study; therefore, ‘day’ replaces ‘operator’ as a factor in the nested design. Averages and standard deviations from J = 6 measurements at the center of each wafer are shown in the table.</p>
 </blockquote>
@@ -346,8 +383,8 @@ LCL=\text{Average} − 2 \cdot s_2 \\
 <li>R = 5 probes (1, 281, 283, 2062, 2362)</li>
 </ul>
 <p><a href="https://www.itl.nist.gov/div898/handbook/mpc/section6/mpc61.htm">Gauge study of resistivity probes</a></p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1">gauge_study &lt;-<span class="st"> </span><span class="kw">read_table2</span>(<span class="st">&quot;NIST data/MPC61_clean.DAT&quot;</span>, <span class="dt">col_names =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb124-2" data-line-number="2"><span class="st">  </span><span class="kw">rowid_to_column</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1">gauge_study &lt;-<span class="st"> </span><span class="kw">read_table2</span>(<span class="st">&quot;NIST data/MPC61_clean.DAT&quot;</span>, <span class="dt">col_names =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb117-2" data-line-number="2"><span class="st">  </span><span class="kw">rowid_to_column</span>()</a></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   RUN = col_integer(),
@@ -360,7 +397,7 @@ LCL=\text{Average} − 2 \cdot s_2 \\
 ##   AVERAGE = col_double(),
 ##   STDDEV = col_double()
 ## )</code></pre>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1">gauge_study</a></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1">gauge_study</a></code></pre></div>
 <pre><code>## # A tibble: 300 x 10
 ##    rowid   RUN WAFER PROBE MONTH   DAY    OP  TEMP AVERAGE STDDEV
 ##    &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
@@ -377,32 +414,32 @@ LCL=\text{Average} − 2 \cdot s_2 \\
 ## # ... with 290 more rows</code></pre>
 </div>
 <div id="repeatability-standard-deviations" class="section level4">
-<h4><span class="header-section-number">2.3.2.2</span> Repeatability standard deviations</h4>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" data-line-number="1"><span class="kw">ggplot</span>(gauge_study) <span class="op">+</span></a>
-<a class="sourceLine" id="cb128-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="kw">as.factor</span>(WAFER), STDDEV, <span class="dt">colour =</span> <span class="kw">as.factor</span>(DAY))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb128-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(PROBE), <span class="dt">nrow =</span> <span class="dv">1</span>)</a></code></pre></div>
-<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1"><span class="kw">ggplot</span>(gauge_study) <span class="op">+</span></a>
-<a class="sourceLine" id="cb129-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="kw">as.factor</span>(WAFER), STDDEV)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb129-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_grid</span>(<span class="kw">as.factor</span>(RUN) <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(PROBE))</a></code></pre></div>
-<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<h4><span class="header-section-number">2.4.2.2</span> Repeatability standard deviations</h4>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1"><span class="kw">ggplot</span>(gauge_study) <span class="op">+</span></a>
+<a class="sourceLine" id="cb121-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="kw">as.factor</span>(WAFER), STDDEV, <span class="dt">colour =</span> <span class="kw">as.factor</span>(DAY))) <span class="op">+</span></a>
+<a class="sourceLine" id="cb121-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(PROBE), <span class="dt">nrow =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1"><span class="kw">ggplot</span>(gauge_study) <span class="op">+</span></a>
+<a class="sourceLine" id="cb122-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="kw">as.factor</span>(WAFER), STDDEV)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb122-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_grid</span>(<span class="kw">as.factor</span>(RUN) <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(PROBE))</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
 </div>
 <div id="effects-of-days-and-long-term-stability" class="section level4">
-<h4><span class="header-section-number">2.3.2.3</span> Effects of days and long-term stability</h4>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1"><span class="kw">ggplot</span>(gauge_study) <span class="op">+</span></a>
-<a class="sourceLine" id="cb130-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(rowid, AVERAGE, <span class="dt">colour =</span> <span class="kw">as.factor</span>(RUN))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb130-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_grid</span>(<span class="kw">as.factor</span>(WAFER) <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(PROBE), <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>)</a></code></pre></div>
-<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<h4><span class="header-section-number">2.4.2.3</span> Effects of days and long-term stability</h4>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1"><span class="kw">ggplot</span>(gauge_study) <span class="op">+</span></a>
+<a class="sourceLine" id="cb123-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(rowid, AVERAGE, <span class="dt">colour =</span> <span class="kw">as.factor</span>(RUN))) <span class="op">+</span></a>
+<a class="sourceLine" id="cb123-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_grid</span>(<span class="kw">as.factor</span>(WAFER) <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(PROBE), <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
 </div>
 <div id="differences-among-5-probes" class="section level4">
-<h4><span class="header-section-number">2.3.2.4</span> Differences among 5 probes</h4>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" data-line-number="1">probe_means_run &lt;-<span class="st"> </span>gauge_study <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb131-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(PROBE, WAFER, RUN) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb131-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">probe_mean =</span> <span class="kw">mean</span>(AVERAGE)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb131-4" data-line-number="4"><span class="st">  </span><span class="kw">unite</span>(join_id, WAFER, RUN, <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>, <span class="dt">remove =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb131-5" data-line-number="5"><span class="st">  </span><span class="kw">ungroup</span>()</a>
-<a class="sourceLine" id="cb131-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb131-7" data-line-number="7">probe_means_run</a></code></pre></div>
+<h4><span class="header-section-number">2.4.2.4</span> Differences among 5 probes</h4>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1">probe_means_run &lt;-<span class="st"> </span>gauge_study <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb124-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(PROBE, WAFER, RUN) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb124-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">probe_mean =</span> <span class="kw">mean</span>(AVERAGE)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb124-4" data-line-number="4"><span class="st">  </span><span class="kw">unite</span>(join_id, WAFER, RUN, <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>, <span class="dt">remove =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb124-5" data-line-number="5"><span class="st">  </span><span class="kw">ungroup</span>()</a>
+<a class="sourceLine" id="cb124-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb124-7" data-line-number="7">probe_means_run</a></code></pre></div>
 <pre><code>## # A tibble: 50 x 6
 ##    PROBE join_id WAFER   RUN     n probe_mean
 ##    &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;int&gt; &lt;int&gt;      &lt;dbl&gt;
@@ -417,13 +454,13 @@ LCL=\text{Average} − 2 \cdot s_2 \\
 ##  9    1. 142_1    142.     1     6       94.3
 ## 10    1. 142_2    142.     2     6       94.3
 ## # ... with 40 more rows</code></pre>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1">wafer_means_run &lt;-<span class="st"> </span>gauge_study <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb133-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(WAFER, RUN) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb133-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">wafer_means =</span> <span class="kw">mean</span>(AVERAGE)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb133-4" data-line-number="4"><span class="st">  </span><span class="kw">unite</span>(join_id, WAFER, RUN, <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>, <span class="dt">remove =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb133-5" data-line-number="5"><span class="st">  </span><span class="kw">ungroup</span>()</a>
-<a class="sourceLine" id="cb133-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb133-7" data-line-number="7">wafer_means_run</a></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1">wafer_means_run &lt;-<span class="st"> </span>gauge_study <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb126-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(WAFER, RUN) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb126-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">wafer_means =</span> <span class="kw">mean</span>(AVERAGE)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb126-4" data-line-number="4"><span class="st">  </span><span class="kw">unite</span>(join_id, WAFER, RUN, <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>, <span class="dt">remove =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb126-5" data-line-number="5"><span class="st">  </span><span class="kw">ungroup</span>()</a>
+<a class="sourceLine" id="cb126-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb126-7" data-line-number="7">wafer_means_run</a></code></pre></div>
 <pre><code>## # A tibble: 10 x 5
 ##    join_id WAFER   RUN     n wafer_means
 ##    &lt;chr&gt;   &lt;dbl&gt; &lt;int&gt; &lt;int&gt;       &lt;dbl&gt;
@@ -437,10 +474,10 @@ LCL=\text{Average} − 2 \cdot s_2 \\
 ##  8 141_2    141.     2    30       101. 
 ##  9 142_1    142.     1    30        94.3
 ## 10 142_2    142.     2    30        94.3</code></pre>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1">delta_probes &lt;-<span class="st"> </span><span class="kw">left_join</span>(probe_means_run, wafer_means_run, <span class="dt">by =</span> <span class="st">&quot;join_id&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb135-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">delta_probes_wafer =</span> probe_mean <span class="op">-</span><span class="st"> </span>wafer_means)</a>
-<a class="sourceLine" id="cb135-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb135-4" data-line-number="4">delta_probes</a></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" data-line-number="1">delta_probes &lt;-<span class="st"> </span><span class="kw">left_join</span>(probe_means_run, wafer_means_run, <span class="dt">by =</span> <span class="st">&quot;join_id&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb128-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">delta_probes_wafer =</span> probe_mean <span class="op">-</span><span class="st"> </span>wafer_means)</a>
+<a class="sourceLine" id="cb128-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb128-4" data-line-number="4">delta_probes</a></code></pre></div>
 <pre><code>## # A tibble: 50 x 11
 ##    PROBE join_id WAFER.x RUN.x   n.x probe_mean WAFER.y RUN.y   n.y
 ##    &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;int&gt; &lt;int&gt;      &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt; &lt;int&gt;
@@ -456,14 +493,14 @@ LCL=\text{Average} − 2 \cdot s_2 \\
 ## 10    1. 142_2      142.     2     6       94.3    142.     2    30
 ## # ... with 40 more rows, and 2 more variables: wafer_means &lt;dbl&gt;,
 ## #   delta_probes_wafer &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1"><span class="kw">ggplot</span>(delta_probes) <span class="op">+</span></a>
-<a class="sourceLine" id="cb137-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="kw">as.factor</span>(WAFER.x), delta_probes_wafer, <span class="dt">group =</span> <span class="kw">as.factor</span>(PROBE), <span class="dt">colour =</span> <span class="kw">as.factor</span>(PROBE))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb137-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb137-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(RUN.x), <span class="dt">ncol =</span> <span class="dv">1</span>) </a></code></pre></div>
-<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1"><span class="kw">ggplot</span>(delta_probes) <span class="op">+</span></a>
+<a class="sourceLine" id="cb130-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="kw">as.factor</span>(WAFER.x), delta_probes_wafer, <span class="dt">group =</span> <span class="kw">as.factor</span>(PROBE), <span class="dt">colour =</span> <span class="kw">as.factor</span>(PROBE))) <span class="op">+</span></a>
+<a class="sourceLine" id="cb130-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb130-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(RUN.x), <span class="dt">ncol =</span> <span class="dv">1</span>) </a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
 </div>
 <div id="analysis-and-interpretation" class="section level4">
-<h4><span class="header-section-number">2.3.2.5</span> Analysis and interpretation</h4>
+<h4><span class="header-section-number">2.4.2.5</span> Analysis and interpretation</h4>
 <p>Table of estimates for probe #2362</p>
 <blockquote>
 <p>A graphical analysis shows repeatability standard deviations plotted by wafer and probe… The plots show that for both runs the precision of this probe is better than for the other probes.</p>
@@ -471,11 +508,11 @@ LCL=\text{Average} − 2 \cdot s_2 \\
 </blockquote>
 </div>
 <div id="probe-2362" class="section level4">
-<h4><span class="header-section-number">2.3.2.6</span> probe #2362</h4>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1">probe_<span class="dv">2362</span> &lt;-<span class="st"> </span>gauge_study <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb138-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(PROBE <span class="op">==</span><span class="st"> </span><span class="dv">2362</span>)</a>
-<a class="sourceLine" id="cb138-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb138-4" data-line-number="4">probe_<span class="dv">2362</span></a></code></pre></div>
+<h4><span class="header-section-number">2.4.2.6</span> probe #2362</h4>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" data-line-number="1">probe_<span class="dv">2362</span> &lt;-<span class="st"> </span>gauge_study <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb131-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(PROBE <span class="op">==</span><span class="st"> </span><span class="dv">2362</span>)</a>
+<a class="sourceLine" id="cb131-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb131-4" data-line-number="4">probe_<span class="dv">2362</span></a></code></pre></div>
 <pre><code>## # A tibble: 60 x 10
 ##    rowid   RUN WAFER PROBE MONTH   DAY    OP  TEMP AVERAGE STDDEV
 ##    &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
@@ -491,67 +528,67 @@ LCL=\text{Average} − 2 \cdot s_2 \\
 ## 10    58     1  139. 2362.    3.   22.    1.  23.3    99.4 0.0475
 ## # ... with 50 more rows</code></pre>
 <p>Pooled level-1 standard deviations (ohm.cm)</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1">s1_<span class="dv">2362</span>_<span class="dv">1</span> &lt;-<span class="st"> </span>probe_<span class="dv">2362</span> <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb140-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(RUN <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb140-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Stdev_sq =</span> STDDEV<span class="op">^</span><span class="dv">2</span>) <span class="op">%$%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb140-4" data-line-number="4"><span class="st">  </span><span class="kw">mean</span>(Stdev_sq) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb140-5" data-line-number="5"><span class="st">  </span><span class="kw">sqrt</span>()</a>
-<a class="sourceLine" id="cb140-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb140-7" data-line-number="7">s1_<span class="dv">2362</span>_<span class="dv">1</span></a></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1">s1_<span class="dv">2362</span>_<span class="dv">1</span> &lt;-<span class="st"> </span>probe_<span class="dv">2362</span> <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb133-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(RUN <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb133-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Stdev_sq =</span> STDDEV<span class="op">^</span><span class="dv">2</span>) <span class="op">%$%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb133-4" data-line-number="4"><span class="st">  </span><span class="kw">mean</span>(Stdev_sq) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb133-5" data-line-number="5"><span class="st">  </span><span class="kw">sqrt</span>()</a>
+<a class="sourceLine" id="cb133-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb133-7" data-line-number="7">s1_<span class="dv">2362</span>_<span class="dv">1</span></a></code></pre></div>
 <pre><code>## [1] 0.06750898</code></pre>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1">s1_<span class="dv">2362</span>_<span class="dv">2</span> &lt;-<span class="st"> </span>probe_<span class="dv">2362</span> <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb142-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(RUN <span class="op">==</span><span class="st"> </span><span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb142-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Stdev_sq =</span> STDDEV<span class="op">^</span><span class="dv">2</span>) <span class="op">%$%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb142-4" data-line-number="4"><span class="st">  </span><span class="kw">mean</span>(Stdev_sq) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb142-5" data-line-number="5"><span class="st">  </span><span class="kw">sqrt</span>()</a>
-<a class="sourceLine" id="cb142-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb142-7" data-line-number="7">s1_<span class="dv">2362</span>_<span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1">s1_<span class="dv">2362</span>_<span class="dv">2</span> &lt;-<span class="st"> </span>probe_<span class="dv">2362</span> <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb135-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(RUN <span class="op">==</span><span class="st"> </span><span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb135-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Stdev_sq =</span> STDDEV<span class="op">^</span><span class="dv">2</span>) <span class="op">%$%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb135-4" data-line-number="4"><span class="st">  </span><span class="kw">mean</span>(Stdev_sq) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb135-5" data-line-number="5"><span class="st">  </span><span class="kw">sqrt</span>()</a>
+<a class="sourceLine" id="cb135-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb135-7" data-line-number="7">s1_<span class="dv">2362</span>_<span class="dv">2</span></a></code></pre></div>
 <pre><code>## [1] 0.07785664</code></pre>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1">s1_<span class="dv">2362</span> &lt;-<span class="st"> </span>probe_<span class="dv">2362</span> <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb144-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Stdev_sq =</span> STDDEV<span class="op">^</span><span class="dv">2</span>) <span class="op">%$%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb144-3" data-line-number="3"><span class="st">  </span><span class="kw">mean</span>(Stdev_sq) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb144-4" data-line-number="4"><span class="st">  </span><span class="kw">sqrt</span>()</a>
-<a class="sourceLine" id="cb144-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb144-6" data-line-number="6">s1_<span class="dv">2362</span></a></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1">s1_<span class="dv">2362</span> &lt;-<span class="st"> </span>probe_<span class="dv">2362</span> <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb137-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Stdev_sq =</span> STDDEV<span class="op">^</span><span class="dv">2</span>) <span class="op">%$%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb137-3" data-line-number="3"><span class="st">  </span><span class="kw">mean</span>(Stdev_sq) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb137-4" data-line-number="4"><span class="st">  </span><span class="kw">sqrt</span>()</a>
+<a class="sourceLine" id="cb137-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb137-6" data-line-number="6">s1_<span class="dv">2362</span></a></code></pre></div>
 <pre><code>## [1] 0.07286673</code></pre>
 <p>Level-2 standard deviations (ohm.cm) for 5 wafers</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" data-line-number="1">s2_<span class="dv">2362</span> &lt;-<span class="st"> </span>gauge_study <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb146-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(PROBE, WAFER, RUN) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb146-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(PROBE <span class="op">==</span><span class="st"> </span><span class="dv">2362</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb146-4" data-line-number="4"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">df =</span> <span class="kw">n</span>()<span class="op">-</span><span class="dv">1</span>, <span class="dt">probe_mean =</span> <span class="kw">mean</span>(AVERAGE), <span class="dt">probe_stdev =</span> <span class="kw">sd</span>(AVERAGE), <span class="dt">probe_stdev_sq =</span> probe_stdev<span class="op">^</span><span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb146-5" data-line-number="5"><span class="st">  </span><span class="kw">group_by</span>(RUN) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb146-6" data-line-number="6"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">s2_run =</span> <span class="kw">sqrt</span>(<span class="kw">mean</span>(probe_stdev_sq)))</a>
-<a class="sourceLine" id="cb146-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb146-8" data-line-number="8">s2_<span class="dv">2362</span></a></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1">s2_<span class="dv">2362</span> &lt;-<span class="st"> </span>gauge_study <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb139-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(PROBE, WAFER, RUN) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb139-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(PROBE <span class="op">==</span><span class="st"> </span><span class="dv">2362</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb139-4" data-line-number="4"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">df =</span> <span class="kw">n</span>()<span class="op">-</span><span class="dv">1</span>, <span class="dt">probe_mean =</span> <span class="kw">mean</span>(AVERAGE), <span class="dt">probe_stdev =</span> <span class="kw">sd</span>(AVERAGE), <span class="dt">probe_stdev_sq =</span> probe_stdev<span class="op">^</span><span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb139-5" data-line-number="5"><span class="st">  </span><span class="kw">group_by</span>(RUN) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb139-6" data-line-number="6"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">s2_run =</span> <span class="kw">sqrt</span>(<span class="kw">mean</span>(probe_stdev_sq)))</a>
+<a class="sourceLine" id="cb139-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb139-8" data-line-number="8">s2_<span class="dv">2362</span></a></code></pre></div>
 <pre><code>## # A tibble: 2 x 2
 ##     RUN s2_run
 ##   &lt;int&gt;  &lt;dbl&gt;
 ## 1     1 0.0333
 ## 2     2 0.0388</code></pre>
 <p>Over both runs</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" data-line-number="1">s2_<span class="dv">2352</span>_all &lt;-<span class="st"> </span>s2_<span class="dv">2362</span> <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb148-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">s2_run_sq =</span> s2_run<span class="op">^</span><span class="dv">2</span>) <span class="op">%$%</span></a>
-<a class="sourceLine" id="cb148-3" data-line-number="3"><span class="st">  </span><span class="kw">mean</span>(s2_run_sq) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb148-4" data-line-number="4"><span class="st">  </span><span class="kw">sqrt</span>()</a>
-<a class="sourceLine" id="cb148-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb148-6" data-line-number="6">s2_<span class="dv">2352</span>_all</a></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1">s2_<span class="dv">2352</span>_all &lt;-<span class="st"> </span>s2_<span class="dv">2362</span> <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb141-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">s2_run_sq =</span> s2_run<span class="op">^</span><span class="dv">2</span>) <span class="op">%$%</span></a>
+<a class="sourceLine" id="cb141-3" data-line-number="3"><span class="st">  </span><span class="kw">mean</span>(s2_run_sq) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb141-4" data-line-number="4"><span class="st">  </span><span class="kw">sqrt</span>()</a>
+<a class="sourceLine" id="cb141-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb141-6" data-line-number="6">s2_<span class="dv">2352</span>_all</a></code></pre></div>
 <pre><code>## [1] 0.03616824</code></pre>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" data-line-number="1">sd_<span class="dv">2362</span>_wafer &lt;-<span class="st"> </span>gauge_study <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb150-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(PROBE, WAFER, RUN) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb150-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(PROBE <span class="op">==</span><span class="st"> </span><span class="dv">2362</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb150-4" data-line-number="4"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">probe_mean =</span> <span class="kw">mean</span>(AVERAGE)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb150-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb150-6" data-line-number="6">    <span class="dt">run_number =</span> <span class="kw">case_when</span>(</a>
-<a class="sourceLine" id="cb150-7" data-line-number="7">      RUN <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Run1&quot;</span>,</a>
-<a class="sourceLine" id="cb150-8" data-line-number="8">      RUN <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Run2&quot;</span></a>
-<a class="sourceLine" id="cb150-9" data-line-number="9">    )</a>
-<a class="sourceLine" id="cb150-10" data-line-number="10">  ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb150-11" data-line-number="11"><span class="st">  </span><span class="kw">select</span>(PROBE, WAFER, probe_mean, run_number) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb150-12" data-line-number="12"><span class="st">  </span><span class="kw">group_by</span>(WAFER) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb150-13" data-line-number="13"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">sd_wafer =</span> <span class="kw">sd</span>(probe_mean))</a>
-<a class="sourceLine" id="cb150-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb150-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb150-16" data-line-number="16">sd_<span class="dv">2362</span>_wafer</a></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1">sd_<span class="dv">2362</span>_wafer &lt;-<span class="st"> </span>gauge_study <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb143-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(PROBE, WAFER, RUN) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb143-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(PROBE <span class="op">==</span><span class="st"> </span><span class="dv">2362</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb143-4" data-line-number="4"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">probe_mean =</span> <span class="kw">mean</span>(AVERAGE)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb143-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb143-6" data-line-number="6">    <span class="dt">run_number =</span> <span class="kw">case_when</span>(</a>
+<a class="sourceLine" id="cb143-7" data-line-number="7">      RUN <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Run1&quot;</span>,</a>
+<a class="sourceLine" id="cb143-8" data-line-number="8">      RUN <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Run2&quot;</span></a>
+<a class="sourceLine" id="cb143-9" data-line-number="9">    )</a>
+<a class="sourceLine" id="cb143-10" data-line-number="10">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb143-11" data-line-number="11"><span class="st">  </span><span class="kw">select</span>(PROBE, WAFER, probe_mean, run_number) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb143-12" data-line-number="12"><span class="st">  </span><span class="kw">group_by</span>(WAFER) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb143-13" data-line-number="13"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">sd_wafer =</span> <span class="kw">sd</span>(probe_mean))</a>
+<a class="sourceLine" id="cb143-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb143-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb143-16" data-line-number="16">sd_<span class="dv">2362</span>_wafer</a></code></pre></div>
 <pre><code>## # A tibble: 5 x 2
 ##   WAFER sd_wafer
 ##   &lt;dbl&gt;    &lt;dbl&gt;
@@ -560,12 +597,12 @@ LCL=\text{Average} − 2 \cdot s_2 \\
 ## 3  140.  0.0288 
 ## 4  141.  0.0133 
 ## 5  142.  0.0205</code></pre>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" data-line-number="1">s3_<span class="dv">2362</span> &lt;-<span class="st"> </span>sd_<span class="dv">2362</span>_wafer <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb152-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sd_wafer_sq =</span> sd_wafer<span class="op">^</span><span class="dv">2</span>) <span class="op">%$%</span></a>
-<a class="sourceLine" id="cb152-3" data-line-number="3"><span class="st">  </span><span class="kw">mean</span>(sd_wafer_sq) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb152-4" data-line-number="4"><span class="st">  </span><span class="kw">sqrt</span>()</a>
-<a class="sourceLine" id="cb152-5" data-line-number="5">  </a>
-<a class="sourceLine" id="cb152-6" data-line-number="6">s3_<span class="dv">2362</span></a></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" data-line-number="1">s3_<span class="dv">2362</span> &lt;-<span class="st"> </span>sd_<span class="dv">2362</span>_wafer <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb145-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sd_wafer_sq =</span> sd_wafer<span class="op">^</span><span class="dv">2</span>) <span class="op">%$%</span></a>
+<a class="sourceLine" id="cb145-3" data-line-number="3"><span class="st">  </span><span class="kw">mean</span>(sd_wafer_sq) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb145-4" data-line-number="4"><span class="st">  </span><span class="kw">sqrt</span>()</a>
+<a class="sourceLine" id="cb145-5" data-line-number="5">  </a>
+<a class="sourceLine" id="cb145-6" data-line-number="6">s3_<span class="dv">2362</span></a></code></pre></div>
 <pre><code>## [1] 0.01964524</code></pre>
 
 </div>
@@ -578,7 +615,7 @@ LCL=\text{Average} − 2 \cdot s_2 \\
         </div>
       </div>
 <a href="EDA.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="methods.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="production-process-characterization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -592,8 +629,8 @@ LCL=\text{Average} − 2 \cdot s_2 \\
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
-"github": false,
-"facebook": true,
+"github": true,
+"facebook": false,
 "twitter": true,
 "google": false,
 "linkedin": false,
@@ -608,12 +645,15 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": null,
-"text": null
+"link": "https://github.com/RayJamesHoobler/Applied-Statistical-Techniques/edit/master/02-measurement.Rmd",
+"text": "Edit"
 },
 "download": ["exercises_and_case_studies.pdf", "exercises_and_case_studies.epub"],
 "toc": {
 "collapse": "subsection"
+},
+"toolbar": {
+"position": "fixed"
 }
 });
 });

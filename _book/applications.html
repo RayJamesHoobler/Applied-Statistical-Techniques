@@ -12,7 +12,7 @@
   <meta property="og:title" content="An Incomplete Solutions Guide to the NIST/SEMATECH e-Handbook of Statistical Methods" />
   <meta property="og:type" content="book" />
   
-  
+  <meta property="og:image" content="Applied Statistical Techniques.png" />
   <meta property="og:description" content="This handbook was created using the bookdown package in RStudio. The output format for this example is bookdown::gitbook." />
   
 
@@ -20,19 +20,19 @@
   <meta name="twitter:title" content="An Incomplete Solutions Guide to the NIST/SEMATECH e-Handbook of Statistical Methods" />
   
   <meta name="twitter:description" content="This handbook was created using the bookdown package in RStudio. The output format for this example is bookdown::gitbook." />
-  
+  <meta name="twitter:image" content="Applied Statistical Techniques.png" />
 
 <meta name="author" content="Ray Hoobler">
 
 
-<meta name="date" content="2018-04-19">
+<meta name="date" content="2018-04-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="methods.html">
+<link rel="prev" href="production-process-characterization.html">
 <link rel="next" href="final-words.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -135,7 +135,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#structure-of-the-book"><i class="fa fa-check"></i>Structure of the book</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#software-information-and-conventsions"><i class="fa fa-check"></i>Software information and conventsions</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
-<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#simple-programing-examples"><i class="fa fa-check"></i><b>0.1</b> Simple Programing Examples</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="EDA.html"><a href="EDA.html"><i class="fa fa-check"></i><b>1</b> Exploratory Data Analysis</a><ul>
 <li class="chapter" data-level="1.1" data-path="EDA.html"><a href="EDA.html#a-eda-example"><i class="fa fa-check"></i><b>1.1</b> A EDA Example</a></li>
@@ -160,7 +159,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3.2" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#gauge-study"><i class="fa fa-check"></i><b>2.3.2</b> Gauge study</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>3</b> Methods</a></li>
+<li class="chapter" data-level="3" data-path="production-process-characterization.html"><a href="production-process-characterization.html"><i class="fa fa-check"></i><b>3</b> Production Process Characterization</a><ul>
+<li class="chapter" data-level="3.1" data-path="production-process-characterization.html"><a href="production-process-characterization.html#case-studies-1"><i class="fa fa-check"></i><b>3.1</b> Case Studies</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="production-process-characterization.html"><a href="production-process-characterization.html#furnace-case-study"><i class="fa fa-check"></i><b>3.1.1</b> Furnace Case Study</a></li>
+<li class="chapter" data-level="3.1.2" data-path="production-process-characterization.html"><a href="production-process-characterization.html#machine-case-study"><i class="fa fa-check"></i><b>3.1.2</b> Machine Case Study</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>4</b> Applications</a><ul>
 <li class="chapter" data-level="4.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>4.1</b> Example one</a></li>
 <li class="chapter" data-level="4.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>4.2</b> Example two</a></li>
@@ -206,7 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="methods.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="production-process-characterization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="final-words.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -221,8 +225,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
-"github": false,
-"facebook": true,
+"github": true,
+"facebook": false,
 "twitter": true,
 "google": false,
 "linkedin": false,
@@ -237,12 +241,15 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": null,
-"text": null
+"link": "https://github.com/RayJamesHoobler/Applied-Statistical-Techniques/edit/master/04-modeling.Rmd",
+"text": "Edit"
 },
 "download": ["exercises_and_case_studies.pdf", "exercises_and_case_studies.epub"],
 "toc": {
 "collapse": "subsection"
+},
+"toolbar": {
+"position": "fixed"
 }
 });
 });

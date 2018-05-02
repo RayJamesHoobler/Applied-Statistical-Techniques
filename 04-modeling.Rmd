@@ -1,7 +1,601 @@
-# Applications
+# Modeling
 
-Some _significant_ applications are demonstrated in this chapter.
+## Packages used in this chapter 
 
-## Example one
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(broom)
+```
 
-## Example two
+
+## Introduction 
+
+### A simple linear regression model 
+
+```{r}
+simple_line <- tribble(
+  ~x.line, ~y.line,
+  1., 2.,
+  3., 3.,
+  4., 4., 
+  6., 5.
+)
+simple_line
+```
+
+#### Plot of the data
+
+```{r}
+ggplot(simple_line, aes(x.line, y.line)) +
+  geom_point()
+```
+
+#### Linear regression 
+
+Below, the data is fit to the line 
+
+$$
+y = mx + b
+$$
+
+the intercept is assumed unless explicity removed using either y ~ x -1 or y ~ 0 + x.
+
+```{r}
+m_sl <- lm(y.line ~ x.line, 
+          data = simple_line)
+m_sl
+summary(m_sl)
+tidy(m_sl)
+
+sl_slope <- tidy(m_sl) %>%
+  filter(term == "x.line") %>%
+  select(estimate)
+
+sl_intercept <- tidy(m_sl) %>%
+  filter(term == "(Intercept)") %>%
+  select(estimate)
+
+sl_slope
+sl_intercept
+```
+
+#### Plot of the data and linear regression
+
+```{r}
+ggplot(simple_line, aes(x.line, y.line)) +
+  geom_point() +
+  geom_abline(slope = sl_slope$estimate, intercept = sl_intercept$estimate) +
+  ylim(0,6) +
+  xlim(0,7)
+```
+
+If we don't need the coeficients, we can plot the data and linear regression using ggplot2
+
+```{r}
+ggplot(simple_line, aes(x.line, y.line)) +
+  geom_point() +
+  stat_smooth(method = lm, linetype = "dashed") +
+  ylim(0,6) +
+  xlim(0,7)
+```
+
+#### Finally, let's add prediction intervals to the graph
+
+```{r}
+temp_var <- m_sl %>%
+  predict(interval="predict") %>%
+  as_tibble()
+
+temp_var
+
+simple_line_predict <- bind_cols(simple_line, temp_var)
+simple_line_predict
+```
+
+```{r}
+ggplot(simple_line_predict, aes(x.line, y.line)) +
+  geom_point() +
+  stat_smooth(method = lm, linetype = "dashed", size = 0.5) +
+  geom_line(aes(y=lwr), color = "red", linetype = "dashed") +
+  geom_line(aes(y=upr), color = "red", linetype = "dashed") +
+  ylim(0,7) +
+  xlim(0,7)
+```
+
+
+### Beyond the linear regression
+
+#### A simple data set for non-linear regression modeling---exponential decay
+
+Example is from Brown, LeMay.
+
+```{r}
+kinetics1 <- tribble(
+  ~time, ~conc,
+  0., 0.100,
+  50., 0.0905,
+  100., 0.0820,
+  150., 0.0741,
+  200., 0.0671,
+  300., 0.0549,
+  400., 0.0448,
+  500., 0.0368,
+  800., 0.0200
+)
+kinetics1
+```
+
+
+#### Simple plots of the data 
+
+We can plot the orginal data set, conc vs. time to view the trend. A simple test to confirm the data follows a first-order decay, we can plot log(conc) vs. time. 
+
+```{r}
+ggplot(kinetics1, aes(time, conc)) +
+  geom_point()
+
+ggplot(kinetics1, aes(time, log(conc))) +
+  geom_point()
+```
+
+#### Using the nls function
+
+```{r}
+k1 <- nls(conc ~ 0.1*exp(-a1*time), 
+          data = kinetics1, start = list(a1 = 0.002), trace = T)
+
+summary(k1)
+```
+
+#### Ploting the model results
+
+Using the `augment()` function from the **broom** package, we can plot both the data and predicted values from th `nls()` model.
+
+```{r}
+augment(k1)
+
+ggplot()+
+  geom_point(aes(time, conc), kinetics1) +
+  geom_line(aes(time, .fitted), augment(k1))
+```
+
+We can also use the output of `augment()` to plot the residuals
+
+```{r}
+ggplot()+
+  geom_point(aes(time, .resid), augment(k1)) +
+  geom_hline(yintercept = 0)
+```
+
+
+
+##### create a function for the fit
+
+If we want to create a smooth curve of the fit, we need to create a function and use the calculated coefficients from the `nls()` model. We can then use the `stat_function()` geom to superimpose the function on the base plot.
+
+```{r}
+conc.fit <- function(t) {
+  0.1*exp(-t*summary(k1)$coefficients[1])
+  }
+
+ggplot(kinetics1, mapping = aes(time, conc)) +
+  geom_point() + 
+  stat_function(fun = conc.fit, linetype = "dashed", colour = "green") +
+  ggtitle("A kinetics example from first-year chemistry", subtitle = "dashed green line: first-order, exponential decay") +
+  theme_bw()
+```
+
+
+## Case Stuidies
+
+### Load cell output  
+
+[Load cell calibration](https://www.itl.nist.gov/div898/handbook/pmd/section6/pmd61.htm)
+
+>The data collected in the calibration experiment consisted of a known load, applied to the load cell, and the corresponding deflection of the cell from its nominal position. Forty measurements were made over a range of loads from 150,000 to 3,000,000 units. The data were collected in two sets in order of increasing load. The systematic run order makes it difficult to determine whether or not there was any drift in the load cell or measuring equipment over time. Assuming there is no drift, however, the experiment should provide a good description of the relationship between the load applied to the cell and its response.
+
+
+```{r load data, echo=TRUE}
+library(tidyverse)
+
+load_cell <- read_table2(
+  "NIST data/PONTIUS.dat", skip = 25, col_names = FALSE, col_types = "dd") %>%
+  rename(Deflection = X1, Load = X2)
+load_cell
+
+```
+
+***
+
+#### Selection of Inital Model
+
+First, let's view the data.
+
+```{r}
+ggplot(load_cell) +
+  geom_point(aes(Load, Deflection))
+```
+
+The data looks linear. We can use a simple linear model to view the data
+
+$$ y = mx + b $$
+
+```{r}
+load_cell_model <- lm(Deflection ~ Load, load_cell)
+summary(load_cell_model)
+```
+Wow! an R-squared value of 1! it must be perfect.
+
+##### A new package to work with summary information: broom()
+**broom** package is part of the tidyverse and inccludes `glance()`, `tidy`, and `augment()`.
+These functions create tidy data frames based on the model.
+
+
+```{r echo=TRUE}
+load_cell_glance <- glance(load_cell_model)
+load_cell_glance
+```
+
+```{r echo=TRUE}
+load_cell_tidy <- tidy(load_cell_model)
+load_cell_tidy
+```
+
+```{r}
+augment(load_cell_model)
+```
+
+```{r}
+ggplot(load_cell, aes(Load, Deflection)) +
+  geom_point() +
+  stat_smooth(method = lm, linetype = "dashed", colour = "blue", size = 0.5) +
+  ggtitle("NIST Load Cell Calibration Data", subtitle = "+/- 95% Confidence Intervals are not visible")
+```
+
+#### But wait! What about the residuals?
+
+```{r}
+load_cell_resid = resid(load_cell_model)
+load_cell_resid
+
+# ggplot() +
+#   geom_point(aes(LoadCell$Load, LC.resid)) +
+#   geom_hline(aes(yintercept=0)) +
+#   geom_hline(aes(yintercept=+2*(summary(m.LC)$sigma)), linetype = "dashed") +
+#   geom_hline(aes(yintercept=-2*(summary(m.LC)$sigma)), linetype = "dashed") +
+#   ggtitle("Deflection Load Residuals", subtitle = "+/- 2(Residual Statndard Deviation)") +
+#   theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+```
+
+Using the `augment()` function we can plot the residuals very easily
+
+```{r echo=TRUE}
+load_cell_fit <- augment(load_cell_model)
+load_cell_fit
+
+ggplot(load_cell_fit) +
+  geom_point(aes(Load, .resid)) +
+  ggtitle("Residuals from linear model of the load cell")
+```
+
+
+The residuals from a good model would be random. Although not necessary, we can plot a histogram or qqplot to demonstrate the residuals are not following a normal distribution.
+
+```{r}
+
+ggplot(load_cell_fit) +
+  geom_histogram(aes(.resid))
+
+ggplot(load_cell_fit) +
+  geom_qq(aes(sample = .resid))
+
+```
+
+*** 
+
+#### Model Refinement
+
+$$ D = \beta_0 + \beta_1 L + \beta_2 L^2 + \varepsilon $$
+
+
+We can use the linear model function, `lm()`, by creating a new variable $L^2$. 
+
+```{r}
+load_cell_2 <- mutate(load_cell, Load_squared = Load^2)
+load_cell_2
+
+```
+
+
+```{r}
+load_cell_model_2 <- lm(Deflection ~ Load + Load_squared, load_cell_2)
+summary(load_cell_model_2)
+```
+
+```{r}
+load_cell_fit_2 <- augment(load_cell_model_2)
+load_cell_fit_2
+
+ggplot(load_cell_fit_2) +
+  geom_point(aes(Load, .resid)) +
+  ggtitle("Residuals from refined model of the load cell")
+```
+
+##### Could we have used a non-linear least squares fit model?
+
+```{r}
+load_cell_model_3 <- nls(Deflection ~ b0 + b1*Load + b2*Load^2, load_cell_2, start = c(b0 = 0, b1 = 0,b2 = 0))
+
+summary(load_cell_model_3)
+
+```
+
+The results are identical.
+
+```{r}
+ggplot(load_cell_fit_2) +
+  geom_histogram(aes(.resid))
+
+ggplot(load_cell_fit_2) +
+  geom_qq(aes(sample = .resid))
+```
+
+
+### Thermal expansion of copper
+
+[from section 4.6.4. Thermal Expansion of Copper Case Study](https://www.itl.nist.gov/div898/handbook/pmd/section6/pmd64.htm)
+
+
+>This case study illustrates the use of a class of nonlinear models called rational function models. The data set used is the thermal expansion of copper related to temperature.
+
+```{r}
+CTECu <- read_table2(
+  "NIST data/HAHN1.dat", skip = 25, col_names = FALSE) 
+
+CTECu <- CTECu %>%
+  rename(temp_K = X1, Cu_CTE = X2)
+View(CTECu)
+```
+
+```{r}
+ggplot(CTECu, aes(temp_K, Cu_CTE)) + 
+  geom_point()
+```
+
+### Quadratic/Quadratic (Q/Q) model 
+
+The NIST handbook has a procedure for calculing estimates for the model, below, I just used guess values for the equation
+$$
+y = \frac{(A0 + A1*x + A2*x^2)}{(1 + B1*x + B2*X^2)}
+$$
+
+```{r}
+model_Cu <- nls(Cu_CTE ~ ((a0 + a1*temp_K + a2*temp_K^2)/(1 + b1*temp_K + b2*temp_K^2)), 
+            CTECu, start = list(a0 = 0, a1 = -1, a2 = -1, b1 = 0, b2 = 0), trace = T)
+
+summary(model_Cu)
+
+glance(model_Cu)
+augment(model_Cu)
+tidy(model_Cu)
+```
+
+#### Create a function using the fit paramters 
+
+```{r}
+Cu_fit <- function(x) {
+  ((summary(model_Cu)$coefficients[1] + summary(model_Cu)$coefficients[2]*x + summary(model_Cu)$coefficients[3]*x^2)/(1 + summary(model_Cu)$coefficients[4]*x + summary(model_Cu)$coefficients[5]*x^2))
+  }
+```
+
+#### Add the fitted curve to the graph
+
+```{r}
+
+ggplot(CTECu, aes(temp_K, Cu_CTE)) + 
+  geom_point() + 
+  stat_function(fun = Cu_fit, colour = "green", linetype = "dashed") +
+  ggtitle("Thermal Expansion of Copper", subtitle = "nls function using Q/Q model")
+
+```
+
+#### Plot the residulas
+
+```{r}
+ggplot(augment(model_Cu)) +
+  geom_point(aes(temp_K, .resid)) +
+  geom_hline(aes(yintercept=0)) +
+  geom_hline(aes(yintercept=+2*(0.38)), linetype = "dashed") +
+  geom_hline(aes(yintercept=-2*(0.38)), linetype = "dashed") +
+  ggtitle("Thermal Expansion of Copper Residuals", subtitle = "+/- 2(Residual Statndard Deviation)")
+```
+
+The fit is not very good, shows a clear structure, and indicates the Q/Q model is insufficient. 
+
+### Cubic/Cubic Rational Function
+
+$$
+y = \frac{(A0 + A1*x + A2x^2 + A3X^3)} {(1 + B1x + B2X^2 + B3X^3)}
+$$
+
+```{r}
+mcc_Cu <- nls(Cu_CTE ~ ((a0 + a1*temp_K + a2*temp_K^2 + a3*temp_K^3)/(1 + b1*temp_K + b2*temp_K^2 + b3*temp_K^3)), 
+            CTECu, start = list(a0 = 0, a1 = -1, a2 = -1, a3 = 0, b1 = 0, b2 = 0, b3 = 0), 
+            trace = T)
+
+summary(mcc_Cu)
+
+glance(mcc_Cu)
+augment(mcc_Cu)
+tidy(mcc_Cu)
+```
+
+#### Create a function using the fit parameters
+
+```{r}
+cc.Cu.fit <- function(x) {
+  ((summary(mcc_Cu)$coefficients[1] + summary(mcc_Cu)$coefficients[2]*x + 
+      summary(mcc_Cu)$coefficients[3]*x^2 + summary(mcc_Cu)$coefficients[4]*x^3)/(1 + summary(mcc_Cu)$coefficients[5]*x + summary(mcc_Cu)$coefficients[6]*x^2 + summary(mcc_Cu)$coefficients[7]*x^3))
+  }
+```
+
+#### Add the fitted curve to the graph
+
+```{r}
+ggplot(CTECu, aes(temp_K, Cu_CTE)) +
+  geom_point() + 
+  stat_function(fun = cc.Cu.fit, colour = "green", linetype = "dashed") +
+  ggtitle("Thermal Expansion of Copper", subtitle = "nls function using C/C model")
+
+```
+
+#### Plot the residuals from the C/C model
+
+```{r}
+ggplot(augment(mcc_Cu)) +
+  geom_point(aes(temp_K, .resid)) +
+  geom_hline(aes(yintercept=0)) +
+  geom_hline(aes(yintercept=+2*0.082), linetype = "dashed") +
+  geom_hline(aes(yintercept=-2*0.082), linetype = "dashed") +
+  ggtitle("Thermal Expansion of Copper Residuals (C/C)", subtitle = "+/- 2(Residual Statndard Deviation)")
+```
+
+#### Finally, lets fit the data with th LOESS method and compare to the C/C model
+
+```{r}
+ggplot(CTECu, aes(temp_K, Cu_CTE)) +
+  geom_point() + 
+  stat_smooth(method = "loess", span = 0.2, linetype = "dashed", size = 0.5) +
+  ggtitle("Thermal Expansion of Copper", subtitle = "analysis with LOESS model")
+```
+
+We can look at the quality of the fit using the LOESS model direclty
+
+```{r}
+mloess_Cu <- loess(Cu_CTE ~ temp_K, CTECu, span = 0.2)
+
+summary(mloess_Cu)
+augment(mloess_Cu)
+```
+
+```{r}
+ggplot(augment(mloess_Cu)) +
+  geom_point(aes(temp_K, .resid)) +
+  geom_hline(aes(yintercept=0)) +
+  geom_hline(aes(yintercept=+2*(0.09)), linetype = "dashed") +
+  geom_hline(aes(yintercept=-2*(0.09)), linetype = "dashed") +
+  ggtitle("Thermal Expansion of Copper Residuals (LOESS)", subtitle = "+/- 2(Residual Statndard Error)")
+  
+```
+
+The C/C is slightly bette, but rquired signifiantly more work.
+  
+***
+
+***
+
+#### Progaming with `case_when()`
+
+Looking at the orginal data set, we can see that there are two sets of data. We might want to label these as "run1" and "run2." we could do this in Excel using an `IF()` function. In the **tidyverse**, we can use the `case_when()` function.
+
+```{r echo=TRUE}
+load_cell_fit_2
+
+load_cell_fit_2_runs <- load_cell_fit_2 %>%
+  mutate(
+    run = case_when(seq_along(Load) <= 20 ~ "run1", 
+                    seq_along(Load) > 20 ~ "run2"))
+
+load_cell_fit_2_runs
+```
+
+#### EDA of load cell data by run
+```{r}
+
+ggplot(load_cell_fit_2_runs) +
+  geom_point(aes(Load, .resid, colour = run)) +
+  ggtitle("Residuals from refined model of the load cell") +
+  theme_bw()
+```
+
+## Applying models to multiple datasets
+
+### Revisting the Ascombe dataset
+
+```{r}
+x_anscombe <- anscombe %>%  # results will be storred into a new object x_anscombe; we start with the original data frame "anscombe"
+  select(x1, x2, x3, x4) %>%  # select the columns we want to work with
+  rename(group1 = x1, group2 = x2, group3 = x3, group4 = x4) %>% # rename the values using a generic header
+  gather(key = group, value = x_values, group1, group2, group3, group4) # gather the columns into rows
+
+x_anscombe
+
+y_anscombe <- anscombe %>%
+  select(y1, y2, y3, y4) %>%
+  gather(key = group, value = y_values, y1, y2, y3, y4) %>% # I don't need to rename the columns as I will discard them (I only need one column to indicate the group number)
+  select(y_values)
+
+y_anscombe
+
+anscombe_tidy <- bind_cols(x_anscombe, y_anscombe)
+anscombe_tidy
+```
+
+
+```{r}
+ggplot(anscombe_tidy, aes(x_values, y_values)) +
+  geom_line(aes(group = group))
+```
+
+In chapter 1, we constructed models for each group; however, for large datasets, we'd like to be able to streamline this process.
+
+Following the example from chapter 11 of Hadley Wickham:
+
+```{r}
+anscombe_models <- anscombe_tidy %>%
+  group_by(group) %>%
+  do(mod = lm(y_values ~ x_values, data = ., na.action = na.exclude
+     )) %>%
+  ungroup()
+
+anscombe_models
+```
+
+### Model-level summaries
+
+```{r}
+model_summary <- anscombe_models %>%
+  rowwise() %>%
+  glance(mod)
+
+model_summary
+```
+
+### Coefficient-level summaries
+
+```{r}
+coefficient_summary <- anscombe_models %>%
+  rowwise() %>%
+  tidy(mod)
+
+coefficient_summary
+```
+
+### Observation Data
+
+```{r}
+observation_summary <- anscombe_models %>%
+  rowwise() %>%
+  augment(mod)
+
+observation_summary
+```
+
+```{r}
+ggplot(observation_summary, aes(.se.fit, fill = group)) +
+  geom_histogram(bins = 50) +
+  facet_wrap(~ group)
+```
+
+Having model information for each dataset can make the overall analysis much more efficient.

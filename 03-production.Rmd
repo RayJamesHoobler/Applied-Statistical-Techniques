@@ -1,9 +1,210 @@
-# Methods
+# Production Process Characterization
 
-We describe our methods in this chapter.
+## Pacakges used in this chapter
 
-```{r}
-"code"
+```{r echo=FALSE}
+library(magrittr)
+library(tidyverse)
 ```
 
+## Case Studies
+
+### Furnace Case Study
+
+#### Background and Data
+
+>Introduction	In a semiconductor manufacturing process flow, we have a step whereby we grow an oxide film on the silicon wafer using a furnace. In this step, a cassette of wafers is placed in a quartz "boat" and the boats are placed in the furnace. The furnace can hold four boats. A gas flow is created in the furnace and it is brought up to temperature and held there for a specified period of time (which corresponds to the desired oxide thickness). This study was conducted to determine if the process was stable and to characterize sources of variation so that a process control strategy could be developed.
+>
+>The goal of this study is to determine if this process is capable of consistently growing oxide films with a thickness of 560 Angstroms +/- 100 Angstroms. An additional goal is to determine important sources of variation for use in the development of a process control strategy.
+
+
+```{r echo=FALSE}
+FURNACE <- read_table2("NIST data/FURNACE.DAT", 
+                    col_names = FALSE, skip = 25)
+
+# rename the categories
+furnace <- rename(FURNACE, "run" = "X1", "zone" = "X2", "wafer" = "X3", "thickness" = "X4")
+
+# set factors
+furnace$run <- factor(furnace$run)
+furnace$zone <- factor(furnace$zone)
+furnace$wafer <- factor(furnace$wafer)
+furnace$thickness <- as.double(furnace$thickness)
+
+```
+
+#### Histogram and normal probability plots of all data
+
+```{r}
+ggplot(data = furnace, mapping = aes(x = thickness)) +
+  geom_histogram(binwidth = 5)
+
+ggplot(data = furnace) +
+  geom_qq(aes(sample =thickness))
+```
+
+#### Summary statistics and standard deviation of film thickness
+
+```{r echo=TRUE}
+summary(furnace$thickness)
+sd(furnace$thickness)
+```
+
+The NIST/SEMATECH e-Handbook ask for a capability analysis; however, this is covered in Chapter 6
+
+#### Sources of variation
+
+##### Boxplot by run
+
+```{r}
+ggplot(data = furnace, mapping = aes(x = run, y = thickness)) +
+         geom_boxplot()
+```
+
+##### Boxplot by zone
+```{r}
+ggplot(data = furnace, mapping = aes(x = zone, y = thickness)) +
+  geom_boxplot(notch = TRUE)
+```
+
+**Notch** if FALSE (default) make a standard box plot. If TRUE, make a notched box plot. Notches are used to compare groups; if the notches of two boxes do not overlap, this suggests that the medians are significantly different.
+
+##### Boxplots by wafer
+
+```{r}
+ggplot(data = furnace, mapping = aes(x = wafer, y = thickness)) +
+  geom_boxplot(notch = TRUE)
+```
+
+##### One-way ANOVA to confirm thickness is different by run
+
+```{r echo=TRUE}
+aov.thickness <- aov(thickness ~ run, data = furnace)
+summary(aov.thickness)
+```
+
+##### One-way ANOVA to confirm thickness is not different by zone
+
+```{r echo=TRUE}
+aov.zone <- aov(thickness ~ zone, data = furnace)
+summary(aov.zone)
+```
+
+##### Nested ANOVA
+
+```{r echo=TRUE}
+aov.thickness.nested <- aov(thickness ~ run + run:zone, data = furnace)
+summary(aov.thickness.nested)
+```
+
+
+##### Observed trend by week 
+
+```{r}
+furnace_group <- furnace %>%
+  mutate(run = as.integer(run)) %>%
+  mutate(grouping = case_when(run <= 7 ~ "Week 1", 
+                            run > 7 & run <= 14 ~ "Week 2", 
+                            run > 14 ~ "Week 3")) %>%
+  mutate(counting = 1:n()) %>%
+  # mutate(counting = as.double(counting)) %>%
+  mutate(count_by_group = case_when(counting <= 56 ~ counting,
+                              counting > 56 & counting <= 112 ~ counting - 56L,
+                              counting > 112 ~ counting - 112L))
+```
+
+
+```{r echo=TRUE}
+ggplot(furnace_group) +
+  geom_line(aes(x = count_by_group, y = thickness, group = grouping, colour = grouping)) +
+  geom_smooth(aes(x = count_by_group, y = thickness, group = grouping, colour = grouping), 
+              method = "lm", se = FALSE) + 
+  theme_classic() +
+  theme(legend.title=element_blank()) +
+  labs(x = "run count by group", y = "film thickness")
+```
+
+
+### Machine Case Study
+
+#### Background and Data
+>Background and Data
+Introduction	A machine shop has three automatic screw machines that
+produce various parts. The shop has enough capital to replace one of the
+machines. The quality control department has been asked to conduct a
+study and make a recommendation as to which machine should be replaced.
+It was decided to monitor one of the most commonly produced parts (an
+1/8th inch diameter pin) on each of the machines and see which machine
+is the least stable.
+>
+>Goal
+The goal of this study is to determine which machine is least stable in manufacturing a steel pin with a diameter of .125 +/- .003 inches. Stability will be measured in terms of a constant variance about a constant mean. If all machines are stable, the decision will be based on process variability and  throughput. Namely, the machine with the highest variability and lowest throughput will be selected for replacement.
+
+```{r echo=FALSE}
+MACHINE <- read_table2("NIST data/MACHINE.DAT", col_names = FALSE, skip = 25)
+
+# rename the categories
+machine <- rename(MACHINE, "machine" = "X1", "day" = "X2", 
+                  "time" = "X3", "sample" = "X4", "diameter" = "X5")
+
+# set faactors
+machine$machine <- factor(machine$machine)
+machine$day <- factor(machine$day)
+machine$time <- factor(machine$time)
+machine$sample <-factor(machine$sample)
+```
+
+#### Histogram and normal probability plots of all data
+
+```{r}
+ggplot(machine, mapping = aes(x = diameter, fill = machine)) +
+  geom_histogram(binwidth = 0.0005, alpha = 0.5) +
+  facet_grid(machine ~ .)
+```
+
+Since we are given the target diamter and tolerance, we can include these on the plot.
+
+```{r}
+ggplot(machine, mapping = aes(x = diameter, fill = machine)) +
+  geom_histogram(binwidth = 0.0005, alpha = 0.5) +
+  geom_vline(aes(xintercept = 0.125)) +
+  geom_vline(aes(xintercept = 0.128), linetype = 2) +
+  geom_vline(aes(xintercept = 0.122), linetype = 2) +
+  facet_grid(machine ~ .)
+```
+
+
+```{r}
+ggplot(machine, mapping = aes(colour = machine)) +
+  geom_qq(aes(sample = diameter), alpha = 0.5)
+```
+
+#### Sources of variation
+
+##### Boxplots by factors
+
+```{r}
+ggplot(data = machine, mapping = aes(x = machine, y = diameter)) +
+  geom_boxplot(notch = TRUE)
+
+ggplot(data = machine, mapping = aes(x = day, y = diameter)) +
+  geom_boxplot(notch = TRUE)
+
+ggplot(data = machine, mapping = aes(x = time, y = diameter)) +
+  geom_boxplot(notch = TRUE) +
+  labs(x = "1 = AM, 2 = PM")
+
+ggplot(data = machine, mapping = aes(x = sample, y = diameter)) +
+  geom_boxplot(notch = FALSE)
+```
+
+##### ANOVA to confirm diameter by machine is different
+
+```{r}
+aov.diameter <- aov(diameter ~ machine + day + time + sample, data = machine)
+summary(aov.diameter)
+
+aov.diameter.machine <- aov(diameter ~ machine, data = machine)
+summary(aov.diameter.machine)
+```
 
