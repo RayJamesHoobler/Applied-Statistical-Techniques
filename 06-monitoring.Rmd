@@ -1,3 +1,261 @@
-# Final Words
+# Process Monitoring
 
-We have finished a nice book.
+## Packages used in this chapter 
+
+```{r}
+library(magrittr) # used for %$% pipe
+library(tidyverse)
+library(ggplot2)
+library(broom)
+```
+
+## Case Stuidies
+
+### Lithography Process Example
+
+[Lithography process example](https://www.itl.nist.gov/div898/handbook/pmc/section6/pmc61.htm) 
+
+#### Background 
+
+>One of the assumptions in using classical Shewhart SPC charts is that the only source of variation is from part to part (or within subgroup variation). This is the case for most continuous processing situations. However, many of today's processing situations have different sources of variation. The semiconductor industry is one of the areas where the processing creates multiple sources of variation.
+>
+>In semiconductor processing, the basic experimental unit is a silicon wafer. Operations are performed on the wafer, but individual wafers can be grouped multiple ways. In the diffusion area, up to 150 wafers are processed in one time in a diffusion tube. In the etch area, single wafers are processed individually. In the lithography area, the light exposure is done on sub-areas of the wafer. There are many times during the production of a computer chip where the experimental unit varies and thus there are different sources of variation in this batch processing environment.
+>
+>The following is a case study of a lithography process. Five sites are measured on each wafer, three wafers are measured in a cassette (typically a grouping of 24 - 25 wafers) and thirty cassettes of wafers are used in the study. The width of a line is the measurement under study. There are two line width variables. The first is the original data and the second has been cleaned up somewhat. This case study uses the raw data. The entire data table is 450 rows long with six columns.
+
+#### Data
+
+```{r echo=TRUE}
+litho <- read_table2("NIST data/monitor-6.6.1.1.dat", 
+    skip = 4, col_names = FALSE) %>%
+  rename(cassette = X1, wafer = X2, site = X3, raw_linewidth = X4, run_number = X5, cleaned_linewidth = X6)
+litho
+```
+
+#### Generate some simple plots
+
+```{r echo=TRUE}
+ggplot(litho) +
+  geom_line(aes(run_number, raw_linewidth))
+```
+
+```{r echo=TRUE}
+ggplot(litho) +
+  geom_point(aes(lag(raw_linewidth), raw_linewidth))
+```
+
+```{r}
+ggplot(litho) +
+  geom_histogram(aes(raw_linewidth), colour = "white")
+```
+
+```{r}
+ggplot(litho) +
+  geom_qq(aes(sample = raw_linewidth))
+```
+
+#### Summarise the raw linewidth and cleaned linesidth data
+
+```{r}
+litho %>% 
+  select(raw_linewidth, cleaned_linewidth) %>%
+  summary()
+```
+
+#### Plot the response against individual factors
+
+
+```{r echo=TRUE}
+ggplot(litho) +
+  geom_point(aes(cassette, raw_linewidth), alpha = 1/3) +
+  geom_boxplot(aes(cassette, raw_linewidth, group = cassette), alpha = 0, outlier.alpha = 1, outlier.colour = "red")
+```
+
+```{r echo=TRUE}
+ggplot(litho) +
+  geom_point(aes(wafer, raw_linewidth), alpha = 1/10) +
+  geom_boxplot(aes(wafer, raw_linewidth, group = wafer), alpha = 0, notch = TRUE, outlier.alpha = 1)
+```
+
+
+```{r echo=TRUE}
+ggplot(litho) +
+  geom_point(aes(site, raw_linewidth), alpha = 1/10) +
+  geom_boxplot(aes(site, raw_linewidth), alpha = 0, notch = TRUE, outlier.alpha = 1)
+```
+
+#### DOE plots
+
+We need to gather the factors in to a single column
+
+```{r echo=TRUE}
+litho_DOE <- litho %>% 
+  gather(`cassette`, `wafer`, `site`, key = DOE_factors, value = "value")
+litho_DOE
+
+litho_group <- litho_DOE %>%
+  group_by(DOE_factors, value)
+litho_group
+
+litho_summary <- litho_group %>%
+  summarise(mean_factor = mean(raw_linewidth), count = n())
+litho_summary
+```
+
+```{r echo=TRUE}
+ggplot(litho_summary) +
+  geom_jitter(aes(DOE_factors, mean_factor), width = 0.2)
+```
+
+
+```{r echo=TRUE}
+litho_summary_sd <- litho_group %>%
+  summarise(sd_factor = sd(raw_linewidth), count = n())
+litho_summary_sd
+```
+
+```{r echo=TRUE}
+ggplot(litho_summary_sd) +
+  geom_jitter(aes(DOE_factors, sd_factor), width = 0.2)
+```
+
+#### Subgroup analysis
+
+##### Run chart
+
+The chart below adds the mean and control limits based on the standard deviation of the data.
+
+```{r echo=TRUE}
+
+sd_lw <- litho %$%
+  sd(raw_linewidth)
+
+mean_lw <- litho %$%
+  mean(raw_linewidth)
+
+ggplot(litho) +
+  geom_line(aes(run_number, raw_linewidth)) +
+  geom_hline(yintercept = mean_lw + 2*sd_lw, linetype = "dashed") +
+  geom_hline(yintercept = mean_lw - 2*sd_lw, linetype = "dashed") +
+  geom_hline(yintercept = mean_lw)
+
+```
+
+
+##### Summarise by wafer
+
+```{r}
+litho_wafer <- litho %>%
+  group_by(cassette, wafer) %>%
+  summarise(wafer_mean = mean(raw_linewidth), wafer_sd = sd(raw_linewidth)) %>%
+  rowid_to_column(var = "wafer_number") %>%
+  ungroup()
+
+litho_wafer
+```
+
+##### Wafer stats
+
+```{r}
+sd_wafer <- litho_wafer %$%
+  sd(wafer_mean)
+
+rms_sd_wafer <- litho_wafer %>%
+  select(wafer_sd) %>%
+  mutate(sd_squared = wafer_sd^2) %$%
+  sqrt(mean(sd_squared))
+
+mean_wafer_sd <- litho_wafer %$%
+  mean(wafer_sd)
+
+mean_wafer_sd
+sd_wafer
+rms_sd_wafer
+```
+
+
+##### Wafer mean control chart
+
+```{r}
+ggplot(litho_wafer) +
+  geom_line(aes(wafer_number, wafer_mean)) +
+  geom_hline(yintercept = mean_lw + 2*sd_wafer/sqrt(5), linetype = "dashed") +
+  geom_hline(yintercept = mean_lw - 2*sd_wafer/sqrt(5), linetype = "dashed") +
+  geom_hline(yintercept = mean_lw)
+```
+
+##### SD control chart by wafer
+
+Using the methods from (2.2.3.1. Control chart for standard)[https://www.itl.nist.gov/div898/handbook/mpc/section2/mpc231.htm] we can construct an UCL for the standard deviations
+
+
+```{r}
+ggplot(litho_wafer) +
+ geom_histogram(aes(wafer_sd), colour = "white")
+
+ggplot(litho_wafer) +
+  geom_line(aes(wafer_number, wafer_sd)) +
+  geom_hline(yintercept = 2*rms_sd_wafer)
+```
+
+##### Summarise by cassette
+
+```{r}
+litho_cassette <- litho %>%
+  group_by(cassette) %>%
+  summarise(cassette_mean = mean(raw_linewidth), cassette_sd = sd(raw_linewidth)) %>%
+  ungroup()
+
+litho_cassette
+```
+
+##### Mean control chart by cassette
+
+
+```{r}
+ggplot(litho_cassette) +
+  geom_line(aes(cassette, cassette_mean)) +
+  geom_hline(yintercept = mean_lw + 2*sd_lw/sqrt(15), linetype = "dashed") +
+  geom_hline(yintercept = mean_lw - 2*sd_wafer/sqrt(15), linetype = "dashed") +
+  geom_hline(yintercept = mean_lw)
+```
+
+
+##### SD control chart by cassette
+
+
+```{r}
+rms_sd_cassette <- litho_cassette %>%
+  select(cassette_sd) %>%
+  mutate(sd_squared = cassette_sd^2) %$%
+  sqrt(mean(sd_squared))
+
+
+ggplot(litho_cassette) +
+  geom_line(aes(cassette, cassette_sd)) +
+  geom_hline(yintercept = 2*rms_sd_cassette, linetype = "dashed")
+```
+
+
+##### Variance compoent estimation
+
+Attach the nessary libraries
+```{r}
+library(lme4)
+library(broom)
+```
+
+Fit the random effects model and print the variance compoents
+
+```{r}
+random_effects_model <- lmer(raw_linewidth ~ 1|cassette/wafer, data = litho)
+summary(random_effects_model)
+
+augment(random_effects_model)
+
+ggplot(augment(random_effects_model_2)) +
+  geom_line(aes(seq_along(raw_linewidth), raw_linewidth)) +
+  geom_line(aes(seq_along(raw_linewidth), .fitted), colour = "red")
+
+```
+

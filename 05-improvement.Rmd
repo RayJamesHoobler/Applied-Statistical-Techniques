@@ -1,8 +1,90 @@
 # Process Improvment
 
-## Libraries used in this chapteer
+## Packages used in this chapter 
 
-## Case Studies
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(broom)
+```
+
+## Case Stuidies
+
+### Eddy current probe sensitivity 
+
+[Eddy current probe sensitivity](https://www.itl.nist.gov/div898/handbook/pri/section6/pri61.htm) 
+
+#### Background
+
+>The data for this case study is a subset of a study performed by Capobianco, Splett, and Iyer. Capobianco was a member of the NIST Electromagnetics Division and Splett and Iyer were members of the NIST Statistical Engineering Division at the time of this study.
+>
+>The goal of this project is to develop a nondestructive portable device for detecting cracks and fractures in metals. A primary application would be the detection of defects in airplane wings. The internal mechanism of the detector would be for sensing crack-induced changes in the detector's electromagnetic field, which would in turn result in changes in the impedance level of the detector. This change of impedance is termed "sensitivity" and it is a sub-goal of this experiment to maximize such sensitivity as the detector is moved from an unflawed region to a flawed region on the metal.
 
 
+#### Statistical goals 
+
+>The case study illustrates the analysis of a 23 full factorial experimental design. The specific statistical goals of the experiment are: (1) Determine the important factors that affect sensitivity. (2) Determine the settings that maximize sensitivity. (3) Determine a predicition equation that functionally relates sensitivity to various factors.
+
+#### Data
+
+```{r}
+eddy_probe <- read_table2("NIST data/SPLETT3.DAT", 
+                          skip = 25, col_names = FALSE, col_types = "diiii") %>%
+  rename(probe_impedance = X1, number_turns = X2, winding_distance = X3, wire_gauge = X4, run_sequence = X5)
+eddy_probe
+```
+
+
+#### Ordered data plot
+
+There are several differnet ways we could structure an ordered data plot; below is an example.
+
+```{r}
+eddy_probe_tidy <- eddy_probe %>%
+  gather(key = factor_setting, value = value_setting, number_turns, winding_distance, wire_gauge)
+eddy_probe_tidy
+```
+
+```{r}
+ggplot(eddy_probe_tidy) +
+  geom_point(aes(reorder(run_sequence, probe_impedance), probe_impedance, colour = factor_setting, shape = as.factor(value_setting)), position = position_dodge(width = 0.5)) +
+  labs(title = "Ordered data plot for Eddy current study", y = "sensitivity", x = "run")
+```
+
+
+
+#### DOE scatter plot 
+
+```{r}
+ggplot(eddy_probe_tidy) +
+  geom_point(aes(value_setting, probe_impedance)) +
+  facet_wrap(~factor_setting) +
+  labs(title = "DOE scatter plot for Eddy current data", y = "sensitivity", x = "factor levels")
+```
+
+#### DOE mean plot
+
+```{r}
+eddy_probe_means <- eddy_probe_tidy %>%
+  group_by(factor_setting, value_setting) %>%
+  summarise(n = n(), average_factor = mean(probe_impedance))
+eddy_probe_means
+```
+
+
+```{r}
+ggplot(eddy_probe_means, aes(factor_setting, average_factor)) +
+  geom_point(aes(colour = factor_setting, shape = as.factor(value_setting)), position = position_dodge(width = 0.5)) +
+  geom_line(aes(group = factor_setting)) +
+  labs(title = "DOE mean plot for Eddy current data", y = "sensitivity", x = "factor") +
+  theme(legend.title = element_blank())
+```
+
+
+#### DOE interaction plot for eddy current data
+
+```{r}
+eddy_probe_interaction <- lm(average_factor ~ factor_setting, data = eddy_probe_means)
+summary(eddy_probe_interaction)
+```
 

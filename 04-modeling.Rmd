@@ -367,7 +367,7 @@ ggplot(CTECu, aes(temp_K, Cu_CTE)) +
 
 The NIST handbook has a procedure for calculing estimates for the model, below, I just used guess values for the equation
 $$
-y = \frac{(A0 + A1*x + A2*x^2)}{(1 + B1*x + B2*X^2)}
+y = \frac{(A0 + A1 \cdot x + A2 \cdot x^2)}{(1 + B1\cdot x + B2 \cdot X^2)}
 $$
 
 ```{r}
