@@ -8,6 +8,7 @@ bibliography:
 - packages.bib
 - rjh.bib
 description: "Analysis of case studies and exercies and focus on using the tidyverse and ggplot2. This handbook was created using the bookdown package in RStudio. The output format for this example is bookdown::gitbook."
+github-repo: "RayJamesHoobler/Applied-Statistical-Techniques"
 cover-image: "Applied Statistical Techniques.png"
 documentclass: book
 link-citations: yes
