@@ -1,3 +1,565 @@
-# Final Words
+# Product and Process Comparisons
 
-We have finished a nice book.
+## Packages used in this chapter 
+
+```{r}
+library(magrittr) # used for %$% pipe
+library(tidyverse)
+library(ggplot2)
+```
+
+## Exercises
+
+### 7.2.2. Are the data consistent with the assumed process mean?
+
+[process comparision](https://www.itl.nist.gov/div898/handbook/prc/section2/prc22.htm)
+
+
+## Student's t-test
+
+### "illustrative example of the t-test" in section 7.2.2 - particle (contamination) counts
+
+>Over a long run the process average for wafer particle counts has been 50 counts per wafer. We want to test whether a change has occurred based on new data. The null hypothesis that the process mean is 50 counts is tested against the alternative hypothesis that the process mean is not equal to 50 counts. 
+
+$$ \begin{aligned}
+H_0 &:   \mu = \mu_0 \\
+H_a &:  \mu \ne \mu_0
+\end{aligned} $$
+
+
+The purpose of the two-sided alternative is to rule out a possible process change in either direction.
+
+```{r echo=TRUE}
+particles <- tribble( ~test1, 50, 48, 44, 56, 61, 52, 53, 55, 67, 51)
+particles
+```
+
+We can generate the needed summary statistics:
+```{r echo=TRUE}
+particle_summary <- particles %>% 
+summarise(particle_mean = mean(test1), particle_sd = sd(test1), particle_count = n())
+
+particle_summary
+```
+
+Let do this simple example by hand and then compare the result to the `t.test()` function from the `stats` package
+
+$$ t = \frac {\overline{Y} - \mu_0} {{s~} {\sqrt{n}}} $$
+
+```{r echo=TRUE}
+t_particle <- (particle_summary$particle_mean - 50)/(particle_summary$particle_sd/sqrt(particle_summary$particle_count))
+t_critical <- qt(1-0.05/2, df = particle_summary$particle_count - 1)
+t_critical
+t_particle
+```
+
+Becaues the value of t_paticle is inside the interval (-2.26, 2.26), we can not reject the null hypothysis and, therefore, we may continue to assume the process mean is 50 counts.
+
+```{r echo=TRUE}
+particle_summary_t <- particles %>% 
+summarise(particle_mean = mean(test1), particle_sd = sd(test1), particle_count = n(), t_particle = (particle_mean - 50)/(particle_sd/sqrt(particle_count)), t_critical = qt(1-0.05/2, df = particle_count - 1))
+
+particle_summary_t
+```
+
+An alternative method would be to use the `t.test()` function
+
+```{r echo=TRUE}
+particle_t_test <- t.test(particles$test1, alternative = "two.sided", mu = 50, conf.level = 0.95)
+particle_t_test
+```
+
+
+**NEW function alert!**  
+Load the `library(magrittr)` to use the `%$%` function. This allows calling column names within the piped function which is useful for working with base R functions
+
+```{r echo=TRUE}
+# library(magrittr) # to use the %$% function; allows calling column names within the piped function; useful for working with base R functions
+
+particle_t_test2 <- particles %$% 
+  t.test(test1, alternative = "two.sided", mu = 50, conf.level = 0.95)
+particle_t_test2
+```
+
+
+### Do two processes have the same mean? in section 7.3.1 - Example of unequal number of data points
+
+A new procedure (process 2) to assemble a device is introduced and tested for possible improvement in time of assembly. The question being addressed is whether the mean, μ2, of the new assembly process is smaller than the mean, μ1, for the old assembly process (process 1). 
+
+$$ \begin{aligned}
+H_0 &:  \mu_{process \, 2} = \mu_{process \, 1} \\
+H_a &:  \mu_{process \, 2} < \mu_{process \, 1}
+\end{aligned} $$ 
+
+
+```{r echo=TRUE}
+device_test <- tribble(
+~device, ~process_old, ~process_new,
+1, 32, 36,
+2, 37, 31,
+3, 35, 30,
+4, 28, 31,
+5, 41, 34,
+6, 44, 36,
+7, 35, 29,
+8, 31, 32,
+9, 34, 31,
+10, 38, NA,
+11, 42, NA)
+
+device_test
+
+device_summary <- device_test %>% 
+  dplyr::select(process_old, process_new) %>%
+  summary()
+
+device_summary
+```
+
+```{r echo=TRUE}
+device_t_test <- device_test %$% 
+  t.test(process_new, process_old, alternative = "less", var.equal = FALSE, conf.level = 0.95)
+device_t_test
+(-qt(1-0.05, df = 15.533))
+```
+
+## One more classic example! (from Student himself) 
+
+From the article
+
+> I will conclude with an example which comes beyond the range of the tables, there being eleven experiments.  
+>
+>To test whether it is of advantage to kiln-dry barley seed before sowing, seven varieties of barley wore sown (both kiln-dried and not kiln-dried in 1899 and four in 1900; the results are given in the table.
+
+```{r echo=TRUE}
+corn <- read_table2("sample reg kiln
+1  1903 2009
+2  1935 1915
+3  1910 2011
+4  2496 2463
+5  2108 2180
+6  1961 1925
+7  2060 2122
+8  1444 1482
+9  1612 1542
+10 1316 1443
+11 1511 1535", col_names = TRUE, col_types = cols("i", "d", "d"))
+
+corn %<>% mutate(year = case_when(
+  sample <= 7 ~ "cy1889",
+  sample > 7 ~ "cy1900"
+))
+
+corn
+```
+
+```{r echo=TRUE}
+corn_t_test_wrong <- corn %$%
+  t.test(reg, kiln, alternative = "two.sided", var.equal = TRUE, conf.level = 0.95)
+
+corn_t_test_wrong
+```
+
+```{r echo=TRUE}
+corn_t_test_correct <- corn %$%
+  t.test(reg, kiln, paired = TRUE, alternative = "two.sided", var.equal = TRUE, conf.level = 0.95)
+
+corn_t_test_correct
+
+```
+
+
+### plot of Student's (W.S. Gossett) data
+
+```{r echo=TRUE}
+corn_tidy <- corn %>%
+  gather(reg, kiln, key = treatment, value = "yield")
+
+corn_tidy
+```
+
+```{r echo=TRUE}
+ggplot(corn) +
+  geom_point(aes(reg, kiln, colour = year)) +
+  geom_smooth(aes(reg, kiln), method = "lm")
+```
+
+```{r echo=TRUE}
+ggplot(corn_tidy, aes(treatment, yield)) +
+  geom_boxplot(aes(fill = treatment)) +
+  geom_line(aes(group = sample), linetype = "dashed", colour = "grey80") + 
+  geom_point() + 
+  theme_classic() +
+  labs(title = "Analysis of yield by seed type shows slight increase for the kiln dried treatement",
+       subtitle = "paired t-test shows no signifcant difference at the 0.95 confidence intervlal",
+       y = "pounds head corn per acre shillings per quarter", caption = "from: THE PROBABLE ERROR OF A MEAN
+By STUDENT (https://www.york.ac.uk/depts/maths/histstat/student.pdf)")
+
+```
+
+
+## Anova
+
+From the *NIST Engineering and Statistics Handbook*  
+
+>ANOVA is a general technique that can be used to test the hypothesis that the means among two or more groups are equal, under the assumption that the sampled populations are normally distributed.
+
+>The ANOVA procedure is one of the most powerful statistical techniques
+
+The following example is adapted from https://onlinecourses.science.psu.edu/stat502/node/150 
+
+>a plant biologist thinks that plant height may be affected by applying different fertilizers.  They tested three kinds of fertilizer and also one group of plants that are untreated (the control).  They kept all the plants under controlled conditions in the greenhouse.  (In addition, we need to have some information about replication and randomization.)  They randomly assigned the fertilizer treatment levels to individual containerized plants to produce 6 replications of each of the fertilizer applications. 
+
+
+[Image available](https://onlinecourses.science.psu.edu/stat502/node/235)  
+
+```{r echo=TRUE}
+lesson1_data <- read_table2("Control	F1	F2	F3
+21	32	22.5	28
+19.5	30.5	26	27.5
+22.5	25	28	31
+21.5	27.5	27	29.5
+20.5	28	26.5	30
+21	28.6	25.2	29.2", col_names = TRUE)
+lesson1_data
+```
+
+**One-way ANOVA table: the basic format** 
+
+| Source of Variation | Sum of Squares (SS) | Degrees of Feedom (df) | Mean Squares (MS) | F-Ratio |
+|:--------------------|:-------------------:|:----------------------:|:-----------------:|:-------:|
+| Between samples     | SSB                 | k - 1                  | MSB               | MSB/MSW |
+| Within samples      | SSW                 | n(total) - k           | MSW               |         |
+| *Total*             | SST                 | n(total) - 1           |                   |         |
+
+
+**One-way ANOVA table: NIST Handbook**  
+
+| Source              |	SS	|  DF  |    MS     |    F     | 
+|:--------------------|:---:|:----:|:---------:|:--------:|
+| Treatments          |	SST	|  k−1 | SST/(k−1) |	MST/MSE |
+| Error               | SSE |  N−k | SSE/(N−k) |          |
+| *Total (corrected)* |	SS  |  N−1 |           |          |
+
+
+$$
+\textbf{Total Sum of Squares} \\ 
+~ \\
+SST = \sum_{i=1}^k \sum_{j=1}^{n_i} \left ( x_{ij} - \overline{\overline{x}} \right )^2
+$$
+
+### Tidy the data and compute the sum of squares  
+
+```{r echo=TRUE}
+lesson1_gather <- lesson1_data %>%
+  gather(key = treatment, value = value, Control, F1, F2, F3)
+lesson1_gather
+
+lesson1_grand_mean <- lesson1_gather %$% 
+  mean(value)
+
+lesson1_grand_mean
+
+
+lesson1_SST <- lesson1_gather %$% 
+  sum((value - mean(value))^2)
+
+lesson1_SST
+
+ggplot(lesson1_gather) +
+  geom_boxplot(aes(treatment, value)) +
+  theme_classic()
+
+```
+
+
+**One-way ANOVA table: Lesson1 Example**  
+
+| Source of Variation | Sum of Squares (SS) | Degrees of Feedom (df) | Mean Squares (MS) | F-Ratio |
+|:--------------------|:-------------------:|:----------------------:|:-----------------:|:-------:|
+| Between samples     | SSB                 | k - 1                  | MSB               | MSB/MSW |
+| Within samples      | SSW                 | n(total) - k           | MSW               |         |
+| *Total*             | SST = 312.43        | n(total) - 1 = 23      |                   |         |
+
+
+
+$$
+\textbf{Total Sum of Squares} \\ 
+~ \\
+SST = \sum_{i=1}^k \sum_{j=1}^{n_i} \left ( x_{ij} - \overline{\overline{x}} \right )^2
+$$
+
+
+
+$$
+\textbf{Sum of Squares Between} \\ 
+~ \\
+SSB = \sum_{i = 1}^k{n_i \left (\overline{x}_i - \overline{\overline{x}}  \right )^2}
+$$
+
+
+
+$$
+\textbf{Sum of Squares Within} \\  
+~ \\
+SSW = SST - SSB  \\  
+or \\  
+SSW = \sum_{i=1}^k \sum_{j=1}^{n_i} \left ( x_{ij} - \overline{x_i} \right)^2
+$$
+
+
+
+```{r echo=TRUE}
+
+summary_within_groups <- lesson1_gather %>% 
+  group_by(treatment) %>% 
+  summarise(N = n(), mean = mean(value)) # SS = (sum( (value - mean(value))^2
+
+summary_within_groups
+
+
+lesson1_SSB <- summary_within_groups %$%
+  sum((mean - lesson1_grand_mean)^2)*6
+message(cat("SSB ", lesson1_SSB))
+
+lesson1_SSW = lesson1_SST - lesson1_SSB
+message(cat("SSW ", lesson1_SSW))
+
+```
+
+**One-way ANOVA table: Lesson1 Example** 
+
+| Source of Variation | Sum of Squares (SS) | Degrees of Feedom (df) | Mean Squares (MS) | F-Ratio |
+|:--------------------|:-------------------:|:----------------------:|:-----------------:|:-------:|
+| Between samples     | SSB = 251.44        | k - 1  = 3             | 83.81             | MSB/MSW |
+| Within samples      | SSW = 61.03         | n(total) - k = 20      | 3.05              |         |
+| *Total*             | SST = 312.43        | n(total) - 1 = 23      |                   |         |
+
+
+$$ \frac {MSB} {BSW} = \frac {83.81} {3.05} = 27.47 $$
+
+Calculate the critical F-statistic (or look it up in a table)  
+```{r echo=TRUE}
+qf(0.95, df1=3, df2=20) 
+```
+
+Wtih 27.47 > 3.1 we can regect the null hypothesis. 
+
+## Let's let R do the work:  
+```{r echo=TRUE}
+lesson1_aov <- aov(value ~ treatment, lesson1_gather)
+summary(lesson1_aov)
+```
+
+
+## Which populations have different means?
+### Tukey (or Tukey-Kramer) test  
+
+For the example above, we would have constructed the following hypothesis:
+
+$$ \begin{aligned}
+H_0 &:  \mu_{control} = \mu_{F1} = \mu_{F2} = \mu_{F3} \\
+H_a &:  \text{At least two population means are different.}
+\end{aligned} $$ 
+
+The ANOVA analysis above only tells us that there is a difference between two or more of the population means.
+
+We could do a pairwise comparison using confidence intervals for each mean; however, this method does not use the entire population variance. 
+
+The *Tukey-Kramer proceedure for multiple comparisons* is one method to compare two or more groups
+
+
+```{r echo=TRUE}
+lesson1_Tukey <- TukeyHSD(lesson1_aov)
+lesson1_Tukey
+library(broom)
+tidy(lesson1_Tukey)
+plot(lesson1_Tukey)
+```
+
+F3-F2 : a and b  
+F3-F1 : a  
+F2-F1 : b  
+F3-control : c  
+F2-control : c  
+F1-control : c  
+
+```{r echo=TRUE}
+summary_lesson1 <- lesson1_gather %>% 
+  group_by(treatment) %>% 
+  summarise(N = n(), mean = mean(value), sd = sd(value), 
+            se = sd/sqrt(N), ci = se*qt(0.975,N-1)) %>% 
+  mutate(labels = c("c", "ab", "b", "a"))
+
+summary_lesson1
+```
+
+Shouldn't R be able to do this work for us?  
+
+```{r echo=TRUE}
+
+library(multcomp)
+library(multcompView)
+
+greenhouse_letters <- multcompLetters4(lesson1_aov, lesson1_Tukey)
+greenhouse_letters
+str(greenhouse_letters)
+
+library(purrr)
+gh_letters_flatten <- greenhouse_letters %>%
+  flatten()
+str(gh_letters_flatten)
+View(as_tibble(gh_letters_flatten$Letters))
+
+gh_letters_pluck <- greenhouse_letters %>%
+  pluck(1)
+str(gh_letters_pluck)
+
+gh_letters_unlist <- greenhouse_letters %>%
+  unlist %>%
+  as_tibble()
+gh_letters_unlist
+str(gh_letters_unlist)
+
+gh_letters_row <- as_tibble(gh_letters_flatten$Letters)
+gh_letters_row
+
+letters_final <- as_tibble(names(greenhouse_letters$treatment[["Letters"]]))
+letters_final %<>%  rename(treatement = value)
+letters_final
+
+final_final <- bind_cols(letters_final, gh_letters_row)
+final_final
+# greenhouse1_lm <- lm(value ~ treatment, data = lesson1_gather)
+# greenhouse1_lsm <- lsmeans(greenhouse1_lm, ~ treatment)
+# greenhouse1_cld <- cld(greenhouse1_lsm,by = NULL, Letters = letters, alpha = .05, reversed = TRUE, method = "tukey")
+# greenhouse1_cld
+```
+
+## ANOVA Block analysis
+
+
+
+```{r echo=TRUE}
+
+ecoli <- read_table2("Month  WR01  WR02  WR03  WR04
+March	3.	57.6	12	21.3
+April	121.	14.6	6.3	39.9
+May	307.6	290.9	290.9	435.2
+June	44.1	30.1	34.1	81.3
+July	108.1	88	14.8	178.2
+August	106.70	146.70	98.70	275.50
+September	148.30	517.20	185.00	387.30
+October	43.2	81.6	53	198.9", col_names = TRUE)
+
+ecoli
+```
+
+### Tidy up the data
+
+```{r echo=TRUE}
+ecoli_tidy <- ecoli %>%
+  gather(key = "site", value = "counts", WR01, WR02, WR03, WR04)
+
+ecoli_tidy
+```
+
+### One-way ANOVA
+```{r echo=TRUE}
+
+ecoli_aov <- aov(counts ~ site, data = ecoli_tidy)
+
+summary(ecoli_aov)
+```
+
+### Plot of the data
+```{r}
+ggplot(ecoli_tidy) +
+  geom_boxplot(aes(site, counts))
+
+ggplot(ecoli_tidy) +
+  geom_boxplot(aes(site, counts), notch = TRUE)
+```
+
+
+```{r echo=TRUE}
+ggplot(ecoli_tidy) +
+  geom_point(aes(Month, counts, colour = site), size = 4)
+```
+
+
+```{r echo=TRUE}
+plot(TukeyHSD(ecoli_aov, conf.level = 0.95))
+```
+
+
+### ANOVA with blocking factor  
+```{r echo=TRUE}
+ecoli_aov_block <- aov(counts ~ Month + site, data = ecoli_tidy)
+
+summary(ecoli_aov_block)
+```
+
+### But what is different?  
+
+```{r echo=TRUE}
+ecoli_block_tukey <- TukeyHSD(ecoli_aov_block, conf.level = 0.95)
+ecoli_block_tukey
+```
+
+```{r echo=TRUE}
+multcompLetters4(ecoli_aov_block, ecoli_block_tukey)
+```
+
+```{r echo=TRUE}
+plot(TukeyHSD(ecoli_aov_block, conf.level = 0.95))
+```
+
+
+## Two-way ANOVA with interaction
+
+```{r echo=TRUE}
+
+lab_data_2way_anova <- read_table2("46.5	138.4	180.9	39.8	132.4	176.8
+                                   47.3	144.4	180.5	40.3	132.4	173.6
+                                   46.9	142.7	183	41.2	130.3	174.9", col_names = FALSE)
+lab_data_2way_anova
+
+# I want to stack X1-X3 on top of X4-X6
+library(dplyr)
+
+lab_data_method1 <- lab_data_2way_anova %>% 
+  dplyr::select(X1:X3) %>% 
+  rename(dose1 = X1, dose2 = X2, dose3 = X3) %>% 
+  mutate(method = "method1")
+
+lab_data_method1
+
+lab_data_method2 <- lab_data_2way_anova %>% 
+  dplyr::select(X4:X6) %>% 
+  rename(dose1 = X4, dose2 = X5, dose3 = X6) %>% 
+  mutate(method = "method2")
+
+lab_data_method2
+
+lab_data_stack <- bind_rows(lab_data_method1, lab_data_method2)
+lab_data_stack
+
+lab_data_tidy <- lab_data_stack %>% 
+  gather(key = doping_level, value = conc, dose1, dose2, dose3)
+
+lab_data_tidy
+View(lab_data_tidy)
+# run the anova
+
+lab_data_aov <- aov(conc ~ method + doping_level, lab_data_tidy)
+summary(lab_data_aov)
+
+lab_data_aov_cross <- aov(conc ~ method*doping_level, lab_data_tidy)
+
+summary(lab_data_aov_cross)
+```
+
+
+
+

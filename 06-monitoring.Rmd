@@ -58,7 +58,7 @@ ggplot(litho) +
 
 ```{r}
 litho %>% 
-  select(raw_linewidth, cleaned_linewidth) %>%
+  dplyr::select(raw_linewidth, cleaned_linewidth) %>%
   summary()
 ```
 
@@ -161,7 +161,7 @@ sd_wafer <- litho_wafer %$%
   sd(wafer_mean)
 
 rms_sd_wafer <- litho_wafer %>%
-  select(wafer_sd) %>%
+  dplyr::select(wafer_sd) %>%
   mutate(sd_squared = wafer_sd^2) %$%
   sqrt(mean(sd_squared))
 
@@ -226,7 +226,7 @@ ggplot(litho_cassette) +
 
 ```{r}
 rms_sd_cassette <- litho_cassette %>%
-  select(cassette_sd) %>%
+  dplyr::select(cassette_sd) %>%
   mutate(sd_squared = cassette_sd^2) %$%
   sqrt(mean(sd_squared))
 
@@ -253,9 +253,8 @@ summary(random_effects_model)
 
 augment(random_effects_model)
 
-ggplot(augment(random_effects_model_2)) +
+ggplot(augment(random_effects_model)) +
   geom_line(aes(seq_along(raw_linewidth), raw_linewidth)) +
   geom_line(aes(seq_along(raw_linewidth), .fitted), colour = "red")
-
 ```
 

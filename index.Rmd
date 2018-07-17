@@ -7,8 +7,7 @@ bibliography:
 - book.bib
 - packages.bib
 - rjh.bib
-description: This handbook was created using the bookdown package in RStudio.
-  The output format for this example is bookdown::gitbook.
+description: "Analysis of case studies and exercies using the tidyverse and ggplot2. This handbook was created using the bookdown package in RStudio. The output format for this example is bookdown::gitbook."
 cover-image: "Applied Statistical Techniques.png"
 documentclass: book
 link-citations: yes
@@ -71,10 +70,6 @@ sessionInfo()
 ```
 
 ## Acknowledgements {-} 
-
-Current and former students
-
-Former coleagues 
 
 This book was created using the **bookdown** package [@R-bookdown], which was built on top of R Markdown and **knitr** [@xie2015].
 

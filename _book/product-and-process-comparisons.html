@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>An Incomplete Solutions Guide to the NIST/SEMATECH e-Handbook of Statistical Methods</title>
+  <meta name="description" content="This handbook was created using the bookdown package in RStudio. The output format for this example is bookdown::gitbook.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="An Incomplete Solutions Guide to the NIST/SEMATECH e-Handbook of Statistical Methods" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="Applied Statistical Techniques.png" />
+  <meta property="og:description" content="This handbook was created using the bookdown package in RStudio. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="An Incomplete Solutions Guide to the NIST/SEMATECH e-Handbook of Statistical Methods" />
+  
+  <meta name="twitter:description" content="This handbook was created using the bookdown package in RStudio. The output format for this example is bookdown::gitbook." />
+  <meta name="twitter:image" content="Applied Statistical Techniques.png" />
+
+<meta name="author" content="Ray Hoobler">
+
+
+<meta name="date" content="2018-07-16">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="process-monitoring.html">
+<link rel="next" href="assessing-product-reliability.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="http://pmst.utah.edu">Engineering Statistics Handbook in the Tidyverse</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#structure-of-the-book"><i class="fa fa-check"></i>Structure of the book</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#software-information-and-conventsions"><i class="fa fa-check"></i>Software information and conventsions</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="EDA.html"><a href="EDA.html"><i class="fa fa-check"></i><b>1</b> Exploratory Data Analysis</a><ul>
+<li class="chapter" data-level="1.1" data-path="EDA.html"><a href="EDA.html#a-eda-example"><i class="fa fa-check"></i><b>1.1</b> A EDA Example</a></li>
+<li class="chapter" data-level="1.2" data-path="EDA.html"><a href="EDA.html#but-first-lets-start-working-in-the-tidyverse"><i class="fa fa-check"></i><b>1.2</b> But first… let’s start working in the tidyverse</a></li>
+<li class="chapter" data-level="1.3" data-path="EDA.html"><a href="EDA.html#common-graphical-analysis-used-in-the-e-handbook"><i class="fa fa-check"></i><b>1.3</b> Common graphical analysis used in the e-Handbook</a></li>
+<li class="chapter" data-level="1.4" data-path="EDA.html"><a href="EDA.html#case-studies-from-chapter-1-of-the-nistsematech-e-handbook"><i class="fa fa-check"></i><b>1.4</b> Case studies from chapter 1 of the NIST/SEMATECH e-Handbook</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="EDA.html"><a href="EDA.html#normal-random-numbers"><i class="fa fa-check"></i><b>1.4.1</b> Normal random numbers</a></li>
+<li class="chapter" data-level="1.4.2" data-path="EDA.html"><a href="EDA.html#uniform-random-numbers"><i class="fa fa-check"></i><b>1.4.2</b> Uniform random numbers</a></li>
+<li class="chapter" data-level="1.4.3" data-path="EDA.html"><a href="EDA.html#random-walk"><i class="fa fa-check"></i><b>1.4.3</b> Random walk</a></li>
+<li class="chapter" data-level="1.4.4" data-path="EDA.html"><a href="EDA.html#beam-deflections"><i class="fa fa-check"></i><b>1.4.4</b> Beam deflections</a></li>
+<li class="chapter" data-level="1.4.5" data-path="EDA.html"><a href="EDA.html#filter-transmitance"><i class="fa fa-check"></i><b>1.4.5</b> Filter transmitance</a></li>
+<li class="chapter" data-level="1.4.6" data-path="EDA.html"><a href="EDA.html#standard-resistor"><i class="fa fa-check"></i><b>1.4.6</b> Standard resistor</a></li>
+<li class="chapter" data-level="1.4.7" data-path="EDA.html"><a href="EDA.html#heat-flow-meter-1"><i class="fa fa-check"></i><b>1.4.7</b> Heat flow meter 1</a></li>
+<li class="chapter" data-level="1.4.8" data-path="EDA.html"><a href="EDA.html#ceramic-strength"><i class="fa fa-check"></i><b>1.4.8</b> Ceramic strength</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html"><i class="fa fa-check"></i><b>2</b> Measurement Process Characterization</a><ul>
+<li class="chapter" data-level="2.1" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#packages-used-in-this-chapter"><i class="fa fa-check"></i><b>2.1</b> Packages used in this chapter</a></li>
+<li class="chapter" data-level="2.2" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#characterization"><i class="fa fa-check"></i><b>2.2</b> Characterization</a></li>
+<li class="chapter" data-level="2.3" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#gauge-r-r-studies"><i class="fa fa-check"></i><b>2.3</b> Gauge R &amp; R studies</a></li>
+<li class="chapter" data-level="2.4" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#case-studies"><i class="fa fa-check"></i><b>2.4</b> Case Studies</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#check-standard"><i class="fa fa-check"></i><b>2.4.1</b> Check standard</a></li>
+<li class="chapter" data-level="2.4.2" data-path="measurement-process-characterization.html"><a href="measurement-process-characterization.html#gauge-study"><i class="fa fa-check"></i><b>2.4.2</b> Gauge study</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="production-process-characterization.html"><a href="production-process-characterization.html"><i class="fa fa-check"></i><b>3</b> Production Process Characterization</a><ul>
+<li class="chapter" data-level="3.1" data-path="production-process-characterization.html"><a href="production-process-characterization.html#pacakges-used-in-this-chapter"><i class="fa fa-check"></i><b>3.1</b> Pacakges used in this chapter</a></li>
+<li class="chapter" data-level="3.2" data-path="production-process-characterization.html"><a href="production-process-characterization.html#case-studies-1"><i class="fa fa-check"></i><b>3.2</b> Case Studies</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="production-process-characterization.html"><a href="production-process-characterization.html#furnace-case-study"><i class="fa fa-check"></i><b>3.2.1</b> Furnace Case Study</a></li>
+<li class="chapter" data-level="3.2.2" data-path="production-process-characterization.html"><a href="production-process-characterization.html#machine-case-study"><i class="fa fa-check"></i><b>3.2.2</b> Machine Case Study</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="modeling.html"><a href="modeling.html"><i class="fa fa-check"></i><b>4</b> Modeling</a><ul>
+<li class="chapter" data-level="4.1" data-path="modeling.html"><a href="modeling.html#packages-used-in-this-chapter-1"><i class="fa fa-check"></i><b>4.1</b> Packages used in this chapter</a></li>
+<li class="chapter" data-level="4.2" data-path="modeling.html"><a href="modeling.html#introduction"><i class="fa fa-check"></i><b>4.2</b> Introduction</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="modeling.html"><a href="modeling.html#a-simple-linear-regression-model"><i class="fa fa-check"></i><b>4.2.1</b> A simple linear regression model</a></li>
+<li class="chapter" data-level="4.2.2" data-path="modeling.html"><a href="modeling.html#beyond-the-linear-regression"><i class="fa fa-check"></i><b>4.2.2</b> Beyond the linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="modeling.html"><a href="modeling.html#case-stuidies"><i class="fa fa-check"></i><b>4.3</b> Case Stuidies</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="modeling.html"><a href="modeling.html#load-cell-output"><i class="fa fa-check"></i><b>4.3.1</b> Load cell output</a></li>
+<li class="chapter" data-level="4.3.2" data-path="modeling.html"><a href="modeling.html#thermal-expansion-of-copper"><i class="fa fa-check"></i><b>4.3.2</b> Thermal expansion of copper</a></li>
+<li class="chapter" data-level="4.3.3" data-path="modeling.html"><a href="modeling.html#quadraticquadratic-qq-model"><i class="fa fa-check"></i><b>4.3.3</b> Quadratic/Quadratic (Q/Q) model</a></li>
+<li class="chapter" data-level="4.3.4" data-path="modeling.html"><a href="modeling.html#cubiccubic-rational-function"><i class="fa fa-check"></i><b>4.3.4</b> Cubic/Cubic Rational Function</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="modeling.html"><a href="modeling.html#applying-models-to-multiple-datasets"><i class="fa fa-check"></i><b>4.4</b> Applying models to multiple datasets</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="modeling.html"><a href="modeling.html#revisting-the-ascombe-dataset"><i class="fa fa-check"></i><b>4.4.1</b> Revisting the Ascombe dataset</a></li>
+<li class="chapter" data-level="4.4.2" data-path="modeling.html"><a href="modeling.html#model-level-summaries"><i class="fa fa-check"></i><b>4.4.2</b> Model-level summaries</a></li>
+<li class="chapter" data-level="4.4.3" data-path="modeling.html"><a href="modeling.html#coefficient-level-summaries"><i class="fa fa-check"></i><b>4.4.3</b> Coefficient-level summaries</a></li>
+<li class="chapter" data-level="4.4.4" data-path="modeling.html"><a href="modeling.html#observation-data"><i class="fa fa-check"></i><b>4.4.4</b> Observation Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="process-improvment.html"><a href="process-improvment.html"><i class="fa fa-check"></i><b>5</b> Process Improvment</a><ul>
+<li class="chapter" data-level="5.1" data-path="process-improvment.html"><a href="process-improvment.html#packages-used-in-this-chapter-2"><i class="fa fa-check"></i><b>5.1</b> Packages used in this chapter</a></li>
+<li class="chapter" data-level="5.2" data-path="process-improvment.html"><a href="process-improvment.html#case-stuidies-1"><i class="fa fa-check"></i><b>5.2</b> Case Stuidies</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="process-improvment.html"><a href="process-improvment.html#eddy-current-probe-sensitivity"><i class="fa fa-check"></i><b>5.2.1</b> Eddy current probe sensitivity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="process-monitoring.html"><a href="process-monitoring.html"><i class="fa fa-check"></i><b>6</b> Process Monitoring</a><ul>
+<li class="chapter" data-level="6.1" data-path="process-monitoring.html"><a href="process-monitoring.html#packages-used-in-this-chapter-3"><i class="fa fa-check"></i><b>6.1</b> Packages used in this chapter</a></li>
+<li class="chapter" data-level="6.2" data-path="process-monitoring.html"><a href="process-monitoring.html#case-stuidies-2"><i class="fa fa-check"></i><b>6.2</b> Case Stuidies</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="process-monitoring.html"><a href="process-monitoring.html#lithography-process-example"><i class="fa fa-check"></i><b>6.2.1</b> Lithography Process Example</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="product-and-process-comparisons.html"><a href="product-and-process-comparisons.html"><i class="fa fa-check"></i><b>7</b> Product and Process Comparisons</a><ul>
+<li class="chapter" data-level="7.1" data-path="product-and-process-comparisons.html"><a href="product-and-process-comparisons.html#packages-used-in-this-chapter-4"><i class="fa fa-check"></i><b>7.1</b> Packages used in this chapter</a></li>
+<li class="chapter" data-level="7.2" data-path="product-and-process-comparisons.html"><a href="product-and-process-comparisons.html#exercises"><i class="fa fa-check"></i><b>7.2</b> Exercises</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="product-and-process-comparisons.html"><a href="product-and-process-comparisons.html#are-the-data-consistent-with-the-assumed-process-mean"><i class="fa fa-check"></i><b>7.2.1</b> 7.2.2. Are the data consistent with the assumed process mean?</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="product-and-process-comparisons.html"><a href="product-and-process-comparisons.html#students-t-test"><i class="fa fa-check"></i><b>7.3</b> Student’s t-test</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="product-and-process-comparisons.html"><a href="product-and-process-comparisons.html#illustrative-example-of-the-t-test-in-section-7.2.2---particle-contamination-counts"><i class="fa fa-check"></i><b>7.3.1</b> “illustrative example of the t-test” in section 7.2.2 - particle (contamination) counts</a></li>
+<li class="chapter" data-level="7.3.2" data-path="product-and-process-comparisons.html"><a href="product-and-process-comparisons.html#do-two-processes-have-the-same-mean-in-section-7.3.1---example-of-unequal-number-of-data-points"><i class="fa fa-check"></i><b>7.3.2</b> Do two processes have the same mean? in section 7.3.1 - Example of unequal number of data points</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="product-and-process-comparisons.html"><a href="product-and-process-comparisons.html#one-more-classic-example-from-student-himself"><i class="fa fa-check"></i><b>7.4</b> One more classic example! (from Student himself)</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="product-and-process-comparisons.html"><a href="product-and-process-comparisons.html#plot-of-students-w.s.-gossett-data"><i class="fa fa-check"></i><b>7.4.1</b> plot of Student’s (W.S. Gossett) data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="product-and-process-comparisons.html"><a href="product-and-process-comparisons.html#anova"><i class="fa fa-check"></i><b>7.5</b> Anova</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="product-and-process-comparisons.html"><a href="product-and-process-comparisons.html#tidy-the-data-and-compute-the-sum-of-squares"><i class="fa fa-check"></i><b>7.5.1</b> Tidy the data and compute the sum of squares</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="product-and-process-comparisons.html"><a href="product-and-process-comparisons.html#lets-let-r-do-the-work"><i class="fa fa-check"></i><b>7.6</b> Let’s let R do the work:</a></li>
+<li class="chapter" data-level="7.7" data-path="product-and-process-comparisons.html"><a href="product-and-process-comparisons.html#which-populations-have-different-means"><i class="fa fa-check"></i><b>7.7</b> Which populations have different means?</a><ul>
+<li class="chapter" data-level="7.7.1" data-path="product-and-process-comparisons.html"><a href="product-and-process-comparisons.html#tukey-or-tukey-kramer-test"><i class="fa fa-check"></i><b>7.7.1</b> Tukey (or Tukey-Kramer) test</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="product-and-process-comparisons.html"><a href="product-and-process-comparisons.html#anova-block-analysis"><i class="fa fa-check"></i><b>7.8</b> ANOVA Block analysis</a><ul>
+<li class="chapter" data-level="7.8.1" data-path="product-and-process-comparisons.html"><a href="product-and-process-comparisons.html#tidy-up-the-data"><i class="fa fa-check"></i><b>7.8.1</b> Tidy up the data</a></li>
+<li class="chapter" data-level="7.8.2" data-path="product-and-process-comparisons.html"><a href="product-and-process-comparisons.html#one-way-anova"><i class="fa fa-check"></i><b>7.8.2</b> One-way ANOVA</a></li>
+<li class="chapter" data-level="7.8.3" data-path="product-and-process-comparisons.html"><a href="product-and-process-comparisons.html#plot-of-the-data-1"><i class="fa fa-check"></i><b>7.8.3</b> Plot of the data</a></li>
+<li class="chapter" data-level="7.8.4" data-path="product-and-process-comparisons.html"><a href="product-and-process-comparisons.html#anova-with-blocking-factor"><i class="fa fa-check"></i><b>7.8.4</b> ANOVA with blocking factor</a></li>
+<li class="chapter" data-level="7.8.5" data-path="product-and-process-comparisons.html"><a href="product-and-process-comparisons.html#but-what-is-different"><i class="fa fa-check"></i><b>7.8.5</b> But what is different?</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="product-and-process-comparisons.html"><a href="product-and-process-comparisons.html#two-way-anova-with-interaction"><i class="fa fa-check"></i><b>7.9</b> Two-way ANOVA with interaction</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="assessing-product-reliability.html"><a href="assessing-product-reliability.html"><i class="fa fa-check"></i><b>8</b> Assessing Product Reliability</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">An Incomplete Solutions Guide to the NIST/SEMATECH e-Handbook of Statistical Methods</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="product-and-process-comparisons" class="section level1">
+<h1><span class="header-section-number">7</span> Product and Process Comparisons</h1>
+<div id="packages-used-in-this-chapter-4" class="section level2">
+<h2><span class="header-section-number">7.1</span> Packages used in this chapter</h2>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb370-1" data-line-number="1"><span class="kw">library</span>(magrittr) <span class="co"># used for %$% pipe</span></a>
+<a class="sourceLine" id="cb370-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb370-3" data-line-number="3"><span class="kw">library</span>(ggplot2)</a></code></pre></div>
+</div>
+<div id="exercises" class="section level2">
+<h2><span class="header-section-number">7.2</span> Exercises</h2>
+<div id="are-the-data-consistent-with-the-assumed-process-mean" class="section level3">
+<h3><span class="header-section-number">7.2.1</span> 7.2.2. Are the data consistent with the assumed process mean?</h3>
+<p><a href="https://www.itl.nist.gov/div898/handbook/prc/section2/prc22.htm">process comparision</a></p>
+</div>
+</div>
+<div id="students-t-test" class="section level2">
+<h2><span class="header-section-number">7.3</span> Student’s t-test</h2>
+<div id="illustrative-example-of-the-t-test-in-section-7.2.2---particle-contamination-counts" class="section level3">
+<h3><span class="header-section-number">7.3.1</span> “illustrative example of the t-test” in section 7.2.2 - particle (contamination) counts</h3>
+<blockquote>
+<p>Over a long run the process average for wafer particle counts has been 50 counts per wafer. We want to test whether a change has occurred based on new data. The null hypothesis that the process mean is 50 counts is tested against the alternative hypothesis that the process mean is not equal to 50 counts.</p>
+</blockquote>
+<p><span class="math display">\[ \begin{aligned}
+H_0 &amp;:   \mu = \mu_0 \\
+H_a &amp;:  \mu \ne \mu_0
+\end{aligned} \]</span></p>
+<p>The purpose of the two-sided alternative is to rule out a possible process change in either direction.</p>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb371-1" data-line-number="1">particles &lt;-<span class="st"> </span><span class="kw">tribble</span>( <span class="op">~</span>test1, <span class="dv">50</span>, <span class="dv">48</span>, <span class="dv">44</span>, <span class="dv">56</span>, <span class="dv">61</span>, <span class="dv">52</span>, <span class="dv">53</span>, <span class="dv">55</span>, <span class="dv">67</span>, <span class="dv">51</span>)</a>
+<a class="sourceLine" id="cb371-2" data-line-number="2">particles</a></code></pre></div>
+<pre><code>## # A tibble: 10 x 1
+##    test1
+##    &lt;dbl&gt;
+##  1   50.
+##  2   48.
+##  3   44.
+##  4   56.
+##  5   61.
+##  6   52.
+##  7   53.
+##  8   55.
+##  9   67.
+## 10   51.</code></pre>
+<p>We can generate the needed summary statistics:</p>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb373-1" data-line-number="1">particle_summary &lt;-<span class="st"> </span>particles <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb373-2" data-line-number="2"><span class="kw">summarise</span>(<span class="dt">particle_mean =</span> <span class="kw">mean</span>(test1), <span class="dt">particle_sd =</span> <span class="kw">sd</span>(test1), <span class="dt">particle_count =</span> <span class="kw">n</span>())</a>
+<a class="sourceLine" id="cb373-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb373-4" data-line-number="4">particle_summary</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##   particle_mean particle_sd particle_count
+##           &lt;dbl&gt;       &lt;dbl&gt;          &lt;int&gt;
+## 1          53.7        6.57             10</code></pre>
+<p>Let do this simple example by hand and then compare the result to the <code>t.test()</code> function from the <code>stats</code> package</p>
+<p><span class="math display">\[ t = \frac {\overline{Y} - \mu_0} {{s~} {\sqrt{n}}} \]</span></p>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb375-1" data-line-number="1">t_particle &lt;-<span class="st"> </span>(particle_summary<span class="op">$</span>particle_mean <span class="op">-</span><span class="st"> </span><span class="dv">50</span>)<span class="op">/</span>(particle_summary<span class="op">$</span>particle_sd<span class="op">/</span><span class="kw">sqrt</span>(particle_summary<span class="op">$</span>particle_count))</a>
+<a class="sourceLine" id="cb375-2" data-line-number="2">t_critical &lt;-<span class="st"> </span><span class="kw">qt</span>(<span class="dv">1</span><span class="fl">-0.05</span><span class="op">/</span><span class="dv">2</span>, <span class="dt">df =</span> particle_summary<span class="op">$</span>particle_count <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb375-3" data-line-number="3">t_critical</a></code></pre></div>
+<pre><code>## [1] 2.262157</code></pre>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb377-1" data-line-number="1">t_particle</a></code></pre></div>
+<pre><code>## [1] 1.781768</code></pre>
+<p>Becaues the value of t_paticle is inside the interval (-2.26, 2.26), we can not reject the null hypothysis and, therefore, we may continue to assume the process mean is 50 counts.</p>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb379-1" data-line-number="1">particle_summary_t &lt;-<span class="st"> </span>particles <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb379-2" data-line-number="2"><span class="kw">summarise</span>(<span class="dt">particle_mean =</span> <span class="kw">mean</span>(test1), <span class="dt">particle_sd =</span> <span class="kw">sd</span>(test1), <span class="dt">particle_count =</span> <span class="kw">n</span>(), <span class="dt">t_particle =</span> (particle_mean <span class="op">-</span><span class="st"> </span><span class="dv">50</span>)<span class="op">/</span>(particle_sd<span class="op">/</span><span class="kw">sqrt</span>(particle_count)), <span class="dt">t_critical =</span> <span class="kw">qt</span>(<span class="dv">1</span><span class="fl">-0.05</span><span class="op">/</span><span class="dv">2</span>, <span class="dt">df =</span> particle_count <span class="op">-</span><span class="st"> </span><span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb379-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb379-4" data-line-number="4">particle_summary_t</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 5
+##   particle_mean particle_sd particle_count t_particle t_critical
+##           &lt;dbl&gt;       &lt;dbl&gt;          &lt;int&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+## 1          53.7        6.57             10       1.78       2.26</code></pre>
+<p>An alternative method would be to use the <code>t.test()</code> function</p>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb381-1" data-line-number="1">particle_t_test &lt;-<span class="st"> </span><span class="kw">t.test</span>(particles<span class="op">$</span>test1, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="dt">mu =</span> <span class="dv">50</span>, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</a>
+<a class="sourceLine" id="cb381-2" data-line-number="2">particle_t_test</a></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  particles$test1
+## t = 1.7818, df = 9, p-value = 0.1085
+## alternative hypothesis: true mean is not equal to 50
+## 95 percent confidence interval:
+##  49.00243 58.39757
+## sample estimates:
+## mean of x 
+##      53.7</code></pre>
+<p><strong>NEW function alert!</strong><br />
+Load the <code>library(magrittr)</code> to use the <code>%$%</code> function. This allows calling column names within the piped function which is useful for working with base R functions</p>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb383-1" data-line-number="1"><span class="co"># library(magrittr) # to use the %$% function; allows calling column names within the piped function; useful for working with base R functions</span></a>
+<a class="sourceLine" id="cb383-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb383-3" data-line-number="3">particle_t_test2 &lt;-<span class="st"> </span>particles <span class="op">%$%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb383-4" data-line-number="4"><span class="st">  </span><span class="kw">t.test</span>(test1, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="dt">mu =</span> <span class="dv">50</span>, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</a>
+<a class="sourceLine" id="cb383-5" data-line-number="5">particle_t_test2</a></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  test1
+## t = 1.7818, df = 9, p-value = 0.1085
+## alternative hypothesis: true mean is not equal to 50
+## 95 percent confidence interval:
+##  49.00243 58.39757
+## sample estimates:
+## mean of x 
+##      53.7</code></pre>
+</div>
+<div id="do-two-processes-have-the-same-mean-in-section-7.3.1---example-of-unequal-number-of-data-points" class="section level3">
+<h3><span class="header-section-number">7.3.2</span> Do two processes have the same mean? in section 7.3.1 - Example of unequal number of data points</h3>
+<p>A new procedure (process 2) to assemble a device is introduced and tested for possible improvement in time of assembly. The question being addressed is whether the mean, μ2, of the new assembly process is smaller than the mean, μ1, for the old assembly process (process 1).</p>
+<p><span class="math display">\[ \begin{aligned}
+H_0 &amp;:  \mu_{process \, 2} = \mu_{process \, 1} \\
+H_a &amp;:  \mu_{process \, 2} &lt; \mu_{process \, 1}
+\end{aligned} \]</span></p>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb385-1" data-line-number="1">device_test &lt;-<span class="st"> </span><span class="kw">tribble</span>(</a>
+<a class="sourceLine" id="cb385-2" data-line-number="2"><span class="op">~</span>device, <span class="op">~</span>process_old, <span class="op">~</span>process_new,</a>
+<a class="sourceLine" id="cb385-3" data-line-number="3"><span class="dv">1</span>, <span class="dv">32</span>, <span class="dv">36</span>,</a>
+<a class="sourceLine" id="cb385-4" data-line-number="4"><span class="dv">2</span>, <span class="dv">37</span>, <span class="dv">31</span>,</a>
+<a class="sourceLine" id="cb385-5" data-line-number="5"><span class="dv">3</span>, <span class="dv">35</span>, <span class="dv">30</span>,</a>
+<a class="sourceLine" id="cb385-6" data-line-number="6"><span class="dv">4</span>, <span class="dv">28</span>, <span class="dv">31</span>,</a>
+<a class="sourceLine" id="cb385-7" data-line-number="7"><span class="dv">5</span>, <span class="dv">41</span>, <span class="dv">34</span>,</a>
+<a class="sourceLine" id="cb385-8" data-line-number="8"><span class="dv">6</span>, <span class="dv">44</span>, <span class="dv">36</span>,</a>
+<a class="sourceLine" id="cb385-9" data-line-number="9"><span class="dv">7</span>, <span class="dv">35</span>, <span class="dv">29</span>,</a>
+<a class="sourceLine" id="cb385-10" data-line-number="10"><span class="dv">8</span>, <span class="dv">31</span>, <span class="dv">32</span>,</a>
+<a class="sourceLine" id="cb385-11" data-line-number="11"><span class="dv">9</span>, <span class="dv">34</span>, <span class="dv">31</span>,</a>
+<a class="sourceLine" id="cb385-12" data-line-number="12"><span class="dv">10</span>, <span class="dv">38</span>, <span class="ot">NA</span>,</a>
+<a class="sourceLine" id="cb385-13" data-line-number="13"><span class="dv">11</span>, <span class="dv">42</span>, <span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb385-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb385-15" data-line-number="15">device_test</a></code></pre></div>
+<pre><code>## # A tibble: 11 x 3
+##    device process_old process_new
+##     &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+##  1     1.         32.         36.
+##  2     2.         37.         31.
+##  3     3.         35.         30.
+##  4     4.         28.         31.
+##  5     5.         41.         34.
+##  6     6.         44.         36.
+##  7     7.         35.         29.
+##  8     8.         31.         32.
+##  9     9.         34.         31.
+## 10    10.         38.         NA 
+## 11    11.         42.         NA</code></pre>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb387-1" data-line-number="1">device_summary &lt;-<span class="st"> </span>device_test <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb387-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(process_old, process_new) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb387-3" data-line-number="3"><span class="st">  </span><span class="kw">summary</span>()</a>
+<a class="sourceLine" id="cb387-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb387-5" data-line-number="5">device_summary</a></code></pre></div>
+<pre><code>##   process_old     process_new   
+##  Min.   :28.00   Min.   :29.00  
+##  1st Qu.:33.00   1st Qu.:31.00  
+##  Median :35.00   Median :31.00  
+##  Mean   :36.09   Mean   :32.22  
+##  3rd Qu.:39.50   3rd Qu.:34.00  
+##  Max.   :44.00   Max.   :36.00  
+##                  NA&#39;s   :2</code></pre>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb389-1" data-line-number="1">device_t_test &lt;-<span class="st"> </span>device_test <span class="op">%$%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb389-2" data-line-number="2"><span class="st">  </span><span class="kw">t.test</span>(process_new, process_old, <span class="dt">alternative =</span> <span class="st">&quot;less&quot;</span>, <span class="dt">var.equal =</span> <span class="ot">FALSE</span>, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</a>
+<a class="sourceLine" id="cb389-3" data-line-number="3">device_t_test</a></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  process_new and process_old
+## t = -2.2694, df = 15.533, p-value = 0.01894
+## alternative hypothesis: true difference in means is less than 0
+## 95 percent confidence interval:
+##        -Inf -0.8869087
+## sample estimates:
+## mean of x mean of y 
+##  32.22222  36.09091</code></pre>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb391-1" data-line-number="1">(<span class="op">-</span><span class="kw">qt</span>(<span class="dv">1</span><span class="fl">-0.05</span>, <span class="dt">df =</span> <span class="fl">15.533</span>))</a></code></pre></div>
+<pre><code>## [1] -1.749109</code></pre>
+</div>
+</div>
+<div id="one-more-classic-example-from-student-himself" class="section level2">
+<h2><span class="header-section-number">7.4</span> One more classic example! (from Student himself)</h2>
+<p>From the article</p>
+<blockquote>
+<p>I will conclude with an example which comes beyond the range of the tables, there being eleven experiments.</p>
+<p>To test whether it is of advantage to kiln-dry barley seed before sowing, seven varieties of barley wore sown (both kiln-dried and not kiln-dried in 1899 and four in 1900; the results are given in the table.</p>
+</blockquote>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb393-1" data-line-number="1">corn &lt;-<span class="st"> </span><span class="kw">read_table2</span>(<span class="st">&quot;sample reg kiln</span></a>
+<a class="sourceLine" id="cb393-2" data-line-number="2"><span class="st">1  1903 2009</span></a>
+<a class="sourceLine" id="cb393-3" data-line-number="3"><span class="st">2  1935 1915</span></a>
+<a class="sourceLine" id="cb393-4" data-line-number="4"><span class="st">3  1910 2011</span></a>
+<a class="sourceLine" id="cb393-5" data-line-number="5"><span class="st">4  2496 2463</span></a>
+<a class="sourceLine" id="cb393-6" data-line-number="6"><span class="st">5  2108 2180</span></a>
+<a class="sourceLine" id="cb393-7" data-line-number="7"><span class="st">6  1961 1925</span></a>
+<a class="sourceLine" id="cb393-8" data-line-number="8"><span class="st">7  2060 2122</span></a>
+<a class="sourceLine" id="cb393-9" data-line-number="9"><span class="st">8  1444 1482</span></a>
+<a class="sourceLine" id="cb393-10" data-line-number="10"><span class="st">9  1612 1542</span></a>
+<a class="sourceLine" id="cb393-11" data-line-number="11"><span class="st">10 1316 1443</span></a>
+<a class="sourceLine" id="cb393-12" data-line-number="12"><span class="st">11 1511 1535&quot;</span>, <span class="dt">col_names =</span> <span class="ot">TRUE</span>, <span class="dt">col_types =</span> <span class="kw">cols</span>(<span class="st">&quot;i&quot;</span>, <span class="st">&quot;d&quot;</span>, <span class="st">&quot;d&quot;</span>))</a>
+<a class="sourceLine" id="cb393-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb393-14" data-line-number="14">corn <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">case_when</span>(</a>
+<a class="sourceLine" id="cb393-15" data-line-number="15">  sample <span class="op">&lt;=</span><span class="st"> </span><span class="dv">7</span> <span class="op">~</span><span class="st"> &quot;cy1889&quot;</span>,</a>
+<a class="sourceLine" id="cb393-16" data-line-number="16">  sample <span class="op">&gt;</span><span class="st"> </span><span class="dv">7</span> <span class="op">~</span><span class="st"> &quot;cy1900&quot;</span></a>
+<a class="sourceLine" id="cb393-17" data-line-number="17">))</a>
+<a class="sourceLine" id="cb393-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb393-19" data-line-number="19">corn</a></code></pre></div>
+<pre><code>## # A tibble: 11 x 4
+##    sample   reg  kiln year  
+##     &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; 
+##  1      1 1903. 2009. cy1889
+##  2      2 1935. 1915. cy1889
+##  3      3 1910. 2011. cy1889
+##  4      4 2496. 2463. cy1889
+##  5      5 2108. 2180. cy1889
+##  6      6 1961. 1925. cy1889
+##  7      7 2060. 2122. cy1889
+##  8      8 1444. 1482. cy1900
+##  9      9 1612. 1542. cy1900
+## 10     10 1316. 1443. cy1900
+## 11     11 1511. 1535. cy1900</code></pre>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb395-1" data-line-number="1">corn_t_test_wrong &lt;-<span class="st"> </span>corn <span class="op">%$%</span></a>
+<a class="sourceLine" id="cb395-2" data-line-number="2"><span class="st">  </span><span class="kw">t.test</span>(reg, kiln, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</a>
+<a class="sourceLine" id="cb395-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb395-4" data-line-number="4">corn_t_test_wrong</a></code></pre></div>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  reg and kiln
+## t = -0.23413, df = 20, p-value = 0.8173
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -334.2127  266.7581
+## sample estimates:
+## mean of x mean of y 
+##  1841.455  1875.182</code></pre>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb397-1" data-line-number="1">corn_t_test_correct &lt;-<span class="st"> </span>corn <span class="op">%$%</span></a>
+<a class="sourceLine" id="cb397-2" data-line-number="2"><span class="st">  </span><span class="kw">t.test</span>(reg, kiln, <span class="dt">paired =</span> <span class="ot">TRUE</span>, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</a>
+<a class="sourceLine" id="cb397-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb397-4" data-line-number="4">corn_t_test_correct</a></code></pre></div>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  reg and kiln
+## t = -1.6905, df = 10, p-value = 0.1218
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -78.18164  10.72710
+## sample estimates:
+## mean of the differences 
+##               -33.72727</code></pre>
+<div id="plot-of-students-w.s.-gossett-data" class="section level3">
+<h3><span class="header-section-number">7.4.1</span> plot of Student’s (W.S. Gossett) data</h3>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb399-1" data-line-number="1">corn_tidy &lt;-<span class="st"> </span>corn <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb399-2" data-line-number="2"><span class="st">  </span><span class="kw">gather</span>(reg, kiln, <span class="dt">key =</span> treatment, <span class="dt">value =</span> <span class="st">&quot;yield&quot;</span>)</a>
+<a class="sourceLine" id="cb399-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb399-4" data-line-number="4">corn_tidy</a></code></pre></div>
+<pre><code>## # A tibble: 22 x 4
+##    sample year   treatment yield
+##     &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;
+##  1      1 cy1889 reg       1903.
+##  2      2 cy1889 reg       1935.
+##  3      3 cy1889 reg       1910.
+##  4      4 cy1889 reg       2496.
+##  5      5 cy1889 reg       2108.
+##  6      6 cy1889 reg       1961.
+##  7      7 cy1889 reg       2060.
+##  8      8 cy1900 reg       1444.
+##  9      9 cy1900 reg       1612.
+## 10     10 cy1900 reg       1316.
+## # ... with 12 more rows</code></pre>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb401-1" data-line-number="1"><span class="kw">ggplot</span>(corn) <span class="op">+</span></a>
+<a class="sourceLine" id="cb401-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(reg, kiln, <span class="dt">colour =</span> year)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb401-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(reg, kiln), <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-173-1.png" width="672" /></p>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb402-1" data-line-number="1"><span class="kw">ggplot</span>(corn_tidy, <span class="kw">aes</span>(treatment, yield)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb402-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> treatment)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb402-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> sample), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;grey80&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb402-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb402-5" data-line-number="5"><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb402-6" data-line-number="6"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Analysis of yield by seed type shows slight increase for the kiln dried treatement&quot;</span>,</a>
+<a class="sourceLine" id="cb402-7" data-line-number="7">       <span class="dt">subtitle =</span> <span class="st">&quot;paired t-test shows no signifcant difference at the 0.95 confidence intervlal&quot;</span>,</a>
+<a class="sourceLine" id="cb402-8" data-line-number="8">       <span class="dt">y =</span> <span class="st">&quot;pounds head corn per acre shillings per quarter&quot;</span>, <span class="dt">caption =</span> <span class="st">&quot;from: THE PROBABLE ERROR OF A MEAN</span></a>
+<a class="sourceLine" id="cb402-9" data-line-number="9"><span class="st">By STUDENT (https://www.york.ac.uk/depts/maths/histstat/student.pdf)&quot;</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-174-1.png" width="672" /></p>
+</div>
+</div>
+<div id="anova" class="section level2">
+<h2><span class="header-section-number">7.5</span> Anova</h2>
+<p>From the <em>NIST Engineering and Statistics Handbook</em></p>
+<blockquote>
+<p>ANOVA is a general technique that can be used to test the hypothesis that the means among two or more groups are equal, under the assumption that the sampled populations are normally distributed.</p>
+</blockquote>
+<blockquote>
+<p>The ANOVA procedure is one of the most powerful statistical techniques</p>
+</blockquote>
+<p>The following example is adapted from <a href="https://onlinecourses.science.psu.edu/stat502/node/150" class="uri">https://onlinecourses.science.psu.edu/stat502/node/150</a></p>
+<blockquote>
+<p>a plant biologist thinks that plant height may be affected by applying different fertilizers. They tested three kinds of fertilizer and also one group of plants that are untreated (the control). They kept all the plants under controlled conditions in the greenhouse. (In addition, we need to have some information about replication and randomization.) They randomly assigned the fertilizer treatment levels to individual containerized plants to produce 6 replications of each of the fertilizer applications.</p>
+</blockquote>
+<p><a href="https://onlinecourses.science.psu.edu/stat502/node/235">Image available</a></p>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb403-1" data-line-number="1">lesson1_data &lt;-<span class="st"> </span><span class="kw">read_table2</span>(<span class="st">&quot;Control    F1  F2  F3</span></a>
+<a class="sourceLine" id="cb403-2" data-line-number="2"><span class="st">21  32  22.5    28</span></a>
+<a class="sourceLine" id="cb403-3" data-line-number="3"><span class="st">19.5    30.5    26  27.5</span></a>
+<a class="sourceLine" id="cb403-4" data-line-number="4"><span class="st">22.5    25  28  31</span></a>
+<a class="sourceLine" id="cb403-5" data-line-number="5"><span class="st">21.5    27.5    27  29.5</span></a>
+<a class="sourceLine" id="cb403-6" data-line-number="6"><span class="st">20.5    28  26.5    30</span></a>
+<a class="sourceLine" id="cb403-7" data-line-number="7"><span class="st">21  28.6    25.2    29.2&quot;</span>, <span class="dt">col_names =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb403-8" data-line-number="8">lesson1_data</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   Control    F1    F2    F3
+##     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1    21.0  32.0  22.5  28.0
+## 2    19.5  30.5  26.0  27.5
+## 3    22.5  25.0  28.0  31.0
+## 4    21.5  27.5  27.0  29.5
+## 5    20.5  28.0  26.5  30.0
+## 6    21.0  28.6  25.2  29.2</code></pre>
+<p><strong>One-way ANOVA table: the basic format</strong></p>
+<table>
+<colgroup>
+<col width="22%" />
+<col width="22%" />
+<col width="25%" />
+<col width="20%" />
+<col width="9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Source of Variation</th>
+<th align="center">Sum of Squares (SS)</th>
+<th align="center">Degrees of Feedom (df)</th>
+<th align="center">Mean Squares (MS)</th>
+<th align="center">F-Ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Between samples</td>
+<td align="center">SSB</td>
+<td align="center">k - 1</td>
+<td align="center">MSB</td>
+<td align="center">MSB/MSW</td>
+</tr>
+<tr class="even">
+<td align="left">Within samples</td>
+<td align="center">SSW</td>
+<td align="center">n(total) - k</td>
+<td align="center">MSW</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="left"><em>Total</em></td>
+<td align="center">SST</td>
+<td align="center">n(total) - 1</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>One-way ANOVA table: NIST Handbook</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Source</th>
+<th align="center">SS</th>
+<th align="center">DF</th>
+<th align="center">MS</th>
+<th align="center">F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Treatments</td>
+<td align="center">SST</td>
+<td align="center">k−1</td>
+<td align="center">SST/(k−1)</td>
+<td align="center">MST/MSE</td>
+</tr>
+<tr class="even">
+<td align="left">Error</td>
+<td align="center">SSE</td>
+<td align="center">N−k</td>
+<td align="center">SSE/(N−k)</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="left"><em>Total (corrected)</em></td>
+<td align="center">SS</td>
+<td align="center">N−1</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[
+\textbf{Total Sum of Squares} \\ 
+~ \\
+SST = \sum_{i=1}^k \sum_{j=1}^{n_i} \left ( x_{ij} - \overline{\overline{x}} \right )^2
+\]</span></p>
+<div id="tidy-the-data-and-compute-the-sum-of-squares" class="section level3">
+<h3><span class="header-section-number">7.5.1</span> Tidy the data and compute the sum of squares</h3>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb405-1" data-line-number="1">lesson1_gather &lt;-<span class="st"> </span>lesson1_data <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb405-2" data-line-number="2"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> treatment, <span class="dt">value =</span> value, Control, F1, F2, F3)</a>
+<a class="sourceLine" id="cb405-3" data-line-number="3">lesson1_gather</a></code></pre></div>
+<pre><code>## # A tibble: 24 x 2
+##    treatment value
+##    &lt;chr&gt;     &lt;dbl&gt;
+##  1 Control    21.0
+##  2 Control    19.5
+##  3 Control    22.5
+##  4 Control    21.5
+##  5 Control    20.5
+##  6 Control    21.0
+##  7 F1         32.0
+##  8 F1         30.5
+##  9 F1         25.0
+## 10 F1         27.5
+## # ... with 14 more rows</code></pre>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb407-1" data-line-number="1">lesson1_grand_mean &lt;-<span class="st"> </span>lesson1_gather <span class="op">%$%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb407-2" data-line-number="2"><span class="st">  </span><span class="kw">mean</span>(value)</a>
+<a class="sourceLine" id="cb407-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb407-4" data-line-number="4">lesson1_grand_mean</a></code></pre></div>
+<pre><code>## [1] 26.16667</code></pre>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb409-1" data-line-number="1">lesson1_SST &lt;-<span class="st"> </span>lesson1_gather <span class="op">%$%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb409-2" data-line-number="2"><span class="st">  </span><span class="kw">sum</span>((value <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(value))<span class="op">^</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb409-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb409-4" data-line-number="4">lesson1_SST</a></code></pre></div>
+<pre><code>## [1] 312.4733</code></pre>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb411-1" data-line-number="1"><span class="kw">ggplot</span>(lesson1_gather) <span class="op">+</span></a>
+<a class="sourceLine" id="cb411-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(treatment, value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb411-3" data-line-number="3"><span class="st">  </span><span class="kw">theme_classic</span>()</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
+<p><strong>One-way ANOVA table: Lesson1 Example</strong></p>
+<table>
+<colgroup>
+<col width="22%" />
+<col width="22%" />
+<col width="25%" />
+<col width="20%" />
+<col width="9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Source of Variation</th>
+<th align="center">Sum of Squares (SS)</th>
+<th align="center">Degrees of Feedom (df)</th>
+<th align="center">Mean Squares (MS)</th>
+<th align="center">F-Ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Between samples</td>
+<td align="center">SSB</td>
+<td align="center">k - 1</td>
+<td align="center">MSB</td>
+<td align="center">MSB/MSW</td>
+</tr>
+<tr class="even">
+<td align="left">Within samples</td>
+<td align="center">SSW</td>
+<td align="center">n(total) - k</td>
+<td align="center">MSW</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="left"><em>Total</em></td>
+<td align="center">SST = 312.43</td>
+<td align="center">n(total) - 1 = 23</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[
+\textbf{Total Sum of Squares} \\ 
+~ \\
+SST = \sum_{i=1}^k \sum_{j=1}^{n_i} \left ( x_{ij} - \overline{\overline{x}} \right )^2
+\]</span></p>
+<p><span class="math display">\[
+\textbf{Sum of Squares Between} \\ 
+~ \\
+SSB = \sum_{i = 1}^k{n_i \left (\overline{x}_i - \overline{\overline{x}}  \right )^2}
+\]</span></p>
+<p><span class="math display">\[
+\textbf{Sum of Squares Within} \\  
+~ \\
+SSW = SST - SSB  \\  
+or \\  
+SSW = \sum_{i=1}^k \sum_{j=1}^{n_i} \left ( x_{ij} - \overline{x_i} \right)^2
+\]</span></p>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb412-1" data-line-number="1">summary_within_groups &lt;-<span class="st"> </span>lesson1_gather <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb412-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(treatment) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb412-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">N =</span> <span class="kw">n</span>(), <span class="dt">mean =</span> <span class="kw">mean</span>(value)) <span class="co"># SS = (sum( (value - mean(value))^2</span></a>
+<a class="sourceLine" id="cb412-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb412-5" data-line-number="5">summary_within_groups</a></code></pre></div>
+<pre><code>## # A tibble: 4 x 3
+##   treatment     N  mean
+##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt;
+## 1 Control       6  21.0
+## 2 F1            6  28.6
+## 3 F2            6  25.9
+## 4 F3            6  29.2</code></pre>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb414-1" data-line-number="1">lesson1_SSB &lt;-<span class="st"> </span>summary_within_groups <span class="op">%$%</span></a>
+<a class="sourceLine" id="cb414-2" data-line-number="2"><span class="st">  </span><span class="kw">sum</span>((mean <span class="op">-</span><span class="st"> </span>lesson1_grand_mean)<span class="op">^</span><span class="dv">2</span>)<span class="op">*</span><span class="dv">6</span></a>
+<a class="sourceLine" id="cb414-3" data-line-number="3"><span class="kw">message</span>(<span class="kw">cat</span>(<span class="st">&quot;SSB &quot;</span>, lesson1_SSB))</a></code></pre></div>
+<pre><code>## SSB  251.44</code></pre>
+<pre><code>## </code></pre>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb417-1" data-line-number="1">lesson1_SSW =<span class="st"> </span>lesson1_SST <span class="op">-</span><span class="st"> </span>lesson1_SSB</a>
+<a class="sourceLine" id="cb417-2" data-line-number="2"><span class="kw">message</span>(<span class="kw">cat</span>(<span class="st">&quot;SSW &quot;</span>, lesson1_SSW))</a></code></pre></div>
+<pre><code>## SSW  61.03333</code></pre>
+<pre><code>## </code></pre>
+<p><strong>One-way ANOVA table: Lesson1 Example</strong></p>
+<table>
+<colgroup>
+<col width="22%" />
+<col width="22%" />
+<col width="25%" />
+<col width="20%" />
+<col width="9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Source of Variation</th>
+<th align="center">Sum of Squares (SS)</th>
+<th align="center">Degrees of Feedom (df)</th>
+<th align="center">Mean Squares (MS)</th>
+<th align="center">F-Ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Between samples</td>
+<td align="center">SSB = 251.44</td>
+<td align="center">k - 1 = 3</td>
+<td align="center">83.81</td>
+<td align="center">MSB/MSW</td>
+</tr>
+<tr class="even">
+<td align="left">Within samples</td>
+<td align="center">SSW = 61.03</td>
+<td align="center">n(total) - k = 20</td>
+<td align="center">3.05</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="left"><em>Total</em></td>
+<td align="center">SST = 312.43</td>
+<td align="center">n(total) - 1 = 23</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[ \frac {MSB} {BSW} = \frac {83.81} {3.05} = 27.47 \]</span></p>
+<p>Calculate the critical F-statistic (or look it up in a table)</p>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb420-1" data-line-number="1"><span class="kw">qf</span>(<span class="fl">0.95</span>, <span class="dt">df1=</span><span class="dv">3</span>, <span class="dt">df2=</span><span class="dv">20</span>) </a></code></pre></div>
+<pre><code>## [1] 3.098391</code></pre>
+<p>Wtih 27.47 &gt; 3.1 we can regect the null hypothesis.</p>
+</div>
+</div>
+<div id="lets-let-r-do-the-work" class="section level2">
+<h2><span class="header-section-number">7.6</span> Let’s let R do the work:</h2>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb422-1" data-line-number="1">lesson1_aov &lt;-<span class="st"> </span><span class="kw">aov</span>(value <span class="op">~</span><span class="st"> </span>treatment, lesson1_gather)</a>
+<a class="sourceLine" id="cb422-2" data-line-number="2"><span class="kw">summary</span>(lesson1_aov)</a></code></pre></div>
+<pre><code>##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## treatment    3 251.44   83.81   27.46 2.71e-07 ***
+## Residuals   20  61.03    3.05                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="which-populations-have-different-means" class="section level2">
+<h2><span class="header-section-number">7.7</span> Which populations have different means?</h2>
+<div id="tukey-or-tukey-kramer-test" class="section level3">
+<h3><span class="header-section-number">7.7.1</span> Tukey (or Tukey-Kramer) test</h3>
+<p>For the example above, we would have constructed the following hypothesis:</p>
+<p><span class="math display">\[ \begin{aligned}
+H_0 &amp;:  \mu_{control} = \mu_{F1} = \mu_{F2} = \mu_{F3} \\
+H_a &amp;:  \text{At least two population means are different.}
+\end{aligned} \]</span></p>
+<p>The ANOVA analysis above only tells us that there is a difference between two or more of the population means.</p>
+<p>We could do a pairwise comparison using confidence intervals for each mean; however, this method does not use the entire population variance.</p>
+<p>The <em>Tukey-Kramer proceedure for multiple comparisons</em> is one method to compare two or more groups</p>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb424-1" data-line-number="1">lesson1_Tukey &lt;-<span class="st"> </span><span class="kw">TukeyHSD</span>(lesson1_aov)</a>
+<a class="sourceLine" id="cb424-2" data-line-number="2">lesson1_Tukey</a></code></pre></div>
+<pre><code>##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = value ~ treatment, data = lesson1_gather)
+## 
+## $treatment
+##                 diff        lwr         upr     p adj
+## F1-Control  7.600000  4.7770648 10.42293521 0.0000016
+## F2-Control  4.866667  2.0437315  7.68960188 0.0005509
+## F3-Control  8.200000  5.3770648 11.02293521 0.0000005
+## F2-F1      -2.733333 -5.5562685  0.08960188 0.0598655
+## F3-F1       0.600000 -2.2229352  3.42293521 0.9324380
+## F3-F2       3.333333  0.5103981  6.15626854 0.0171033</code></pre>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb426-1" data-line-number="1"><span class="kw">library</span>(broom)</a>
+<a class="sourceLine" id="cb426-2" data-line-number="2"><span class="kw">tidy</span>(lesson1_Tukey)</a></code></pre></div>
+<pre><code>##        term comparison  estimate   conf.low   conf.high  adj.p.value
+## 1 treatment F1-Control  7.600000  4.7770648 10.42293521 1.637988e-06
+## 2 treatment F2-Control  4.866667  2.0437315  7.68960188 5.509424e-04
+## 3 treatment F3-Control  8.200000  5.3770648 11.02293521 5.148374e-07
+## 4 treatment      F2-F1 -2.733333 -5.5562685  0.08960188 5.986551e-02
+## 5 treatment      F3-F1  0.600000 -2.2229352  3.42293521 9.324380e-01
+## 6 treatment      F3-F2  3.333333  0.5103981  6.15626854 1.710330e-02</code></pre>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb428-1" data-line-number="1"><span class="kw">plot</span>(lesson1_Tukey)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
+<p>F3-F2 : a and b<br />
+F3-F1 : a<br />
+F2-F1 : b<br />
+F3-control : c<br />
+F2-control : c<br />
+F1-control : c</p>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb429-1" data-line-number="1">summary_lesson1 &lt;-<span class="st"> </span>lesson1_gather <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb429-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(treatment) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb429-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">N =</span> <span class="kw">n</span>(), <span class="dt">mean =</span> <span class="kw">mean</span>(value), <span class="dt">sd =</span> <span class="kw">sd</span>(value), </a>
+<a class="sourceLine" id="cb429-4" data-line-number="4">            <span class="dt">se =</span> sd<span class="op">/</span><span class="kw">sqrt</span>(N), <span class="dt">ci =</span> se<span class="op">*</span><span class="kw">qt</span>(<span class="fl">0.975</span>,N<span class="dv">-1</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb429-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;c&quot;</span>, <span class="st">&quot;ab&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;a&quot;</span>))</a>
+<a class="sourceLine" id="cb429-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb429-7" data-line-number="7">summary_lesson1</a></code></pre></div>
+<pre><code>## # A tibble: 4 x 7
+##   treatment     N  mean    sd    se    ci labels
+##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; 
+## 1 Control       6  21.0  1.00 0.408  1.05 c     
+## 2 F1            6  28.6  2.44 0.995  2.56 ab    
+## 3 F2            6  25.9  1.90 0.775  1.99 b     
+## 4 F3            6  29.2  1.29 0.526  1.35 a</code></pre>
+<p>Shouldn’t R be able to do this work for us?</p>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb431-1" data-line-number="1"><span class="kw">library</span>(multcomp)</a></code></pre></div>
+<pre><code>## Loading required package: mvtnorm</code></pre>
+<pre><code>## Loading required package: survival</code></pre>
+<pre><code>## Loading required package: TH.data</code></pre>
+<pre><code>## Loading required package: MASS</code></pre>
+<pre><code>## 
+## Attaching package: &#39;MASS&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     select</code></pre>
+<pre><code>## 
+## Attaching package: &#39;TH.data&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:MASS&#39;:
+## 
+##     geyser</code></pre>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb440-1" data-line-number="1"><span class="kw">library</span>(multcompView)</a>
+<a class="sourceLine" id="cb440-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb440-3" data-line-number="3">greenhouse_letters &lt;-<span class="st"> </span><span class="kw">multcompLetters4</span>(lesson1_aov, lesson1_Tukey)</a>
+<a class="sourceLine" id="cb440-4" data-line-number="4">greenhouse_letters</a></code></pre></div>
+<pre><code>## $treatment
+##      F3      F1      F2 Control 
+##     &quot;a&quot;    &quot;ab&quot;     &quot;b&quot;     &quot;c&quot;</code></pre>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb442-1" data-line-number="1"><span class="kw">str</span>(greenhouse_letters)</a></code></pre></div>
+<pre><code>## List of 1
+##  $ treatment:List of 3
+##   ..$ Letters          : Named chr [1:4] &quot;a&quot; &quot;ab&quot; &quot;b&quot; &quot;c&quot;
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:4] &quot;F3&quot; &quot;F1&quot; &quot;F2&quot; &quot;Control&quot;
+##   ..$ monospacedLetters: Named chr [1:4] &quot;a  &quot; &quot;ab &quot; &quot; b &quot; &quot;  c&quot;
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:4] &quot;F3&quot; &quot;F1&quot; &quot;F2&quot; &quot;Control&quot;
+##   ..$ LetterMatrix     : logi [1:4, 1:3] TRUE TRUE FALSE FALSE FALSE TRUE ...
+##   .. ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. .. ..$ : chr [1:4] &quot;F3&quot; &quot;F1&quot; &quot;F2&quot; &quot;Control&quot;
+##   .. .. ..$ : chr [1:3] &quot;a&quot; &quot;b&quot; &quot;c&quot;
+##   ..- attr(*, &quot;class&quot;)= chr &quot;multcompLetters&quot;</code></pre>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb444-1" data-line-number="1"><span class="kw">library</span>(purrr)</a>
+<a class="sourceLine" id="cb444-2" data-line-number="2">gh_letters_flatten &lt;-<span class="st"> </span>greenhouse_letters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb444-3" data-line-number="3"><span class="st">  </span><span class="kw">flatten</span>()</a>
+<a class="sourceLine" id="cb444-4" data-line-number="4"><span class="kw">str</span>(gh_letters_flatten)</a></code></pre></div>
+<pre><code>## List of 3
+##  $ Letters          : Named chr [1:4] &quot;a&quot; &quot;ab&quot; &quot;b&quot; &quot;c&quot;
+##   ..- attr(*, &quot;names&quot;)= chr [1:4] &quot;F3&quot; &quot;F1&quot; &quot;F2&quot; &quot;Control&quot;
+##  $ monospacedLetters: Named chr [1:4] &quot;a  &quot; &quot;ab &quot; &quot; b &quot; &quot;  c&quot;
+##   ..- attr(*, &quot;names&quot;)= chr [1:4] &quot;F3&quot; &quot;F1&quot; &quot;F2&quot; &quot;Control&quot;
+##  $ LetterMatrix     : logi [1:4, 1:3] TRUE TRUE FALSE FALSE FALSE TRUE ...
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. ..$ : chr [1:4] &quot;F3&quot; &quot;F1&quot; &quot;F2&quot; &quot;Control&quot;
+##   .. ..$ : chr [1:3] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb446-1" data-line-number="1"><span class="kw">View</span>(<span class="kw">as_tibble</span>(gh_letters_flatten<span class="op">$</span>Letters))</a>
+<a class="sourceLine" id="cb446-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb446-3" data-line-number="3">gh_letters_pluck &lt;-<span class="st"> </span>greenhouse_letters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb446-4" data-line-number="4"><span class="st">  </span><span class="kw">pluck</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb446-5" data-line-number="5"><span class="kw">str</span>(gh_letters_pluck)</a></code></pre></div>
+<pre><code>## List of 3
+##  $ Letters          : Named chr [1:4] &quot;a&quot; &quot;ab&quot; &quot;b&quot; &quot;c&quot;
+##   ..- attr(*, &quot;names&quot;)= chr [1:4] &quot;F3&quot; &quot;F1&quot; &quot;F2&quot; &quot;Control&quot;
+##  $ monospacedLetters: Named chr [1:4] &quot;a  &quot; &quot;ab &quot; &quot; b &quot; &quot;  c&quot;
+##   ..- attr(*, &quot;names&quot;)= chr [1:4] &quot;F3&quot; &quot;F1&quot; &quot;F2&quot; &quot;Control&quot;
+##  $ LetterMatrix     : logi [1:4, 1:3] TRUE TRUE FALSE FALSE FALSE TRUE ...
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. ..$ : chr [1:4] &quot;F3&quot; &quot;F1&quot; &quot;F2&quot; &quot;Control&quot;
+##   .. ..$ : chr [1:3] &quot;a&quot; &quot;b&quot; &quot;c&quot;
+##  - attr(*, &quot;class&quot;)= chr &quot;multcompLetters&quot;</code></pre>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb448-1" data-line-number="1">gh_letters_unlist &lt;-<span class="st"> </span>greenhouse_letters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb448-2" data-line-number="2"><span class="st">  </span>unlist <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb448-3" data-line-number="3"><span class="st">  </span><span class="kw">as_tibble</span>()</a>
+<a class="sourceLine" id="cb448-4" data-line-number="4">gh_letters_unlist</a></code></pre></div>
+<pre><code>## # A tibble: 20 x 1
+##    value
+##  * &lt;chr&gt;
+##  1 a    
+##  2 ab   
+##  3 b    
+##  4 c    
+##  5 &quot;a  &quot;
+##  6 &quot;ab &quot;
+##  7 &quot; b &quot;
+##  8 &quot;  c&quot;
+##  9 TRUE 
+## 10 TRUE 
+## 11 FALSE
+## 12 FALSE
+## 13 FALSE
+## 14 TRUE 
+## 15 TRUE 
+## 16 FALSE
+## 17 FALSE
+## 18 FALSE
+## 19 FALSE
+## 20 TRUE</code></pre>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb450-1" data-line-number="1"><span class="kw">str</span>(gh_letters_unlist)</a></code></pre></div>
+<pre><code>## Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:    20 obs. of  1 variable:
+##  $ value: chr  &quot;a&quot; &quot;ab&quot; &quot;b&quot; &quot;c&quot; ...</code></pre>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb452-1" data-line-number="1">gh_letters_row &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(gh_letters_flatten<span class="op">$</span>Letters)</a>
+<a class="sourceLine" id="cb452-2" data-line-number="2">gh_letters_row</a></code></pre></div>
+<pre><code>## # A tibble: 4 x 1
+##   value
+## * &lt;chr&gt;
+## 1 a    
+## 2 ab   
+## 3 b    
+## 4 c</code></pre>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb454-1" data-line-number="1">letters_final &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(<span class="kw">names</span>(greenhouse_letters<span class="op">$</span>treatment[[<span class="st">&quot;Letters&quot;</span>]]))</a>
+<a class="sourceLine" id="cb454-2" data-line-number="2">letters_final <span class="op">%&lt;&gt;%</span><span class="st">  </span><span class="kw">rename</span>(<span class="dt">treatement =</span> value)</a>
+<a class="sourceLine" id="cb454-3" data-line-number="3">letters_final</a></code></pre></div>
+<pre><code>## # A tibble: 4 x 1
+##   treatement
+##   &lt;chr&gt;     
+## 1 F3        
+## 2 F1        
+## 3 F2        
+## 4 Control</code></pre>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb456-1" data-line-number="1">final_final &lt;-<span class="st"> </span><span class="kw">bind_cols</span>(letters_final, gh_letters_row)</a>
+<a class="sourceLine" id="cb456-2" data-line-number="2">final_final</a></code></pre></div>
+<pre><code>## # A tibble: 4 x 2
+##   treatement value
+##   &lt;chr&gt;      &lt;chr&gt;
+## 1 F3         a    
+## 2 F1         ab   
+## 3 F2         b    
+## 4 Control    c</code></pre>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb458-1" data-line-number="1"><span class="co"># greenhouse1_lm &lt;- lm(value ~ treatment, data = lesson1_gather)</span></a>
+<a class="sourceLine" id="cb458-2" data-line-number="2"><span class="co"># greenhouse1_lsm &lt;- lsmeans(greenhouse1_lm, ~ treatment)</span></a>
+<a class="sourceLine" id="cb458-3" data-line-number="3"><span class="co"># greenhouse1_cld &lt;- cld(greenhouse1_lsm,by = NULL, Letters = letters, alpha = .05, reversed = TRUE, method = &quot;tukey&quot;)</span></a>
+<a class="sourceLine" id="cb458-4" data-line-number="4"><span class="co"># greenhouse1_cld</span></a></code></pre></div>
+</div>
+</div>
+<div id="anova-block-analysis" class="section level2">
+<h2><span class="header-section-number">7.8</span> ANOVA Block analysis</h2>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb459-1" data-line-number="1">ecoli &lt;-<span class="st"> </span><span class="kw">read_table2</span>(<span class="st">&quot;Month  WR01  WR02  WR03  WR04</span></a>
+<a class="sourceLine" id="cb459-2" data-line-number="2"><span class="st">March   3.  57.6    12  21.3</span></a>
+<a class="sourceLine" id="cb459-3" data-line-number="3"><span class="st">April   121.    14.6    6.3 39.9</span></a>
+<a class="sourceLine" id="cb459-4" data-line-number="4"><span class="st">May 307.6   290.9   290.9   435.2</span></a>
+<a class="sourceLine" id="cb459-5" data-line-number="5"><span class="st">June    44.1    30.1    34.1    81.3</span></a>
+<a class="sourceLine" id="cb459-6" data-line-number="6"><span class="st">July    108.1   88  14.8    178.2</span></a>
+<a class="sourceLine" id="cb459-7" data-line-number="7"><span class="st">August  106.70  146.70  98.70   275.50</span></a>
+<a class="sourceLine" id="cb459-8" data-line-number="8"><span class="st">September   148.30  517.20  185.00  387.30</span></a>
+<a class="sourceLine" id="cb459-9" data-line-number="9"><span class="st">October 43.2    81.6    53  198.9&quot;</span>, <span class="dt">col_names =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb459-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb459-11" data-line-number="11">ecoli</a></code></pre></div>
+<pre><code>## # A tibble: 8 x 5
+##   Month       WR01  WR02   WR03  WR04
+##   &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1 March       3.00  57.6  12.0   21.3
+## 2 April     121.    14.6   6.30  39.9
+## 3 May       308.   291.  291.   435. 
+## 4 June       44.1   30.1  34.1   81.3
+## 5 July      108.    88.0  14.8  178. 
+## 6 August    107.   147.   98.7  276. 
+## 7 September 148.   517.  185.   387. 
+## 8 October    43.2   81.6  53.0  199.</code></pre>
+<div id="tidy-up-the-data" class="section level3">
+<h3><span class="header-section-number">7.8.1</span> Tidy up the data</h3>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb461-1" data-line-number="1">ecoli_tidy &lt;-<span class="st"> </span>ecoli <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb461-2" data-line-number="2"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;site&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;counts&quot;</span>, WR01, WR02, WR03, WR04)</a>
+<a class="sourceLine" id="cb461-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb461-4" data-line-number="4">ecoli_tidy</a></code></pre></div>
+<pre><code>## # A tibble: 32 x 3
+##    Month     site  counts
+##    &lt;chr&gt;     &lt;chr&gt;  &lt;dbl&gt;
+##  1 March     WR01    3.00
+##  2 April     WR01  121.  
+##  3 May       WR01  308.  
+##  4 June      WR01   44.1 
+##  5 July      WR01  108.  
+##  6 August    WR01  107.  
+##  7 September WR01  148.  
+##  8 October   WR01   43.2 
+##  9 March     WR02   57.6 
+## 10 April     WR02   14.6 
+## # ... with 22 more rows</code></pre>
+</div>
+<div id="one-way-anova" class="section level3">
+<h3><span class="header-section-number">7.8.2</span> One-way ANOVA</h3>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb463-1" data-line-number="1">ecoli_aov &lt;-<span class="st"> </span><span class="kw">aov</span>(counts <span class="op">~</span><span class="st"> </span>site, <span class="dt">data =</span> ecoli_tidy)</a>
+<a class="sourceLine" id="cb463-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb463-3" data-line-number="3"><span class="kw">summary</span>(ecoli_aov)</a></code></pre></div>
+<pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)
+## site         3  61945   20648   1.142  0.349
+## Residuals   28 506096   18075</code></pre>
+</div>
+<div id="plot-of-the-data-1" class="section level3">
+<h3><span class="header-section-number">7.8.3</span> Plot of the data</h3>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb465-1" data-line-number="1"><span class="kw">ggplot</span>(ecoli_tidy) <span class="op">+</span></a>
+<a class="sourceLine" id="cb465-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(site, counts))</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-186-1.png" width="672" /></p>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb466-1" data-line-number="1"><span class="kw">ggplot</span>(ecoli_tidy) <span class="op">+</span></a>
+<a class="sourceLine" id="cb466-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(site, counts), <span class="dt">notch =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## notch went outside hinges. Try setting notch=FALSE.
+## notch went outside hinges. Try setting notch=FALSE.
+## notch went outside hinges. Try setting notch=FALSE.
+## notch went outside hinges. Try setting notch=FALSE.</code></pre>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-186-2.png" width="672" /></p>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb468-1" data-line-number="1"><span class="kw">ggplot</span>(ecoli_tidy) <span class="op">+</span></a>
+<a class="sourceLine" id="cb468-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(Month, counts, <span class="dt">colour =</span> site), <span class="dt">size =</span> <span class="dv">4</span>)</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb469-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">TukeyHSD</span>(ecoli_aov, <span class="dt">conf.level =</span> <span class="fl">0.95</span>))</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-188-1.png" width="672" /></p>
+</div>
+<div id="anova-with-blocking-factor" class="section level3">
+<h3><span class="header-section-number">7.8.4</span> ANOVA with blocking factor</h3>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb470-1" data-line-number="1">ecoli_aov_block &lt;-<span class="st"> </span><span class="kw">aov</span>(counts <span class="op">~</span><span class="st"> </span>Month <span class="op">+</span><span class="st"> </span>site, <span class="dt">data =</span> ecoli_tidy)</a>
+<a class="sourceLine" id="cb470-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb470-3" data-line-number="3"><span class="kw">summary</span>(ecoli_aov_block)</a></code></pre></div>
+<pre><code>##             Df Sum Sq Mean Sq F value  Pr(&gt;F)    
+## Month        7 402112   57445   11.60 5.7e-06 ***
+## site         3  61945   20648    4.17  0.0183 *  
+## Residuals   21 103984    4952                    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="but-what-is-different" class="section level3">
+<h3><span class="header-section-number">7.8.5</span> But what is different?</h3>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb472-1" data-line-number="1">ecoli_block_tukey &lt;-<span class="st"> </span><span class="kw">TukeyHSD</span>(ecoli_aov_block, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</a>
+<a class="sourceLine" id="cb472-2" data-line-number="2">ecoli_block_tukey</a></code></pre></div>
+<pre><code>##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = counts ~ Month + site, data = ecoli_tidy)
+## 
+## $Month
+##                       diff         lwr       upr     p adj
+## August-April       111.450  -55.443795 278.34379 0.3691183
+## July-April          51.825 -115.068795 218.71879 0.9620137
+## June-April           1.950 -164.943795 168.84379 1.0000000
+## March-April        -21.975 -188.868795 144.91879 0.9997950
+## May-April          285.700  118.806205 452.59379 0.0002417
+## October-April       48.725 -118.168795 215.61879 0.9726099
+## September-April    264.000   97.106205 430.89379 0.0006458
+## July-August        -59.625 -226.518795 107.26879 0.9235806
+## June-August       -109.500 -276.393795  57.39379 0.3899013
+## March-August      -133.425 -300.318795  33.46879 0.1827645
+## May-August         174.250    7.356205 341.14379 0.0366874
+## October-August     -62.725 -229.618795 104.16879 0.9032585
+## September-August   152.550  -14.343795 319.44379 0.0894265
+## June-July          -49.875 -216.768795 117.01879 0.9689635
+## March-July         -73.800 -240.693795  93.09379 0.8076556
+## May-July           233.875   66.981205 400.76879 0.0025586
+## October-July        -3.100 -169.993795 163.79379 1.0000000
+## September-July     212.175   45.281205 379.06879 0.0068760
+## March-June         -23.925 -190.818795 142.96879 0.9996407
+## May-June           283.750  116.856205 450.64379 0.0002639
+## October-June        46.775 -120.118795 213.66879 0.9780722
+## September-June     262.050   95.156205 428.94379 0.0007058
+## May-March          307.675  140.781205 474.56879 0.0000907
+## October-March       70.700  -96.193795 237.59379 0.8378113
+## September-March    285.975  119.081205 452.86879 0.0002388
+## October-May       -236.975 -403.868795 -70.08121 0.0022204
+## September-May      -21.700 -188.593795 145.19379 0.9998114
+## September-October  215.275   48.381205 382.16879 0.0059746
+## 
+## $site
+##               diff         lwr       upr     p adj
+## WR02-WR01  43.0875  -54.981447 141.15645 0.6186609
+## WR03-WR01 -23.4000 -121.468947  74.66895 0.9090016
+## WR04-WR01  91.9500   -6.118947 190.01895 0.0712136
+## WR03-WR02 -66.4875 -164.556447  31.58145 0.2623702
+## WR04-WR02  48.8625  -49.206447 146.93145 0.5197897
+## WR04-WR03 115.3500   17.281053 213.41895 0.0174029</code></pre>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb474-1" data-line-number="1"><span class="kw">multcompLetters4</span>(ecoli_aov_block, ecoli_block_tukey)</a></code></pre></div>
+<pre><code>## $Month
+##       May September    August      July   October      June     April 
+##       &quot;a&quot;      &quot;ab&quot;      &quot;bc&quot;       &quot;c&quot;       &quot;c&quot;       &quot;c&quot;       &quot;c&quot; 
+##     March 
+##       &quot;c&quot; 
+## 
+## $site
+## WR04 WR02 WR01 WR03 
+##  &quot;a&quot; &quot;ab&quot; &quot;ab&quot;  &quot;b&quot;</code></pre>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb476-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">TukeyHSD</span>(ecoli_aov_block, <span class="dt">conf.level =</span> <span class="fl">0.95</span>))</a></code></pre></div>
+<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-192-1.png" width="672" /><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-192-2.png" width="672" /></p>
+</div>
+</div>
+<div id="two-way-anova-with-interaction" class="section level2">
+<h2><span class="header-section-number">7.9</span> Two-way ANOVA with interaction</h2>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb477-1" data-line-number="1">lab_data_2way_anova &lt;-<span class="st"> </span><span class="kw">read_table2</span>(<span class="st">&quot;46.5    138.4   180.9   39.8    132.4   176.8</span></a>
+<a class="sourceLine" id="cb477-2" data-line-number="2"><span class="st">                                   47.3 144.4   180.5   40.3    132.4   173.6</span></a>
+<a class="sourceLine" id="cb477-3" data-line-number="3"><span class="st">                                   46.9 142.7   183 41.2    130.3   174.9&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb477-4" data-line-number="4">lab_data_2way_anova</a></code></pre></div>
+<pre><code>## # A tibble: 3 x 6
+##      X1    X2    X3    X4    X5    X6
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1  46.5  138.  181.  39.8  132.  177.
+## 2  47.3  144.  180.  40.3  132.  174.
+## 3  46.9  143.  183.  41.2  130.  175.</code></pre>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb479-1" data-line-number="1"><span class="co"># I want to stack X1-X3 on top of X4-X6</span></a>
+<a class="sourceLine" id="cb479-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb479-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb479-4" data-line-number="4">lab_data_method1 &lt;-<span class="st"> </span>lab_data_2way_anova <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb479-5" data-line-number="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(X1<span class="op">:</span>X3) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb479-6" data-line-number="6"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">dose1 =</span> X1, <span class="dt">dose2 =</span> X2, <span class="dt">dose3 =</span> X3) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb479-7" data-line-number="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">method =</span> <span class="st">&quot;method1&quot;</span>)</a>
+<a class="sourceLine" id="cb479-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb479-9" data-line-number="9">lab_data_method1</a></code></pre></div>
+<pre><code>## # A tibble: 3 x 4
+##   dose1 dose2 dose3 method 
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  
+## 1  46.5  138.  181. method1
+## 2  47.3  144.  180. method1
+## 3  46.9  143.  183. method1</code></pre>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb481-1" data-line-number="1">lab_data_method2 &lt;-<span class="st"> </span>lab_data_2way_anova <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb481-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(X4<span class="op">:</span>X6) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb481-3" data-line-number="3"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">dose1 =</span> X4, <span class="dt">dose2 =</span> X5, <span class="dt">dose3 =</span> X6) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb481-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">method =</span> <span class="st">&quot;method2&quot;</span>)</a>
+<a class="sourceLine" id="cb481-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb481-6" data-line-number="6">lab_data_method2</a></code></pre></div>
+<pre><code>## # A tibble: 3 x 4
+##   dose1 dose2 dose3 method 
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  
+## 1  39.8  132.  177. method2
+## 2  40.3  132.  174. method2
+## 3  41.2  130.  175. method2</code></pre>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb483-1" data-line-number="1">lab_data_stack &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(lab_data_method1, lab_data_method2)</a>
+<a class="sourceLine" id="cb483-2" data-line-number="2">lab_data_stack</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   dose1 dose2 dose3 method 
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  
+## 1  46.5  138.  181. method1
+## 2  47.3  144.  180. method1
+## 3  46.9  143.  183. method1
+## 4  39.8  132.  177. method2
+## 5  40.3  132.  174. method2
+## 6  41.2  130.  175. method2</code></pre>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb485-1" data-line-number="1">lab_data_tidy &lt;-<span class="st"> </span>lab_data_stack <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb485-2" data-line-number="2"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> doping_level, <span class="dt">value =</span> conc, dose1, dose2, dose3)</a>
+<a class="sourceLine" id="cb485-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb485-4" data-line-number="4">lab_data_tidy</a></code></pre></div>
+<pre><code>## # A tibble: 18 x 3
+##    method  doping_level  conc
+##    &lt;chr&gt;   &lt;chr&gt;        &lt;dbl&gt;
+##  1 method1 dose1         46.5
+##  2 method1 dose1         47.3
+##  3 method1 dose1         46.9
+##  4 method2 dose1         39.8
+##  5 method2 dose1         40.3
+##  6 method2 dose1         41.2
+##  7 method1 dose2        138. 
+##  8 method1 dose2        144. 
+##  9 method1 dose2        143. 
+## 10 method2 dose2        132. 
+## 11 method2 dose2        132. 
+## 12 method2 dose2        130. 
+## 13 method1 dose3        181. 
+## 14 method1 dose3        180. 
+## 15 method1 dose3        183. 
+## 16 method2 dose3        177. 
+## 17 method2 dose3        174. 
+## 18 method2 dose3        175.</code></pre>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb487-1" data-line-number="1"><span class="kw">View</span>(lab_data_tidy)</a>
+<a class="sourceLine" id="cb487-2" data-line-number="2"><span class="co"># run the anova</span></a>
+<a class="sourceLine" id="cb487-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb487-4" data-line-number="4">lab_data_aov &lt;-<span class="st"> </span><span class="kw">aov</span>(conc <span class="op">~</span><span class="st"> </span>method <span class="op">+</span><span class="st"> </span>doping_level, lab_data_tidy)</a>
+<a class="sourceLine" id="cb487-5" data-line-number="5"><span class="kw">summary</span>(lab_data_aov)</a></code></pre></div>
+<pre><code>##              Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## method        1    264     264   80.27 3.58e-07 ***
+## doping_level  2  57026   28513 8677.63  &lt; 2e-16 ***
+## Residuals    14     46       3                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb489-1" data-line-number="1">lab_data_aov_cross &lt;-<span class="st"> </span><span class="kw">aov</span>(conc <span class="op">~</span><span class="st"> </span>method<span class="op">*</span>doping_level, lab_data_tidy)</a>
+<a class="sourceLine" id="cb489-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb489-3" data-line-number="3"><span class="kw">summary</span>(lab_data_aov_cross)</a></code></pre></div>
+<pre><code>##                     Df Sum Sq Mean Sq   F value   Pr(&gt;F)    
+## method               1    264     264    98.347 3.92e-07 ***
+## doping_level         2  57026   28513 10632.526  &lt; 2e-16 ***
+## method:doping_level  2     14       7     2.577    0.117    
+## Residuals           12     32       3                       
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="process-monitoring.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="assessing-product-reliability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/RayJamesHoobler/Applied-Statistical-Techniques/edit/master/07-comparisons.Rmd",
+"text": "Edit"
+},
+"download": ["exercises_and_case_studies.pdf", "exercises_and_case_studies.epub"],
+"toc": {
+"collapse": "subsection"
+},
+"toolbar": {
+"position": "fixed"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

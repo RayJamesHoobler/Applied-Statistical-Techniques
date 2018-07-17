@@ -291,7 +291,7 @@ sd_2362_wafer <- gauge_study %>%
       RUN == 2 ~ "Run2"
     )
   ) %>%
-  select(PROBE, WAFER, probe_mean, run_number) %>% 
+  dplyr::select(PROBE, WAFER, probe_mean, run_number) %>% 
   group_by(WAFER) %>%
   summarise(sd_wafer = sd(probe_mean))
 

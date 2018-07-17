@@ -1,5 +1,6 @@
 # Exploratory Data Analysis {#EDA}
 
+
 ## A EDA Example
 
 [An EDA/Graphics Example](https://www.itl.nist.gov/div898/handbook/eda/section1/eda16.htm)
@@ -36,16 +37,16 @@ As mentioned in the introduction, this text assumes a basic knowledge of the tid
 
 ```{r}
 x_anscombe <- anscombe %>%  # results will be storred into a new object x_anscombe; we start with the original data frame "anscombe"
-  select(x1, x2, x3, x4) %>%  # select the columns we want to work with
+  dplyr::select(x1, x2, x3, x4) %>%  # select the columns we want to work with
   rename(group1 = x1, group2 = x2, group3 = x3, group4 = x4) %>% # rename the values using a generic header
   gather(key = group, value = x_values, group1, group2, group3, group4) # gather the columns into rows
 
 x_anscombe
 
 y_anscombe <- anscombe %>%
-  select(y1, y2, y3, y4) %>%
+  dplyr::select(y1, y2, y3, y4) %>%
   gather(key = group, value = y_values, y1, y2, y3, y4) %>% # I don't need to rename the columns as I will discard them (I only need one column to indicate the group number)
-  select(y_values)
+  dplyr::select(y_values)
 
 y_anscombe
 
@@ -408,28 +409,4 @@ ggplot(ceramic_strength, aes(as.factor(Lab), Y)) +
 
 
 
-***
-
-
-You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(intro). If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \@ref(methods).
-
-Figures and tables with captions will be placed in `figure` and `table` environments, respectively.
-
-```{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center'}
-par(mar = c(4, 4, .1, .1))
-plot(pressure, type = 'b', pch = 19)
-```
-
-Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab).
-
-```{r nice-tab, tidy=FALSE}
-knitr::kable(
-  head(iris, 20), caption = 'Here is a nice table!',
-  booktabs = TRUE
-)
-```
-
-You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].
-
-I'd like to add a reference [@Hoobler1993].
 
