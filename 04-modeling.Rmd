@@ -50,11 +50,11 @@ tidy(m_sl)
 
 sl_slope <- tidy(m_sl) %>%
   filter(term == "x.line") %>%
-  select(estimate)
+  dplyr::select(estimate)
 
 sl_intercept <- tidy(m_sl) %>%
   filter(term == "(Intercept)") %>%
-  select(estimate)
+  dplyr::select(estimate)
 
 sl_slope
 sl_intercept
@@ -525,16 +525,16 @@ ggplot(load_cell_fit_2_runs) +
 
 ```{r}
 x_anscombe <- anscombe %>%  # results will be storred into a new object x_anscombe; we start with the original data frame "anscombe"
-  select(x1, x2, x3, x4) %>%  # select the columns we want to work with
+  dplyr::select(x1, x2, x3, x4) %>%  # select the columns we want to work with
   rename(group1 = x1, group2 = x2, group3 = x3, group4 = x4) %>% # rename the values using a generic header
   gather(key = group, value = x_values, group1, group2, group3, group4) # gather the columns into rows
 
 x_anscombe
 
 y_anscombe <- anscombe %>%
-  select(y1, y2, y3, y4) %>%
+  dplyr::select(y1, y2, y3, y4) %>%
   gather(key = group, value = y_values, y1, y2, y3, y4) %>% # I don't need to rename the columns as I will discard them (I only need one column to indicate the group number)
-  select(y_values)
+  dplyr::select(y_values)
 
 y_anscombe
 

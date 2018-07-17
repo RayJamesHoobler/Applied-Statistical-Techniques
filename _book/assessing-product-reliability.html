@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="modeling.html">
-<link rel="next" href="process-monitoring.html">
+<link rel="prev" href="product-and-process-comparisons.html">
+<link rel="next" href="references.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -248,141 +248,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="process-improvment" class="section level1">
-<h1><span class="header-section-number">5</span> Process Improvment</h1>
-<div id="packages-used-in-this-chapter-2" class="section level2">
-<h2><span class="header-section-number">5.1</span> Packages used in this chapter</h2>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb303-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb303-3" data-line-number="3"><span class="kw">library</span>(broom)</a></code></pre></div>
-</div>
-<div id="case-stuidies-1" class="section level2">
-<h2><span class="header-section-number">5.2</span> Case Stuidies</h2>
-<div id="eddy-current-probe-sensitivity" class="section level3">
-<h3><span class="header-section-number">5.2.1</span> Eddy current probe sensitivity</h3>
-<p><a href="https://www.itl.nist.gov/div898/handbook/pri/section6/pri61.htm">Eddy current probe sensitivity</a></p>
-<div id="background" class="section level4">
-<h4><span class="header-section-number">5.2.1.1</span> Background</h4>
-<blockquote>
-<p>The data for this case study is a subset of a study performed by Capobianco, Splett, and Iyer. Capobianco was a member of the NIST Electromagnetics Division and Splett and Iyer were members of the NIST Statistical Engineering Division at the time of this study.</p>
-<p>The goal of this project is to develop a nondestructive portable device for detecting cracks and fractures in metals. A primary application would be the detection of defects in airplane wings. The internal mechanism of the detector would be for sensing crack-induced changes in the detector’s electromagnetic field, which would in turn result in changes in the impedance level of the detector. This change of impedance is termed “sensitivity” and it is a sub-goal of this experiment to maximize such sensitivity as the detector is moved from an unflawed region to a flawed region on the metal.</p>
-</blockquote>
-</div>
-<div id="statistical-goals" class="section level4">
-<h4><span class="header-section-number">5.2.1.2</span> Statistical goals</h4>
-<blockquote>
-<p>The case study illustrates the analysis of a 23 full factorial experimental design. The specific statistical goals of the experiment are: (1) Determine the important factors that affect sensitivity. (2) Determine the settings that maximize sensitivity. (3) Determine a predicition equation that functionally relates sensitivity to various factors.</p>
-</blockquote>
-</div>
-<div id="data" class="section level4">
-<h4><span class="header-section-number">5.2.1.3</span> Data</h4>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" data-line-number="1">eddy_probe &lt;-<span class="st"> </span><span class="kw">read_table2</span>(<span class="st">&quot;NIST data/SPLETT3.DAT&quot;</span>, </a>
-<a class="sourceLine" id="cb304-2" data-line-number="2">                          <span class="dt">skip =</span> <span class="dv">25</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>, <span class="dt">col_types =</span> <span class="st">&quot;diiii&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb304-3" data-line-number="3"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">probe_impedance =</span> X1, <span class="dt">number_turns =</span> X2, <span class="dt">winding_distance =</span> X3, <span class="dt">wire_gauge =</span> X4, <span class="dt">run_sequence =</span> X5)</a>
-<a class="sourceLine" id="cb304-4" data-line-number="4">eddy_probe</a></code></pre></div>
-<pre><code>## # A tibble: 8 x 5
-##   probe_impedance number_turns winding_distance wire_gauge run_sequence
-##             &lt;dbl&gt;        &lt;int&gt;            &lt;int&gt;      &lt;int&gt;        &lt;int&gt;
-## 1           1.70            -1               -1         -1            2
-## 2           4.57             1               -1         -1            8
-## 3           0.550           -1                1         -1            3
-## 4           3.39             1                1         -1            6
-## 5           1.51            -1               -1          1            7
-## 6           4.59             1               -1          1            1
-## 7           0.670           -1                1          1            4
-## 8           4.29             1                1          1            5</code></pre>
-</div>
-<div id="ordered-data-plot" class="section level4">
-<h4><span class="header-section-number">5.2.1.4</span> Ordered data plot</h4>
-<p>There are several differnet ways we could structure an ordered data plot; below is an example.</p>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" data-line-number="1">eddy_probe_tidy &lt;-<span class="st"> </span>eddy_probe <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb306-2" data-line-number="2"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> factor_setting, <span class="dt">value =</span> value_setting, number_turns, winding_distance, wire_gauge)</a>
-<a class="sourceLine" id="cb306-3" data-line-number="3">eddy_probe_tidy</a></code></pre></div>
-<pre><code>## # A tibble: 24 x 4
-##    probe_impedance run_sequence factor_setting   value_setting
-##              &lt;dbl&gt;        &lt;int&gt; &lt;chr&gt;                    &lt;int&gt;
-##  1           1.70             2 number_turns                -1
-##  2           4.57             8 number_turns                 1
-##  3           0.550            3 number_turns                -1
-##  4           3.39             6 number_turns                 1
-##  5           1.51             7 number_turns                -1
-##  6           4.59             1 number_turns                 1
-##  7           0.670            4 number_turns                -1
-##  8           4.29             5 number_turns                 1
-##  9           1.70             2 winding_distance            -1
-## 10           4.57             8 winding_distance            -1
-## # ... with 14 more rows</code></pre>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" data-line-number="1"><span class="kw">ggplot</span>(eddy_probe_tidy) <span class="op">+</span></a>
-<a class="sourceLine" id="cb308-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="kw">reorder</span>(run_sequence, probe_impedance), probe_impedance, <span class="dt">colour =</span> factor_setting, <span class="dt">shape =</span> <span class="kw">as.factor</span>(value_setting)), <span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.5</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb308-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Ordered data plot for Eddy current study&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;sensitivity&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;run&quot;</span>)</a></code></pre></div>
-<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
-</div>
-<div id="doe-scatter-plot" class="section level4">
-<h4><span class="header-section-number">5.2.1.5</span> DOE scatter plot</h4>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb309-1" data-line-number="1"><span class="kw">ggplot</span>(eddy_probe_tidy) <span class="op">+</span></a>
-<a class="sourceLine" id="cb309-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(value_setting, probe_impedance)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb309-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>factor_setting) <span class="op">+</span></a>
-<a class="sourceLine" id="cb309-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;DOE scatter plot for Eddy current data&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;sensitivity&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;factor levels&quot;</span>)</a></code></pre></div>
-<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
-</div>
-<div id="doe-mean-plot" class="section level4">
-<h4><span class="header-section-number">5.2.1.6</span> DOE mean plot</h4>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" data-line-number="1">eddy_probe_means &lt;-<span class="st"> </span>eddy_probe_tidy <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb310-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(factor_setting, value_setting) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb310-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">average_factor =</span> <span class="kw">mean</span>(probe_impedance))</a>
-<a class="sourceLine" id="cb310-4" data-line-number="4">eddy_probe_means</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 4
-## # Groups:   factor_setting [?]
-##   factor_setting   value_setting     n average_factor
-##   &lt;chr&gt;                    &lt;int&gt; &lt;int&gt;          &lt;dbl&gt;
-## 1 number_turns                -1     4           1.11
-## 2 number_turns                 1     4           4.21
-## 3 winding_distance            -1     4           3.09
-## 4 winding_distance             1     4           2.22
-## 5 wire_gauge                  -1     4           2.55
-## 6 wire_gauge                   1     4           2.76</code></pre>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" data-line-number="1"><span class="kw">ggplot</span>(eddy_probe_means, <span class="kw">aes</span>(factor_setting, average_factor)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb312-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> factor_setting, <span class="dt">shape =</span> <span class="kw">as.factor</span>(value_setting)), <span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.5</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb312-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> factor_setting)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb312-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;DOE mean plot for Eddy current data&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;sensitivity&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;factor&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb312-5" data-line-number="5"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.title =</span> <span class="kw">element_blank</span>())</a></code></pre></div>
-<p><img src="exercises_and_case_studies_files/figure-html/unnamed-chunk-134-1.png" width="672" /></p>
-</div>
-<div id="doe-interaction-plot-for-eddy-current-data" class="section level4">
-<h4><span class="header-section-number">5.2.1.7</span> DOE interaction plot for eddy current data</h4>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb313-1" data-line-number="1">eddy_probe_interaction &lt;-<span class="st"> </span><span class="kw">lm</span>(average_factor <span class="op">~</span><span class="st"> </span>factor_setting, <span class="dt">data =</span> eddy_probe_means)</a>
-<a class="sourceLine" id="cb313-2" data-line-number="2"><span class="kw">summary</span>(eddy_probe_interaction)</a></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = average_factor ~ factor_setting, data = eddy_probe_means)
-## 
-## Residuals:
-##       1       2       3       4       5       6 
-## -1.5512  1.5513  0.4337 -0.4338 -0.1062  0.1062 
-## 
-## Coefficients:
-##                                  Estimate Std. Error t value Pr(&gt;|t|)  
-## (Intercept)                     2.659e+00  9.320e-01   2.853    0.065 .
-## factor_settingwinding_distance -8.802e-16  1.318e+00   0.000    1.000  
-## factor_settingwire_gauge       -2.220e-16  1.318e+00   0.000    1.000  
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 1.318 on 3 degrees of freedom
-## Multiple R-squared:  1.892e-31,  Adjusted R-squared:  -0.6667 
-## F-statistic: 2.838e-31 on 2 and 3 DF,  p-value: 1</code></pre>
+<div id="assessing-product-reliability" class="section level1">
+<h1><span class="header-section-number">8</span> Assessing Product Reliability</h1>
+<p>This chapter was not covered in the course and may be added at a later date.</p>
 
-</div>
-</div>
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="modeling.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="process-monitoring.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="product-and-process-comparisons.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -412,7 +289,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/RayJamesHoobler/Applied-Statistical-Techniques/edit/master/05-improvement.Rmd",
+"link": "https://github.com/RayJamesHoobler/Applied-Statistical-Techniques/edit/master/08-reliability.Rmd",
 "text": "Edit"
 },
 "download": ["exercises_and_case_studies.pdf", "exercises_and_case_studies.epub"],

@@ -72,10 +72,6 @@ sessionInfo()
 
 ## Acknowledgements {-} 
 
-Current and former students
-
-Former coleagues 
-
 This book was created using the **bookdown** package [@R-bookdown], which was built on top of R Markdown and **knitr** [@xie2015].
 
 Ray James Hoobler  
