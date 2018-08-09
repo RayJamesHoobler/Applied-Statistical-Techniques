@@ -26,17 +26,17 @@ knitr::write_bib(c(
 
 # Preface {-}
 
-Exploratory Data Analysis (EDA) is a philosophy on how to work with data, and for many applications, the workflow is better suited for most working scientist and engineers. As a scientist, we are trained to formulate a hypothesis and design a series of experiments that will allow us to test the hypothesis effectively. Unfortunately, most data doesn’t from carefully controlled trials, but from observations. Statisticians will readily jump into describing the difference in as much detail as you would like.
+Exploratory Data Analysis (EDA) is a philosophy on how to work with data, and for many applications, the workflow is better suited for scientist and engineers. As a scientist, we are trained to formulate a hypothesis and design a series of experiments that allow us to test the hypothesis effectively. Most data, however,  doesn’t come from carefully controlled trials, but from observations. Statisticians can readily jump into describing the difference in as much detail they would like.
 
 For most of us, we need tools to characterize an instrument or a process. The philosophy of EDA provides the framework to do this work.
 
-Unfortunately, most textbooks still focus on traditional statistical techniques and even while it is essential to understand the underlying assumptions and fundamentals, I would argue that most of the work we do as scientist and engineers are not well suited for rigorous statistical analysis. In many cases, the need to disseminate information to a broad audience is best served by the methods espoused by EDA. The NIST e-Handbook Engineering Statistics is a welcome deviation from the norm.
+Most textbooks still focus on traditional statistical techniques and even while it is essential to understand the underlying assumptions and fundamentals, I would argue that the work we do as scientist and engineers is not well suited for rigorous statistical analysis. In many cases, the need to disseminate information to a broad audience is best served by the methods espoused by EDA. The NIST e-Handbook Engineering Statistics is a welcome deviation from the norm.
 
-In the Spring of 2018, I adopted this text as the basis of a one-semester, graduate course that focused applied statistical techniques. The audience for this course were working scientist, and the course was a core course in a Professional Science Master’s (PSM). 
+In the Spring of 2018, I adopted this text as the basis of a one-semester, graduate course that focused applied statistical techniques. The audience for this course were working scientist, and the course was a core course in a Professional Science Master’s (PSM) program. 
 
-Unfortunately, the one drawback of the NIST Handbook is the use of Dataplot as the primary software package for analysis. The authors have provided examples using the R statistical language; however, most--if not all--of these scripts are written using base R which is unfortunate. Modern R now incorporates many packages for streamlining the EDA process. This book attempts to capture my efforts to use these methods and share them with students in the course. The two packages that I primarily used were **tidyverse** and **ggplot2**.
+Unfortunately, the one drawback of the NIST Handbook is the use of Dataplot as the primary software package for analysis. The authors have provided examples using the R statistical language; however, most—if not all—of these scripts are written using base R. Modern R now incorporates many packages for streamlining the EDA process. This book attempts to capture my efforts to use these methods and share them with students in the course. The two packages that I primarily used were **tidyverse** and **ggplot2**.
 
-Before going further, I should clarify one thing---I’m a hack. I classify learning as three levels: novice, hack, expert. 
+Before going further, I should clarify one thing---I classify expertise with three levels: novice, hack, expert. 
 
 Novice: basic knowledge of how to use a tool with a desire to learn.
 Hack: Basic to intermediate knowledge of how to use a tool accompanied by resources to produce a finished product.
@@ -52,7 +52,7 @@ I encourage the reader to explore the references related to these two packages a
 
 This book will show how I have worked through the exercises and case studies presented in the NIST handbook using methods found in the tidyverse and ggplot2. I have found this framework to be incredibly satisfying and one I was eager to share beyond my class. 
 
-If you find this material useful, please send me an email. 
+If you find this material useful, please send me an email.
 
 ## Structure of the book {-} 
 
