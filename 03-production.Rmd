@@ -18,7 +18,7 @@ library(tidyverse)
 >The goal of this study is to determine if this process is capable of consistently growing oxide films with a thickness of 560 Angstroms +/- 100 Angstroms. An additional goal is to determine important sources of variation for use in the development of a process control strategy.
 
 
-```{r echo=FALSE}
+```{r}
 FURNACE <- read_table2("NIST data/FURNACE.DAT", 
                     col_names = FALSE, skip = 25)
 
